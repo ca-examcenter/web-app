@@ -1,0 +1,2869 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<meta name="theme-color" content="#10245f">
+
+<title>Concept Academy by Shuvo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --navy:#10245f;
+    --blue:#2563eb;
+    --cyan:#0891b2;
+    --text:#172033;
+    --muted:#64748b;
+    --border:#e2e8f0;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Noto Sans Bengali',sans-serif;
+    background:#f5f8fc;
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,input{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none !important;
+}
+
+/* HEADER */
+
+.site-header{
+    position:sticky;
+    top:0;
+    z-index:3000;
+    color:#fff;
+    background:linear-gradient(120deg,#101d4e,#173eae 58%,#087ea4);
+    box-shadow:0 4px 18px rgba(15,23,42,.12);
+}
+
+.header-inner{
+    width:min(1050px,calc(100% - 28px));
+    min-height:88px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.brand-logo{
+    width:54px;
+    height:54px;
+    border-radius:15px;
+    overflow:hidden;
+    flex:none;
+    background:#07111f;
+}
+
+.brand-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.brand-line{
+    display:flex;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+.brand-name{
+    font-family:'Inter',sans-serif;
+    font-size:25px;
+    font-weight:800;
+}
+
+.by-shuvo{
+    font-family:'Inter',sans-serif;
+    font-size:10px;
+    color:#dbeafe;
+    padding-bottom:3px;
+}
+
+.brand-sub{
+    margin-top:4px;
+    font-family:'Inter',sans-serif;
+    font-size:11px;
+    color:#dbeafe;
+}
+
+.home-btn{
+    border:1px solid rgba(255,255,255,.3);
+    background:rgba(255,255,255,.1);
+    color:#fff;
+    padding:9px 12px;
+    border-radius:10px;
+    font-weight:700;
+}
+
+/* COMMON */
+
+.page{
+    width:min(950px,calc(100% - 26px));
+    margin:auto;
+    padding:30px 0 60px;
+}
+
+.eyebrow{
+    display:inline-block;
+    background:#eaf2ff;
+    color:#2563eb;
+    border-radius:999px;
+    padding:5px 10px;
+    font-size:11px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.page-title{
+    color:var(--navy);
+    font-size:27px;
+    line-height:1.4;
+}
+
+.page-subtitle{
+    color:var(--muted);
+    margin-top:6px;
+    margin-bottom:22px;
+}
+
+.back-btn{
+    border:1px solid #dbe4ef;
+    background:#fff;
+    color:#334155;
+    padding:9px 13px;
+    border-radius:10px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+/* HOME */
+
+.home-hero{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 9px 30px rgba(15,23,42,.055);
+}
+
+.home-hero h2{
+    color:var(--navy);
+    font-size:27px;
+}
+
+.home-hero p{
+    color:var(--muted);
+    margin-top:7px;
+}
+
+.level-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.level-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:23px;
+    box-shadow:0 7px 24px rgba(15,23,42,.05);
+    transition:.2s;
+}
+
+.level-card:hover{
+    transform:translateY(-3px);
+    border-color:#93c5fd;
+}
+
+.level-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.level-icon{
+    width:56px;
+    height:56px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:16px;
+    background:#eff6ff;
+    font-size:26px;
+}
+
+.level-arrow{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#f1f5f9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#2563eb;
+    font-weight:800;
+}
+
+.level-card h2{
+    font-family:'Inter',sans-serif;
+    color:var(--navy);
+    margin-top:17px;
+    font-size:25px;
+}
+
+.level-card p{
+    color:var(--muted);
+    margin-top:5px;
+}
+
+.level-footer{
+    color:#2563eb;
+    font-size:13px;
+    font-weight:800;
+    border-top:1px solid #edf1f6;
+    margin-top:17px;
+    padding-top:14px;
+}
+
+/* SUBJECTS */
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+}
+
+.subject-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:17px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    box-shadow:0 4px 16px rgba(15,23,42,.04);
+}
+
+.subject-icon{
+    width:48px;
+    height:48px;
+    flex:none;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eff6ff;
+    font-size:22px;
+}
+
+.subject-info{
+    flex:1;
+}
+
+.subject-info h3{
+    color:var(--navy);
+}
+
+.subject-info p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:3px;
+}
+
+.subject-arrow{
+    color:#94a3b8;
+}
+
+/* EXAM LIST */
+
+.exam-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.exam-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.exam-card h3{
+    color:var(--navy);
+}
+
+.exam-meta{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:5px;
+}
+
+.exam-start-btn{
+    border:0;
+    color:#fff;
+    background:linear-gradient(135deg,#2563eb,#0284c7);
+    border-radius:10px;
+    padding:11px 16px;
+    font-weight:800;
+}
+
+.empty-box{
+    padding:35px 18px;
+    background:#fff;
+    border:1px dashed #94a3b8;
+    border-radius:17px;
+    text-align:center;
+    color:var(--muted);
+}
+
+/* NAME */
+
+.name-card{
+    max-width:500px;
+    margin:auto;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:27px;
+    box-shadow:0 9px 30px rgba(15,23,42,.06);
+}
+
+.name-card h2{
+    color:var(--navy);
+}
+
+.selected-exam{
+    color:var(--muted);
+    margin:5px 0 20px;
+}
+
+.student-name-input{
+    width:100%;
+    padding:14px;
+    border:2px solid #dbe4ef;
+    border-radius:11px;
+    outline:none;
+    font-size:16px;
+}
+
+.student-name-input:focus{
+    border-color:#2563eb;
+}
+
+.big-btn{
+    width:100%;
+    margin-top:14px;
+    border:0;
+    border-radius:11px;
+    padding:14px;
+    color:#fff;
+    background:linear-gradient(135deg,#1d4ed8,#0284c7);
+    font-size:16px;
+    font-weight:800;
+}
+
+/* EXAM TOOLBAR */
+
+.exam-toolbar{
+    position:sticky;
+    top:88px;
+    z-index:2000;
+    background:rgba(255,255,255,.97);
+    border-bottom:1px solid var(--border);
+    box-shadow:0 3px 13px rgba(15,23,42,.055);
+}
+
+.exam-toolbar-inner{
+    width:min(950px,calc(100% - 26px));
+    margin:auto;
+    padding:10px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.exam-toolbar-title{
+    color:var(--navy);
+    font-weight:800;
+}
+
+.toolbar-status{
+    display:flex;
+    gap:6px;
+}
+
+.pill{
+    padding:7px 9px;
+    border-radius:9px;
+    font-size:12px;
+    font-weight:800;
+}
+
+.progress-pill{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.timer-pill{
+    background:#d1fae5;
+    color:#047857;
+}
+
+.timer-pill.warning{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.timer-pill.danger{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+/* EXAM */
+
+.exam-info{
+    color:#fff;
+    background:linear-gradient(135deg,#10245f,#1d4ed8,#0891b2);
+    border-radius:17px;
+    padding:16px;
+    margin-bottom:18px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.question-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:19px;
+    margin-bottom:14px;
+}
+
+.question-badge{
+    display:inline-block;
+    background:#e0e7ff;
+    color:#3730a3;
+    padding:5px 9px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:9px;
+}
+
+.question-text{
+    font-weight:700;
+    line-height:1.7;
+    font-size:17px;
+    margin-bottom:12px;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+}
+
+.option{
+    display:flex;
+    gap:9px;
+    align-items:flex-start;
+    border:2px solid #e5e7eb;
+    border-radius:11px;
+    padding:11px;
+    line-height:1.55;
+}
+
+.option input{
+    margin-top:5px;
+    accent-color:#2563eb;
+}
+
+.option:has(input:checked){
+    border-color:#2563eb;
+    background:#eff6ff;
+}
+
+.submit-box{
+    margin-top:22px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:22px;
+    text-align:center;
+}
+
+.submit-btn{
+    margin-top:11px;
+    border:0;
+    border-radius:10px;
+    padding:13px 26px;
+    background:#059669;
+    color:#fff;
+    font-weight:800;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:rgba(15,23,42,.58);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-box{
+    width:100%;
+    max-width:370px;
+    border-radius:18px;
+    background:#fff;
+    padding:25px;
+    text-align:center;
+}
+
+.modal-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:18px;
+}
+
+.modal-actions button{
+    border:0;
+    border-radius:9px;
+    padding:11px;
+    font-weight:800;
+}
+
+.no-btn{
+    background:#f1f5f9;
+}
+
+.yes-btn{
+    background:#2563eb;
+    color:#fff;
+}
+
+/* RESULT */
+
+.result-head{
+    color:#fff;
+    background:linear-gradient(135deg,#10245f,#1d4ed8,#0891b2);
+    border-radius:21px;
+    padding:27px 18px;
+    text-align:center;
+}
+
+.score{
+    font-family:'Inter',sans-serif;
+    font-size:41px;
+    font-weight:800;
+    margin-top:10px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:17px;
+}
+
+.stat{
+    background:rgba(255,255,255,.13);
+    border-radius:10px;
+    padding:9px;
+}
+
+.stat strong{
+    display:block;
+    font-size:19px;
+}
+
+.stat span{
+    font-size:11px;
+}
+
+.review-title{
+    color:var(--navy);
+    margin:24px 0 13px;
+}
+
+.review-card{
+    padding:17px;
+    margin-bottom:11px;
+    border-radius:14px;
+}
+
+.review-card.correct{
+    background:#f0fdf4;
+    border-left:5px solid #22c55e;
+}
+
+.review-card.wrong{
+    background:#fff7f7;
+    border-left:5px solid #ef4444;
+}
+
+.review-card.unanswered{
+    background:#fffbeb;
+    border-left:5px solid #f59e0b;
+}
+
+.review-q{
+    font-weight:700;
+    line-height:1.6;
+}
+
+.review-options{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    margin-top:11px;
+}
+
+.review-option{
+    background:#fff;
+    border:1px solid #dbe3ec;
+    border-radius:8px;
+    padding:9px 10px;
+    display:flex;
+    justify-content:space-between;
+    gap:9px;
+}
+
+.review-option.correct{
+    background:#dcfce7;
+    border-color:#22c55e;
+}
+
+.review-option.wrong-selected{
+    background:#fee2e2;
+    border-color:#ef4444;
+}
+
+.option-note{
+    font-size:11px;
+    font-weight:800;
+}
+
+.result-actions{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-top:24px;
+}
+
+.result-actions button{
+    border:0;
+    border-radius:10px;
+    padding:12px 17px;
+    color:#fff;
+    font-weight:800;
+}
+
+.print-btn{
+    background:#2563eb;
+}
+
+.home-result-btn{
+    background:#10245f;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .brand-logo{
+        width:46px;
+        height:46px;
+        border-radius:12px;
+    }
+
+    .brand-name{
+        font-size:19px;
+    }
+
+    .by-shuvo{
+        font-size:8px;
+    }
+
+    .brand-sub{
+        font-size:9px;
+    }
+
+    .home-btn{
+        padding:7px 9px;
+        font-size:11px;
+    }
+
+    .level-grid,
+    .subject-grid,
+    .options{
+        grid-template-columns:1fr;
+    }
+
+    .exam-card{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .exam-start-btn{
+        width:100%;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .toolbar-status{
+        flex-direction:column;
+    }
+
+    .exam-toolbar-title{
+        font-size:11px;
+        max-width:55%;
+    }
+
+    .pill{
+        font-size:9px;
+        padding:5px 7px;
+    }
+
+    .review-option{
+        flex-direction:column;
+    }
+
+    .result-actions button{
+        width:100%;
+    }
+}
+
+@media print{
+
+    .site-header,
+    .result-actions{
+        display:none!important;
+    }
+
+    body{
+        background:#fff;
+    }
+
+    .page{
+        width:100%;
+        padding:0;
+    }
+
+    .review-card{
+        break-inside:avoid;
+        page-break-inside:avoid;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+<div class="header-inner">
+
+<div class="brand">
+
+<div class="brand-logo">
+<img src="logo.jpg" alt="Concept Academy">
+</div>
+
+<div>
+<div class="brand-line">
+<span class="brand-name">Concept Academy</span>
+<span class="by-shuvo">by Shuvo</span>
+</div>
+
+<div class="brand-sub">
+Online Exam Platform
+</div>
+</div>
+
+</div>
+
+<button class="home-btn" onclick="goHome()">
+⌂ Home
+</button>
+
+</div>
+</header>
+
+
+<!-- HOME -->
+
+<section id="homePage" class="page">
+
+<div class="home-hero">
+
+<div class="eyebrow">
+ONLINE EXAM
+</div>
+
+<h2>
+আপনার পরীক্ষার সেকশন নির্বাচন করুন
+</h2>
+
+<p>
+SSC অথবা HSC সেকশনে প্রবেশ করে আপনার বিষয় ও পরীক্ষা নির্বাচন করুন।
+</p>
+
+</div>
+
+
+<div class="level-grid">
+
+<div class="level-card" onclick="openLevel('SSC')">
+
+<div class="level-top">
+
+<div class="level-icon">
+📘
+</div>
+
+<div class="level-arrow">
+→
+</div>
+
+</div>
+
+<h2>SSC</h2>
+
+<p>
+মাধ্যমিক পর্যায়ের পরীক্ষা
+</p>
+
+<div class="level-footer">
+SSC পরীক্ষাসমূহ দেখুন →
+</div>
+
+</div>
+
+
+<div class="level-card" onclick="openLevel('HSC')">
+
+<div class="level-top">
+
+<div class="level-icon">
+🎓
+</div>
+
+<div class="level-arrow">
+→
+</div>
+
+</div>
+
+<h2>HSC</h2>
+
+<p>
+উচ্চমাধ্যমিক ও ভর্তি পরীক্ষা
+</p>
+
+<div class="level-footer">
+HSC পরীক্ষাসমূহ দেখুন →
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SUBJECT -->
+
+<section id="subjectPage" class="page hidden">
+
+<button class="back-btn" onclick="history.back()">
+← ফিরে যান
+</button>
+
+<div class="eyebrow" id="subjectEyebrow">
+SECTION
+</div>
+
+<h2 class="page-title" id="subjectTitle"></h2>
+
+<p class="page-subtitle">
+পরীক্ষা দেওয়ার জন্য বিষয় নির্বাচন করুন
+</p>
+
+<div class="subject-grid" id="subjectGrid"></div>
+
+</section>
+
+
+<!-- EXAM LIST -->
+
+<section id="examListPage" class="page hidden">
+
+<button class="back-btn" onclick="history.back()">
+← বিষয়সমূহ
+</button>
+
+<div class="eyebrow">
+AVAILABLE EXAMS
+</div>
+
+<h2 class="page-title" id="examListTitle"></h2>
+
+<p class="page-subtitle">
+প্রকাশিত পরীক্ষা থেকে একটি নির্বাচন করুন
+</p>
+
+<div class="exam-list" id="examList"></div>
+
+</section>
+
+
+<!-- NAME -->
+
+<section id="namePage" class="page hidden">
+
+<button class="back-btn" onclick="history.back()">
+← পরীক্ষার তালিকা
+</button>
+
+<div class="name-card">
+
+<div class="eyebrow">
+START EXAM
+</div>
+
+<h2>
+পরীক্ষার্থীর তথ্য
+</h2>
+
+<p class="selected-exam" id="selectedExamTitle"></p>
+
+<label style="font-weight:700;display:block;margin-bottom:7px;">
+পরীক্ষার্থীর নাম
+</label>
+
+<input
+id="studentName"
+class="student-name-input"
+type="text"
+placeholder="আপনার সম্পূর্ণ নাম লিখুন"
+autocomplete="name"
+>
+
+<button class="big-btn" onclick="startExam()">
+পরীক্ষা শুরু করুন →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- EXAM -->
+
+<section id="examPage" class="hidden">
+
+<div class="exam-toolbar">
+
+<div class="exam-toolbar-inner">
+
+<div
+class="exam-toolbar-title"
+id="toolbarExamTitle">
+</div>
+
+<div class="toolbar-status">
+
+<div
+class="pill progress-pill"
+id="progressText">
+</div>
+
+<div
+class="pill timer-pill"
+id="timerText">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="page">
+
+<div class="exam-info">
+
+<div>
+পরীক্ষার্থী:
+<strong id="examStudentName"></strong>
+</div>
+
+<div id="markingRuleText"></div>
+
+</div>
+
+<div id="questionsContainer"></div>
+
+<div class="submit-box">
+
+<h3>পরীক্ষা শেষ?</h3>
+
+<p style="color:#64748b;margin-top:4px;">
+সব প্রশ্নের উত্তর দেওয়া বাধ্যতামূলক নয়।
+</p>
+
+<button class="submit-btn" onclick="showSubmitModal()">
+পরীক্ষা জমা দিন
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- RESULT -->
+
+<section id="resultPage" class="page hidden">
+
+<div class="result-head">
+
+<h2>
+পরীক্ষার ফলাফল
+</h2>
+
+<p id="resultExamName"></p>
+
+<p id="resultStudent"></p>
+
+<div class="score" id="finalScore"></div>
+
+<div id="scoreOutOf"></div>
+
+
+<div class="stats">
+
+<div class="stat">
+<strong id="correctCount"></strong>
+<span>সঠিক</span>
+</div>
+
+<div class="stat">
+<strong id="wrongCount"></strong>
+<span>ভুল</span>
+</div>
+
+<div class="stat">
+<strong id="unansweredCount"></strong>
+<span>উত্তরহীন</span>
+</div>
+
+<div class="stat">
+<strong id="answeredCount"></strong>
+<span>উত্তর দিয়েছেন</span>
+</div>
+
+</div>
+
+</div>
+
+
+<h2 class="review-title">
+উত্তরপত্র ও সংশোধনী
+</h2>
+
+<div id="answerReview"></div>
+
+
+<div class="result-actions">
+
+<button class="print-btn" onclick="window.print()">
+📄 Print / Save as PDF
+</button>
+
+<button class="home-result-btn" onclick="goHome()">
+⌂ Home
+</button>
+
+</div>
+
+</section>
+
+
+<!-- SUBMIT MODAL -->
+
+<div id="submitModal" class="modal">
+
+<div class="modal-box">
+
+<h3>
+আপনি কি পরীক্ষা জমা দিতে চান?
+</h3>
+
+<div class="modal-actions">
+
+<button class="no-btn" onclick="hideSubmitModal()">
+না
+</button>
+
+<button class="yes-btn" onclick="submitExam(false)">
+হ্যাঁ, জমা দিন
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ==========================
+CONFIG
+========================== */
+
+const GOOGLE_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbzM_KnauOG8eEYoe9Cc1csBtvO2MuVkX7MV1LZRW4tfGejyvZAE8DytXH_rlo3PogQd/exec";
+
+
+const subjects={
+
+SSC:[
+{id:"biology",name:"জীববিজ্ঞান",icon:"🧬"},
+{id:"physics",name:"পদার্থবিজ্ঞান",icon:"⚛️"},
+{id:"chemistry",name:"রসায়ন",icon:"🧪"},
+{id:"higher_math",name:"উচ্চতর গণিত",icon:"📐"},
+{id:"math",name:"গণিত",icon:"➗"}
+],
+
+HSC:[
+{id:"zoology",name:"প্রাণীবিজ্ঞান",icon:"🐾"},
+{id:"botany",name:"উদ্ভিদবিজ্ঞান",icon:"🌿"},
+{id:"chemistry_1",name:"রসায়ন ১ম পত্র",icon:"🧪"},
+{id:"chemistry_2",name:"রসায়ন ২য় পত্র",icon:"⚗️"},
+{id:"medical",name:"মেডিকেল ভর্তি পরীক্ষা",icon:"🩺"}
+]
+
+};
+
+
+const optionLabels=[
+"ক","খ","গ","ঘ"
+];
+
+
+let examsData=[];
+
+let currentLevel=null;
+let currentSubject=null;
+let currentExam=null;
+
+let currentView="home";
+
+let studentName="";
+
+let timeLeft=0;
+let timerInterval=null;
+
+let submitted=false;
+let examStartTime=null;
+
+
+/* ==========================
+INITIAL HISTORY
+========================== */
+
+history.replaceState(
+{view:"home"},
+"",
+"#home"
+);
+
+
+/* ==========================
+LOAD EXAMS
+========================== */
+
+async function loadExams(){
+
+try{
+
+const response=
+await fetch(
+"exams.json?v="+Date.now()
+);
+
+
+if(!response.ok){
+throw new Error(
+"exams.json load failed"
+);
+}
+
+
+const data=
+await response.json();
+
+
+examsData=
+Array.isArray(data.exams)
+?
+data.exams
+:
+[];
+
+
+if(currentView==="subjects"){
+renderSubjects();
+}
+
+
+if(currentView==="examlist"){
+renderExamList();
+}
+
+}
+catch(error){
+
+console.error(error);
+
+examsData=[];
+
+}
+
+}
+
+
+loadExams();
+
+
+/* ==========================
+PAGE HELPERS
+========================== */
+
+function hideAllPages(){
+
+[
+"homePage",
+"subjectPage",
+"examListPage",
+"namePage",
+"examPage",
+"resultPage"
+]
+.forEach(id=>{
+
+document
+.getElementById(id)
+.classList.add("hidden");
+
+});
+
+}
+
+
+function pushView(view){
+
+currentView=view;
+
+history.pushState(
+{view:view},
+"",
+"#"+view
+);
+
+}
+
+
+/* ==========================
+HOME
+========================== */
+
+function showHome(){
+
+hideAllPages();
+
+currentView="home";
+
+document
+.getElementById("homePage")
+.classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+}
+
+
+function goHome(){
+
+if(
+currentView==="exam"
+&&
+!submitted
+){
+
+const leave=
+confirm(
+"পরীক্ষা এখনো শেষ হয়নি। আপনি কি পরীক্ষা থেকে বের হতে চান?"
+);
+
+
+if(!leave){
+return;
+}
+
+
+clearInterval(
+timerInterval
+);
+
+}
+
+
+currentLevel=null;
+currentSubject=null;
+currentExam=null;
+
+pushView(
+"home"
+);
+
+showHome();
+
+}
+
+
+/* ==========================
+LEVEL
+========================== */
+
+function openLevel(level){
+
+currentLevel=level;
+
+pushView(
+"subjects"
+);
+
+renderSubjectPage();
+
+}
+
+
+function renderSubjectPage(){
+
+hideAllPages();
+
+currentView=
+"subjects";
+
+document
+.getElementById("subjectPage")
+.classList.remove("hidden");
+
+
+document
+.getElementById("subjectEyebrow")
+.innerText=
+`${currentLevel} SECTION`;
+
+
+document
+.getElementById("subjectTitle")
+.innerText=
+`${currentLevel} পরীক্ষার বিষয়সমূহ`;
+
+
+renderSubjects();
+
+window.scrollTo(0,0);
+
+}
+
+
+/* ==========================
+SUBJECTS
+========================== */
+
+function renderSubjects(){
+
+const grid=
+document.getElementById(
+"subjectGrid"
+);
+
+grid.innerHTML="";
+
+
+if(
+!currentLevel
+||
+!subjects[currentLevel]
+){
+
+return;
+
+}
+
+
+subjects[currentLevel]
+.forEach(subject=>{
+
+
+const count=
+examsData.filter(
+exam=>
+
+exam.level===currentLevel
+&&
+exam.subject===subject.id
+&&
+exam.published!==false
+
+).length;
+
+
+const card=
+document.createElement(
+"div"
+);
+
+card.className=
+"subject-card";
+
+
+card.innerHTML=`
+
+<div class="subject-icon">
+${subject.icon}
+</div>
+
+<div class="subject-info">
+
+<h3>
+${subject.name}
+</h3>
+
+<p>
+
+${
+count>0
+?
+count+"টি পরীক্ষা প্রকাশিত"
+:
+"এখনো কোনো পরীক্ষা প্রকাশিত হয়নি"
+}
+
+</p>
+
+</div>
+
+<div class="subject-arrow">
+→
+</div>
+
+`;
+
+
+card.addEventListener(
+"click",
+()=>openSubject(subject.id)
+);
+
+
+grid.appendChild(
+card
+);
+
+});
+
+}
+
+
+/* ==========================
+OPEN SUBJECT
+========================== */
+
+function openSubject(subjectId){
+
+currentSubject=
+subjectId;
+
+pushView(
+"examlist"
+);
+
+renderExamListPage();
+
+}
+
+
+function renderExamListPage(){
+
+hideAllPages();
+
+currentView=
+"examlist";
+
+document
+.getElementById("examListPage")
+.classList.remove("hidden");
+
+
+const subject=
+subjects[currentLevel]
+.find(
+item=>item.id===currentSubject
+);
+
+
+document
+.getElementById("examListTitle")
+.innerText=
+subject
+?
+`${currentLevel} • ${subject.name}`
+:
+currentLevel;
+
+
+renderExamList();
+
+window.scrollTo(0,0);
+
+}
+
+
+/* ==========================
+EXAM LIST
+========================== */
+
+function renderExamList(){
+
+const list=
+document.getElementById(
+"examList"
+);
+
+
+const exams=
+examsData.filter(
+exam=>
+
+exam.level===currentLevel
+&&
+exam.subject===currentSubject
+&&
+exam.published!==false
+
+);
+
+
+list.innerHTML="";
+
+
+if(exams.length===0){
+
+list.innerHTML=`
+
+<div class="empty-box">
+
+<div style="font-size:34px;">
+📚
+</div>
+
+<h3>
+এখনো কোনো পরীক্ষা প্রকাশিত হয়নি
+</h3>
+
+<p style="margin-top:6px;">
+নতুন পরীক্ষা প্রকাশ হলে এখানে দেখা যাবে।
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+exams.forEach(exam=>{
+
+
+const card=
+document.createElement(
+"div"
+);
+
+card.className=
+"exam-card";
+
+
+card.innerHTML=`
+
+<div>
+
+<h3>
+${exam.title}
+</h3>
+
+<div class="exam-meta">
+
+${exam.questions.length}টি প্রশ্ন
+
+&nbsp; • &nbsp;
+
+${exam.timeMinutes} মিনিট
+
+</div>
+
+</div>
+
+`;
+
+
+const button=
+document.createElement(
+"button"
+);
+
+button.className=
+"exam-start-btn";
+
+button.innerText=
+"পরীক্ষা দিন →";
+
+
+button.addEventListener(
+"click",
+()=>selectExam(exam.id)
+);
+
+
+card.appendChild(
+button
+);
+
+
+list.appendChild(
+card
+);
+
+});
+
+}
+
+
+/* ==========================
+SELECT EXAM
+========================== */
+
+function selectExam(id){
+
+currentExam=
+examsData.find(
+exam=>exam.id===id
+);
+
+
+if(!currentExam){
+return;
+}
+
+
+pushView(
+"name"
+);
+
+renderNamePage();
+
+}
+
+
+function renderNamePage(){
+
+hideAllPages();
+
+currentView=
+"name";
+
+
+document
+.getElementById("namePage")
+.classList.remove("hidden");
+
+
+document
+.getElementById("selectedExamTitle")
+.innerText=
+currentExam
+?
+currentExam.title
+:
+"";
+
+
+document
+.getElementById("studentName")
+.value="";
+
+
+window.scrollTo(0,0);
+
+}
+
+
+/* ==========================
+START EXAM
+========================== */
+
+function startExam(){
+
+const name=
+document
+.getElementById("studentName")
+.value
+.trim();
+
+
+if(!name){
+
+alert(
+"অনুগ্রহ করে পরীক্ষার্থীর নাম লিখুন।"
+);
+
+return;
+
+}
+
+
+if(
+!currentExam
+||
+!Array.isArray(currentExam.questions)
+){
+
+alert(
+"পরীক্ষার প্রশ্ন পাওয়া যায়নি।"
+);
+
+return;
+
+}
+
+
+studentName=
+name;
+
+submitted=
+false;
+
+examStartTime=
+Date.now();
+
+timeLeft=
+Number(currentExam.timeMinutes || 10)
+*
+60;
+
+
+pushView(
+"exam"
+);
+
+renderExamPage();
+
+}
+
+
+/* ==========================
+EXAM PAGE
+========================== */
+
+function renderExamPage(){
+
+hideAllPages();
+
+currentView=
+"exam";
+
+
+document
+.getElementById("examPage")
+.classList.remove("hidden");
+
+
+document
+.getElementById("toolbarExamTitle")
+.innerText=
+currentExam.title;
+
+
+document
+.getElementById("examStudentName")
+.innerText=
+studentName;
+
+
+const negativeMark=
+currentLevel==="SSC"
+?
+0
+:
+0.25;
+
+
+document
+.getElementById("markingRuleText")
+.innerText=
+negativeMark===0
+?
+"সঠিক উত্তরে +1"
+:
+"সঠিক +1 • ভুল −0.25";
+
+
+renderQuestions();
+
+updateProgress();
+
+startTimer();
+
+window.scrollTo(0,0);
+
+}
+
+
+/* ==========================
+QUESTIONS
+========================== */
+
+function renderQuestions(){
+
+const container=
+document
+.getElementById(
+"questionsContainer"
+);
+
+container.innerHTML="";
+
+
+currentExam.questions
+.forEach(
+(question,index)=>{
+
+
+const card=
+document.createElement(
+"div"
+);
+
+card.className=
+"question-card";
+
+
+const badge=
+document.createElement(
+"div"
+);
+
+badge.className=
+"question-badge";
+
+badge.innerText=
+`প্রশ্ন ${index+1}`;
+
+
+const title=
+document.createElement(
+"div"
+);
+
+title.className=
+"question-text";
+
+title.innerText=
+question.q;
+
+
+const optionsBox=
+document.createElement(
+"div"
+);
+
+optionsBox.className=
+"options";
+
+
+question.options.forEach(
+(option,optIndex)=>{
+
+
+const label=
+document.createElement(
+"label"
+);
+
+label.className=
+"option";
+
+
+const input=
+document.createElement(
+"input"
+);
+
+input.type=
+"radio";
+
+input.name=
+`question${index}`;
+
+input.value=
+String(optIndex);
+
+
+input.addEventListener(
+"change",
+updateProgress
+);
+
+
+const span=
+document.createElement(
+"span"
+);
+
+
+const strong=
+document.createElement(
+"b"
+);
+
+strong.innerText=
+`(${optionLabels[optIndex]}) `;
+
+
+span.appendChild(
+strong
+);
+
+span.appendChild(
+document.createTextNode(option)
+);
+
+
+label.appendChild(
+input
+);
+
+label.appendChild(
+span
+);
+
+
+optionsBox.appendChild(
+label
+);
+
+});
+
+
+card.appendChild(
+badge
+);
+
+card.appendChild(
+title
+);
+
+card.appendChild(
+optionsBox
+);
+
+
+container.appendChild(
+card
+);
+
+});
+
+}
+
+
+/* ==========================
+PROGRESS
+========================== */
+
+function updateProgress(){
+
+let answered=0;
+
+
+currentExam.questions
+.forEach(
+(question,index)=>{
+
+
+if(
+document.querySelector(
+`input[name="question${index}"]:checked`
+)
+){
+
+answered++;
+
+}
+
+});
+
+
+document
+.getElementById("progressText")
+.innerText=
+`উত্তর: ${answered}/${currentExam.questions.length}`;
+
+}
+
+
+/* ==========================
+TIMER
+========================== */
+
+function startTimer(){
+
+if(timerInterval){
+
+clearInterval(
+timerInterval
+);
+
+}
+
+
+updateTimer();
+
+
+timerInterval=
+setInterval(()=>{
+
+
+timeLeft--;
+
+
+if(timeLeft<=0){
+
+timeLeft=0;
+
+updateTimer();
+
+clearInterval(
+timerInterval
+);
+
+submitExam(true);
+
+return;
+
+}
+
+
+updateTimer();
+
+
+},1000);
+
+}
+
+
+function updateTimer(){
+
+const minutes=
+Math.floor(
+timeLeft/60
+);
+
+
+const seconds=
+timeLeft%60;
+
+
+const timer=
+document
+.getElementById(
+"timerText"
+);
+
+
+timer.innerText=
+`⏱ ${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+
+
+timer.classList.remove(
+"warning",
+"danger"
+);
+
+
+if(timeLeft<=60){
+
+timer.classList.add(
+"danger"
+);
+
+}
+else if(timeLeft<=180){
+
+timer.classList.add(
+"warning"
+);
+
+}
+
+}
+
+
+/* ==========================
+SUBMIT MODAL
+========================== */
+
+function showSubmitModal(){
+
+document
+.getElementById("submitModal")
+.style.display=
+"flex";
+
+}
+
+
+function hideSubmitModal(){
+
+document
+.getElementById("submitModal")
+.style.display=
+"none";
+
+}
+
+
+/* ==========================
+GET ANSWERS
+========================== */
+
+function getStudentAnswers(){
+
+return currentExam.questions
+.map(
+(question,index)=>{
+
+
+const selected=
+document.querySelector(
+`input[name="question${index}"]:checked`
+);
+
+
+if(!selected){
+
+return `${index+1}. —`;
+
+}
+
+
+return `${index+1}. ${optionLabels[Number(selected.value)]}`;
+
+})
+.join(" | ");
+
+}
+
+
+/* ==========================
+SUBMIT
+========================== */
+
+function submitExam(
+autoSubmit=false
+){
+
+if(submitted){
+return;
+}
+
+
+submitted=
+true;
+
+
+hideSubmitModal();
+
+
+clearInterval(
+timerInterval
+);
+
+
+const negativeMark=
+currentLevel==="SSC"
+?
+0
+:
+0.25;
+
+
+let correct=0;
+let wrong=0;
+let unanswered=0;
+let answered=0;
+
+let score=0;
+
+
+const review=
+document.createDocumentFragment();
+
+
+currentExam.questions
+.forEach(
+(question,index)=>{
+
+
+const selected=
+document.querySelector(
+`input[name="question${index}"]:checked`
+);
+
+
+let selectedIndex=
+null;
+
+let state=
+"unanswered";
+
+
+if(!selected){
+
+unanswered++;
+
+}
+else{
+
+answered++;
+
+selectedIndex=
+Number(
+selected.value
+);
+
+
+if(
+selectedIndex===
+Number(question.answer)
+){
+
+correct++;
+
+score+=1;
+
+state=
+"correct";
+
+}
+else{
+
+wrong++;
+
+score-=
+negativeMark;
+
+state=
+"wrong";
+
+}
+
+}
+
+
+const card=
+document.createElement(
+"div"
+);
+
+card.className=
+`review-card ${state}`;
+
+
+const q=
+document.createElement(
+"div"
+);
+
+q.className=
+"review-q";
+
+q.innerText=
+`${index+1}. ${question.q}`;
+
+
+const status=
+document.createElement(
+"div"
+);
+
+status.style.marginTop=
+"5px";
+
+status.style.fontWeight=
+"800";
+
+status.style.fontSize=
+"12px";
+
+
+status.innerText=
+state==="correct"
+?
+"✓ সঠিক"
+:
+state==="wrong"
+?
+"✗ ভুল"
+:
+"উত্তর দেওয়া হয়নি";
+
+
+const optionsBox=
+document.createElement(
+"div"
+);
+
+optionsBox.className=
+"review-options";
+
+
+question.options.forEach(
+(option,optIndex)=>{
+
+
+const row=
+document.createElement(
+"div"
+);
+
+
+const isCorrect=
+optIndex===
+Number(question.answer);
+
+
+const isSelected=
+optIndex===
+selectedIndex;
+
+
+row.className=
+"review-option";
+
+
+if(isCorrect){
+
+row.classList.add(
+"correct"
+);
+
+}
+
+
+if(
+isSelected
+&&
+!isCorrect
+){
+
+row.classList.add(
+"wrong-selected"
+);
+
+}
+
+
+const left=
+document.createElement(
+"span"
+);
+
+left.innerText=
+`(${optionLabels[optIndex]}) ${option}`;
+
+
+const note=
+document.createElement(
+"span"
+);
+
+note.className=
+"option-note";
+
+
+if(
+isCorrect
+&&
+isSelected
+){
+
+note.innerText=
+"✓ আপনার উত্তর ও সঠিক উত্তর";
+
+}
+else if(isCorrect){
+
+note.innerText=
+"✓ সঠিক উত্তর";
+
+}
+else if(isSelected){
+
+note.innerText=
+"✗ আপনার উত্তর";
+
+}
+
+
+row.appendChild(
+left
+);
+
+row.appendChild(
+note
+);
+
+
+optionsBox.appendChild(
+row
+);
+
+});
+
+
+card.appendChild(
+q
+);
+
+card.appendChild(
+status
+);
+
+card.appendChild(
+optionsBox
+);
+
+
+review.appendChild(
+card
+);
+
+});
+
+
+score=
+Math.round(
+score*100
+)
+/100;
+
+
+saveResult(
+score,
+correct,
+wrong,
+unanswered
+);
+
+
+pushView(
+"result"
+);
+
+
+hideAllPages();
+
+currentView=
+"result";
+
+
+document
+.getElementById("resultPage")
+.classList.remove("hidden");
+
+
+document
+.getElementById("resultExamName")
+.innerText=
+currentExam.title
++
+(
+autoSubmit
+?
+" • সময় শেষ হওয়ায় Auto Submit"
+:
+""
+);
+
+
+document
+.getElementById("resultStudent")
+.innerText=
+`পরীক্ষার্থী: ${studentName}`;
+
+
+document
+.getElementById("finalScore")
+.innerText=
+score;
+
+
+document
+.getElementById("scoreOutOf")
+.innerText=
+`${currentExam.questions.length} এর মধ্যে`;
+
+
+document
+.getElementById("correctCount")
+.innerText=
+correct;
+
+
+document
+.getElementById("wrongCount")
+.innerText=
+wrong;
+
+
+document
+.getElementById("unansweredCount")
+.innerText=
+unanswered;
+
+
+document
+.getElementById("answeredCount")
+.innerText=
+answered;
+
+
+const answerReview=
+document
+.getElementById(
+"answerReview"
+);
+
+
+answerReview.innerHTML="";
+
+answerReview.appendChild(
+review
+);
+
+
+window.scrollTo(0,0);
+
+}
+
+
+/* ==========================
+GOOGLE SHEET
+========================== */
+
+function saveResult(
+score,
+correct,
+wrong,
+unanswered
+){
+
+try{
+
+const seconds=
+Math.floor(
+(
+Date.now()
+-
+examStartTime
+)
+/1000
+);
+
+
+const duration=
+`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,"0")}`;
+
+
+const subject=
+subjects[currentLevel]
+.find(
+item=>item.id===currentSubject
+);
+
+
+const data={
+
+level:
+currentLevel,
+
+subject:
+subject
+?
+subject.name
+:
+"",
+
+examTitle:
+currentExam.title,
+
+name:
+studentName,
+
+score:
+score,
+
+correct:
+correct,
+
+wrong:
+wrong,
+
+unanswered:
+unanswered,
+
+duration:
+duration,
+
+answers:
+getStudentAnswers()
+
+};
+
+
+fetch(
+GOOGLE_SCRIPT_URL,
+{
+
+method:"POST",
+
+mode:"no-cors",
+
+headers:{
+"Content-Type":"text/plain;charset=utf-8"
+},
+
+body:
+JSON.stringify(data),
+
+keepalive:true
+
+}
+)
+.catch(
+error=>
+console.error(
+"Google Sheet:",
+error
+)
+);
+
+}
+catch(error){
+
+console.error(
+"Save error:",
+error
+);
+
+}
+
+}
+
+
+/* ==========================
+BACK HISTORY
+========================== */
+
+window.addEventListener(
+"popstate",
+function(event){
+
+
+const target=
+event.state
+&&
+event.state.view
+?
+event.state.view
+:
+"home";
+
+
+if(
+currentView==="exam"
+&&
+!submitted
+){
+
+const leave=
+confirm(
+"পরীক্ষা এখনো শেষ হয়নি। আপনি কি পরীক্ষা থেকে বের হতে চান?"
+);
+
+
+if(!leave){
+
+history.pushState(
+{view:"exam"},
+"",
+"#exam"
+);
+
+return;
+
+}
+
+
+clearInterval(
+timerInterval
+);
+
+}
+
+
+if(target==="home"){
+
+showHome();
+
+return;
+
+}
+
+
+if(target==="subjects"){
+
+renderSubjectPage();
+
+return;
+
+}
+
+
+if(target==="examlist"){
+
+renderExamListPage();
+
+return;
+
+}
+
+
+if(target==="name"){
+
+renderNamePage();
+
+return;
+
+}
+
+
+showHome();
+
+}
+);
+
+
+/* ENTER */
+
+document
+.getElementById("studentName")
+.addEventListener(
+"keydown",
+function(event){
+
+if(event.key==="Enter"){
+
+startExam();
+
+}
+
+}
+);
+
+
+/* START */
+
+showHome();
+
+</script>
+
+</body>
+</html>
