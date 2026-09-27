@@ -51,7 +51,7 @@ button{
 }
 
 .hidden{
-    display:none!important;
+    display:none !important;
 }
 
 /* HEADER */
@@ -207,6 +207,12 @@ button{
     border-radius:20px;
     padding:23px;
     box-shadow:0 7px 24px rgba(15,23,42,.05);
+    transition:.2s;
+}
+
+.level-card:hover{
+    transform:translateY(-3px);
+    border-color:#93c5fd;
 }
 
 .level-top{
@@ -239,6 +245,7 @@ button{
 }
 
 .level-card h2{
+    font-family:'Inter',sans-serif;
     color:var(--navy);
     margin-top:17px;
     font-size:25px;
@@ -258,7 +265,7 @@ button{
     padding-top:14px;
 }
 
-/* SUBJECT */
+/* SUBJECTS */
 
 .subject-grid{
     display:grid;
@@ -274,6 +281,7 @@ button{
     display:flex;
     align-items:center;
     gap:13px;
+    box-shadow:0 4px 16px rgba(15,23,42,.04);
 }
 
 .subject-icon{
@@ -353,6 +361,16 @@ button{
     color:var(--muted);
 }
 
+.api-error{
+    padding:16px;
+    background:#fff7ed;
+    border:1px solid #fdba74;
+    border-radius:13px;
+    color:#9a3412;
+    margin-bottom:15px;
+    font-size:13px;
+}
+
 /* NAME */
 
 .name-card{
@@ -362,6 +380,7 @@ button{
     border:1px solid var(--border);
     border-radius:20px;
     padding:27px;
+    box-shadow:0 9px 30px rgba(15,23,42,.06);
 }
 
 .name-card h2{
@@ -406,6 +425,7 @@ button{
     z-index:2000;
     background:rgba(255,255,255,.97);
     border-bottom:1px solid var(--border);
+    box-shadow:0 3px 13px rgba(15,23,42,.055);
 }
 
 .exam-toolbar-inner{
@@ -493,6 +513,16 @@ button{
     line-height:1.7;
     font-size:17px;
     margin-bottom:12px;
+}
+
+.question-image{
+    display:block;
+    max-width:100%;
+    max-height:350px;
+    object-fit:contain;
+    margin:0 auto 14px;
+    border-radius:10px;
+    border:1px solid #e2e8f0;
 }
 
 .options{
@@ -596,6 +626,7 @@ button{
 }
 
 .score{
+    font-family:'Inter',sans-serif;
     font-size:41px;
     font-weight:800;
     margin-top:10px;
@@ -654,6 +685,15 @@ button{
     line-height:1.6;
 }
 
+.review-image{
+    display:block;
+    max-width:100%;
+    max-height:300px;
+    object-fit:contain;
+    margin:10px auto;
+    border-radius:9px;
+}
+
 .review-options{
     display:flex;
     flex-direction:column;
@@ -710,278 +750,14 @@ button{
     background:#10245f;
 }
 
-/* BROWSER PRINT PAGE */
-
-.browser-print-page{
-    max-width:600px;
-    margin:30px auto;
-    padding:25px;
-    text-align:center;
-    background:#fff;
-    border-radius:18px;
-    border:1px solid #e2e8f0;
-}
-
-.browser-print-page h2{
-    color:#10245f;
-}
-
-.browser-print-page p{
-    color:#64748b;
-    margin-top:8px;
-}
-
-.browser-print-btn{
-    margin-top:18px;
-    border:0;
-    border-radius:10px;
-    padding:13px 20px;
-    background:#2563eb;
-    color:#fff;
-    font-weight:800;
-}
-
-/* PRINT */
-
-#printSheet{
-    display:none;
-}
-
-.print-sheet{
-    background:#fff;
-    color:#172033;
-}
-
-.print-cover{
-    background:linear-gradient(135deg,#10245f 0%,#1d4ed8 56%,#0891b2 100%);
-    color:#fff;
-    border-radius:18px;
-    padding:24px;
-    margin-bottom:18px;
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
-}
-
-.print-brand-row{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-}
-
-.print-logo{
-    width:54px;
-    height:54px;
-    border-radius:13px;
-    object-fit:cover;
-    background:#08111f;
-}
-
-.print-brand-name{
-    font-size:26px;
-    font-weight:800;
-}
-
-.print-brand-sub{
-    font-size:10px;
-    color:#dbeafe;
-}
-
-.print-exam-title{
-    margin-top:16px;
-    font-size:19px;
-    line-height:1.45;
-    font-weight:800;
-    text-align:center;
-}
-
-.print-meta{
-    text-align:center;
-    margin-top:5px;
-    font-size:11px;
-    color:#dbeafe;
-}
-
-.print-student{
-    margin:14px auto 0;
-    width:max-content;
-    max-width:100%;
-    background:rgba(255,255,255,.14);
-    padding:8px 14px;
-    border-radius:10px;
-    text-align:center;
-}
-
-.print-score{
-    text-align:center;
-    font-size:38px;
-    font-weight:800;
-    margin-top:14px;
-}
-
-.print-score-label{
-    text-align:center;
-    color:#dbeafe;
-    font-size:10px;
-}
-
-.print-stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin-top:16px;
-}
-
-.print-stat{
-    background:rgba(255,255,255,.14);
-    border-radius:10px;
-    padding:9px 6px;
-    text-align:center;
-}
-
-.print-stat strong{
-    display:block;
-    font-size:18px;
-}
-
-.print-stat span{
-    font-size:9px;
-}
-
-.print-rule{
-    border:1px solid #dbe4ef;
-    background:linear-gradient(135deg,#f8fafc,#eff6ff);
-    border-radius:12px;
-    padding:12px 14px;
-    margin-bottom:16px;
-    font-size:11px;
-    line-height:1.7;
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
-}
-
-.print-section-title{
-    color:#10245f;
-    font-size:18px;
-    font-weight:800;
-    margin:16px 0 10px;
-}
-
-.print-question{
-    border:1px solid #e2e8f0;
-    border-left:5px solid #94a3b8;
-    border-radius:12px;
-    padding:13px;
-    margin-bottom:10px;
-    background:#fff;
-    break-inside:avoid;
-    page-break-inside:avoid;
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
-}
-
-.print-question.correct{
-    border-left-color:#22c55e;
-    background:#f7fff9;
-}
-
-.print-question.wrong{
-    border-left-color:#ef4444;
-    background:#fff8f8;
-}
-
-.print-question.unanswered{
-    border-left-color:#f59e0b;
-    background:#fffcf4;
-}
-
-.print-q-badge{
-    display:inline-block;
-    background:#e0e7ff;
-    color:#3730a3;
-    padding:4px 7px;
-    border-radius:7px;
-    font-size:9px;
-    font-weight:800;
-    margin-bottom:7px;
-}
-
-.print-q-text{
-    font-size:12px;
-    font-weight:700;
-    line-height:1.55;
-    margin-bottom:8px;
-}
-
-.print-status{
-    display:inline-block;
-    border-radius:999px;
-    padding:3px 7px;
-    font-size:9px;
-    font-weight:800;
-    margin-bottom:6px;
-}
-
-.print-status.correct{
-    background:#dcfce7;
-    color:#166534;
-}
-
-.print-status.wrong{
-    background:#fee2e2;
-    color:#991b1b;
-}
-
-.print-status.unanswered{
-    background:#fef3c7;
-    color:#92400e;
-}
-
-.print-option{
-    border:1px solid #e2e8f0;
-    border-radius:8px;
-    padding:6px 8px;
-    margin-top:5px;
-    display:flex;
-    justify-content:space-between;
-    gap:8px;
-    font-size:10px;
-    line-height:1.45;
-    break-inside:avoid;
-    page-break-inside:avoid;
-}
-
-.print-option.correct-answer{
-    background:#dcfce7;
-    border-color:#22c55e;
-    color:#166534;
-}
-
-.print-option.wrong-answer{
-    background:#fee2e2;
-    border-color:#ef4444;
-    color:#991b1b;
-}
-
-.print-note{
-    font-size:8px;
-    font-weight:800;
-    white-space:nowrap;
-}
-
-.print-footer{
-    margin-top:18px;
-    padding-top:10px;
-    border-top:1px solid #e2e8f0;
-    text-align:center;
-    color:#64748b;
-    font-size:8px;
-}
+/* MOBILE */
 
 @media(max-width:700px){
+
     .brand-logo{
         width:46px;
         height:46px;
+        border-radius:12px;
     }
 
     .brand-name{
@@ -1024,6 +800,16 @@ button{
         flex-direction:column;
     }
 
+    .exam-toolbar-title{
+        font-size:11px;
+        max-width:55%;
+    }
+
+    .pill{
+        font-size:9px;
+        padding:5px 7px;
+    }
+
     .review-option{
         flex-direction:column;
     }
@@ -1033,45 +819,25 @@ button{
     }
 }
 
-@page{
-    size:A4;
-    margin:10mm;
-}
-
 @media print{
-    html,
+
+    .site-header,
+    .result-actions{
+        display:none!important;
+    }
+
     body{
-        background:#fff!important;
-    }
-
-    body *{
-        visibility:hidden!important;
-    }
-
-    #printSheet,
-    #printSheet *{
-        visibility:visible!important;
-    }
-
-    #printSheet{
-        display:block!important;
-        position:absolute;
-        left:0;
-        top:0;
-        width:100%;
         background:#fff;
     }
 
-    .site-header,
-    #homePage,
-    #subjectPage,
-    #examListPage,
-    #namePage,
-    #examPage,
-    #resultPage,
-    #browserPrintPage,
-    #submitModal{
-        display:none!important;
+    .page{
+        width:100%;
+        padding:0;
+    }
+
+    .review-card{
+        break-inside:avoid;
+        page-break-inside:avoid;
     }
 }
 </style>
@@ -1108,6 +874,7 @@ Online Exam Platform
 </div>
 </header>
 
+
 <!-- HOME -->
 
 <section id="homePage" class="page">
@@ -1128,13 +895,21 @@ SSC অথবা HSC সেকশনে প্রবেশ করে আপন�
 
 </div>
 
+
 <div class="level-grid">
 
 <div class="level-card" onclick="openLevel('SSC')">
 
 <div class="level-top">
-<div class="level-icon">📘</div>
-<div class="level-arrow">→</div>
+
+<div class="level-icon">
+📘
+</div>
+
+<div class="level-arrow">
+→
+</div>
+
 </div>
 
 <h2>SSC</h2>
@@ -1149,11 +924,19 @@ SSC পরীক্ষাসমূহ দেখুন →
 
 </div>
 
+
 <div class="level-card" onclick="openLevel('HSC')">
 
 <div class="level-top">
-<div class="level-icon">🎓</div>
-<div class="level-arrow">→</div>
+
+<div class="level-icon">
+🎓
+</div>
+
+<div class="level-arrow">
+→
+</div>
+
 </div>
 
 <h2>HSC</h2>
@@ -1171,6 +954,7 @@ HSC পরীক্ষাসমূহ দেখুন →
 </div>
 
 </section>
+
 
 <!-- SUBJECT -->
 
@@ -1194,6 +978,7 @@ SECTION
 
 </section>
 
+
 <!-- EXAM LIST -->
 
 <section id="examListPage" class="page hidden">
@@ -1215,6 +1000,7 @@ AVAILABLE EXAMS
 <div class="exam-list" id="examList"></div>
 
 </section>
+
 
 <!-- NAME -->
 
@@ -1256,6 +1042,7 @@ autocomplete="name"
 
 </section>
 
+
 <!-- EXAM -->
 
 <section id="examPage" class="hidden">
@@ -1264,19 +1051,29 @@ autocomplete="name"
 
 <div class="exam-toolbar-inner">
 
-<div class="exam-toolbar-title" id="toolbarExamTitle"></div>
+<div
+class="exam-toolbar-title"
+id="toolbarExamTitle">
+</div>
 
 <div class="toolbar-status">
 
-<div class="pill progress-pill" id="progressText"></div>
+<div
+class="pill progress-pill"
+id="progressText">
+</div>
 
-<div class="pill timer-pill" id="timerText"></div>
-
+<div
+class="pill timer-pill"
+id="timerText">
 </div>
 
 </div>
 
 </div>
+
+</div>
+
 
 <div class="page">
 
@@ -1295,9 +1092,7 @@ autocomplete="name"
 
 <div class="submit-box">
 
-<h3>
-পরীক্ষা শেষ?
-</h3>
+<h3>পরীক্ষা শেষ?</h3>
 
 <p style="color:#64748b;margin-top:4px;">
 সব প্রশ্নের উত্তর দেওয়া বাধ্যতামূলক নয়।
@@ -1312,6 +1107,7 @@ autocomplete="name"
 </div>
 
 </section>
+
 
 <!-- RESULT -->
 
@@ -1330,6 +1126,7 @@ autocomplete="name"
 <div class="score" id="finalScore"></div>
 
 <div id="scoreOutOf"></div>
+
 
 <div class="stats">
 
@@ -1357,25 +1154,21 @@ autocomplete="name"
 
 </div>
 
+
 <h2 class="review-title">
 উত্তরপত্র ও সংশোধনী
 </h2>
 
 <div id="answerReview"></div>
 
+
 <div class="result-actions">
 
-<button
-class="print-btn"
-onclick="handlePdfRequest()"
->
-📄 রঙিন উত্তরপত্র PDF / Print
+<button class="print-btn" onclick="window.print()">
+📄 Print / Save as PDF
 </button>
 
-<button
-class="home-result-btn"
-onclick="goHome()"
->
+<button class="home-result-btn" onclick="goHome()">
 ⌂ Home
 </button>
 
@@ -1383,37 +1176,8 @@ onclick="goHome()"
 
 </section>
 
-<!-- BROWSER PRINT -->
 
-<section
-id="browserPrintPage"
-class="page hidden"
->
-
-<div class="browser-print-page">
-
-<h2>
-উত্তরপত্র প্রস্তুত
-</h2>
-
-<p>
-নিচের বাটনে চাপ দিয়ে Save as PDF নির্বাচন করুন।
-</p>
-
-<button
-class="browser-print-btn"
-onclick="prepareAndPrintPDF()"
->
-📄 Save as PDF / Print
-</button>
-
-</div>
-
-</section>
-
-<div id="printSheet"></div>
-
-<!-- MODAL -->
+<!-- SUBMIT MODAL -->
 
 <div id="submitModal" class="modal">
 
@@ -1439,12 +1203,30 @@ onclick="prepareAndPrintPDF()"
 
 </div>
 
+
 <script>
 
-/* CONFIG */
+/* ==========================
+CONFIG
+========================== */
 
-const GOOGLE_SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycby-qppGkePByBtNVDuM1S1YHMD_uzH5igl_5KRxMmpE_DhHhai4DAJg846PPgeHxT3T/exec";
+/*
+এই URL আগের মতো Result save করবে।
+এটা পরিবর্তন করা হয়নি।
+*/
+
+const RESULT_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbzM_KnauOG8eEYoe9Cc1csBtvO2MuVkX7MV1LZRW4tfGejyvZAE8DytXH_rlo3PogQd/exec";
+
+
+/*
+এই নতুন URL Admin Panel থেকে
+Published Exam নিয়ে আসবে।
+*/
+
+const EXAM_API_URL =
+"https://script.google.com/macros/s/AKfycby-qppGkePByBtNVDuM1S1YHMD_uzH5igl_5KRxMmpE_DhHhai4DAJg846PPgeHxT3T/exec?action=publishedExams";
+
 
 const subjects={
 
@@ -1466,11 +1248,16 @@ HSC:[
 
 };
 
+
 const optionLabels=[
 "ক","খ","গ","ঘ"
 ];
 
+
 let examsData=[];
+
+let examsLoaded=false;
+let examLoadError=false;
 
 let currentLevel=null;
 let currentSubject=null;
@@ -1486,11 +1273,10 @@ let timerInterval=null;
 let submitted=false;
 let examStartTime=null;
 
-let externalPrintAnswers=null;
-let externalPrintResult=null;
 
-
-/* HISTORY */
+/* ==========================
+INITIAL HISTORY
+========================== */
 
 history.replaceState(
 {view:"home"},
@@ -1499,74 +1285,302 @@ history.replaceState(
 );
 
 
-/* LOAD EXAMS */
+/* ==========================
+NORMALIZE EXAM
+========================== */
+
+function normalizeExam(exam){
+
+if(!exam){
+return null;
+}
+
+
+let questions=
+Array.isArray(exam.questions)
+?
+exam.questions
+:
+[];
+
+
+/*
+কখনো Questions Sheet থেকে
+JSON string হিসেবে এলে parse করবে।
+*/
+
+if(
+typeof exam.questions==="string"
+){
+
+try{
+
+questions=
+JSON.parse(
+exam.questions
+);
+
+}
+catch(error){
+
+questions=[];
+
+}
+
+}
+
+
+questions=
+questions.map(question=>{
+
+let options=
+Array.isArray(question.options)
+?
+question.options
+:
+[];
+
+
+return {
+
+q:
+String(
+question.q
+||
+question.question
+||
+question.text
+||
+""
+),
+
+options:
+options,
+
+answer:
+Number(
+question.answer
+),
+
+image:
+String(
+question.image
+||
+""
+)
+
+};
+
+});
+
+
+return {
+
+id:
+String(
+exam.id
+||
+exam.examId
+||
+""
+),
+
+level:
+String(
+exam.level
+||
+""
+).toUpperCase(),
+
+subject:
+String(
+exam.subject
+||
+""
+),
+
+title:
+String(
+exam.title
+||
+exam.examTitle
+||
+"পরীক্ষা"
+),
+
+examType:
+String(
+exam.examType
+||
+"MCQ"
+).toUpperCase(),
+
+timeMinutes:
+Number(
+exam.timeMinutes
+||
+exam.time
+||
+10
+),
+
+published:
+exam.published!==false,
+
+questions:
+questions
+
+};
+
+}
+
+
+/* ==========================
+LOAD EXAMS FROM ADMIN API
+========================== */
 
 async function loadExams(){
+
+examsLoaded=false;
+examLoadError=false;
+
 
 try{
 
 const response=
 await fetch(
-"exams.json?v="+Date.now()
+EXAM_API_URL
++
+"&_="
++
+Date.now(),
+{
+method:"GET",
+cache:"no-store"
+}
 );
+
 
 if(!response.ok){
 
 throw new Error(
-"exams.json load failed"
+"Exam API HTTP "
++
+response.status
 );
 
 }
 
+
 const data=
 await response.json();
 
-examsData=
+
+if(
+data
+&&
+data.success===false
+){
+
+throw new Error(
+data.message
+||
+data.error
+||
+"Exam API error"
+);
+
+}
+
+
+const source=
+data
+&&
 Array.isArray(data.exams)
 ?
 data.exams
 :
+Array.isArray(data)
+?
+data
+:
 [];
 
-if(
-openPrintLinkIfNeeded()
-){
 
-return;
+examsData=
+source
+.map(normalizeExam)
+.filter(exam=>
 
-}
+exam
+&&
+exam.id
+&&
+exam.published!==false
+&&
+exam.examType==="MCQ"
+&&
+Array.isArray(exam.questions)
+&&
+exam.questions.length>0
 
-if(
-currentView==="subjects"
-){
+);
 
+
+examsLoaded=true;
+
+
+console.log(
+"Published exams loaded:",
+examsData.length
+);
+
+
+if(currentView==="subjects"){
 renderSubjects();
-
 }
 
-if(
-currentView==="examlist"
-){
 
+if(currentView==="examlist"){
 renderExamList();
-
 }
+
 
 }
 catch(error){
 
-console.error(error);
+console.error(
+"Exam API load error:",
+error
+);
+
+
+examLoadError=true;
+examsLoaded=true;
 
 examsData=[];
 
+
+if(currentView==="subjects"){
+renderSubjects();
+}
+
+
+if(currentView==="examlist"){
+renderExamList();
 }
 
 }
+
+}
+
 
 loadExams();
 
 
-/* PAGE */
+/* ==========================
+PAGE HELPERS
+========================== */
 
 function hideAllPages(){
 
@@ -1576,8 +1590,7 @@ function hideAllPages(){
 "examListPage",
 "namePage",
 "examPage",
-"resultPage",
-"browserPrintPage"
+"resultPage"
 ]
 .forEach(id=>{
 
@@ -1603,7 +1616,9 @@ history.pushState(
 }
 
 
-/* HOME */
+/* ==========================
+HOME
+========================== */
 
 function showHome(){
 
@@ -1633,11 +1648,11 @@ confirm(
 "পরীক্ষা এখনো শেষ হয়নি। আপনি কি পরীক্ষা থেকে বের হতে চান?"
 );
 
+
 if(!leave){
-
 return;
-
 }
+
 
 clearInterval(
 timerInterval
@@ -1645,12 +1660,10 @@ timerInterval
 
 }
 
+
 currentLevel=null;
 currentSubject=null;
 currentExam=null;
-
-externalPrintAnswers=null;
-externalPrintResult=null;
 
 pushView(
 "home"
@@ -1661,7 +1674,9 @@ showHome();
 }
 
 
-/* LEVEL */
+/* ==========================
+LEVEL
+========================== */
 
 function openLevel(level){
 
@@ -1680,21 +1695,25 @@ function renderSubjectPage(){
 
 hideAllPages();
 
-currentView="subjects";
+currentView=
+"subjects";
 
 document
 .getElementById("subjectPage")
 .classList.remove("hidden");
 
+
 document
 .getElementById("subjectEyebrow")
 .innerText=
-`${currentLevel} SECTION`;
+currentLevel+" SECTION";
+
 
 document
 .getElementById("subjectTitle")
 .innerText=
-`${currentLevel} পরীক্ষার বিষয়সমূহ`;
+currentLevel+" পরীক্ষার বিষয়সমূহ";
+
 
 renderSubjects();
 
@@ -1703,7 +1722,9 @@ window.scrollTo(0,0);
 }
 
 
-/* SUBJECT */
+/* ==========================
+SUBJECTS
+========================== */
 
 function renderSubjects(){
 
@@ -1713,6 +1734,7 @@ document.getElementById(
 );
 
 grid.innerHTML="";
+
 
 if(
 !currentLevel
@@ -1724,18 +1746,23 @@ return;
 
 }
 
+
 subjects[currentLevel]
 .forEach(subject=>{
+
 
 const count=
 examsData.filter(
 exam=>
+
 exam.level===currentLevel
 &&
 exam.subject===subject.id
 &&
 exam.published!==false
+
 ).length;
+
 
 const card=
 document.createElement(
@@ -1744,6 +1771,7 @@ document.createElement(
 
 card.className=
 "subject-card";
+
 
 card.innerHTML=`
 
@@ -1758,6 +1786,7 @@ ${subject.name}
 </h3>
 
 <p>
+
 ${
 count>0
 ?
@@ -1765,6 +1794,7 @@ count+"টি পরীক্ষা প্রকাশিত"
 :
 "এখনো কোনো পরীক্ষা প্রকাশিত হয়নি"
 }
+
 </p>
 
 </div>
@@ -1775,10 +1805,12 @@ count+"টি পরীক্ষা প্রকাশিত"
 
 `;
 
+
 card.addEventListener(
 "click",
 ()=>openSubject(subject.id)
 );
+
 
 grid.appendChild(
 card
@@ -1788,6 +1820,10 @@ card
 
 }
 
+
+/* ==========================
+OPEN SUBJECT
+========================== */
 
 function openSubject(subjectId){
 
@@ -1807,11 +1843,13 @@ function renderExamListPage(){
 
 hideAllPages();
 
-currentView="examlist";
+currentView=
+"examlist";
 
 document
 .getElementById("examListPage")
 .classList.remove("hidden");
+
 
 const subject=
 subjects[currentLevel]
@@ -1819,14 +1857,16 @@ subjects[currentLevel]
 item=>item.id===currentSubject
 );
 
+
 document
 .getElementById("examListTitle")
 .innerText=
 subject
 ?
-`${currentLevel} • ${subject.name}`
+currentLevel+" • "+subject.name
 :
 currentLevel;
+
 
 renderExamList();
 
@@ -1835,7 +1875,9 @@ window.scrollTo(0,0);
 }
 
 
-/* EXAM LIST */
+/* ==========================
+EXAM LIST
+========================== */
 
 function renderExamList(){
 
@@ -1844,21 +1886,76 @@ document.getElementById(
 "examList"
 );
 
+
+list.innerHTML="";
+
+
+if(
+!examsLoaded
+){
+
+list.innerHTML=`
+
+<div class="empty-box">
+
+<div style="font-size:30px;">
+⏳
+</div>
+
+<h3>
+পরীক্ষার তালিকা লোড হচ্ছে...
+</h3>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+if(
+examLoadError
+){
+
+list.innerHTML=`
+
+<div class="api-error">
+
+<strong>
+পরীক্ষার তালিকা লোড করা যায়নি।
+</strong>
+
+<br>
+
+ইন্টারনেট সংযোগ পরীক্ষা করে আবার App/Page খুলুন।
+
+</div>
+
+`;
+
+return;
+
+}
+
+
 const exams=
 examsData.filter(
 exam=>
+
 exam.level===currentLevel
 &&
 exam.subject===currentSubject
 &&
 exam.published!==false
+&&
+exam.examType==="MCQ"
+
 );
 
-list.innerHTML="";
 
-if(
-exams.length===0
-){
+if(exams.length===0){
 
 list.innerHTML=`
 
@@ -1884,7 +1981,9 @@ return;
 
 }
 
+
 exams.forEach(exam=>{
+
 
 const card=
 document.createElement(
@@ -1893,6 +1992,7 @@ document.createElement(
 
 card.className=
 "exam-card";
+
 
 card.innerHTML=`
 
@@ -1916,6 +2016,7 @@ ${exam.timeMinutes} মিনিট
 
 `;
 
+
 const button=
 document.createElement(
 "button"
@@ -1927,14 +2028,17 @@ button.className=
 button.innerText=
 "পরীক্ষা দিন →";
 
+
 button.addEventListener(
 "click",
 ()=>selectExam(exam.id)
 );
 
+
 card.appendChild(
 button
 );
+
 
 list.appendChild(
 card
@@ -1945,7 +2049,9 @@ card
 }
 
 
-/* SELECT EXAM */
+/* ==========================
+SELECT EXAM
+========================== */
 
 function selectExam(id){
 
@@ -1954,13 +2060,11 @@ examsData.find(
 exam=>exam.id===id
 );
 
-if(
-!currentExam
-){
 
+if(!currentExam){
 return;
-
 }
+
 
 pushView(
 "name"
@@ -1975,11 +2079,14 @@ function renderNamePage(){
 
 hideAllPages();
 
-currentView="name";
+currentView=
+"name";
+
 
 document
 .getElementById("namePage")
 .classList.remove("hidden");
+
 
 document
 .getElementById("selectedExamTitle")
@@ -1990,16 +2097,20 @@ currentExam.title
 :
 "";
 
+
 document
 .getElementById("studentName")
 .value="";
+
 
 window.scrollTo(0,0);
 
 }
 
 
-/* START EXAM */
+/* ==========================
+START EXAM
+========================== */
 
 function startExam(){
 
@@ -2009,9 +2120,8 @@ document
 .value
 .trim();
 
-if(
-!name
-){
+
+if(!name){
 
 alert(
 "অনুগ্রহ করে পরীক্ষার্থীর নাম লিখুন।"
@@ -2021,10 +2131,13 @@ return;
 
 }
 
+
 if(
 !currentExam
 ||
 !Array.isArray(currentExam.questions)
+||
+currentExam.questions.length===0
 ){
 
 alert(
@@ -2035,19 +2148,21 @@ return;
 
 }
 
-studentName=name;
 
-submitted=false;
+studentName=
+name;
+
+submitted=
+false;
 
 examStartTime=
 Date.now();
 
 timeLeft=
-Number(
-currentExam.timeMinutes || 10
-)
+Number(currentExam.timeMinutes || 10)
 *
 60;
+
 
 pushView(
 "exam"
@@ -2058,27 +2173,34 @@ renderExamPage();
 }
 
 
-/* EXAM PAGE */
+/* ==========================
+EXAM PAGE
+========================== */
 
 function renderExamPage(){
 
 hideAllPages();
 
-currentView="exam";
+currentView=
+"exam";
+
 
 document
 .getElementById("examPage")
 .classList.remove("hidden");
+
 
 document
 .getElementById("toolbarExamTitle")
 .innerText=
 currentExam.title;
 
+
 document
 .getElementById("examStudentName")
 .innerText=
 studentName;
+
 
 const negativeMark=
 currentLevel==="SSC"
@@ -2086,6 +2208,7 @@ currentLevel==="SSC"
 0
 :
 0.25;
+
 
 document
 .getElementById("markingRuleText")
@@ -2095,6 +2218,7 @@ negativeMark===0
 "সঠিক উত্তরে +1"
 :
 "সঠিক +1 • ভুল −0.25";
+
 
 renderQuestions();
 
@@ -2107,7 +2231,9 @@ window.scrollTo(0,0);
 }
 
 
-/* QUESTIONS */
+/* ==========================
+QUESTIONS
+========================== */
 
 function renderQuestions(){
 
@@ -2119,9 +2245,11 @@ document
 
 container.innerHTML="";
 
+
 currentExam.questions
 .forEach(
 (question,index)=>{
+
 
 const card=
 document.createElement(
@@ -2130,6 +2258,7 @@ document.createElement(
 
 card.className=
 "question-card";
+
 
 const badge=
 document.createElement(
@@ -2140,7 +2269,8 @@ badge.className=
 "question-badge";
 
 badge.innerText=
-`প্রশ্ন ${index+1}`;
+"প্রশ্ন "+(index+1);
+
 
 const title=
 document.createElement(
@@ -2153,6 +2283,52 @@ title.className=
 title.innerText=
 question.q;
 
+
+card.appendChild(
+badge
+);
+
+card.appendChild(
+title
+);
+
+
+/* QUESTION IMAGE */
+
+if(
+question.image
+){
+
+const image=
+document.createElement(
+"img"
+);
+
+image.className=
+"question-image";
+
+image.src=
+question.image;
+
+image.alt=
+"Question image";
+
+image.onerror=
+function(){
+
+this.style.display=
+"none";
+
+};
+
+
+card.appendChild(
+image
+);
+
+}
+
+
 const optionsBox=
 document.createElement(
 "div"
@@ -2161,9 +2337,10 @@ document.createElement(
 optionsBox.className=
 "options";
 
-question.options
-.forEach(
+
+question.options.forEach(
 (option,optIndex)=>{
+
 
 const label=
 document.createElement(
@@ -2172,6 +2349,7 @@ document.createElement(
 
 label.className=
 "option";
+
 
 const input=
 document.createElement(
@@ -2182,20 +2360,23 @@ input.type=
 "radio";
 
 input.name=
-`question${index}`;
+"question"+index;
 
 input.value=
 String(optIndex);
+
 
 input.addEventListener(
 "change",
 updateProgress
 );
 
+
 const span=
 document.createElement(
 "span"
 );
+
 
 const strong=
 document.createElement(
@@ -2203,7 +2384,8 @@ document.createElement(
 );
 
 strong.innerText=
-`(${optionLabels[optIndex]}) `;
+"("+optionLabels[optIndex]+") ";
+
 
 span.appendChild(
 strong
@@ -2213,6 +2395,7 @@ span.appendChild(
 document.createTextNode(option)
 );
 
+
 label.appendChild(
 input
 );
@@ -2221,23 +2404,18 @@ label.appendChild(
 span
 );
 
+
 optionsBox.appendChild(
 label
 );
 
 });
 
-card.appendChild(
-badge
-);
-
-card.appendChild(
-title
-);
 
 card.appendChild(
 optionsBox
 );
+
 
 container.appendChild(
 card
@@ -2248,19 +2426,23 @@ card
 }
 
 
-/* PROGRESS */
+/* ==========================
+PROGRESS
+========================== */
 
 function updateProgress(){
 
 let answered=0;
 
+
 currentExam.questions
 .forEach(
 (question,index)=>{
 
+
 if(
 document.querySelector(
-`input[name="question${index}"]:checked`
+'input[name="question'+index+'"]:checked'
 )
 ){
 
@@ -2270,21 +2452,22 @@ answered++;
 
 });
 
+
 document
 .getElementById("progressText")
 .innerText=
-`উত্তর: ${answered}/${currentExam.questions.length}`;
+"উত্তর: "+answered+"/"+currentExam.questions.length;
 
 }
 
 
-/* TIMER */
+/* ==========================
+TIMER
+========================== */
 
 function startTimer(){
 
-if(
-timerInterval
-){
+if(timerInterval){
 
 clearInterval(
 timerInterval
@@ -2292,16 +2475,18 @@ timerInterval
 
 }
 
+
 updateTimer();
+
 
 timerInterval=
 setInterval(()=>{
 
+
 timeLeft--;
 
-if(
-timeLeft<=0
-){
+
+if(timeLeft<=0){
 
 timeLeft=0;
 
@@ -2317,7 +2502,9 @@ return;
 
 }
 
+
 updateTimer();
+
 
 },1000);
 
@@ -2331,8 +2518,10 @@ Math.floor(
 timeLeft/60
 );
 
+
 const seconds=
 timeLeft%60;
+
 
 const timer=
 document
@@ -2340,26 +2529,31 @@ document
 "timerText"
 );
 
+
 timer.innerText=
-`⏱ ${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+"⏱ "
++
+String(minutes).padStart(2,"0")
++
+":"
++
+String(seconds).padStart(2,"0");
+
 
 timer.classList.remove(
 "warning",
 "danger"
 );
 
-if(
-timeLeft<=60
-){
+
+if(timeLeft<=60){
 
 timer.classList.add(
 "danger"
 );
 
 }
-else if(
-timeLeft<=180
-){
+else if(timeLeft<=180){
 
 timer.classList.add(
 "warning"
@@ -2370,7 +2564,9 @@ timer.classList.add(
 }
 
 
-/* MODAL */
+/* ==========================
+SUBMIT MODAL
+========================== */
 
 function showSubmitModal(){
 
@@ -2392,7 +2588,9 @@ document
 }
 
 
-/* ANSWERS */
+/* ==========================
+GET ANSWERS
+========================== */
 
 function getStudentAnswers(){
 
@@ -2400,20 +2598,21 @@ return currentExam.questions
 .map(
 (question,index)=>{
 
+
 const selected=
 document.querySelector(
-`input[name="question${index}"]:checked`
+'input[name="question'+index+'"]:checked'
 );
 
-if(
-!selected
-){
 
-return `${index+1}. —`;
+if(!selected){
+
+return (index+1)+". —";
 
 }
 
-return `${index+1}. ${optionLabels[Number(selected.value)]}`;
+
+return (index+1)+". "+optionLabels[Number(selected.value)];
 
 })
 .join(" | ");
@@ -2421,50 +2620,30 @@ return `${index+1}. ${optionLabels[Number(selected.value)]}`;
 }
 
 
-function getAnswerIndexString(){
-
-return currentExam.questions
-.map(
-(question,index)=>{
-
-const selected=
-document.querySelector(
-`input[name="question${index}"]:checked`
-);
-
-return selected
-?
-String(selected.value)
-:
-"x";
-
-})
-.join(",");
-
-}
-
-
-/* SUBMIT */
+/* ==========================
+SUBMIT
+========================== */
 
 function submitExam(
 autoSubmit=false
 ){
 
-if(
-submitted
-){
-
+if(submitted){
 return;
-
 }
 
-submitted=true;
+
+submitted=
+true;
+
 
 hideSubmitModal();
+
 
 clearInterval(
 timerInterval
 );
+
 
 const negativeMark=
 currentLevel==="SSC"
@@ -2473,30 +2652,38 @@ currentLevel==="SSC"
 :
 0.25;
 
+
 let correct=0;
 let wrong=0;
 let unanswered=0;
 let answered=0;
+
 let score=0;
+
 
 const review=
 document.createDocumentFragment();
+
 
 currentExam.questions
 .forEach(
 (question,index)=>{
 
+
 const selected=
 document.querySelector(
-`input[name="question${index}"]:checked`
+'input[name="question'+index+'"]:checked'
 );
 
-let selectedIndex=null;
-let state="unanswered";
 
-if(
-!selected
-){
+let selectedIndex=
+null;
+
+let state=
+"unanswered";
+
+
+if(!selected){
 
 unanswered++;
 
@@ -2510,25 +2697,34 @@ Number(
 selected.value
 );
 
+
 if(
 selectedIndex===
 Number(question.answer)
 ){
 
 correct++;
+
 score+=1;
-state="correct";
+
+state=
+"correct";
 
 }
 else{
 
 wrong++;
-score-=negativeMark;
-state="wrong";
+
+score-=
+negativeMark;
+
+state=
+"wrong";
 
 }
 
 }
+
 
 const card=
 document.createElement(
@@ -2536,7 +2732,8 @@ document.createElement(
 );
 
 card.className=
-`review-card ${state}`;
+"review-card "+state;
+
 
 const q=
 document.createElement(
@@ -2547,7 +2744,8 @@ q.className=
 "review-q";
 
 q.innerText=
-`${index+1}. ${question.q}`;
+(index+1)+". "+question.q;
+
 
 const status=
 document.createElement(
@@ -2563,6 +2761,7 @@ status.style.fontWeight=
 status.style.fontSize=
 "12px";
 
+
 status.innerText=
 state==="correct"
 ?
@@ -2574,6 +2773,52 @@ state==="wrong"
 :
 "উত্তর দেওয়া হয়নি";
 
+
+card.appendChild(
+q
+);
+
+card.appendChild(
+status
+);
+
+
+/* REVIEW IMAGE */
+
+if(
+question.image
+){
+
+const reviewImage=
+document.createElement(
+"img"
+);
+
+reviewImage.className=
+"review-image";
+
+reviewImage.src=
+question.image;
+
+reviewImage.alt=
+"Question image";
+
+reviewImage.onerror=
+function(){
+
+this.style.display=
+"none";
+
+};
+
+
+card.appendChild(
+reviewImage
+);
+
+}
+
+
 const optionsBox=
 document.createElement(
 "div"
@@ -2582,35 +2827,39 @@ document.createElement(
 optionsBox.className=
 "review-options";
 
-question.options
-.forEach(
+
+question.options.forEach(
 (option,optIndex)=>{
+
 
 const row=
 document.createElement(
 "div"
 );
 
+
 const isCorrect=
 optIndex===
 Number(question.answer);
+
 
 const isSelected=
 optIndex===
 selectedIndex;
 
+
 row.className=
 "review-option";
 
-if(
-isCorrect
-){
+
+if(isCorrect){
 
 row.classList.add(
 "correct"
 );
 
 }
+
 
 if(
 isSelected
@@ -2624,13 +2873,21 @@ row.classList.add(
 
 }
 
+
 const left=
 document.createElement(
 "span"
 );
 
 left.innerText=
-`(${optionLabels[optIndex]}) ${option}`;
+"("
++
+optionLabels[optIndex]
++
+") "
++
+option;
+
 
 const note=
 document.createElement(
@@ -2639,6 +2896,7 @@ document.createElement(
 
 note.className=
 "option-note";
+
 
 if(
 isCorrect
@@ -2650,22 +2908,19 @@ note.innerText=
 "✓ আপনার উত্তর ও সঠিক উত্তর";
 
 }
-else if(
-isCorrect
-){
+else if(isCorrect){
 
 note.innerText=
 "✓ সঠিক উত্তর";
 
 }
-else if(
-isSelected
-){
+else if(isSelected){
 
 note.innerText=
 "✗ আপনার উত্তর";
 
 }
+
 
 row.appendChild(
 left
@@ -2675,23 +2930,18 @@ row.appendChild(
 note
 );
 
+
 optionsBox.appendChild(
 row
 );
 
 });
 
-card.appendChild(
-q
-);
-
-card.appendChild(
-status
-);
 
 card.appendChild(
 optionsBox
 );
+
 
 review.appendChild(
 card
@@ -2699,11 +2949,18 @@ card
 
 });
 
+
 score=
 Math.round(
 score*100
 )
 /100;
+
+
+/*
+Result আগের working
+Result Sheet-এই যাবে।
+*/
 
 saveResult(
 score,
@@ -2712,17 +2969,22 @@ wrong,
 unanswered
 );
 
+
 pushView(
 "result"
 );
 
+
 hideAllPages();
 
-currentView="result";
+currentView=
+"result";
+
 
 document
 .getElementById("resultPage")
 .classList.remove("hidden");
+
 
 document
 .getElementById("resultExamName")
@@ -2737,40 +2999,50 @@ autoSubmit
 ""
 );
 
+
 document
 .getElementById("resultStudent")
 .innerText=
-`পরীক্ষার্থী: ${studentName}`;
+"পরীক্ষার্থী: "+studentName;
+
 
 document
 .getElementById("finalScore")
 .innerText=
 score;
 
+
 document
 .getElementById("scoreOutOf")
 .innerText=
-`${currentExam.questions.length} এর মধ্যে`;
+currentExam.questions.length
++
+" এর মধ্যে";
+
 
 document
 .getElementById("correctCount")
 .innerText=
 correct;
 
+
 document
 .getElementById("wrongCount")
 .innerText=
 wrong;
+
 
 document
 .getElementById("unansweredCount")
 .innerText=
 unanswered;
 
+
 document
 .getElementById("answeredCount")
 .innerText=
 answered;
+
 
 const answerReview=
 document
@@ -2778,18 +3050,22 @@ document
 "answerReview"
 );
 
+
 answerReview.innerHTML="";
 
 answerReview.appendChild(
 review
 );
 
+
 window.scrollTo(0,0);
 
 }
 
 
-/* GOOGLE SHEET */
+/* ==========================
+GOOGLE SHEET RESULT SAVE
+========================== */
 
 function saveResult(
 score,
@@ -2810,14 +3086,21 @@ examStartTime
 /1000
 );
 
+
 const duration=
-`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,"0")}`;
+Math.floor(seconds/60)
++
+":"
++
+String(seconds%60).padStart(2,"0");
+
 
 const subject=
 subjects[currentLevel]
 .find(
 item=>item.id===currentSubject
 );
+
 
 const data={
 
@@ -2857,8 +3140,9 @@ getStudentAnswers()
 
 };
 
+
 fetch(
-GOOGLE_SCRIPT_URL,
+RESULT_SCRIPT_URL,
 {
 
 method:"POST",
@@ -2866,8 +3150,7 @@ method:"POST",
 mode:"no-cors",
 
 headers:{
-"Content-Type":
-"text/plain;charset=utf-8"
+"Content-Type":"text/plain;charset=utf-8"
 },
 
 body:
@@ -2898,841 +3181,14 @@ error
 }
 
 
-/* APP -> CHROME */
-
-function handlePdfRequest(){
-
-if(
-!currentExam
-||
-!studentName
-){
-
-alert(
-"উত্তরপত্র পাওয়া যায়নি।"
-);
-
-return;
-
-}
-
-const params=
-new URLSearchParams();
-
-params.set(
-"print",
-"1"
-);
-
-params.set(
-"exam",
-currentExam.id
-);
-
-params.set(
-"name",
-studentName
-);
-
-params.set(
-"answers",
-getAnswerIndexString()
-);
-
-params.set(
-"score",
-document.getElementById(
-"finalScore"
-).innerText
-);
-
-params.set(
-"correct",
-document.getElementById(
-"correctCount"
-).innerText
-);
-
-params.set(
-"wrong",
-document.getElementById(
-"wrongCount"
-).innerText
-);
-
-params.set(
-"unanswered",
-document.getElementById(
-"unansweredCount"
-).innerText
-);
-
-params.set(
-"answered",
-document.getElementById(
-"answeredCount"
-).innerText
-);
-
-params.set(
-"t",
-String(Date.now())
-);
-
-const browserUrl=
-window.location.origin
-+
-window.location.pathname
-+
-"?"
-+
-params.toString();
-
-try{
-
-if(
-window.AppInventor
-&&
-typeof window.AppInventor.setWebViewString==="function"
-){
-
-window.AppInventor.setWebViewString(
-browserUrl
-);
-
-return;
-
-}
-
-}
-catch(error){
-
-console.error(
-"AppInventor trigger failed:",
-error
-);
-
-}
-
-window.location.href=
-browserUrl;
-
-}
-
-
-/* CHROME PRINT LINK */
-
-function openPrintLinkIfNeeded(){
-
-const params=
-new URLSearchParams(
-window.location.search
-);
-
-if(
-params.get("print")!=="1"
-){
-
-return false;
-
-}
-
-const examId=
-params.get("exam") || "";
-
-const exam=
-examsData.find(
-item=>item.id===examId
-);
-
-if(
-!exam
-){
-
-alert(
-"PDF-এর পরীক্ষার তথ্য পাওয়া যায়নি।"
-);
-
-return false;
-
-}
-
-currentExam=exam;
-
-currentLevel=
-exam.level;
-
-currentSubject=
-exam.subject;
-
-studentName=
-params.get("name")
-||
-"Student";
-
-externalPrintAnswers=
-String(
-params.get("answers")
-||
-""
-)
-.split(",")
-.map(value=>{
-
-if(
-value==="x"
-||
-value===""
-){
-
-return null;
-
-}
-
-const n=
-Number(value);
-
-return Number.isFinite(n)
-?
-n
-:
-null;
-
-});
-
-externalPrintResult={
-
-score:
-params.get("score")
-||
-"0",
-
-correct:
-params.get("correct")
-||
-"0",
-
-wrong:
-params.get("wrong")
-||
-"0",
-
-unanswered:
-params.get("unanswered")
-||
-"0",
-
-answered:
-params.get("answered")
-||
-"0"
-
-};
-
-hideAllPages();
-
-currentView=
-"browserprint";
-
-document
-.getElementById(
-"browserPrintPage"
-)
-.classList.remove(
-"hidden"
-);
-
-setTimeout(()=>{
-
-prepareAndPrintPDF();
-
-},1000);
-
-return true;
-
-}
-
-
-/* PRINT PDF */
-
-function prepareAndPrintPDF(){
-
-if(
-!currentExam
-||
-!studentName
-){
-
-alert(
-"উত্তরপত্র পাওয়া যায়নি।"
-);
-
-return;
-
-}
-
-const subject=
-subjects[currentLevel]
-.find(
-item=>item.id===currentSubject
-);
-
-const subjectName=
-subject
-?
-subject.name
-:
-"";
-
-const score=
-externalPrintResult
-?
-externalPrintResult.score
-:
-document
-.getElementById(
-"finalScore"
-)
-.innerText;
-
-const correct=
-externalPrintResult
-?
-externalPrintResult.correct
-:
-document
-.getElementById(
-"correctCount"
-)
-.innerText;
-
-const wrong=
-externalPrintResult
-?
-externalPrintResult.wrong
-:
-document
-.getElementById(
-"wrongCount"
-)
-.innerText;
-
-const unanswered=
-externalPrintResult
-?
-externalPrintResult.unanswered
-:
-document
-.getElementById(
-"unansweredCount"
-)
-.innerText;
-
-const answered=
-externalPrintResult
-?
-externalPrintResult.answered
-:
-document
-.getElementById(
-"answeredCount"
-)
-.innerText;
-
-const total=
-currentExam.questions.length;
-
-const negativeMark=
-currentLevel==="SSC"
-?
-0
-:
-0.25;
-
-let html=`
-
-<div class="print-sheet">
-
-<div class="print-cover">
-
-<div class="print-brand-row">
-
-<img
-class="print-logo"
-src="logo.jpg"
-alt="Concept Academy"
->
-
-<div>
-
-<div class="print-brand-name">
-Concept Academy
-</div>
-
-<div class="print-brand-sub">
-by Shuvo • Online Exam Platform
-</div>
-
-</div>
-
-</div>
-
-<div class="print-exam-title">
-
-${escapeHTML(
-currentExam.title
-)}
-
-</div>
-
-<div class="print-meta">
-
-${escapeHTML(
-currentLevel
-)}
-
-•
-
-${escapeHTML(
-subjectName
-)}
-
-</div>
-
-<div class="print-student">
-
-পরীক্ষার্থী:
-
-<strong>
-
-${escapeHTML(
-studentName
-)}
-
-</strong>
-
-</div>
-
-<div class="print-score">
-
-${escapeHTML(
-score
-)}
-/
-${total}
-
-</div>
-
-<div class="print-score-label">
-প্রাপ্ত নম্বর
-</div>
-
-<div class="print-stats">
-
-<div class="print-stat">
-
-<strong>
-${correct}
-</strong>
-
-<span>
-সঠিক
-</span>
-
-</div>
-
-<div class="print-stat">
-
-<strong>
-${wrong}
-</strong>
-
-<span>
-ভুল
-</span>
-
-</div>
-
-<div class="print-stat">
-
-<strong>
-${unanswered}
-</strong>
-
-<span>
-উত্তরহীন
-</span>
-
-</div>
-
-<div class="print-stat">
-
-<strong>
-${answered}
-</strong>
-
-<span>
-উত্তর দিয়েছেন
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="print-rule">
-
-<strong>
-পরীক্ষার নিয়ম
-</strong>
-
-<br>
-
-সঠিক উত্তর:
-<strong>
-+1
-</strong>
-
-<br>
-
-ভুল উত্তর:
-
-<strong>
-
-${
-negativeMark===0
-?
-"কোনো নম্বর কাটা হবে না"
-:
-"−0.25"
-}
-
-</strong>
-
-<br>
-
-মোট প্রশ্ন:
-
-<strong>
-${total}
-</strong>
-
-</div>
-
-<div class="print-section-title">
-উত্তরপত্র ও সংশোধনী
-</div>
-
-`;
-
-currentExam.questions
-.forEach(
-(question,index)=>{
-
-let selectedIndex=null;
-
-if(
-externalPrintAnswers
-){
-
-selectedIndex=
-externalPrintAnswers[index]===undefined
-?
-null
-:
-externalPrintAnswers[index];
-
-}
-else{
-
-const selected=
-document.querySelector(
-`input[name="question${index}"]:checked`
-);
-
-selectedIndex=
-selected
-?
-Number(
-selected.value
-)
-:
-null;
-
-}
-
-const correctIndex=
-Number(
-question.answer
-);
-
-let state=
-"unanswered";
-
-let statusText=
-"উত্তর দেওয়া হয়নি";
-
-if(
-selectedIndex!==null
-){
-
-if(
-selectedIndex===correctIndex
-){
-
-state=
-"correct";
-
-statusText=
-"✓ সঠিক";
-
-}
-else{
-
-state=
-"wrong";
-
-statusText=
-"✗ ভুল";
-
-}
-
-}
-
-html+=`
-
-<div class="print-question ${state}">
-
-<div class="print-q-badge">
-
-প্রশ্ন ${index+1}
-
-</div>
-
-<div class="print-q-text">
-
-${escapeHTML(
-question.q
-)}
-
-</div>
-
-<div class="print-status ${state}">
-
-${statusText}
-
-</div>
-
-`;
-
-question.options
-.forEach(
-(option,optIndex)=>{
-
-let optionClass="";
-let note="";
-
-if(
-optIndex===correctIndex
-){
-
-optionClass=
-"correct-answer";
-
-note=
-"✓ সঠিক উত্তর";
-
-}
-
-if(
-optIndex===selectedIndex
-&&
-optIndex!==correctIndex
-){
-
-optionClass=
-"wrong-answer";
-
-note=
-"✗ আপনার উত্তর";
-
-}
-
-if(
-optIndex===selectedIndex
-&&
-optIndex===correctIndex
-){
-
-note=
-"✓ আপনার উত্তর ও সঠিক উত্তর";
-
-}
-
-html+=`
-
-<div class="print-option ${optionClass}">
-
-<span>
-
-<strong>
-
-(${optionLabels[optIndex]})
-
-</strong>
-
-${escapeHTML(
-option
-)}
-
-</span>
-
-<span class="print-note">
-
-${note}
-
-</span>
-
-</div>
-
-`;
-
-});
-
-html+=`
-
-</div>
-
-`;
-
-});
-
-html+=`
-
-<div class="print-footer">
-
-Concept Academy by Shuvo
-
-<br>
-
-Generated from Concept Academy Online Exam Platform
-
-</div>
-
-</div>
-
-`;
-
-const printSheet=
-document.getElementById(
-"printSheet"
-);
-
-printSheet.innerHTML=
-html;
-
-const logo=
-printSheet.querySelector(
-".print-logo"
-);
-
-const doPrint=()=>{
-
-setTimeout(()=>{
-
-window.print();
-
-},300);
-
-};
-
-if(
-document.fonts
-&&
-document.fonts.ready
-){
-
-document.fonts.ready
-.then(()=>{
-
-if(
-logo
-&&
-!logo.complete
-){
-
-logo.onload=
-doPrint;
-
-logo.onerror=
-doPrint;
-
-setTimeout(
-doPrint,
-1200
-);
-
-}
-else{
-
-doPrint();
-
-}
-
-});
-
-}
-else{
-
-doPrint();
-
-}
-
-}
-
-
-/* SAFE HTML */
-
-function escapeHTML(value){
-
-return String(
-value ?? ""
-)
-
-.replace(
-/&/g,
-"&amp;"
-)
-
-.replace(
-/</g,
-"&lt;"
-)
-
-.replace(
-/>/g,
-"&gt;"
-)
-
-.replace(
-/"/g,
-"&quot;"
-)
-
-.replace(
-/'/g,
-"&#039;"
-);
-
-}
-
-
-/* BACK */
+/* ==========================
+BACK HISTORY
+========================== */
 
 window.addEventListener(
 "popstate",
 function(event){
+
 
 const target=
 event.state
@@ -3742,6 +3198,7 @@ event.state.view
 event.state.view
 :
 "home";
+
 
 if(
 currentView==="exam"
@@ -3754,9 +3211,8 @@ confirm(
 "পরীক্ষা এখনো শেষ হয়নি। আপনি কি পরীক্ষা থেকে বের হতে চান?"
 );
 
-if(
-!leave
-){
+
+if(!leave){
 
 history.pushState(
 {view:"exam"},
@@ -3768,15 +3224,15 @@ return;
 
 }
 
+
 clearInterval(
 timerInterval
 );
 
 }
 
-if(
-target==="home"
-){
+
+if(target==="home"){
 
 showHome();
 
@@ -3784,9 +3240,8 @@ return;
 
 }
 
-if(
-target==="subjects"
-){
+
+if(target==="subjects"){
 
 renderSubjectPage();
 
@@ -3794,9 +3249,8 @@ return;
 
 }
 
-if(
-target==="examlist"
-){
+
+if(target==="examlist"){
 
 renderExamListPage();
 
@@ -3804,9 +3258,8 @@ return;
 
 }
 
-if(
-target==="name"
-){
+
+if(target==="name"){
 
 renderNamePage();
 
@@ -3814,25 +3267,24 @@ return;
 
 }
 
+
 showHome();
 
 }
 );
 
 
-/* ENTER */
+/* ==========================
+ENTER
+========================== */
 
 document
-.getElementById(
-"studentName"
-)
+.getElementById("studentName")
 .addEventListener(
 "keydown",
 function(event){
 
-if(
-event.key==="Enter"
-){
+if(event.key==="Enter"){
 
 startExam();
 
@@ -3842,7 +3294,9 @@ startExam();
 );
 
 
-/* START */
+/* ==========================
+START
+========================== */
 
 showHome();
 
