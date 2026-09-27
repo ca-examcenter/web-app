@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -15,8 +14,6 @@ content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
 
@@ -55,8 +52,9 @@ button{
 }
 
 .hidden{
-    display:none !important;
+    display:none!important;
 }
+
 
 /* =========================
 HEADER
@@ -139,6 +137,7 @@ HEADER
     font-weight:700;
 }
 
+
 /* =========================
 COMMON
 ========================= */
@@ -181,6 +180,7 @@ COMMON
     font-weight:700;
     margin-bottom:20px;
 }
+
 
 /* =========================
 HOME
@@ -275,6 +275,7 @@ HOME
     padding-top:14px;
 }
 
+
 /* =========================
 SUBJECT
 ========================= */
@@ -326,6 +327,7 @@ SUBJECT
     color:#94a3b8;
 }
 
+
 /* =========================
 EXAM LIST
 ========================= */
@@ -375,6 +377,7 @@ EXAM LIST
     color:var(--muted);
 }
 
+
 /* =========================
 NAME
 ========================= */
@@ -422,6 +425,7 @@ NAME
     font-size:16px;
     font-weight:800;
 }
+
 
 /* =========================
 EXAM TOOLBAR
@@ -482,6 +486,7 @@ EXAM TOOLBAR
     background:#fee2e2;
     color:#b91c1c;
 }
+
 
 /* =========================
 EXAM
@@ -570,6 +575,7 @@ EXAM
     font-weight:800;
 }
 
+
 /* =========================
 MODAL
 ========================= */
@@ -616,6 +622,7 @@ MODAL
     background:#2563eb;
     color:#fff;
 }
+
 
 /* =========================
 RESULT
@@ -745,265 +752,260 @@ RESULT
     background:#10245f;
 }
 
+
 /* =========================
-PDF OVERLAY - BLANK FIX
+PRINT PDF DESIGN
 ========================= */
 
-.pdf-render-host{
-    position:fixed;
-    inset:0;
-    z-index:999999;
-    background:#ffffff;
-    overflow:auto;
-    padding:18px 0 40px;
+#printSheet{
+    display:none;
 }
 
-.pdf-render-message{
-    position:sticky;
-    top:0;
-    z-index:10;
-    background:#10245f;
-    color:#fff;
-    text-align:center;
-    padding:10px;
-    font-size:13px;
-    font-weight:700;
-}
-
-.pdf-sheet{
-    width:760px;
-    max-width:760px;
-    margin:18px auto;
-    padding:0;
-    background:#ffffff;
+.print-sheet{
+    background:#fff;
     color:#172033;
     font-family:'Noto Sans Bengali',sans-serif;
 }
 
-.pdf-cover{
-    background:linear-gradient(135deg,#10245f 0%,#1d4ed8 55%,#0891b2 100%);
-    color:#ffffff;
-    border-radius:22px;
-    padding:30px 28px;
-    margin-bottom:22px;
-    text-align:center;
+.print-cover{
+    background:linear-gradient(135deg,#10245f 0%,#1d4ed8 56%,#0891b2 100%);
+    color:#fff;
+    border-radius:18px;
+    padding:24px;
+    margin-bottom:18px;
+
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
 }
 
-.pdf-brand-row{
+.print-brand-row{
     display:flex;
     align-items:center;
-    justify-content:center;
     gap:12px;
+    justify-content:center;
 }
 
-.pdf-logo{
-    width:58px;
-    height:58px;
-    border-radius:15px;
-    overflow:hidden;
-    background:#07111f;
-}
-
-.pdf-logo img{
-    width:100%;
-    height:100%;
-    display:block;
+.print-logo{
+    width:54px;
+    height:54px;
+    border-radius:13px;
     object-fit:cover;
+    background:#08111f;
 }
 
-.pdf-brand{
+.print-brand-name{
     font-family:'Inter',sans-serif;
-    font-size:30px;
+    font-size:26px;
     font-weight:800;
 }
 
-.pdf-brand-small{
+.print-brand-sub{
+    font-size:10px;
+    color:#dbeafe;
+    margin-top:2px;
+}
+
+.print-exam-title{
+    margin-top:16px;
+    font-size:19px;
+    line-height:1.45;
+    font-weight:800;
+    text-align:center;
+}
+
+.print-meta{
+    text-align:center;
+    margin-top:5px;
     font-size:11px;
     color:#dbeafe;
-    margin-top:3px;
 }
 
-.pdf-exam-name{
-    margin-top:20px;
-    font-size:21px;
-    font-weight:800;
-    line-height:1.5;
+.print-student{
+    margin:14px auto 0;
+    width:max-content;
+    max-width:100%;
+    background:rgba(255,255,255,.14);
+    padding:8px 14px;
+    border-radius:10px;
+    text-align:center;
 }
 
-.pdf-meta{
-    margin-top:7px;
-    font-size:13px;
-    color:#e0f2fe;
-}
-
-.pdf-student{
-    margin-top:18px;
-    display:inline-block;
-    padding:10px 18px;
-    border-radius:12px;
-    background:rgba(255,255,255,.13);
-    font-size:15px;
-}
-
-.pdf-score{
+.print-score{
+    text-align:center;
     font-family:'Inter',sans-serif;
-    font-size:46px;
+    font-size:38px;
     font-weight:800;
-    margin-top:18px;
+    margin-top:14px;
 }
 
-.pdf-score-label{
-    font-size:12px;
+.print-score-label{
+    text-align:center;
     color:#dbeafe;
+    font-size:10px;
 }
 
-.pdf-stat-grid{
+.print-stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:9px;
-    margin-top:20px;
+    gap:8px;
+    margin-top:16px;
 }
 
-.pdf-stat{
-    border-radius:12px;
-    padding:12px 8px;
+.print-stat{
+    background:rgba(255,255,255,.14);
+    border-radius:10px;
+    padding:9px 6px;
     text-align:center;
-    background:rgba(255,255,255,.13);
 }
 
-.pdf-stat strong{
+.print-stat strong{
     display:block;
     font-family:'Inter',sans-serif;
-    font-size:22px;
+    font-size:18px;
 }
 
-.pdf-stat span{
-    font-size:11px;
+.print-stat span{
+    font-size:9px;
 }
 
-.pdf-rule-box{
-    margin-bottom:22px;
-    border-radius:14px;
-    padding:15px 17px;
+.print-rule{
     border:1px solid #dbe4ef;
     background:linear-gradient(135deg,#f8fafc,#eff6ff);
-    line-height:1.8;
+    border-radius:12px;
+    padding:12px 14px;
+    margin-bottom:16px;
+    font-size:11px;
+    line-height:1.7;
+
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
 }
 
-.pdf-section-title{
-    margin:24px 0 15px;
+.print-section-title{
     color:#10245f;
-    font-size:21px;
+    font-size:18px;
     font-weight:800;
+    margin:16px 0 10px;
 }
 
-.pdf-question{
-    margin-bottom:15px;
-    padding:17px;
-    border-radius:15px;
+.print-question{
     border:1px solid #e2e8f0;
-    background:#ffffff;
-    box-shadow:0 3px 10px rgba(15,23,42,.04);
+    border-left:5px solid #94a3b8;
+    border-radius:12px;
+    padding:13px;
+    margin-bottom:10px;
     break-inside:avoid;
     page-break-inside:avoid;
+    background:#fff;
+
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
 }
 
-.pdf-question.correct{
-    border-left:6px solid #22c55e;
+.print-question.correct{
+    border-left-color:#22c55e;
     background:#f7fff9;
 }
 
-.pdf-question.wrong{
-    border-left:6px solid #ef4444;
-    background:#fff9f9;
+.print-question.wrong{
+    border-left-color:#ef4444;
+    background:#fff8f8;
 }
 
-.pdf-question.unanswered{
-    border-left:6px solid #f59e0b;
-    background:#fffcf3;
+.print-question.unanswered{
+    border-left-color:#f59e0b;
+    background:#fffcf4;
 }
 
-.pdf-question-number{
+.print-q-badge{
     display:inline-block;
-    margin-bottom:9px;
-    border-radius:8px;
-    padding:5px 9px;
-    font-size:11px;
-    font-weight:800;
-    color:#3730a3;
     background:#e0e7ff;
-}
-
-.pdf-question-text{
-    font-size:15px;
-    font-weight:700;
-    line-height:1.65;
-    margin-bottom:11px;
-}
-
-.pdf-status{
-    display:inline-block;
-    margin-bottom:10px;
-    font-size:11px;
+    color:#3730a3;
+    padding:4px 7px;
+    border-radius:7px;
+    font-size:9px;
     font-weight:800;
+    margin-bottom:7px;
+
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+}
+
+.print-q-text{
+    font-size:12px;
+    font-weight:700;
+    line-height:1.55;
+    margin-bottom:8px;
+}
+
+.print-status{
+    display:inline-block;
     border-radius:999px;
-    padding:5px 9px;
+    padding:3px 7px;
+    font-size:9px;
+    font-weight:800;
+    margin-bottom:6px;
 }
 
-.pdf-status.correct{
-    background:#dcfce7;
-    color:#15803d;
-}
-
-.pdf-status.wrong{
-    background:#fee2e2;
-    color:#b91c1c;
-}
-
-.pdf-status.unanswered{
-    background:#fef3c7;
-    color:#b45309;
-}
-
-.pdf-option{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    border:1px solid #e2e8f0;
-    border-radius:9px;
-    padding:9px 11px;
-    margin-top:7px;
-    background:#ffffff;
-    break-inside:avoid;
-    page-break-inside:avoid;
-}
-
-.pdf-option.correct-answer{
-    border-color:#22c55e;
+.print-status.correct{
     background:#dcfce7;
     color:#166534;
 }
 
-.pdf-option.wrong-answer{
-    border-color:#ef4444;
+.print-status.wrong{
     background:#fee2e2;
     color:#991b1b;
 }
 
-.pdf-option-note{
+.print-status.unanswered{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.print-option{
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    padding:6px 8px;
+    margin-top:5px;
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
     font-size:10px;
+    line-height:1.45;
+    break-inside:avoid;
+    page-break-inside:avoid;
+
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+}
+
+.print-option.correct-answer{
+    background:#dcfce7;
+    border-color:#22c55e;
+    color:#166534;
+}
+
+.print-option.wrong-answer{
+    background:#fee2e2;
+    border-color:#ef4444;
+    color:#991b1b;
+}
+
+.print-note{
+    font-size:8px;
     font-weight:800;
     white-space:nowrap;
 }
 
-.pdf-footer{
-    text-align:center;
-    margin-top:28px;
-    padding-top:14px;
+.print-footer{
+    margin-top:18px;
+    padding-top:10px;
     border-top:1px solid #e2e8f0;
+    text-align:center;
     color:#64748b;
-    font-size:10px;
+    font-size:8px;
 }
+
 
 /* =========================
 MOBILE
@@ -1076,11 +1078,60 @@ MOBILE
     }
 }
 
-</style>
 
+/* =========================
+REAL PRINT MODE
+========================= */
+
+@page{
+    size:A4;
+    margin:10mm;
+}
+
+@media print{
+
+    html,
+    body{
+        background:#fff!important;
+    }
+
+    body *{
+        visibility:hidden!important;
+    }
+
+    #printSheet,
+    #printSheet *{
+        visibility:visible!important;
+    }
+
+    #printSheet{
+        display:block!important;
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        background:#fff;
+    }
+
+    .site-header,
+    #homePage,
+    #subjectPage,
+    #examListPage,
+    #namePage,
+    #examPage,
+    #resultPage,
+    #submitModal{
+        display:none!important;
+    }
+
+}
+
+</style>
 </head>
 
+
 <body>
+
 
 <header class="site-header">
 
@@ -1149,7 +1200,9 @@ SSC অথবা HSC সেকশনে প্রবেশ করে আপন�
 
 </div>
 
+
 <div class="level-grid">
+
 
 <div
 class="level-card"
@@ -1168,7 +1221,9 @@ onclick="openLevel('SSC')"
 
 </div>
 
-<h2>SSC</h2>
+<h2>
+SSC
+</h2>
 
 <p>
 মাধ্যমিক পর্যায়ের পরীক্ষা
@@ -1198,7 +1253,9 @@ onclick="openLevel('HSC')"
 
 </div>
 
-<h2>HSC</h2>
+<h2>
+HSC
+</h2>
 
 <p>
 উচ্চমাধ্যমিক ও ভর্তি পরীক্ষা
@@ -1209,6 +1266,7 @@ HSC পরীক্ষাসমূহ দেখুন →
 </div>
 
 </div>
+
 
 </div>
 
@@ -1306,6 +1364,7 @@ onclick="history.back()"
 ← পরীক্ষার তালিকা
 </button>
 
+
 <div class="name-card">
 
 <div class="eyebrow">
@@ -1389,6 +1448,7 @@ id="timerText"
 
 </div>
 
+
 <div class="page">
 
 <div class="exam-info">
@@ -1458,6 +1518,7 @@ id="finalScore"
 
 <div id="scoreOutOf"></div>
 
+
 <div class="stats">
 
 <div class="stat">
@@ -1484,20 +1545,21 @@ id="finalScore"
 
 </div>
 
+
 <h2 class="review-title">
 উত্তরপত্র ও সংশোধনী
 </h2>
 
 <div id="answerReview"></div>
 
+
 <div class="result-actions">
 
 <button
 class="print-btn"
-id="pdfDownloadButton"
-onclick="downloadBeautifulPDF()"
+onclick="prepareAndPrintPDF()"
 >
-📥 রঙিন উত্তরপত্র PDF ডাউনলোড করুন
+📄 রঙিন উত্তরপত্র PDF / Print
 </button>
 
 <button
@@ -1510,6 +1572,9 @@ onclick="goHome()"
 </div>
 
 </section>
+
+
+<div id="printSheet"></div>
 
 
 <!-- SUBMIT MODAL -->
@@ -1647,15 +1712,11 @@ data.exams
 [];
 
 if(currentView==="subjects"){
-
 renderSubjects();
-
 }
 
 if(currentView==="examlist"){
-
 renderExamList();
-
 }
 
 }
@@ -1743,9 +1804,7 @@ confirm(
 );
 
 if(!leave){
-
 return;
-
 }
 
 clearInterval(
@@ -1830,9 +1889,7 @@ if(
 ||
 !subjects[currentLevel]
 ){
-
 return;
-
 }
 
 subjects[currentLevel]
@@ -1841,13 +1898,11 @@ subjects[currentLevel]
 const count=
 examsData.filter(
 exam=>
-
 exam.level===currentLevel
 &&
 exam.subject===subject.id
 &&
 exam.published!==false
-
 ).length;
 
 const card=
@@ -1871,6 +1926,7 @@ ${subject.name}
 </h3>
 
 <p>
+
 ${
 count>0
 ?
@@ -1878,6 +1934,7 @@ count+"টি পরীক্ষা প্রকাশিত"
 :
 "এখনো কোনো পরীক্ষা প্রকাশিত হয়নি"
 }
+
 </p>
 
 </div>
@@ -1967,13 +2024,11 @@ document.getElementById(
 const exams=
 examsData.filter(
 exam=>
-
 exam.level===currentLevel
 &&
 exam.subject===currentSubject
 &&
 exam.published!==false
-
 );
 
 list.innerHTML="";
@@ -2077,9 +2132,7 @@ exam=>exam.id===id
 );
 
 if(!currentExam){
-
 return;
-
 }
 
 pushView(
@@ -2554,9 +2607,7 @@ autoSubmit=false
 ){
 
 if(submitted){
-
 return;
-
 }
 
 submitted=
@@ -3006,22 +3057,10 @@ error
 
 
 /* =========================
-BEAUTIFUL PDF - FIXED
+COLOR PRINT / SAVE PDF
 ========================= */
 
-async function downloadBeautifulPDF(){
-
-const button=
-document.getElementById(
-"pdfDownloadButton"
-);
-
-const oldText=
-button
-?
-button.innerHTML
-:
-"";
+function prepareAndPrintPDF(){
 
 if(
 !currentExam
@@ -3034,41 +3073,6 @@ alert(
 );
 
 return;
-
-}
-
-if(
-typeof html2pdf==="undefined"
-){
-
-alert(
-"PDF তৈরির সিস্টেম লোড হয়নি। ইন্টারনেট সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।"
-);
-
-return;
-
-}
-
-let host=null;
-
-try{
-
-if(button){
-
-button.disabled=true;
-
-button.innerHTML=
-"⏳ PDF তৈরি হচ্ছে...";
-
-}
-
-if(
-document.fonts
-&&
-document.fonts.ready
-){
-
-await document.fonts.ready;
 
 }
 
@@ -3087,27 +3091,37 @@ subject.name
 
 const score=
 document
-.getElementById("finalScore")
+.getElementById(
+"finalScore"
+)
 .innerText;
 
 const correct=
 document
-.getElementById("correctCount")
+.getElementById(
+"correctCount"
+)
 .innerText;
 
 const wrong=
 document
-.getElementById("wrongCount")
+.getElementById(
+"wrongCount"
+)
 .innerText;
 
 const unanswered=
 document
-.getElementById("unansweredCount")
+.getElementById(
+"unansweredCount"
+)
 .innerText;
 
 const answered=
 document
-.getElementById("answeredCount")
+.getElementById(
+"answeredCount"
+)
 .innerText;
 
 const total=
@@ -3121,49 +3135,27 @@ currentLevel==="SSC"
 0.25;
 
 
-/* RENDERABLE HOST - NO OFFSCREEN */
-
-host=
-document.createElement(
-"div"
-);
-
-host.className=
-"pdf-render-host";
-
-host.innerHTML=`
-
-<div class="pdf-render-message">
-PDF তৈরি হচ্ছে... একটু অপেক্ষা করুন
-</div>
-
-`;
-
-const pdf=
-document.createElement(
-"div"
-);
-
-pdf.className=
-"pdf-sheet";
-
 let html=`
 
-<div class="pdf-cover">
+<div class="print-sheet">
 
-<div class="pdf-brand-row">
+<div class="print-cover">
 
-<div class="pdf-logo">
-<img src="logo.jpg" alt="Concept Academy">
-</div>
+<div class="print-brand-row">
+
+<img
+class="print-logo"
+src="logo.jpg"
+alt="Concept Academy"
+>
 
 <div>
 
-<div class="pdf-brand">
+<div class="print-brand-name">
 Concept Academy
 </div>
 
-<div class="pdf-brand-small">
+<div class="print-brand-sub">
 by Shuvo • Online Exam Platform
 </div>
 
@@ -3171,7 +3163,8 @@ by Shuvo • Online Exam Platform
 
 </div>
 
-<div class="pdf-exam-name">
+
+<div class="print-exam-title">
 
 ${escapeHTML(
 currentExam.title
@@ -3179,7 +3172,8 @@ currentExam.title
 
 </div>
 
-<div class="pdf-meta">
+
+<div class="print-meta">
 
 ${escapeHTML(
 currentLevel
@@ -3193,7 +3187,8 @@ subjectName
 
 </div>
 
-<div class="pdf-student">
+
+<div class="print-student">
 
 পরীক্ষার্থী:
 
@@ -3207,23 +3202,28 @@ studentName
 
 </div>
 
-<div class="pdf-score">
+
+<div class="print-score">
 
 ${escapeHTML(
 score
 )}
+
 /
+
 ${total}
 
 </div>
 
-<div class="pdf-score-label">
+
+<div class="print-score-label">
 প্রাপ্ত নম্বর
 </div>
 
-<div class="pdf-stat-grid">
 
-<div class="pdf-stat">
+<div class="print-stats">
+
+<div class="print-stat">
 
 <strong>
 ${correct}
@@ -3235,7 +3235,8 @@ ${correct}
 
 </div>
 
-<div class="pdf-stat">
+
+<div class="print-stat">
 
 <strong>
 ${wrong}
@@ -3247,7 +3248,8 @@ ${wrong}
 
 </div>
 
-<div class="pdf-stat">
+
+<div class="print-stat">
 
 <strong>
 ${unanswered}
@@ -3259,7 +3261,8 @@ ${unanswered}
 
 </div>
 
-<div class="pdf-stat">
+
+<div class="print-stat">
 
 <strong>
 ${answered}
@@ -3276,7 +3279,7 @@ ${answered}
 </div>
 
 
-<div class="pdf-rule-box">
+<div class="print-rule">
 
 <strong>
 পরীক্ষার নিয়ম
@@ -3316,10 +3319,8 @@ ${total}
 </div>
 
 
-<div class="pdf-section-title">
-
-📝 উত্তরপত্র ও সংশোধনী
-
+<div class="print-section-title">
+উত্তরপত্র ও সংশোধনী
 </div>
 
 `;
@@ -3366,7 +3367,7 @@ state=
 "correct";
 
 statusText=
-"✓ সঠিক উত্তর";
+"✓ সঠিক";
 
 }
 else{
@@ -3375,23 +3376,25 @@ state=
 "wrong";
 
 statusText=
-"✗ ভুল উত্তর";
+"✗ ভুল";
 
 }
 
 }
+
 
 html+=`
 
-<div class="pdf-question ${state}">
+<div class="print-question ${state}">
 
-<div class="pdf-question-number">
+<div class="print-q-badge">
 
 প্রশ্ন ${index+1}
 
 </div>
 
-<div class="pdf-question-text">
+
+<div class="print-q-text">
 
 ${escapeHTML(
 question.q
@@ -3399,13 +3402,15 @@ question.q
 
 </div>
 
-<div class="pdf-status ${state}">
+
+<div class="print-status ${state}">
 
 ${statusText}
 
 </div>
 
 `;
+
 
 question.options
 .forEach(
@@ -3452,9 +3457,10 @@ note=
 
 }
 
+
 html+=`
 
-<div class="pdf-option ${optionClass}">
+<div class="print-option ${optionClass}">
 
 <span>
 
@@ -3470,7 +3476,8 @@ option
 
 </span>
 
-<span class="pdf-option-note">
+
+<span class="print-note">
 
 ${note}
 
@@ -3482,6 +3489,7 @@ ${note}
 
 });
 
+
 html+=`
 
 </div>
@@ -3493,7 +3501,7 @@ html+=`
 
 html+=`
 
-<div class="pdf-footer">
+<div class="print-footer">
 
 Concept Academy by Shuvo
 
@@ -3503,36 +3511,45 @@ Generated from Concept Academy Online Exam Platform
 
 </div>
 
+</div>
+
 `;
 
 
-pdf.innerHTML=
+const printSheet=
+document.getElementById(
+"printSheet"
+);
+
+printSheet.innerHTML=
 html;
-
-host.appendChild(
-pdf
-);
-
-document.body.appendChild(
-host
-);
-
-
-/* WAIT FOR LOGO + LAYOUT */
-
-await new Promise(
-resolve=>
-setTimeout(
-resolve,
-700
-)
-);
 
 
 const logo=
-pdf.querySelector(
-".pdf-logo img"
+printSheet.querySelector(
+".print-logo"
 );
+
+
+const doPrint=()=>{
+
+setTimeout(()=>{
+
+window.print();
+
+},300);
+
+};
+
+
+if(
+document.fonts
+&&
+document.fonts.ready
+){
+
+document.fonts.ready
+.then(()=>{
 
 if(
 logo
@@ -3540,184 +3557,30 @@ logo
 !logo.complete
 ){
 
-await new Promise(
-resolve=>{
+logo.onload=
+doPrint;
 
-logo.onload=resolve;
-
-logo.onerror=resolve;
-
-setTimeout(
-resolve,
-1500
-);
-
-}
-);
-
-}
-
-
-/* SAFE FILE NAME */
-
-const safeName=
-studentName
-.replace(
-/[\\/:*?"<>|]/g,
-"-"
-)
-.trim();
-
-const safeExam=
-currentExam.title
-.replace(
-/[\\/:*?"<>|]/g,
-"-"
-)
-.trim();
-
-const fileName=
-`Concept_Academy_${safeName}_${safeExam}.pdf`;
-
-
-/* PDF OPTIONS */
-
-const pdfOptions={
-
-margin:[
-7,
-7,
-8,
-7
-],
-
-filename:
-fileName,
-
-image:{
-type:"jpeg",
-quality:0.98
-},
-
-html2canvas:{
-
-scale:2,
-
-useCORS:true,
-
-allowTaint:true,
-
-backgroundColor:"#ffffff",
-
-logging:false,
-
-scrollX:0,
-
-scrollY:0,
-
-windowWidth:760
-
-},
-
-jsPDF:{
-
-unit:"mm",
-
-format:"a4",
-
-orientation:"portrait"
-
-},
-
-pagebreak:{
-
-mode:[
-"css",
-"legacy"
-],
-
-avoid:[
-".pdf-question",
-".pdf-option",
-".pdf-rule-box"
-]
-
-}
-
-};
-
-
-/* GENERATE */
-
-await html2pdf()
-.set(
-pdfOptions
-)
-.from(
-pdf
-)
-.save();
-
-
-host.remove();
-
-host=null;
-
-
-if(button){
-
-button.innerHTML=
-"✅ PDF তৈরি হয়েছে";
-
-}
+logo.onerror=
+doPrint;
 
 setTimeout(
-()=>{
-
-if(button){
-
-button.disabled=false;
-
-button.innerHTML=
-oldText;
-
-}
-
-},
-2000
+doPrint,
+1200
 );
 
-
 }
-catch(error){
+else{
 
-console.error(
-"PDF Error:",
-error
-);
-
-if(
-host
-&&
-host.parentNode
-){
-
-host.remove();
+doPrint();
 
 }
 
-alert(
-"PDF তৈরি করা যায়নি। আবার চেষ্টা করুন।"
-);
-
-if(button){
-
-button.disabled=false;
-
-button.innerHTML=
-oldText;
+});
 
 }
+else{
+
+doPrint();
 
 }
 
@@ -3851,7 +3714,9 @@ ENTER
 ========================= */
 
 document
-.getElementById("studentName")
+.getElementById(
+"studentName"
+)
 .addEventListener(
 "keydown",
 function(event){
