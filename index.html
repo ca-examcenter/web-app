@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -15,7 +17,11 @@ content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+
 <style>
+
 :root{
     --navy:#10245f;
     --blue:#2563eb;
@@ -42,7 +48,8 @@ body{
     min-height:100vh;
 }
 
-button,input{
+button,
+input{
     font-family:inherit;
 }
 
@@ -54,24 +61,39 @@ button{
     display:none !important;
 }
 
-/* HEADER */
+
+/* =========================
+HEADER
+========================= */
 
 .site-header{
     position:sticky;
     top:0;
     z-index:3000;
     color:#fff;
-    background:linear-gradient(120deg,#101d4e,#173eae 58%,#087ea4);
-    box-shadow:0 4px 18px rgba(15,23,42,.12);
+
+    background:
+    linear-gradient(
+        120deg,
+        #101d4e,
+        #173eae 58%,
+        #087ea4
+    );
+
+    box-shadow:
+    0 4px 18px
+    rgba(15,23,42,.12);
 }
 
 .header-inner{
     width:min(1050px,calc(100% - 28px));
     min-height:88px;
     margin:auto;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:15px;
 }
 
@@ -84,10 +106,14 @@ button{
 .brand-logo{
     width:54px;
     height:54px;
+
     border-radius:15px;
+
     overflow:hidden;
-    flex:none;
+
     background:#07111f;
+
+    flex:none;
 }
 
 .brand-logo img{
@@ -125,15 +151,26 @@ button{
 }
 
 .home-btn{
-    border:1px solid rgba(255,255,255,.3);
-    background:rgba(255,255,255,.1);
+    border:
+    1px solid
+    rgba(255,255,255,.3);
+
+    background:
+    rgba(255,255,255,.1);
+
     color:#fff;
+
     padding:9px 12px;
+
     border-radius:10px;
+
     font-weight:700;
 }
 
-/* COMMON */
+
+/* =========================
+COMMON
+========================= */
 
 .page{
     width:min(950px,calc(100% - 26px));
@@ -143,12 +180,17 @@ button{
 
 .eyebrow{
     display:inline-block;
+
     background:#eaf2ff;
     color:#2563eb;
+
     border-radius:999px;
+
     padding:5px 10px;
+
     font-size:11px;
     font-weight:800;
+
     margin-bottom:10px;
 }
 
@@ -168,21 +210,35 @@ button{
     border:1px solid #dbe4ef;
     background:#fff;
     color:#334155;
+
     padding:9px 13px;
+
     border-radius:10px;
+
     font-weight:700;
+
     margin-bottom:20px;
 }
 
-/* HOME */
+
+/* =========================
+HOME
+========================= */
 
 .home-hero{
     background:#fff;
+
     border:1px solid var(--border);
+
     border-radius:22px;
+
     padding:25px;
+
     margin-bottom:20px;
-    box-shadow:0 9px 30px rgba(15,23,42,.055);
+
+    box-shadow:
+    0 9px 30px
+    rgba(15,23,42,.055);
 }
 
 .home-hero h2{
@@ -203,10 +259,19 @@ button{
 
 .level-card{
     background:#fff;
-    border:1px solid var(--border);
+
+    border:
+    1px solid
+    var(--border);
+
     border-radius:20px;
+
     padding:23px;
-    box-shadow:0 7px 24px rgba(15,23,42,.05);
+
+    box-shadow:
+    0 7px 24px
+    rgba(15,23,42,.05);
+
     transition:.2s;
 }
 
@@ -224,23 +289,32 @@ button{
 .level-icon{
     width:56px;
     height:56px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-radius:16px;
+
     background:#eff6ff;
+
     font-size:26px;
 }
 
 .level-arrow{
     width:35px;
     height:35px;
+
     border-radius:50%;
+
     background:#f1f5f9;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     color:#2563eb;
+
     font-weight:800;
 }
 
@@ -258,14 +332,22 @@ button{
 
 .level-footer{
     color:#2563eb;
+
     font-size:13px;
     font-weight:800;
-    border-top:1px solid #edf1f6;
+
+    border-top:
+    1px solid
+    #edf1f6;
+
     margin-top:17px;
     padding-top:14px;
 }
 
-/* SUBJECTS */
+
+/* =========================
+SUBJECT
+========================= */
 
 .subject-grid{
     display:grid;
@@ -275,24 +357,39 @@ button{
 
 .subject-card{
     background:#fff;
-    border:1px solid var(--border);
+
+    border:
+    1px solid
+    var(--border);
+
     border-radius:16px;
+
     padding:17px;
+
     display:flex;
     align-items:center;
+
     gap:13px;
-    box-shadow:0 4px 16px rgba(15,23,42,.04);
+
+    box-shadow:
+    0 4px 16px
+    rgba(15,23,42,.04);
 }
 
 .subject-icon{
     width:48px;
     height:48px;
+
     flex:none;
+
     border-radius:13px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     background:#eff6ff;
+
     font-size:22px;
 }
 
@@ -314,7 +411,10 @@ button{
     color:#94a3b8;
 }
 
-/* EXAM LIST */
+
+/* =========================
+EXAM LIST
+========================= */
 
 .exam-list{
     display:flex;
@@ -324,12 +424,19 @@ button{
 
 .exam-card{
     background:#fff;
-    border:1px solid var(--border);
+
+    border:
+    1px solid
+    var(--border);
+
     border-radius:16px;
+
     padding:18px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     gap:15px;
 }
 
@@ -345,32 +452,62 @@ button{
 
 .exam-start-btn{
     border:0;
+
     color:#fff;
-    background:linear-gradient(135deg,#2563eb,#0284c7);
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #0284c7
+    );
+
     border-radius:10px;
+
     padding:11px 16px;
+
     font-weight:800;
 }
 
 .empty-box{
     padding:35px 18px;
+
     background:#fff;
-    border:1px dashed #94a3b8;
+
+    border:
+    1px dashed
+    #94a3b8;
+
     border-radius:17px;
+
     text-align:center;
+
     color:var(--muted);
 }
 
-/* NAME */
+
+/* =========================
+NAME
+========================= */
 
 .name-card{
     max-width:500px;
+
     margin:auto;
+
     background:#fff;
-    border:1px solid var(--border);
+
+    border:
+    1px solid
+    var(--border);
+
     border-radius:20px;
+
     padding:27px;
-    box-shadow:0 9px 30px rgba(15,23,42,.06);
+
+    box-shadow:
+    0 9px 30px
+    rgba(15,23,42,.06);
 }
 
 .name-card h2{
@@ -384,10 +521,17 @@ button{
 
 .student-name-input{
     width:100%;
+
     padding:14px;
-    border:2px solid #dbe4ef;
+
+    border:
+    2px solid
+    #dbe4ef;
+
     border-radius:11px;
+
     outline:none;
+
     font-size:16px;
 }
 
@@ -397,34 +541,62 @@ button{
 
 .big-btn{
     width:100%;
+
     margin-top:14px;
+
     border:0;
+
     border-radius:11px;
+
     padding:14px;
+
     color:#fff;
-    background:linear-gradient(135deg,#1d4ed8,#0284c7);
+
+    background:
+    linear-gradient(
+        135deg,
+        #1d4ed8,
+        #0284c7
+    );
+
     font-size:16px;
     font-weight:800;
 }
 
-/* EXAM TOOLBAR */
+
+/* =========================
+EXAM TOOLBAR
+========================= */
 
 .exam-toolbar{
     position:sticky;
     top:88px;
+
     z-index:2000;
-    background:rgba(255,255,255,.97);
-    border-bottom:1px solid var(--border);
-    box-shadow:0 3px 13px rgba(15,23,42,.055);
+
+    background:
+    rgba(255,255,255,.97);
+
+    border-bottom:
+    1px solid
+    var(--border);
+
+    box-shadow:
+    0 3px 13px
+    rgba(15,23,42,.055);
 }
 
 .exam-toolbar-inner{
     width:min(950px,calc(100% - 26px));
+
     margin:auto;
+
     padding:10px 0;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:10px;
 }
 
@@ -440,7 +612,9 @@ button{
 
 .pill{
     padding:7px 9px;
+
     border-radius:9px;
+
     font-size:12px;
     font-weight:800;
 }
@@ -465,36 +639,62 @@ button{
     color:#b91c1c;
 }
 
-/* EXAM */
+
+/* =========================
+EXAM
+========================= */
 
 .exam-info{
     color:#fff;
-    background:linear-gradient(135deg,#10245f,#1d4ed8,#0891b2);
+
+    background:
+    linear-gradient(
+        135deg,
+        #10245f,
+        #1d4ed8,
+        #0891b2
+    );
+
     border-radius:17px;
+
     padding:16px;
+
     margin-bottom:18px;
+
     display:flex;
     justify-content:space-between;
     flex-wrap:wrap;
+
     gap:10px;
 }
 
 .question-card{
     background:#fff;
-    border:1px solid var(--border);
+
+    border:
+    1px solid
+    var(--border);
+
     border-radius:17px;
+
     padding:19px;
+
     margin-bottom:14px;
 }
 
 .question-badge{
     display:inline-block;
+
     background:#e0e7ff;
     color:#3730a3;
+
     padding:5px 9px;
+
     border-radius:8px;
+
     font-size:12px;
     font-weight:800;
+
     margin-bottom:9px;
 }
 
@@ -502,6 +702,7 @@ button{
     font-weight:700;
     line-height:1.7;
     font-size:17px;
+
     margin-bottom:12px;
 }
 
@@ -515,9 +716,15 @@ button{
     display:flex;
     gap:9px;
     align-items:flex-start;
-    border:2px solid #e5e7eb;
+
+    border:
+    2px solid
+    #e5e7eb;
+
     border-radius:11px;
+
     padding:11px;
+
     line-height:1.55;
 }
 
@@ -533,56 +740,87 @@ button{
 
 .submit-box{
     margin-top:22px;
+
     background:#fff;
-    border:1px solid var(--border);
+
+    border:
+    1px solid
+    var(--border);
+
     border-radius:17px;
+
     padding:22px;
+
     text-align:center;
 }
 
 .submit-btn{
     margin-top:11px;
+
     border:0;
+
     border-radius:10px;
+
     padding:13px 26px;
+
     background:#059669;
+
     color:#fff;
+
     font-weight:800;
 }
 
-/* MODAL */
+
+/* =========================
+MODAL
+========================= */
 
 .modal{
     position:fixed;
     inset:0;
+
     z-index:9999;
-    background:rgba(15,23,42,.58);
+
+    background:
+    rgba(15,23,42,.58);
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:20px;
 }
 
 .modal-box{
     width:100%;
     max-width:370px;
+
     border-radius:18px;
+
     background:#fff;
+
     padding:25px;
+
     text-align:center;
 }
 
 .modal-actions{
     display:grid;
     grid-template-columns:1fr 1fr;
+
     gap:8px;
+
     margin-top:18px;
 }
 
 .modal-actions button{
     border:0;
+
     border-radius:9px;
+
     padding:11px;
+
     font-weight:800;
 }
 
@@ -595,33 +833,54 @@ button{
     color:#fff;
 }
 
-/* RESULT */
+
+/* =========================
+RESULT
+========================= */
 
 .result-head{
     color:#fff;
-    background:linear-gradient(135deg,#10245f,#1d4ed8,#0891b2);
+
+    background:
+    linear-gradient(
+        135deg,
+        #10245f,
+        #1d4ed8,
+        #0891b2
+    );
+
     border-radius:21px;
+
     padding:27px 18px;
+
     text-align:center;
 }
 
 .score{
     font-family:'Inter',sans-serif;
+
     font-size:41px;
+
     font-weight:800;
+
     margin-top:10px;
 }
 
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
+
     gap:8px;
+
     margin-top:17px;
 }
 
 .stat{
-    background:rgba(255,255,255,.13);
+    background:
+    rgba(255,255,255,.13);
+
     border-radius:10px;
+
     padding:9px;
 }
 
@@ -641,7 +900,9 @@ button{
 
 .review-card{
     padding:17px;
+
     margin-bottom:11px;
+
     border-radius:14px;
 }
 
@@ -668,17 +929,26 @@ button{
 .review-options{
     display:flex;
     flex-direction:column;
+
     gap:7px;
+
     margin-top:11px;
 }
 
 .review-option{
     background:#fff;
-    border:1px solid #dbe3ec;
+
+    border:
+    1px solid
+    #dbe3ec;
+
     border-radius:8px;
+
     padding:9px 10px;
+
     display:flex;
     justify-content:space-between;
+
     gap:9px;
 }
 
@@ -701,15 +971,21 @@ button{
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
+
     gap:9px;
+
     margin-top:24px;
 }
 
 .result-actions button{
     border:0;
+
     border-radius:10px;
+
     padding:12px 17px;
+
     color:#fff;
+
     font-weight:800;
 }
 
@@ -721,7 +997,307 @@ button{
     background:#10245f;
 }
 
-/* MOBILE */
+
+/* =========================
+COLORED PDF
+========================= */
+
+.pdf-sheet{
+    width:760px;
+    background:#fff;
+    color:#172033;
+    font-family:'Noto Sans Bengali',sans-serif;
+}
+
+.pdf-cover{
+    background:
+    linear-gradient(
+        135deg,
+        #10245f,
+        #1d4ed8 55%,
+        #0891b2
+    );
+
+    color:#fff;
+
+    border-radius:22px;
+
+    padding:30px 28px;
+
+    margin-bottom:22px;
+
+    text-align:center;
+}
+
+.pdf-brand{
+    font-family:'Inter',sans-serif;
+    font-size:30px;
+    font-weight:800;
+}
+
+.pdf-brand-small{
+    font-size:11px;
+    color:#dbeafe;
+    margin-top:3px;
+}
+
+.pdf-exam-name{
+    margin-top:20px;
+    font-size:21px;
+    font-weight:800;
+    line-height:1.5;
+}
+
+.pdf-meta{
+    margin-top:7px;
+    font-size:13px;
+    color:#e0f2fe;
+}
+
+.pdf-student{
+    margin-top:18px;
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    background:
+    rgba(255,255,255,.13);
+
+    font-size:15px;
+}
+
+.pdf-score{
+    font-family:'Inter',sans-serif;
+
+    font-size:46px;
+
+    font-weight:800;
+
+    margin-top:18px;
+}
+
+.pdf-score-label{
+    font-size:12px;
+    color:#dbeafe;
+}
+
+.pdf-stat-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:9px;
+
+    margin-top:20px;
+}
+
+.pdf-stat{
+    border-radius:12px;
+
+    padding:12px 8px;
+
+    text-align:center;
+
+    background:
+    rgba(255,255,255,.13);
+}
+
+.pdf-stat strong{
+    display:block;
+
+    font-family:'Inter',sans-serif;
+
+    font-size:22px;
+}
+
+.pdf-stat span{
+    font-size:11px;
+}
+
+.pdf-rule-box{
+    margin-bottom:22px;
+
+    border-radius:14px;
+
+    padding:15px 17px;
+
+    border:
+    1px solid
+    #dbe4ef;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f8fafc,
+        #eff6ff
+    );
+
+    line-height:1.8;
+}
+
+.pdf-section-title{
+    margin:24px 0 15px;
+
+    color:#10245f;
+
+    font-size:21px;
+
+    font-weight:800;
+}
+
+.pdf-question{
+    margin-bottom:15px;
+
+    padding:17px;
+
+    border-radius:15px;
+
+    border:
+    1px solid
+    #e2e8f0;
+
+    background:#fff;
+
+    break-inside:avoid;
+
+    page-break-inside:avoid;
+}
+
+.pdf-question.correct{
+    border-left:6px solid #22c55e;
+    background:#f7fff9;
+}
+
+.pdf-question.wrong{
+    border-left:6px solid #ef4444;
+    background:#fff9f9;
+}
+
+.pdf-question.unanswered{
+    border-left:6px solid #f59e0b;
+    background:#fffcf3;
+}
+
+.pdf-question-number{
+    display:inline-block;
+
+    margin-bottom:9px;
+
+    border-radius:8px;
+
+    padding:5px 9px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    color:#3730a3;
+
+    background:#e0e7ff;
+}
+
+.pdf-question-text{
+    font-size:15px;
+
+    font-weight:700;
+
+    line-height:1.65;
+
+    margin-bottom:11px;
+}
+
+.pdf-status{
+    display:inline-block;
+
+    margin-bottom:10px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    border-radius:999px;
+
+    padding:5px 9px;
+}
+
+.pdf-status.correct{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.pdf-status.wrong{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.pdf-status.unanswered{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.pdf-option{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    border:
+    1px solid
+    #e2e8f0;
+
+    border-radius:9px;
+
+    padding:9px 11px;
+
+    margin-top:7px;
+
+    background:#fff;
+
+    break-inside:avoid;
+
+    page-break-inside:avoid;
+}
+
+.pdf-option.correct-answer{
+    border-color:#22c55e;
+    background:#dcfce7;
+    color:#166534;
+}
+
+.pdf-option.wrong-answer{
+    border-color:#ef4444;
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.pdf-option-note{
+    font-size:10px;
+    font-weight:800;
+}
+
+.pdf-footer{
+    text-align:center;
+
+    margin-top:28px;
+
+    padding-top:14px;
+
+    border-top:
+    1px solid
+    #e2e8f0;
+
+    color:#64748b;
+
+    font-size:10px;
+}
+
+
+/* =========================
+MOBILE
+========================= */
 
 @media(max-width:700px){
 
@@ -790,33 +1366,16 @@ button{
     }
 }
 
-@media print{
-
-    .site-header,
-    .result-actions{
-        display:none!important;
-    }
-
-    body{
-        background:#fff;
-    }
-
-    .page{
-        width:100%;
-        padding:0;
-    }
-
-    .review-card{
-        break-inside:avoid;
-        page-break-inside:avoid;
-    }
-}
 </style>
+
 </head>
+
 
 <body>
 
+
 <header class="site-header">
+
 <div class="header-inner">
 
 <div class="brand">
@@ -826,29 +1385,49 @@ button{
 </div>
 
 <div>
+
 <div class="brand-line">
-<span class="brand-name">Concept Academy</span>
-<span class="by-shuvo">by Shuvo</span>
+
+<span class="brand-name">
+Concept Academy
+</span>
+
+<span class="by-shuvo">
+by Shuvo
+</span>
+
 </div>
 
 <div class="brand-sub">
 Online Exam Platform
 </div>
-</div>
 
 </div>
 
-<button class="home-btn" onclick="goHome()">
+</div>
+
+
+<button
+class="home-btn"
+onclick="goHome()"
+>
 ⌂ Home
 </button>
 
 </div>
+
 </header>
 
 
-<!-- HOME -->
 
-<section id="homePage" class="page">
+<!-- =========================
+HOME
+========================= -->
+
+<section
+id="homePage"
+class="page"
+>
 
 <div class="home-hero">
 
@@ -869,7 +1448,11 @@ SSC অথবা HSC সেকশনে প্রবেশ করে আপন�
 
 <div class="level-grid">
 
-<div class="level-card" onclick="openLevel('SSC')">
+
+<div
+class="level-card"
+onclick="openLevel('SSC')"
+>
 
 <div class="level-top">
 
@@ -883,7 +1466,9 @@ SSC অথবা HSC সেকশনে প্রবেশ করে আপন�
 
 </div>
 
-<h2>SSC</h2>
+<h2>
+SSC
+</h2>
 
 <p>
 মাধ্যমিক পর্যায়ের পরীক্ষা
@@ -896,7 +1481,11 @@ SSC পরীক্ষাসমূহ দেখুন →
 </div>
 
 
-<div class="level-card" onclick="openLevel('HSC')">
+
+<div
+class="level-card"
+onclick="openLevel('HSC')"
+>
 
 <div class="level-top">
 
@@ -910,7 +1499,9 @@ SSC পরীক্ষাসমূহ দেখুন →
 
 </div>
 
-<h2>HSC</h2>
+<h2>
+HSC
+</h2>
 
 <p>
 উচ্চমাধ্যমিক ও ভর্তি পরীক্ষা
@@ -922,39 +1513,69 @@ HSC পরীক্ষাসমূহ দেখুন →
 
 </div>
 
+
 </div>
 
 </section>
 
 
-<!-- SUBJECT -->
 
-<section id="subjectPage" class="page hidden">
+<!-- =========================
+SUBJECT PAGE
+========================= -->
 
-<button class="back-btn" onclick="history.back()">
+<section
+id="subjectPage"
+class="page hidden"
+>
+
+<button
+class="back-btn"
+onclick="history.back()"
+>
 ← ফিরে যান
 </button>
 
-<div class="eyebrow" id="subjectEyebrow">
+<div
+class="eyebrow"
+id="subjectEyebrow"
+>
 SECTION
 </div>
 
-<h2 class="page-title" id="subjectTitle"></h2>
+<h2
+class="page-title"
+id="subjectTitle"
+>
+</h2>
 
 <p class="page-subtitle">
 পরীক্ষা দেওয়ার জন্য বিষয় নির্বাচন করুন
 </p>
 
-<div class="subject-grid" id="subjectGrid"></div>
+<div
+class="subject-grid"
+id="subjectGrid"
+>
+</div>
 
 </section>
 
 
-<!-- EXAM LIST -->
 
-<section id="examListPage" class="page hidden">
+<!-- =========================
+EXAM LIST
+========================= -->
 
-<button class="back-btn" onclick="history.back()">
+<section
+id="examListPage"
+class="page hidden"
+>
+
+<button
+class="back-btn"
+onclick="history.back()"
+>
 ← বিষয়সমূহ
 </button>
 
@@ -962,24 +1583,42 @@ SECTION
 AVAILABLE EXAMS
 </div>
 
-<h2 class="page-title" id="examListTitle"></h2>
+<h2
+class="page-title"
+id="examListTitle"
+>
+</h2>
 
 <p class="page-subtitle">
 প্রকাশিত পরীক্ষা থেকে একটি নির্বাচন করুন
 </p>
 
-<div class="exam-list" id="examList"></div>
+<div
+class="exam-list"
+id="examList"
+>
+</div>
 
 </section>
 
 
-<!-- NAME -->
 
-<section id="namePage" class="page hidden">
+<!-- =========================
+NAME PAGE
+========================= -->
 
-<button class="back-btn" onclick="history.back()">
+<section
+id="namePage"
+class="page hidden"
+>
+
+<button
+class="back-btn"
+onclick="history.back()"
+>
 ← পরীক্ষার তালিকা
 </button>
+
 
 <div class="name-card">
 
@@ -991,11 +1630,23 @@ START EXAM
 পরীক্ষার্থীর তথ্য
 </h2>
 
-<p class="selected-exam" id="selectedExamTitle"></p>
+<p
+class="selected-exam"
+id="selectedExamTitle"
+>
+</p>
 
-<label style="font-weight:700;display:block;margin-bottom:7px;">
+
+<label
+style="
+font-weight:700;
+display:block;
+margin-bottom:7px;
+"
+>
 পরীক্ষার্থীর নাম
 </label>
+
 
 <input
 id="studentName"
@@ -1005,7 +1656,11 @@ placeholder="আপনার সম্পূর্ণ নাম লিখুন"
 autocomplete="name"
 >
 
-<button class="big-btn" onclick="startExam()">
+
+<button
+class="big-btn"
+onclick="startExam()"
+>
 পরীক্ষা শুরু করুন →
 </button>
 
@@ -1014,9 +1669,16 @@ autocomplete="name"
 </section>
 
 
-<!-- EXAM -->
 
-<section id="examPage" class="hidden">
+<!-- =========================
+EXAM PAGE
+========================= -->
+
+<section
+id="examPage"
+class="hidden"
+>
+
 
 <div class="exam-toolbar">
 
@@ -1024,19 +1686,23 @@ autocomplete="name"
 
 <div
 class="exam-toolbar-title"
-id="toolbarExamTitle">
+id="toolbarExamTitle"
+>
 </div>
+
 
 <div class="toolbar-status">
 
 <div
 class="pill progress-pill"
-id="progressText">
+id="progressText"
+>
 </div>
 
 <div
 class="pill timer-pill"
-id="timerText">
+id="timerText"
+>
 </div>
 
 </div>
@@ -1044,45 +1710,77 @@ id="timerText">
 </div>
 
 </div>
+
 
 
 <div class="page">
+
 
 <div class="exam-info">
 
 <div>
 পরীক্ষার্থী:
-<strong id="examStudentName"></strong>
+<strong
+id="examStudentName"
+>
+</strong>
 </div>
 
-<div id="markingRuleText"></div>
+<div
+id="markingRuleText"
+>
+</div>
 
 </div>
 
-<div id="questionsContainer"></div>
+
+<div
+id="questionsContainer"
+>
+</div>
+
 
 <div class="submit-box">
 
-<h3>পরীক্ষা শেষ?</h3>
+<h3>
+পরীক্ষা শেষ?
+</h3>
 
-<p style="color:#64748b;margin-top:4px;">
+<p
+style="
+color:#64748b;
+margin-top:4px;
+"
+>
 সব প্রশ্নের উত্তর দেওয়া বাধ্যতামূলক নয়।
 </p>
 
-<button class="submit-btn" onclick="showSubmitModal()">
+
+<button
+class="submit-btn"
+onclick="showSubmitModal()"
+>
 পরীক্ষা জমা দিন
 </button>
 
 </div>
+
 
 </div>
 
 </section>
 
 
-<!-- RESULT -->
 
-<section id="resultPage" class="page hidden">
+<!-- =========================
+RESULT PAGE
+========================= -->
+
+<section
+id="resultPage"
+class="page hidden"
+>
+
 
 <div class="result-head">
 
@@ -1090,13 +1788,26 @@ id="timerText">
 পরীক্ষার ফলাফল
 </h2>
 
-<p id="resultExamName"></p>
+<p
+id="resultExamName"
+>
+</p>
 
-<p id="resultStudent"></p>
+<p
+id="resultStudent"
+>
+</p>
 
-<div class="score" id="finalScore"></div>
+<div
+class="score"
+id="finalScore"
+>
+</div>
 
-<div id="scoreOutOf"></div>
+<div
+id="scoreOutOf"
+>
+</div>
 
 
 <div class="stats">
@@ -1130,16 +1841,27 @@ id="timerText">
 উত্তরপত্র ও সংশোধনী
 </h2>
 
-<div id="answerReview"></div>
+<div
+id="answerReview"
+>
+</div>
 
 
 <div class="result-actions">
 
-<button class="print-btn" onclick="window.print()">
-📄 Print / Save as PDF
+<button
+class="print-btn"
+id="pdfDownloadButton"
+onclick="downloadBeautifulPDF()"
+>
+📥 রঙিন উত্তরপত্র PDF ডাউনলোড করুন
 </button>
 
-<button class="home-result-btn" onclick="goHome()">
+
+<button
+class="home-result-btn"
+onclick="goHome()"
+>
 ⌂ Home
 </button>
 
@@ -1148,9 +1870,15 @@ id="timerText">
 </section>
 
 
-<!-- SUBMIT MODAL -->
 
-<div id="submitModal" class="modal">
+<!-- =========================
+SUBMIT MODAL
+========================= -->
+
+<div
+id="submitModal"
+class="modal"
+>
 
 <div class="modal-box">
 
@@ -1160,11 +1888,17 @@ id="timerText">
 
 <div class="modal-actions">
 
-<button class="no-btn" onclick="hideSubmitModal()">
+<button
+class="no-btn"
+onclick="hideSubmitModal()"
+>
 না
 </button>
 
-<button class="yes-btn" onclick="submitExam(false)">
+<button
+class="yes-btn"
+onclick="submitExam(false)"
+>
 হ্যাঁ, জমা দিন
 </button>
 
@@ -1175,96 +1909,164 @@ id="timerText">
 </div>
 
 
+
 <script>
 
-/* ==========================
+/* =========================
 CONFIG
-========================== */
+========================= */
 
 const GOOGLE_SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycby-qppGkePByBtNVDuM1S1YHMD_uzH5igl_5KRxMmpE_DhHhai4DAJg846PPgeHxT3T/exec";
 
 
-const subjects={
+const subjects = {
 
 SSC:[
-{id:"biology",name:"জীববিজ্ঞান",icon:"🧬"},
-{id:"physics",name:"পদার্থবিজ্ঞান",icon:"⚛️"},
-{id:"chemistry",name:"রসায়ন",icon:"🧪"},
-{id:"higher_math",name:"উচ্চতর গণিত",icon:"📐"},
-{id:"math",name:"গণিত",icon:"➗"}
+
+{
+id:"biology",
+name:"জীববিজ্ঞান",
+icon:"🧬"
+},
+
+{
+id:"physics",
+name:"পদার্থবিজ্ঞান",
+icon:"⚛️"
+},
+
+{
+id:"chemistry",
+name:"রসায়ন",
+icon:"🧪"
+},
+
+{
+id:"higher_math",
+name:"উচ্চতর গণিত",
+icon:"📐"
+},
+
+{
+id:"math",
+name:"গণিত",
+icon:"➗"
+}
+
 ],
 
+
 HSC:[
-{id:"zoology",name:"প্রাণীবিজ্ঞান",icon:"🐾"},
-{id:"botany",name:"উদ্ভিদবিজ্ঞান",icon:"🌿"},
-{id:"chemistry_1",name:"রসায়ন ১ম পত্র",icon:"🧪"},
-{id:"chemistry_2",name:"রসায়ন ২য় পত্র",icon:"⚗️"},
-{id:"medical",name:"মেডিকেল ভর্তি পরীক্ষা",icon:"🩺"}
+
+{
+id:"zoology",
+name:"প্রাণীবিজ্ঞান",
+icon:"🐾"
+},
+
+{
+id:"botany",
+name:"উদ্ভিদবিজ্ঞান",
+icon:"🌿"
+},
+
+{
+id:"chemistry_1",
+name:"রসায়ন ১ম পত্র",
+icon:"🧪"
+},
+
+{
+id:"chemistry_2",
+name:"রসায়ন ২য় পত্র",
+icon:"⚗️"
+},
+
+{
+id:"medical",
+name:"মেডিকেল ভর্তি পরীক্ষা",
+icon:"🩺"
+}
+
 ]
 
 };
 
 
-const optionLabels=[
-"ক","খ","গ","ঘ"
+const optionLabels =
+[
+"ক",
+"খ",
+"গ",
+"ঘ"
 ];
 
 
-let examsData=[];
+let examsData = [];
 
-let currentLevel=null;
-let currentSubject=null;
-let currentExam=null;
+let currentLevel = null;
 
-let currentView="home";
+let currentSubject = null;
 
-let studentName="";
+let currentExam = null;
 
-let timeLeft=0;
-let timerInterval=null;
+let currentView = "home";
 
-let submitted=false;
-let examStartTime=null;
+let studentName = "";
+
+let timeLeft = 0;
+
+let timerInterval = null;
+
+let submitted = false;
+
+let examStartTime = null;
 
 
-/* ==========================
-INITIAL HISTORY
-========================== */
+
+/* =========================
+HISTORY
+========================= */
 
 history.replaceState(
-{view:"home"},
+{
+view:"home"
+},
 "",
 "#home"
 );
 
 
-/* ==========================
-LOAD EXAMS
-========================== */
+
+/* =========================
+LOAD EXAMS.JSON
+========================= */
 
 async function loadExams(){
 
 try{
 
-const response=
+const response =
 await fetch(
-"exams.json?v="+Date.now()
+"exams.json?v=" + Date.now()
 );
 
 
 if(!response.ok){
+
 throw new Error(
 "exams.json load failed"
 );
+
 }
 
 
-const data=
+const data =
 await response.json();
 
 
-examsData=
+examsData =
 Array.isArray(data.exams)
 ?
 data.exams
@@ -1272,21 +2074,31 @@ data.exams
 [];
 
 
-if(currentView==="subjects"){
+if(
+currentView === "subjects"
+){
+
 renderSubjects();
+
 }
 
 
-if(currentView==="examlist"){
+if(
+currentView === "examlist"
+){
+
 renderExamList();
+
 }
 
 }
 catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
-examsData=[];
+examsData = [];
 
 }
 
@@ -1296,9 +2108,10 @@ examsData=[];
 loadExams();
 
 
-/* ==========================
+
+/* =========================
 PAGE HELPERS
-========================== */
+========================= */
 
 function hideAllPages(){
 
@@ -1310,23 +2123,29 @@ function hideAllPages(){
 "examPage",
 "resultPage"
 ]
-.forEach(id=>{
+.forEach(
+id=>{
 
 document
 .getElementById(id)
-.classList.add("hidden");
+.classList
+.add("hidden");
 
-});
+}
+);
 
 }
 
 
 function pushView(view){
 
-currentView=view;
+currentView = view;
+
 
 history.pushState(
-{view:view},
+{
+view:view
+},
 "",
 "#"+view
 );
@@ -1334,41 +2153,55 @@ history.pushState(
 }
 
 
-/* ==========================
+
+/* =========================
 HOME
-========================== */
+========================= */
 
 function showHome(){
 
 hideAllPages();
 
-currentView="home";
+
+currentView =
+"home";
+
 
 document
-.getElementById("homePage")
-.classList.remove("hidden");
+.getElementById(
+"homePage"
+)
+.classList
+.remove("hidden");
 
-window.scrollTo(0,0);
+
+window.scrollTo(
+0,
+0
+);
 
 }
+
 
 
 function goHome(){
 
 if(
-currentView==="exam"
+currentView === "exam"
 &&
 !submitted
 ){
 
-const leave=
+const leave =
 confirm(
 "পরীক্ষা এখনো শেষ হয়নি। আপনি কি পরীক্ষা থেকে বের হতে চান?"
 );
 
 
 if(!leave){
+
 return;
+
 }
 
 
@@ -1379,79 +2212,103 @@ timerInterval
 }
 
 
-currentLevel=null;
-currentSubject=null;
-currentExam=null;
+currentLevel = null;
+
+currentSubject = null;
+
+currentExam = null;
+
 
 pushView(
 "home"
 );
+
 
 showHome();
 
 }
 
 
-/* ==========================
+
+/* =========================
 LEVEL
-========================== */
+========================= */
 
 function openLevel(level){
 
-currentLevel=level;
+currentLevel =
+level;
+
 
 pushView(
 "subjects"
 );
+
 
 renderSubjectPage();
 
 }
 
 
+
 function renderSubjectPage(){
 
 hideAllPages();
 
-currentView=
+
+currentView =
 "subjects";
 
+
 document
-.getElementById("subjectPage")
-.classList.remove("hidden");
+.getElementById(
+"subjectPage"
+)
+.classList
+.remove("hidden");
 
 
 document
-.getElementById("subjectEyebrow")
-.innerText=
+.getElementById(
+"subjectEyebrow"
+)
+.innerText =
 `${currentLevel} SECTION`;
 
 
 document
-.getElementById("subjectTitle")
-.innerText=
+.getElementById(
+"subjectTitle"
+)
+.innerText =
 `${currentLevel} পরীক্ষার বিষয়সমূহ`;
 
 
 renderSubjects();
 
-window.scrollTo(0,0);
+
+window.scrollTo(
+0,
+0
+);
 
 }
 
 
-/* ==========================
+
+/* =========================
 SUBJECTS
-========================== */
+========================= */
 
 function renderSubjects(){
 
-const grid=
+const grid =
 document.getElementById(
 "subjectGrid"
 );
 
-grid.innerHTML="";
+
+grid.innerHTML = "";
 
 
 if(
@@ -1466,49 +2323,56 @@ return;
 
 
 subjects[currentLevel]
-.forEach(subject=>{
+.forEach(
+subject=>{
 
 
-const count=
+const count =
 examsData.filter(
 exam=>
 
-exam.level===currentLevel
+exam.level === currentLevel
 &&
-exam.subject===subject.id
+exam.subject === subject.id
 &&
-exam.published!==false
+exam.published !== false
 
 ).length;
 
 
-const card=
+const card =
 document.createElement(
 "div"
 );
 
-card.className=
+
+card.className =
 "subject-card";
 
 
-card.innerHTML=`
+card.innerHTML = `
 
 <div class="subject-icon">
+
 ${subject.icon}
+
 </div>
+
 
 <div class="subject-info">
 
 <h3>
+
 ${subject.name}
+
 </h3>
 
 <p>
 
 ${
-count>0
+count > 0
 ?
-count+"টি পরীক্ষা প্রকাশিত"
+count + "টি পরীক্ষা প্রকাশিত"
 :
 "এখনো কোনো পরীক্ষা প্রকাশিত হয়নি"
 }
@@ -1517,8 +2381,11 @@ count+"টি পরীক্ষা প্রকাশিত"
 
 </div>
 
+
 <div class="subject-arrow">
+
 →
+
 </div>
 
 `;
@@ -1526,7 +2393,9 @@ count+"টি পরীক্ষা প্রকাশিত"
 
 card.addEventListener(
 "click",
-()=>openSubject(subject.id)
+()=>openSubject(
+subject.id
+)
 );
 
 
@@ -1534,51 +2403,66 @@ grid.appendChild(
 card
 );
 
-});
+}
+);
 
 }
 
 
-/* ==========================
+
+/* =========================
 OPEN SUBJECT
-========================== */
+========================= */
 
-function openSubject(subjectId){
+function openSubject(
+subjectId
+){
 
-currentSubject=
+currentSubject =
 subjectId;
+
 
 pushView(
 "examlist"
 );
+
 
 renderExamListPage();
 
 }
 
 
+
 function renderExamListPage(){
 
 hideAllPages();
 
-currentView=
+
+currentView =
 "examlist";
 
+
 document
-.getElementById("examListPage")
-.classList.remove("hidden");
+.getElementById(
+"examListPage"
+)
+.classList
+.remove("hidden");
 
 
-const subject=
+const subject =
 subjects[currentLevel]
 .find(
-item=>item.id===currentSubject
+item =>
+item.id === currentSubject
 );
 
 
 document
-.getElementById("examListTitle")
-.innerText=
+.getElementById(
+"examListTitle"
+)
+.innerText =
 subject
 ?
 `${currentLevel} • ${subject.name}`
@@ -1588,46 +2472,57 @@ currentLevel;
 
 renderExamList();
 
-window.scrollTo(0,0);
+
+window.scrollTo(
+0,
+0
+);
 
 }
 
 
-/* ==========================
+
+/* =========================
 EXAM LIST
-========================== */
+========================= */
 
 function renderExamList(){
 
-const list=
+const list =
 document.getElementById(
 "examList"
 );
 
 
-const exams=
+const exams =
 examsData.filter(
 exam=>
 
-exam.level===currentLevel
+exam.level === currentLevel
 &&
-exam.subject===currentSubject
+exam.subject === currentSubject
 &&
-exam.published!==false
+exam.published !== false
 
 );
 
 
-list.innerHTML="";
+list.innerHTML = "";
 
 
-if(exams.length===0){
+if(
+exams.length === 0
+){
 
-list.innerHTML=`
+list.innerHTML = `
 
 <div class="empty-box">
 
-<div style="font-size:34px;">
+<div
+style="
+font-size:34px;
+"
+>
 📚
 </div>
 
@@ -1635,7 +2530,11 @@ list.innerHTML=`
 এখনো কোনো পরীক্ষা প্রকাশিত হয়নি
 </h3>
 
-<p style="margin-top:6px;">
+<p
+style="
+margin-top:6px;
+"
+>
 নতুন পরীক্ষা প্রকাশ হলে এখানে দেখা যাবে।
 </p>
 
@@ -1648,24 +2547,28 @@ return;
 }
 
 
-exams.forEach(exam=>{
+exams.forEach(
+exam=>{
 
 
-const card=
+const card =
 document.createElement(
 "div"
 );
 
-card.className=
+
+card.className =
 "exam-card";
 
 
-card.innerHTML=`
+card.innerHTML = `
 
 <div>
 
 <h3>
+
 ${exam.title}
+
 </h3>
 
 <div class="exam-meta">
@@ -1683,21 +2586,25 @@ ${exam.timeMinutes} মিনিট
 `;
 
 
-const button=
+const button =
 document.createElement(
 "button"
 );
 
-button.className=
+
+button.className =
 "exam-start-btn";
 
-button.innerText=
+
+button.innerText =
 "পরীক্ষা দিন →";
 
 
 button.addEventListener(
 "click",
-()=>selectExam(exam.id)
+()=>selectExam(
+exam.id
+)
 );
 
 
@@ -1710,25 +2617,32 @@ list.appendChild(
 card
 );
 
-});
+}
+);
 
 }
 
 
-/* ==========================
+
+/* =========================
 SELECT EXAM
-========================== */
+========================= */
 
 function selectExam(id){
 
-currentExam=
+currentExam =
 examsData.find(
-exam=>exam.id===id
+exam =>
+exam.id === id
 );
 
 
-if(!currentExam){
+if(
+!currentExam
+){
+
 return;
+
 }
 
 
@@ -1736,27 +2650,35 @@ pushView(
 "name"
 );
 
+
 renderNamePage();
 
 }
+
 
 
 function renderNamePage(){
 
 hideAllPages();
 
-currentView=
+
+currentView =
 "name";
 
 
 document
-.getElementById("namePage")
-.classList.remove("hidden");
+.getElementById(
+"namePage"
+)
+.classList
+.remove("hidden");
 
 
 document
-.getElementById("selectedExamTitle")
-.innerText=
+.getElementById(
+"selectedExamTitle"
+)
+.innerText =
 currentExam
 ?
 currentExam.title
@@ -1765,29 +2687,39 @@ currentExam.title
 
 
 document
-.getElementById("studentName")
-.value="";
+.getElementById(
+"studentName"
+)
+.value = "";
 
 
-window.scrollTo(0,0);
+window.scrollTo(
+0,
+0
+);
 
 }
 
 
-/* ==========================
+
+/* =========================
 START EXAM
-========================== */
+========================= */
 
 function startExam(){
 
-const name=
+const name =
 document
-.getElementById("studentName")
+.getElementById(
+"studentName"
+)
 .value
 .trim();
 
 
-if(!name){
+if(
+!name
+){
 
 alert(
 "অনুগ্রহ করে পরীক্ষার্থীর নাম লিখুন।"
@@ -1801,7 +2733,9 @@ return;
 if(
 !currentExam
 ||
-!Array.isArray(currentExam.questions)
+!Array.isArray(
+currentExam.questions
+)
 ){
 
 alert(
@@ -1813,17 +2747,22 @@ return;
 }
 
 
-studentName=
+studentName =
 name;
 
-submitted=
+
+submitted =
 false;
 
-examStartTime=
+
+examStartTime =
 Date.now();
 
-timeLeft=
-Number(currentExam.timeMinutes || 10)
+
+timeLeft =
+Number(
+currentExam.timeMinutes || 10
+)
 *
 60;
 
@@ -1832,42 +2771,52 @@ pushView(
 "exam"
 );
 
+
 renderExamPage();
 
 }
 
 
-/* ==========================
+
+/* =========================
 EXAM PAGE
-========================== */
+========================= */
 
 function renderExamPage(){
 
 hideAllPages();
 
-currentView=
+
+currentView =
 "exam";
 
 
 document
-.getElementById("examPage")
-.classList.remove("hidden");
+.getElementById(
+"examPage"
+)
+.classList
+.remove("hidden");
 
 
 document
-.getElementById("toolbarExamTitle")
-.innerText=
+.getElementById(
+"toolbarExamTitle"
+)
+.innerText =
 currentExam.title;
 
 
 document
-.getElementById("examStudentName")
-.innerText=
+.getElementById(
+"examStudentName"
+)
+.innerText =
 studentName;
 
 
-const negativeMark=
-currentLevel==="SSC"
+const negativeMark =
+currentLevel === "SSC"
 ?
 0
 :
@@ -1875,9 +2824,11 @@ currentLevel==="SSC"
 
 
 document
-.getElementById("markingRuleText")
-.innerText=
-negativeMark===0
+.getElementById(
+"markingRuleText"
+)
+.innerText =
+negativeMark === 0
 ?
 "সঠিক উত্তরে +1"
 :
@@ -1886,28 +2837,36 @@ negativeMark===0
 
 renderQuestions();
 
+
 updateProgress();
+
 
 startTimer();
 
-window.scrollTo(0,0);
+
+window.scrollTo(
+0,
+0
+);
 
 }
 
 
-/* ==========================
+
+/* =========================
 QUESTIONS
-========================== */
+========================= */
 
 function renderQuestions(){
 
-const container=
+const container =
 document
 .getElementById(
 "questionsContainer"
 );
 
-container.innerHTML="";
+
+container.innerHTML = "";
 
 
 currentExam.questions
@@ -1915,74 +2874,87 @@ currentExam.questions
 (question,index)=>{
 
 
-const card=
+const card =
 document.createElement(
 "div"
 );
 
-card.className=
+
+card.className =
 "question-card";
 
 
-const badge=
+const badge =
 document.createElement(
 "div"
 );
 
-badge.className=
+
+badge.className =
 "question-badge";
 
-badge.innerText=
+
+badge.innerText =
 `প্রশ্ন ${index+1}`;
 
 
-const title=
+const title =
 document.createElement(
 "div"
 );
 
-title.className=
+
+title.className =
 "question-text";
 
-title.innerText=
+
+title.innerText =
 question.q;
 
 
-const optionsBox=
+const optionsBox =
 document.createElement(
 "div"
 );
 
-optionsBox.className=
+
+optionsBox.className =
 "options";
 
 
-question.options.forEach(
+question.options
+.forEach(
 (option,optIndex)=>{
 
 
-const label=
+const label =
 document.createElement(
 "label"
 );
 
-label.className=
+
+label.className =
 "option";
 
 
-const input=
+const input =
 document.createElement(
 "input"
 );
 
-input.type=
+
+input.type =
 "radio";
 
-input.name=
+
+input.name =
 `question${index}`;
 
-input.value=
-String(optIndex);
+
+input.value =
+String(
+optIndex
+);
 
 
 input.addEventListener(
@@ -1991,18 +2963,19 @@ updateProgress
 );
 
 
-const span=
+const span =
 document.createElement(
 "span"
 );
 
 
-const strong=
+const strong =
 document.createElement(
 "b"
 );
 
-strong.innerText=
+
+strong.innerText =
 `(${optionLabels[optIndex]}) `;
 
 
@@ -2010,14 +2983,18 @@ span.appendChild(
 strong
 );
 
+
 span.appendChild(
-document.createTextNode(option)
+document.createTextNode(
+option
+)
 );
 
 
 label.appendChild(
 input
 );
+
 
 label.appendChild(
 span
@@ -2028,16 +3005,19 @@ optionsBox.appendChild(
 label
 );
 
-});
+}
+);
 
 
 card.appendChild(
 badge
 );
 
+
 card.appendChild(
 title
 );
+
 
 card.appendChild(
 optionsBox
@@ -2048,18 +3028,21 @@ container.appendChild(
 card
 );
 
-});
+}
+);
 
 }
 
 
-/* ==========================
+
+/* =========================
 PROGRESS
-========================== */
+========================= */
 
 function updateProgress(){
 
-let answered=0;
+let answered =
+0;
 
 
 currentExam.questions
@@ -2077,24 +3060,30 @@ answered++;
 
 }
 
-});
+}
+);
 
 
 document
-.getElementById("progressText")
-.innerText=
+.getElementById(
+"progressText"
+)
+.innerText =
 `উত্তর: ${answered}/${currentExam.questions.length}`;
 
 }
 
 
-/* ==========================
+
+/* =========================
 TIMER
-========================== */
+========================= */
 
 function startTimer(){
 
-if(timerInterval){
+if(
+timerInterval
+){
 
 clearInterval(
 timerInterval
@@ -2106,24 +3095,34 @@ timerInterval
 updateTimer();
 
 
-timerInterval=
-setInterval(()=>{
+timerInterval =
+setInterval(
+()=>{
 
 
 timeLeft--;
 
 
-if(timeLeft<=0){
+if(
+timeLeft <= 0
+){
 
-timeLeft=0;
+timeLeft =
+0;
+
 
 updateTimer();
+
 
 clearInterval(
 timerInterval
 );
 
-submitExam(true);
+
+submitExam(
+true
+);
+
 
 return;
 
@@ -2132,51 +3131,60 @@ return;
 
 updateTimer();
 
-
-},1000);
+},
+1000
+);
 
 }
 
 
+
 function updateTimer(){
 
-const minutes=
+const minutes =
 Math.floor(
 timeLeft/60
 );
 
 
-const seconds=
-timeLeft%60;
+const seconds =
+timeLeft % 60;
 
 
-const timer=
+const timer =
 document
 .getElementById(
 "timerText"
 );
 
 
-timer.innerText=
+timer.innerText =
 `⏱ ${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
 
 
-timer.classList.remove(
+timer.classList
+.remove(
 "warning",
 "danger"
 );
 
 
-if(timeLeft<=60){
+if(
+timeLeft <= 60
+){
 
-timer.classList.add(
+timer.classList
+.add(
 "danger"
 );
 
 }
-else if(timeLeft<=180){
+else if(
+timeLeft <= 180
+){
 
-timer.classList.add(
+timer.classList
+.add(
 "warning"
 );
 
@@ -2185,48 +3193,58 @@ timer.classList.add(
 }
 
 
-/* ==========================
+
+/* =========================
 SUBMIT MODAL
-========================== */
+========================= */
 
 function showSubmitModal(){
 
 document
-.getElementById("submitModal")
-.style.display=
+.getElementById(
+"submitModal"
+)
+.style.display =
 "flex";
 
 }
 
 
+
 function hideSubmitModal(){
 
 document
-.getElementById("submitModal")
-.style.display=
+.getElementById(
+"submitModal"
+)
+.style.display =
 "none";
 
 }
 
 
-/* ==========================
+
+/* =========================
 GET ANSWERS
-========================== */
+========================= */
 
 function getStudentAnswers(){
 
 return currentExam.questions
+
 .map(
 (question,index)=>{
 
 
-const selected=
+const selected =
 document.querySelector(
 `input[name="question${index}"]:checked`
 );
 
 
-if(!selected){
+if(
+!selected
+){
 
 return `${index+1}. —`;
 
@@ -2235,26 +3253,35 @@ return `${index+1}. —`;
 
 return `${index+1}. ${optionLabels[Number(selected.value)]}`;
 
-})
-.join(" | ");
+}
+)
+
+.join(
+" | "
+);
 
 }
 
 
-/* ==========================
-SUBMIT
-========================== */
+
+/* =========================
+SUBMIT EXAM
+========================= */
 
 function submitExam(
-autoSubmit=false
+autoSubmit = false
 ){
 
-if(submitted){
+if(
+submitted
+){
+
 return;
+
 }
 
 
-submitted=
+submitted =
 true;
 
 
@@ -2266,23 +3293,26 @@ timerInterval
 );
 
 
-const negativeMark=
-currentLevel==="SSC"
+const negativeMark =
+currentLevel === "SSC"
 ?
 0
 :
 0.25;
 
 
-let correct=0;
-let wrong=0;
-let unanswered=0;
-let answered=0;
+let correct = 0;
 
-let score=0;
+let wrong = 0;
+
+let unanswered = 0;
+
+let answered = 0;
+
+let score = 0;
 
 
-const review=
+const review =
 document.createDocumentFragment();
 
 
@@ -2291,20 +3321,23 @@ currentExam.questions
 (question,index)=>{
 
 
-const selected=
+const selected =
 document.querySelector(
 `input[name="question${index}"]:checked`
 );
 
 
-let selectedIndex=
+let selectedIndex =
 null;
 
-let state=
+
+let state =
 "unanswered";
 
 
-if(!selected){
+if(
+!selected
+){
 
 unanswered++;
 
@@ -2313,22 +3346,25 @@ else{
 
 answered++;
 
-selectedIndex=
+
+selectedIndex =
 Number(
 selected.value
 );
 
 
 if(
-selectedIndex===
-Number(question.answer)
+selectedIndex ===
+Number(
+question.answer
+)
 ){
 
 correct++;
 
-score+=1;
+score += 1;
 
-state=
+state =
 "correct";
 
 }
@@ -2336,10 +3372,10 @@ else{
 
 wrong++;
 
-score-=
+score -=
 negativeMark;
 
-state=
+state =
 "wrong";
 
 }
@@ -2347,90 +3383,103 @@ state=
 }
 
 
-const card=
+const card =
 document.createElement(
 "div"
 );
 
-card.className=
+
+card.className =
 `review-card ${state}`;
 
 
-const q=
+const q =
 document.createElement(
 "div"
 );
 
-q.className=
+
+q.className =
 "review-q";
 
-q.innerText=
+
+q.innerText =
 `${index+1}. ${question.q}`;
 
 
-const status=
+const status =
 document.createElement(
 "div"
 );
 
-status.style.marginTop=
+
+status.style.marginTop =
 "5px";
 
-status.style.fontWeight=
+
+status.style.fontWeight =
 "800";
 
-status.style.fontSize=
+
+status.style.fontSize =
 "12px";
 
 
-status.innerText=
-state==="correct"
+status.innerText =
+state === "correct"
 ?
 "✓ সঠিক"
 :
-state==="wrong"
+state === "wrong"
 ?
 "✗ ভুল"
 :
 "উত্তর দেওয়া হয়নি";
 
 
-const optionsBox=
+const optionsBox =
 document.createElement(
 "div"
 );
 
-optionsBox.className=
+
+optionsBox.className =
 "review-options";
 
 
-question.options.forEach(
+question.options
+.forEach(
 (option,optIndex)=>{
 
 
-const row=
+const row =
 document.createElement(
 "div"
 );
 
 
-const isCorrect=
-optIndex===
-Number(question.answer);
+const isCorrect =
+optIndex ===
+Number(
+question.answer
+);
 
 
-const isSelected=
-optIndex===
+const isSelected =
+optIndex ===
 selectedIndex;
 
 
-row.className=
+row.className =
 "review-option";
 
 
-if(isCorrect){
+if(
+isCorrect
+){
 
-row.classList.add(
+row.classList
+.add(
 "correct"
 );
 
@@ -2443,28 +3492,31 @@ isSelected
 !isCorrect
 ){
 
-row.classList.add(
+row.classList
+.add(
 "wrong-selected"
 );
 
 }
 
 
-const left=
+const left =
 document.createElement(
 "span"
 );
 
-left.innerText=
+
+left.innerText =
 `(${optionLabels[optIndex]}) ${option}`;
 
 
-const note=
+const note =
 document.createElement(
 "span"
 );
 
-note.className=
+
+note.className =
 "option-note";
 
 
@@ -2474,19 +3526,23 @@ isCorrect
 isSelected
 ){
 
-note.innerText=
+note.innerText =
 "✓ আপনার উত্তর ও সঠিক উত্তর";
 
 }
-else if(isCorrect){
+else if(
+isCorrect
+){
 
-note.innerText=
+note.innerText =
 "✓ সঠিক উত্তর";
 
 }
-else if(isSelected){
+else if(
+isSelected
+){
 
-note.innerText=
+note.innerText =
 "✗ আপনার উত্তর";
 
 }
@@ -2495,6 +3551,7 @@ note.innerText=
 row.appendChild(
 left
 );
+
 
 row.appendChild(
 note
@@ -2505,16 +3562,19 @@ optionsBox.appendChild(
 row
 );
 
-});
+}
+);
 
 
 card.appendChild(
 q
 );
 
+
 card.appendChild(
 status
 );
+
 
 card.appendChild(
 optionsBox
@@ -2525,14 +3585,16 @@ review.appendChild(
 card
 );
 
-});
+}
+);
 
 
-score=
+score =
 Math.round(
-score*100
+score * 100
 )
-/100;
+/
+100;
 
 
 saveResult(
@@ -2550,18 +3612,24 @@ pushView(
 
 hideAllPages();
 
-currentView=
+
+currentView =
 "result";
 
 
 document
-.getElementById("resultPage")
-.classList.remove("hidden");
+.getElementById(
+"resultPage"
+)
+.classList
+.remove("hidden");
 
 
 document
-.getElementById("resultExamName")
-.innerText=
+.getElementById(
+"resultExamName"
+)
+.innerText =
 currentExam.title
 +
 (
@@ -2574,69 +3642,89 @@ autoSubmit
 
 
 document
-.getElementById("resultStudent")
-.innerText=
+.getElementById(
+"resultStudent"
+)
+.innerText =
 `পরীক্ষার্থী: ${studentName}`;
 
 
 document
-.getElementById("finalScore")
-.innerText=
+.getElementById(
+"finalScore"
+)
+.innerText =
 score;
 
 
 document
-.getElementById("scoreOutOf")
-.innerText=
+.getElementById(
+"scoreOutOf"
+)
+.innerText =
 `${currentExam.questions.length} এর মধ্যে`;
 
 
 document
-.getElementById("correctCount")
-.innerText=
+.getElementById(
+"correctCount"
+)
+.innerText =
 correct;
 
 
 document
-.getElementById("wrongCount")
-.innerText=
+.getElementById(
+"wrongCount"
+)
+.innerText =
 wrong;
 
 
 document
-.getElementById("unansweredCount")
-.innerText=
+.getElementById(
+"unansweredCount"
+)
+.innerText =
 unanswered;
 
 
 document
-.getElementById("answeredCount")
-.innerText=
+.getElementById(
+"answeredCount"
+)
+.innerText =
 answered;
 
 
-const answerReview=
+const answerReview =
 document
 .getElementById(
 "answerReview"
 );
 
 
-answerReview.innerHTML="";
+answerReview.innerHTML =
+"";
+
 
 answerReview.appendChild(
 review
 );
 
 
-window.scrollTo(0,0);
+window.scrollTo(
+0,
+0
+);
 
 }
 
 
-/* ==========================
+
+/* =========================
 GOOGLE SHEET
-========================== */
+========================= */
 
 function saveResult(
 score,
@@ -2647,7 +3735,7 @@ unanswered
 
 try{
 
-const seconds=
+const seconds =
 Math.floor(
 (
 Date.now()
@@ -2658,18 +3746,19 @@ examStartTime
 );
 
 
-const duration=
+const duration =
 `${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,"0")}`;
 
 
-const subject=
+const subject =
 subjects[currentLevel]
 .find(
-item=>item.id===currentSubject
+item =>
+item.id === currentSubject
 );
 
 
-const data={
+const data = {
 
 level:
 currentLevel,
@@ -2712,23 +3801,31 @@ fetch(
 GOOGLE_SCRIPT_URL,
 {
 
-method:"POST",
+method:
+"POST",
 
-mode:"no-cors",
+mode:
+"no-cors",
 
-headers:{
-"Content-Type":"text/plain;charset=utf-8"
+headers:
+{
+"Content-Type":
+"text/plain;charset=utf-8"
 },
 
 body:
-JSON.stringify(data),
+JSON.stringify(
+data
+),
 
-keepalive:true
+keepalive:
+true
 
 }
 )
+
 .catch(
-error=>
+error =>
 console.error(
 "Google Sheet:",
 error
@@ -2748,16 +3845,849 @@ error
 }
 
 
-/* ==========================
+
+/* =========================
+BEAUTIFUL PDF
+========================= */
+
+async function downloadBeautifulPDF(){
+
+const button =
+document.getElementById(
+"pdfDownloadButton"
+);
+
+
+const oldText =
+button
+?
+button.innerHTML
+:
+"";
+
+
+if(
+!currentExam
+||
+!studentName
+){
+
+alert(
+"উত্তরপত্র পাওয়া যায়নি।"
+);
+
+return;
+
+}
+
+
+if(
+typeof html2pdf ===
+"undefined"
+){
+
+alert(
+"PDF তৈরির সিস্টেম লোড হয়নি। ইন্টারনেট সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।"
+);
+
+return;
+
+}
+
+
+let pdf =
+null;
+
+
+try{
+
+if(
+button
+){
+
+button.disabled =
+true;
+
+
+button.innerHTML =
+"⏳ PDF তৈরি হচ্ছে...";
+
+}
+
+
+if(
+document.fonts
+&&
+document.fonts.ready
+){
+
+await document.fonts.ready;
+
+}
+
+
+const subject =
+subjects[currentLevel]
+.find(
+item =>
+item.id === currentSubject
+);
+
+
+const subjectName =
+subject
+?
+subject.name
+:
+"";
+
+
+const score =
+document
+.getElementById(
+"finalScore"
+)
+.innerText;
+
+
+const correct =
+document
+.getElementById(
+"correctCount"
+)
+.innerText;
+
+
+const wrong =
+document
+.getElementById(
+"wrongCount"
+)
+.innerText;
+
+
+const unanswered =
+document
+.getElementById(
+"unansweredCount"
+)
+.innerText;
+
+
+const answered =
+document
+.getElementById(
+"answeredCount"
+)
+.innerText;
+
+
+const total =
+currentExam.questions.length;
+
+
+const negativeMark =
+currentLevel === "SSC"
+?
+0
+:
+0.25;
+
+
+pdf =
+document.createElement(
+"div"
+);
+
+
+pdf.className =
+"pdf-sheet";
+
+
+pdf.style.position =
+"fixed";
+
+
+pdf.style.left =
+"-10000px";
+
+
+pdf.style.top =
+"0";
+
+
+pdf.style.zIndex =
+"-1";
+
+
+let html = `
+
+<div class="pdf-cover">
+
+<div class="pdf-brand">
+
+Concept Academy
+
+</div>
+
+
+<div class="pdf-brand-small">
+
+by Shuvo • Online Exam Platform
+
+</div>
+
+
+<div class="pdf-exam-name">
+
+${escapeHTML(
+currentExam.title
+)}
+
+</div>
+
+
+<div class="pdf-meta">
+
+${escapeHTML(
+currentLevel
+)}
+
+•
+
+${escapeHTML(
+subjectName
+)}
+
+</div>
+
+
+<div class="pdf-student">
+
+পরীক্ষার্থী:
+
+<strong>
+
+${escapeHTML(
+studentName
+)}
+
+</strong>
+
+</div>
+
+
+<div class="pdf-score">
+
+${escapeHTML(
+score
+)}
+
+/
+
+${total}
+
+</div>
+
+
+<div class="pdf-score-label">
+
+প্রাপ্ত নম্বর
+
+</div>
+
+
+<div class="pdf-stat-grid">
+
+
+<div class="pdf-stat">
+
+<strong>
+${correct}
+</strong>
+
+<span>
+সঠিক
+</span>
+
+</div>
+
+
+<div class="pdf-stat">
+
+<strong>
+${wrong}
+</strong>
+
+<span>
+ভুল
+</span>
+
+</div>
+
+
+<div class="pdf-stat">
+
+<strong>
+${unanswered}
+</strong>
+
+<span>
+উত্তরহীন
+</span>
+
+</div>
+
+
+<div class="pdf-stat">
+
+<strong>
+${answered}
+</strong>
+
+<span>
+উত্তর দিয়েছেন
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<div class="pdf-rule-box">
+
+<strong>
+পরীক্ষার নিয়ম
+</strong>
+
+<br>
+
+সঠিক উত্তর:
+<strong>
++1
+</strong>
+
+<br>
+
+ভুল উত্তর:
+
+<strong>
+
+${
+negativeMark === 0
+?
+"কোনো নম্বর কাটা হবে না"
+:
+"−0.25"
+}
+
+</strong>
+
+<br>
+
+মোট প্রশ্ন:
+
+<strong>
+${total}
+</strong>
+
+</div>
+
+
+
+<div class="pdf-section-title">
+
+📝 উত্তরপত্র ও সংশোধনী
+
+</div>
+
+`;
+
+
+currentExam.questions
+.forEach(
+(question,index)=>{
+
+
+const selected =
+document.querySelector(
+`input[name="question${index}"]:checked`
+);
+
+
+const selectedIndex =
+selected
+?
+Number(
+selected.value
+)
+:
+null;
+
+
+const correctIndex =
+Number(
+question.answer
+);
+
+
+let state =
+"unanswered";
+
+
+let statusText =
+"উত্তর দেওয়া হয়নি";
+
+
+if(
+selectedIndex !== null
+){
+
+if(
+selectedIndex === correctIndex
+){
+
+state =
+"correct";
+
+
+statusText =
+"✓ সঠিক উত্তর";
+
+}
+else{
+
+state =
+"wrong";
+
+
+statusText =
+"✗ ভুল উত্তর";
+
+}
+
+}
+
+
+html += `
+
+<div
+class="
+pdf-question
+${state}
+"
+>
+
+<div class="pdf-question-number">
+
+প্রশ্ন ${index+1}
+
+</div>
+
+
+<div class="pdf-question-text">
+
+${escapeHTML(
+question.q
+)}
+
+</div>
+
+
+<div
+class="
+pdf-status
+${state}
+"
+>
+
+${statusText}
+
+</div>
+
+`;
+
+
+question.options
+.forEach(
+(option,optIndex)=>{
+
+
+let optionClass =
+"";
+
+
+let note =
+"";
+
+
+if(
+optIndex ===
+correctIndex
+){
+
+optionClass =
+"correct-answer";
+
+
+note =
+"✓ সঠিক উত্তর";
+
+}
+
+
+if(
+optIndex ===
+selectedIndex
+&&
+optIndex !==
+correctIndex
+){
+
+optionClass =
+"wrong-answer";
+
+
+note =
+"✗ আপনার উত্তর";
+
+}
+
+
+if(
+optIndex ===
+selectedIndex
+&&
+optIndex ===
+correctIndex
+){
+
+note =
+"✓ আপনার উত্তর ও সঠিক উত্তর";
+
+}
+
+
+html += `
+
+<div
+class="
+pdf-option
+${optionClass}
+"
+>
+
+<span>
+
+<strong>
+
+(${optionLabels[optIndex]})
+
+</strong>
+
+${escapeHTML(
+option
+)}
+
+</span>
+
+
+<span class="pdf-option-note">
+
+${note}
+
+</span>
+
+</div>
+
+`;
+
+}
+);
+
+
+html += `
+
+</div>
+
+`;
+
+}
+);
+
+
+html += `
+
+<div class="pdf-footer">
+
+Concept Academy by Shuvo
+
+<br>
+
+Generated from Concept Academy Online Exam Platform
+
+</div>
+
+`;
+
+
+pdf.innerHTML =
+html;
+
+
+document.body
+.appendChild(
+pdf
+);
+
+
+const safeName =
+studentName
+.replace(
+/[\\/:*?"<>|]/g,
+"-"
+)
+.trim();
+
+
+const safeExam =
+currentExam.title
+.replace(
+/[\\/:*?"<>|]/g,
+"-"
+)
+.trim();
+
+
+const fileName =
+
+`Concept_Academy_${safeName}_${safeExam}.pdf`;
+
+
+const pdfOptions = {
+
+margin:
+[
+7,
+7,
+8,
+7
+],
+
+filename:
+fileName,
+
+image:
+{
+type:
+"jpeg",
+
+quality:
+0.98
+},
+
+html2canvas:
+{
+scale:
+2,
+
+useCORS:
+true,
+
+backgroundColor:
+"#ffffff",
+
+logging:
+false,
+
+scrollX:
+0,
+
+scrollY:
+0
+},
+
+jsPDF:
+{
+unit:
+"mm",
+
+format:
+"a4",
+
+orientation:
+"portrait"
+},
+
+pagebreak:
+{
+mode:
+[
+"css",
+"legacy"
+],
+
+avoid:
+[
+".pdf-question",
+".pdf-option",
+".pdf-rule-box"
+]
+}
+
+};
+
+
+await html2pdf()
+
+.set(
+pdfOptions
+)
+
+.from(
+pdf
+)
+
+.save();
+
+
+pdf.remove();
+
+
+pdf =
+null;
+
+
+if(
+button
+){
+
+button.innerHTML =
+"✅ PDF তৈরি হয়েছে";
+
+}
+
+
+setTimeout(
+()=>{
+
+if(
+button
+){
+
+button.disabled =
+false;
+
+
+button.innerHTML =
+oldText;
+
+}
+
+},
+2500
+);
+
+
+}
+catch(error){
+
+console.error(
+"PDF Error:",
+error
+);
+
+
+if(
+pdf
+&&
+pdf.parentNode
+){
+
+pdf.remove();
+
+}
+
+
+alert(
+"PDF তৈরি করা যায়নি। আবার চেষ্টা করুন।"
+);
+
+
+if(
+button
+){
+
+button.disabled =
+false;
+
+
+button.innerHTML =
+oldText;
+
+}
+
+}
+
+}
+
+
+
+/* =========================
+SAFE HTML
+========================= */
+
+function escapeHTML(
+value
+){
+
+return String(
+value ?? ""
+)
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
+
+}
+
+
+
+/* =========================
 BACK HISTORY
-========================== */
+========================= */
 
 window.addEventListener(
 "popstate",
 function(event){
 
 
-const target=
+const target =
 event.state
 &&
 event.state.view
@@ -2768,24 +4698,29 @@ event.state.view
 
 
 if(
-currentView==="exam"
+currentView === "exam"
 &&
 !submitted
 ){
 
-const leave=
+const leave =
 confirm(
 "পরীক্ষা এখনো শেষ হয়নি। আপনি কি পরীক্ষা থেকে বের হতে চান?"
 );
 
 
-if(!leave){
+if(
+!leave
+){
 
 history.pushState(
-{view:"exam"},
+{
+view:"exam"
+},
 "",
 "#exam"
 );
+
 
 return;
 
@@ -2799,7 +4734,9 @@ timerInterval
 }
 
 
-if(target==="home"){
+if(
+target === "home"
+){
 
 showHome();
 
@@ -2808,7 +4745,9 @@ return;
 }
 
 
-if(target==="subjects"){
+if(
+target === "subjects"
+){
 
 renderSubjectPage();
 
@@ -2817,7 +4756,9 @@ return;
 }
 
 
-if(target==="examlist"){
+if(
+target === "examlist"
+){
 
 renderExamListPage();
 
@@ -2826,7 +4767,9 @@ return;
 }
 
 
-if(target==="name"){
+if(
+target === "name"
+){
 
 renderNamePage();
 
@@ -2841,15 +4784,22 @@ showHome();
 );
 
 
-/* ENTER */
+
+/* =========================
+ENTER KEY
+========================= */
 
 document
-.getElementById("studentName")
+.getElementById(
+"studentName"
+)
 .addEventListener(
 "keydown",
 function(event){
 
-if(event.key==="Enter"){
+if(
+event.key === "Enter"
+){
 
 startExam();
 
@@ -2859,11 +4809,15 @@ startExam();
 );
 
 
-/* START */
+
+/* =========================
+START
+========================= */
 
 showHome();
 
 </script>
 
 </body>
+
 </html>
