@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="bn">
-
 <head>
 
 <meta charset="UTF-8">
@@ -18,7 +17,6 @@ content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
 
 <style>
 
@@ -48,8 +46,7 @@ body{
     min-height:100vh;
 }
 
-button,
-input{
+button,input{
     font-family:inherit;
 }
 
@@ -61,7 +58,6 @@ button{
     display:none !important;
 }
 
-
 /* =========================
 HEADER
 ========================= */
@@ -71,29 +67,17 @@ HEADER
     top:0;
     z-index:3000;
     color:#fff;
-
-    background:
-    linear-gradient(
-        120deg,
-        #101d4e,
-        #173eae 58%,
-        #087ea4
-    );
-
-    box-shadow:
-    0 4px 18px
-    rgba(15,23,42,.12);
+    background:linear-gradient(120deg,#101d4e,#173eae 58%,#087ea4);
+    box-shadow:0 4px 18px rgba(15,23,42,.12);
 }
 
 .header-inner{
     width:min(1050px,calc(100% - 28px));
     min-height:88px;
     margin:auto;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     gap:15px;
 }
 
@@ -106,14 +90,10 @@ HEADER
 .brand-logo{
     width:54px;
     height:54px;
-
     border-radius:15px;
-
     overflow:hidden;
-
-    background:#07111f;
-
     flex:none;
+    background:#07111f;
 }
 
 .brand-logo img{
@@ -151,22 +131,13 @@ HEADER
 }
 
 .home-btn{
-    border:
-    1px solid
-    rgba(255,255,255,.3);
-
-    background:
-    rgba(255,255,255,.1);
-
+    border:1px solid rgba(255,255,255,.3);
+    background:rgba(255,255,255,.1);
     color:#fff;
-
     padding:9px 12px;
-
     border-radius:10px;
-
     font-weight:700;
 }
-
 
 /* =========================
 COMMON
@@ -180,17 +151,12 @@ COMMON
 
 .eyebrow{
     display:inline-block;
-
     background:#eaf2ff;
     color:#2563eb;
-
     border-radius:999px;
-
     padding:5px 10px;
-
     font-size:11px;
     font-weight:800;
-
     margin-bottom:10px;
 }
 
@@ -210,16 +176,11 @@ COMMON
     border:1px solid #dbe4ef;
     background:#fff;
     color:#334155;
-
     padding:9px 13px;
-
     border-radius:10px;
-
     font-weight:700;
-
     margin-bottom:20px;
 }
-
 
 /* =========================
 HOME
@@ -227,18 +188,11 @@ HOME
 
 .home-hero{
     background:#fff;
-
     border:1px solid var(--border);
-
     border-radius:22px;
-
     padding:25px;
-
     margin-bottom:20px;
-
-    box-shadow:
-    0 9px 30px
-    rgba(15,23,42,.055);
+    box-shadow:0 9px 30px rgba(15,23,42,.055);
 }
 
 .home-hero h2{
@@ -259,19 +213,10 @@ HOME
 
 .level-card{
     background:#fff;
-
-    border:
-    1px solid
-    var(--border);
-
+    border:1px solid var(--border);
     border-radius:20px;
-
     padding:23px;
-
-    box-shadow:
-    0 7px 24px
-    rgba(15,23,42,.05);
-
+    box-shadow:0 7px 24px rgba(15,23,42,.05);
     transition:.2s;
 }
 
@@ -289,32 +234,23 @@ HOME
 .level-icon{
     width:56px;
     height:56px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     border-radius:16px;
-
     background:#eff6ff;
-
     font-size:26px;
 }
 
 .level-arrow{
     width:35px;
     height:35px;
-
     border-radius:50%;
-
     background:#f1f5f9;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     color:#2563eb;
-
     font-weight:800;
 }
 
@@ -332,18 +268,12 @@ HOME
 
 .level-footer{
     color:#2563eb;
-
     font-size:13px;
     font-weight:800;
-
-    border-top:
-    1px solid
-    #edf1f6;
-
+    border-top:1px solid #edf1f6;
     margin-top:17px;
     padding-top:14px;
 }
-
 
 /* =========================
 SUBJECT
@@ -357,39 +287,24 @@ SUBJECT
 
 .subject-card{
     background:#fff;
-
-    border:
-    1px solid
-    var(--border);
-
+    border:1px solid var(--border);
     border-radius:16px;
-
     padding:17px;
-
     display:flex;
     align-items:center;
-
     gap:13px;
-
-    box-shadow:
-    0 4px 16px
-    rgba(15,23,42,.04);
+    box-shadow:0 4px 16px rgba(15,23,42,.04);
 }
 
 .subject-icon{
     width:48px;
     height:48px;
-
     flex:none;
-
     border-radius:13px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     background:#eff6ff;
-
     font-size:22px;
 }
 
@@ -411,7 +326,6 @@ SUBJECT
     color:#94a3b8;
 }
 
-
 /* =========================
 EXAM LIST
 ========================= */
@@ -424,19 +338,12 @@ EXAM LIST
 
 .exam-card{
     background:#fff;
-
-    border:
-    1px solid
-    var(--border);
-
+    border:1px solid var(--border);
     border-radius:16px;
-
     padding:18px;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     gap:15px;
 }
 
@@ -452,39 +359,21 @@ EXAM LIST
 
 .exam-start-btn{
     border:0;
-
     color:#fff;
-
-    background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #0284c7
-    );
-
+    background:linear-gradient(135deg,#2563eb,#0284c7);
     border-radius:10px;
-
     padding:11px 16px;
-
     font-weight:800;
 }
 
 .empty-box{
     padding:35px 18px;
-
     background:#fff;
-
-    border:
-    1px dashed
-    #94a3b8;
-
+    border:1px dashed #94a3b8;
     border-radius:17px;
-
     text-align:center;
-
     color:var(--muted);
 }
-
 
 /* =========================
 NAME
@@ -492,22 +381,12 @@ NAME
 
 .name-card{
     max-width:500px;
-
     margin:auto;
-
     background:#fff;
-
-    border:
-    1px solid
-    var(--border);
-
+    border:1px solid var(--border);
     border-radius:20px;
-
     padding:27px;
-
-    box-shadow:
-    0 9px 30px
-    rgba(15,23,42,.06);
+    box-shadow:0 9px 30px rgba(15,23,42,.06);
 }
 
 .name-card h2{
@@ -521,17 +400,10 @@ NAME
 
 .student-name-input{
     width:100%;
-
     padding:14px;
-
-    border:
-    2px solid
-    #dbe4ef;
-
+    border:2px solid #dbe4ef;
     border-radius:11px;
-
     outline:none;
-
     font-size:16px;
 }
 
@@ -541,28 +413,15 @@ NAME
 
 .big-btn{
     width:100%;
-
     margin-top:14px;
-
     border:0;
-
     border-radius:11px;
-
     padding:14px;
-
     color:#fff;
-
-    background:
-    linear-gradient(
-        135deg,
-        #1d4ed8,
-        #0284c7
-    );
-
+    background:linear-gradient(135deg,#1d4ed8,#0284c7);
     font-size:16px;
     font-weight:800;
 }
-
 
 /* =========================
 EXAM TOOLBAR
@@ -571,32 +430,19 @@ EXAM TOOLBAR
 .exam-toolbar{
     position:sticky;
     top:88px;
-
     z-index:2000;
-
-    background:
-    rgba(255,255,255,.97);
-
-    border-bottom:
-    1px solid
-    var(--border);
-
-    box-shadow:
-    0 3px 13px
-    rgba(15,23,42,.055);
+    background:rgba(255,255,255,.97);
+    border-bottom:1px solid var(--border);
+    box-shadow:0 3px 13px rgba(15,23,42,.055);
 }
 
 .exam-toolbar-inner{
     width:min(950px,calc(100% - 26px));
-
     margin:auto;
-
     padding:10px 0;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     gap:10px;
 }
 
@@ -612,9 +458,7 @@ EXAM TOOLBAR
 
 .pill{
     padding:7px 9px;
-
     border-radius:9px;
-
     font-size:12px;
     font-weight:800;
 }
@@ -639,62 +483,38 @@ EXAM TOOLBAR
     color:#b91c1c;
 }
 
-
 /* =========================
 EXAM
 ========================= */
 
 .exam-info{
     color:#fff;
-
-    background:
-    linear-gradient(
-        135deg,
-        #10245f,
-        #1d4ed8,
-        #0891b2
-    );
-
+    background:linear-gradient(135deg,#10245f,#1d4ed8,#0891b2);
     border-radius:17px;
-
     padding:16px;
-
     margin-bottom:18px;
-
     display:flex;
     justify-content:space-between;
     flex-wrap:wrap;
-
     gap:10px;
 }
 
 .question-card{
     background:#fff;
-
-    border:
-    1px solid
-    var(--border);
-
+    border:1px solid var(--border);
     border-radius:17px;
-
     padding:19px;
-
     margin-bottom:14px;
 }
 
 .question-badge{
     display:inline-block;
-
     background:#e0e7ff;
     color:#3730a3;
-
     padding:5px 9px;
-
     border-radius:8px;
-
     font-size:12px;
     font-weight:800;
-
     margin-bottom:9px;
 }
 
@@ -702,7 +522,6 @@ EXAM
     font-weight:700;
     line-height:1.7;
     font-size:17px;
-
     margin-bottom:12px;
 }
 
@@ -716,15 +535,9 @@ EXAM
     display:flex;
     gap:9px;
     align-items:flex-start;
-
-    border:
-    2px solid
-    #e5e7eb;
-
+    border:2px solid #e5e7eb;
     border-radius:11px;
-
     padding:11px;
-
     line-height:1.55;
 }
 
@@ -740,36 +553,22 @@ EXAM
 
 .submit-box{
     margin-top:22px;
-
     background:#fff;
-
-    border:
-    1px solid
-    var(--border);
-
+    border:1px solid var(--border);
     border-radius:17px;
-
     padding:22px;
-
     text-align:center;
 }
 
 .submit-btn{
     margin-top:11px;
-
     border:0;
-
     border-radius:10px;
-
     padding:13px 26px;
-
     background:#059669;
-
     color:#fff;
-
     font-weight:800;
 }
-
 
 /* =========================
 MODAL
@@ -778,49 +577,34 @@ MODAL
 .modal{
     position:fixed;
     inset:0;
-
     z-index:9999;
-
-    background:
-    rgba(15,23,42,.58);
-
+    background:rgba(15,23,42,.58);
     display:none;
-
     align-items:center;
     justify-content:center;
-
     padding:20px;
 }
 
 .modal-box{
     width:100%;
     max-width:370px;
-
     border-radius:18px;
-
     background:#fff;
-
     padding:25px;
-
     text-align:center;
 }
 
 .modal-actions{
     display:grid;
     grid-template-columns:1fr 1fr;
-
     gap:8px;
-
     margin-top:18px;
 }
 
 .modal-actions button{
     border:0;
-
     border-radius:9px;
-
     padding:11px;
-
     font-weight:800;
 }
 
@@ -833,54 +617,35 @@ MODAL
     color:#fff;
 }
 
-
 /* =========================
 RESULT
 ========================= */
 
 .result-head{
     color:#fff;
-
-    background:
-    linear-gradient(
-        135deg,
-        #10245f,
-        #1d4ed8,
-        #0891b2
-    );
-
+    background:linear-gradient(135deg,#10245f,#1d4ed8,#0891b2);
     border-radius:21px;
-
     padding:27px 18px;
-
     text-align:center;
 }
 
 .score{
     font-family:'Inter',sans-serif;
-
     font-size:41px;
-
     font-weight:800;
-
     margin-top:10px;
 }
 
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-
     gap:8px;
-
     margin-top:17px;
 }
 
 .stat{
-    background:
-    rgba(255,255,255,.13);
-
+    background:rgba(255,255,255,.13);
     border-radius:10px;
-
     padding:9px;
 }
 
@@ -900,9 +665,7 @@ RESULT
 
 .review-card{
     padding:17px;
-
     margin-bottom:11px;
-
     border-radius:14px;
 }
 
@@ -929,26 +692,17 @@ RESULT
 .review-options{
     display:flex;
     flex-direction:column;
-
     gap:7px;
-
     margin-top:11px;
 }
 
 .review-option{
     background:#fff;
-
-    border:
-    1px solid
-    #dbe3ec;
-
+    border:1px solid #dbe3ec;
     border-radius:8px;
-
     padding:9px 10px;
-
     display:flex;
     justify-content:space-between;
-
     gap:9px;
 }
 
@@ -971,21 +725,15 @@ RESULT
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
-
     gap:9px;
-
     margin-top:24px;
 }
 
 .result-actions button{
     border:0;
-
     border-radius:10px;
-
     padding:12px 17px;
-
     color:#fff;
-
     font-weight:800;
 }
 
@@ -997,36 +745,70 @@ RESULT
     background:#10245f;
 }
 
-
 /* =========================
-COLORED PDF
+PDF OVERLAY - BLANK FIX
 ========================= */
+
+.pdf-render-host{
+    position:fixed;
+    inset:0;
+    z-index:999999;
+    background:#ffffff;
+    overflow:auto;
+    padding:18px 0 40px;
+}
+
+.pdf-render-message{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:#10245f;
+    color:#fff;
+    text-align:center;
+    padding:10px;
+    font-size:13px;
+    font-weight:700;
+}
 
 .pdf-sheet{
     width:760px;
-    background:#fff;
+    max-width:760px;
+    margin:18px auto;
+    padding:0;
+    background:#ffffff;
     color:#172033;
     font-family:'Noto Sans Bengali',sans-serif;
 }
 
 .pdf-cover{
-    background:
-    linear-gradient(
-        135deg,
-        #10245f,
-        #1d4ed8 55%,
-        #0891b2
-    );
-
-    color:#fff;
-
+    background:linear-gradient(135deg,#10245f 0%,#1d4ed8 55%,#0891b2 100%);
+    color:#ffffff;
     border-radius:22px;
-
     padding:30px 28px;
-
     margin-bottom:22px;
-
     text-align:center;
+}
+
+.pdf-brand-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+}
+
+.pdf-logo{
+    width:58px;
+    height:58px;
+    border-radius:15px;
+    overflow:hidden;
+    background:#07111f;
+}
+
+.pdf-logo img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
 }
 
 .pdf-brand{
@@ -1056,26 +838,17 @@ COLORED PDF
 
 .pdf-student{
     margin-top:18px;
-
     display:inline-block;
-
     padding:10px 18px;
-
     border-radius:12px;
-
-    background:
-    rgba(255,255,255,.13);
-
+    background:rgba(255,255,255,.13);
     font-size:15px;
 }
 
 .pdf-score{
     font-family:'Inter',sans-serif;
-
     font-size:46px;
-
     font-weight:800;
-
     margin-top:18px;
 }
 
@@ -1087,28 +860,20 @@ COLORED PDF
 .pdf-stat-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-
     gap:9px;
-
     margin-top:20px;
 }
 
 .pdf-stat{
     border-radius:12px;
-
     padding:12px 8px;
-
     text-align:center;
-
-    background:
-    rgba(255,255,255,.13);
+    background:rgba(255,255,255,.13);
 }
 
 .pdf-stat strong{
     display:block;
-
     font-family:'Inter',sans-serif;
-
     font-size:22px;
 }
 
@@ -1118,50 +883,28 @@ COLORED PDF
 
 .pdf-rule-box{
     margin-bottom:22px;
-
     border-radius:14px;
-
     padding:15px 17px;
-
-    border:
-    1px solid
-    #dbe4ef;
-
-    background:
-    linear-gradient(
-        135deg,
-        #f8fafc,
-        #eff6ff
-    );
-
+    border:1px solid #dbe4ef;
+    background:linear-gradient(135deg,#f8fafc,#eff6ff);
     line-height:1.8;
 }
 
 .pdf-section-title{
     margin:24px 0 15px;
-
     color:#10245f;
-
     font-size:21px;
-
     font-weight:800;
 }
 
 .pdf-question{
     margin-bottom:15px;
-
     padding:17px;
-
     border-radius:15px;
-
-    border:
-    1px solid
-    #e2e8f0;
-
-    background:#fff;
-
+    border:1px solid #e2e8f0;
+    background:#ffffff;
+    box-shadow:0 3px 10px rgba(15,23,42,.04);
     break-inside:avoid;
-
     page-break-inside:avoid;
 }
 
@@ -1182,43 +925,28 @@ COLORED PDF
 
 .pdf-question-number{
     display:inline-block;
-
     margin-bottom:9px;
-
     border-radius:8px;
-
     padding:5px 9px;
-
     font-size:11px;
-
     font-weight:800;
-
     color:#3730a3;
-
     background:#e0e7ff;
 }
 
 .pdf-question-text{
     font-size:15px;
-
     font-weight:700;
-
     line-height:1.65;
-
     margin-bottom:11px;
 }
 
 .pdf-status{
     display:inline-block;
-
     margin-bottom:10px;
-
     font-size:11px;
-
     font-weight:800;
-
     border-radius:999px;
-
     padding:5px 9px;
 }
 
@@ -1239,25 +967,14 @@ COLORED PDF
 
 .pdf-option{
     display:flex;
-
     justify-content:space-between;
-
     gap:10px;
-
-    border:
-    1px solid
-    #e2e8f0;
-
+    border:1px solid #e2e8f0;
     border-radius:9px;
-
     padding:9px 11px;
-
     margin-top:7px;
-
-    background:#fff;
-
+    background:#ffffff;
     break-inside:avoid;
-
     page-break-inside:avoid;
 }
 
@@ -1276,24 +993,17 @@ COLORED PDF
 .pdf-option-note{
     font-size:10px;
     font-weight:800;
+    white-space:nowrap;
 }
 
 .pdf-footer{
     text-align:center;
-
     margin-top:28px;
-
     padding-top:14px;
-
-    border-top:
-    1px solid
-    #e2e8f0;
-
+    border-top:1px solid #e2e8f0;
     color:#64748b;
-
     font-size:10px;
 }
-
 
 /* =========================
 MOBILE
@@ -1370,9 +1080,7 @@ MOBILE
 
 </head>
 
-
 <body>
-
 
 <header class="site-header">
 
@@ -1406,7 +1114,6 @@ Online Exam Platform
 
 </div>
 
-
 <button
 class="home-btn"
 onclick="goHome()"
@@ -1419,10 +1126,7 @@ onclick="goHome()"
 </header>
 
 
-
-<!-- =========================
-HOME
-========================= -->
+<!-- HOME -->
 
 <section
 id="homePage"
@@ -1445,9 +1149,7 @@ SSC অথবা HSC সেকশনে প্রবেশ করে আপন�
 
 </div>
 
-
 <div class="level-grid">
-
 
 <div
 class="level-card"
@@ -1466,9 +1168,7 @@ onclick="openLevel('SSC')"
 
 </div>
 
-<h2>
-SSC
-</h2>
+<h2>SSC</h2>
 
 <p>
 মাধ্যমিক পর্যায়ের পরীক্ষা
@@ -1479,7 +1179,6 @@ SSC পরীক্ষাসমূহ দেখুন →
 </div>
 
 </div>
-
 
 
 <div
@@ -1499,9 +1198,7 @@ onclick="openLevel('HSC')"
 
 </div>
 
-<h2>
-HSC
-</h2>
+<h2>HSC</h2>
 
 <p>
 উচ্চমাধ্যমিক ও ভর্তি পরীক্ষা
@@ -1513,16 +1210,12 @@ HSC পরীক্ষাসমূহ দেখুন →
 
 </div>
 
-
 </div>
 
 </section>
 
 
-
-<!-- =========================
-SUBJECT PAGE
-========================= -->
+<!-- SUBJECT -->
 
 <section
 id="subjectPage"
@@ -1562,10 +1255,7 @@ id="subjectGrid"
 </section>
 
 
-
-<!-- =========================
-EXAM LIST
-========================= -->
+<!-- EXAM LIST -->
 
 <section
 id="examListPage"
@@ -1602,10 +1292,7 @@ id="examList"
 </section>
 
 
-
-<!-- =========================
-NAME PAGE
-========================= -->
+<!-- NAME -->
 
 <section
 id="namePage"
@@ -1618,7 +1305,6 @@ onclick="history.back()"
 >
 ← পরীক্ষার তালিকা
 </button>
-
 
 <div class="name-card">
 
@@ -1636,7 +1322,6 @@ id="selectedExamTitle"
 >
 </p>
 
-
 <label
 style="
 font-weight:700;
@@ -1647,7 +1332,6 @@ margin-bottom:7px;
 পরীক্ষার্থীর নাম
 </label>
 
-
 <input
 id="studentName"
 class="student-name-input"
@@ -1655,7 +1339,6 @@ type="text"
 placeholder="আপনার সম্পূর্ণ নাম লিখুন"
 autocomplete="name"
 >
-
 
 <button
 class="big-btn"
@@ -1669,16 +1352,12 @@ onclick="startExam()"
 </section>
 
 
-
-<!-- =========================
-EXAM PAGE
-========================= -->
+<!-- EXAM -->
 
 <section
 id="examPage"
 class="hidden"
 >
-
 
 <div class="exam-toolbar">
 
@@ -1689,7 +1368,6 @@ class="exam-toolbar-title"
 id="toolbarExamTitle"
 >
 </div>
-
 
 <div class="toolbar-status">
 
@@ -1711,34 +1389,20 @@ id="timerText"
 
 </div>
 
-
-
 <div class="page">
-
 
 <div class="exam-info">
 
 <div>
 পরীক্ষার্থী:
-<strong
-id="examStudentName"
->
-</strong>
+<strong id="examStudentName"></strong>
 </div>
 
-<div
-id="markingRuleText"
->
-</div>
+<div id="markingRuleText"></div>
 
 </div>
 
-
-<div
-id="questionsContainer"
->
-</div>
-
+<div id="questionsContainer"></div>
 
 <div class="submit-box">
 
@@ -1755,7 +1419,6 @@ margin-top:4px;
 সব প্রশ্নের উত্তর দেওয়া বাধ্যতামূলক নয়।
 </p>
 
-
 <button
 class="submit-btn"
 onclick="showSubmitModal()"
@@ -1765,22 +1428,17 @@ onclick="showSubmitModal()"
 
 </div>
 
-
 </div>
 
 </section>
 
 
-
-<!-- =========================
-RESULT PAGE
-========================= -->
+<!-- RESULT -->
 
 <section
 id="resultPage"
 class="page hidden"
 >
-
 
 <div class="result-head">
 
@@ -1788,15 +1446,9 @@ class="page hidden"
 পরীক্ষার ফলাফল
 </h2>
 
-<p
-id="resultExamName"
->
-</p>
+<p id="resultExamName"></p>
 
-<p
-id="resultStudent"
->
-</p>
+<p id="resultStudent"></p>
 
 <div
 class="score"
@@ -1804,11 +1456,7 @@ id="finalScore"
 >
 </div>
 
-<div
-id="scoreOutOf"
->
-</div>
-
+<div id="scoreOutOf"></div>
 
 <div class="stats">
 
@@ -1836,16 +1484,11 @@ id="scoreOutOf"
 
 </div>
 
-
 <h2 class="review-title">
 উত্তরপত্র ও সংশোধনী
 </h2>
 
-<div
-id="answerReview"
->
-</div>
-
+<div id="answerReview"></div>
 
 <div class="result-actions">
 
@@ -1856,7 +1499,6 @@ onclick="downloadBeautifulPDF()"
 >
 📥 রঙিন উত্তরপত্র PDF ডাউনলোড করুন
 </button>
-
 
 <button
 class="home-result-btn"
@@ -1870,10 +1512,7 @@ onclick="goHome()"
 </section>
 
 
-
-<!-- =========================
-SUBMIT MODAL
-========================= -->
+<!-- SUBMIT MODAL -->
 
 <div
 id="submitModal"
@@ -1909,7 +1548,6 @@ onclick="submitExam(false)"
 </div>
 
 
-
 <script>
 
 /* =========================
@@ -1920,82 +1558,28 @@ const GOOGLE_SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycby-qppGkePByBtNVDuM1S1YHMD_uzH5igl_5KRxMmpE_DhHhai4DAJg846PPgeHxT3T/exec";
 
 
-const subjects = {
+const subjects={
 
 SSC:[
-
-{
-id:"biology",
-name:"জীববিজ্ঞান",
-icon:"🧬"
-},
-
-{
-id:"physics",
-name:"পদার্থবিজ্ঞান",
-icon:"⚛️"
-},
-
-{
-id:"chemistry",
-name:"রসায়ন",
-icon:"🧪"
-},
-
-{
-id:"higher_math",
-name:"উচ্চতর গণিত",
-icon:"📐"
-},
-
-{
-id:"math",
-name:"গণিত",
-icon:"➗"
-}
-
+{id:"biology",name:"জীববিজ্ঞান",icon:"🧬"},
+{id:"physics",name:"পদার্থবিজ্ঞান",icon:"⚛️"},
+{id:"chemistry",name:"রসায়ন",icon:"🧪"},
+{id:"higher_math",name:"উচ্চতর গণিত",icon:"📐"},
+{id:"math",name:"গণিত",icon:"➗"}
 ],
 
-
 HSC:[
-
-{
-id:"zoology",
-name:"প্রাণীবিজ্ঞান",
-icon:"🐾"
-},
-
-{
-id:"botany",
-name:"উদ্ভিদবিজ্ঞান",
-icon:"🌿"
-},
-
-{
-id:"chemistry_1",
-name:"রসায়ন ১ম পত্র",
-icon:"🧪"
-},
-
-{
-id:"chemistry_2",
-name:"রসায়ন ২য় পত্র",
-icon:"⚗️"
-},
-
-{
-id:"medical",
-name:"মেডিকেল ভর্তি পরীক্ষা",
-icon:"🩺"
-}
-
+{id:"zoology",name:"প্রাণীবিজ্ঞান",icon:"🐾"},
+{id:"botany",name:"উদ্ভিদবিজ্ঞান",icon:"🌿"},
+{id:"chemistry_1",name:"রসায়ন ১ম পত্র",icon:"🧪"},
+{id:"chemistry_2",name:"রসায়ন ২য় পত্র",icon:"⚗️"},
+{id:"medical",name:"মেডিকেল ভর্তি পরীক্ষা",icon:"🩺"}
 ]
 
 };
 
 
-const optionLabels =
-[
+const optionLabels=[
 "ক",
 "খ",
 "গ",
@@ -2003,55 +1587,46 @@ const optionLabels =
 ];
 
 
-let examsData = [];
+let examsData=[];
 
-let currentLevel = null;
+let currentLevel=null;
+let currentSubject=null;
+let currentExam=null;
 
-let currentSubject = null;
+let currentView="home";
 
-let currentExam = null;
+let studentName="";
 
-let currentView = "home";
+let timeLeft=0;
+let timerInterval=null;
 
-let studentName = "";
-
-let timeLeft = 0;
-
-let timerInterval = null;
-
-let submitted = false;
-
-let examStartTime = null;
-
+let submitted=false;
+let examStartTime=null;
 
 
 /* =========================
-HISTORY
+INITIAL HISTORY
 ========================= */
 
 history.replaceState(
-{
-view:"home"
-},
+{view:"home"},
 "",
 "#home"
 );
 
 
-
 /* =========================
-LOAD EXAMS.JSON
+LOAD EXAMS
 ========================= */
 
 async function loadExams(){
 
 try{
 
-const response =
+const response=
 await fetch(
-"exams.json?v=" + Date.now()
+"exams.json?v="+Date.now()
 );
-
 
 if(!response.ok){
 
@@ -2061,31 +1636,23 @@ throw new Error(
 
 }
 
-
-const data =
+const data=
 await response.json();
 
-
-examsData =
+examsData=
 Array.isArray(data.exams)
 ?
 data.exams
 :
 [];
 
-
-if(
-currentView === "subjects"
-){
+if(currentView==="subjects"){
 
 renderSubjects();
 
 }
 
-
-if(
-currentView === "examlist"
-){
+if(currentView==="examlist"){
 
 renderExamList();
 
@@ -2094,19 +1661,15 @@ renderExamList();
 }
 catch(error){
 
-console.error(
-error
-);
+console.error(error);
 
-examsData = [];
+examsData=[];
 
 }
 
 }
-
 
 loadExams();
-
 
 
 /* =========================
@@ -2123,35 +1686,28 @@ function hideAllPages(){
 "examPage",
 "resultPage"
 ]
-.forEach(
-id=>{
+.forEach(id=>{
 
 document
 .getElementById(id)
-.classList
-.add("hidden");
+.classList.add("hidden");
 
-}
-);
+});
 
 }
 
 
 function pushView(view){
 
-currentView = view;
-
+currentView=view;
 
 history.pushState(
-{
-view:view
-},
+{view:view},
 "",
 "#"+view
 );
 
 }
-
 
 
 /* =========================
@@ -2162,41 +1718,29 @@ function showHome(){
 
 hideAllPages();
 
-
-currentView =
-"home";
-
+currentView="home";
 
 document
-.getElementById(
-"homePage"
-)
-.classList
-.remove("hidden");
+.getElementById("homePage")
+.classList.remove("hidden");
 
-
-window.scrollTo(
-0,
-0
-);
+window.scrollTo(0,0);
 
 }
-
 
 
 function goHome(){
 
 if(
-currentView === "exam"
+currentView==="exam"
 &&
 !submitted
 ){
 
-const leave =
+const leave=
 confirm(
 "পরীক্ষা এখনো শেষ হয়নি। আপনি কি পরীক্ষা থেকে বের হতে চান?"
 );
-
 
 if(!leave){
 
@@ -2204,30 +1748,23 @@ return;
 
 }
 
-
 clearInterval(
 timerInterval
 );
 
 }
 
-
-currentLevel = null;
-
-currentSubject = null;
-
-currentExam = null;
-
+currentLevel=null;
+currentSubject=null;
+currentExam=null;
 
 pushView(
 "home"
 );
 
-
 showHome();
 
 }
-
 
 
 /* =========================
@@ -2236,64 +1773,43 @@ LEVEL
 
 function openLevel(level){
 
-currentLevel =
-level;
-
+currentLevel=level;
 
 pushView(
 "subjects"
 );
-
 
 renderSubjectPage();
 
 }
 
 
-
 function renderSubjectPage(){
 
 hideAllPages();
 
-
-currentView =
+currentView=
 "subjects";
 
+document
+.getElementById("subjectPage")
+.classList.remove("hidden");
 
 document
-.getElementById(
-"subjectPage"
-)
-.classList
-.remove("hidden");
-
-
-document
-.getElementById(
-"subjectEyebrow"
-)
-.innerText =
+.getElementById("subjectEyebrow")
+.innerText=
 `${currentLevel} SECTION`;
 
-
 document
-.getElementById(
-"subjectTitle"
-)
-.innerText =
+.getElementById("subjectTitle")
+.innerText=
 `${currentLevel} পরীক্ষার বিষয়সমূহ`;
-
 
 renderSubjects();
 
-
-window.scrollTo(
-0,
-0
-);
+window.scrollTo(0,0);
 
 }
-
 
 
 /* =========================
@@ -2302,14 +1818,12 @@ SUBJECTS
 
 function renderSubjects(){
 
-const grid =
+const grid=
 document.getElementById(
 "subjectGrid"
 );
 
-
-grid.innerHTML = "";
-
+grid.innerHTML="";
 
 if(
 !currentLevel
@@ -2321,165 +1835,122 @@ return;
 
 }
 
-
 subjects[currentLevel]
-.forEach(
-subject=>{
+.forEach(subject=>{
 
-
-const count =
+const count=
 examsData.filter(
 exam=>
 
-exam.level === currentLevel
+exam.level===currentLevel
 &&
-exam.subject === subject.id
+exam.subject===subject.id
 &&
-exam.published !== false
+exam.published!==false
 
 ).length;
 
-
-const card =
+const card=
 document.createElement(
 "div"
 );
 
-
-card.className =
+card.className=
 "subject-card";
 
-
-card.innerHTML = `
+card.innerHTML=`
 
 <div class="subject-icon">
-
 ${subject.icon}
-
 </div>
-
 
 <div class="subject-info">
 
 <h3>
-
 ${subject.name}
-
 </h3>
 
 <p>
-
 ${
-count > 0
+count>0
 ?
-count + "টি পরীক্ষা প্রকাশিত"
+count+"টি পরীক্ষা প্রকাশিত"
 :
 "এখনো কোনো পরীক্ষা প্রকাশিত হয়নি"
 }
-
 </p>
 
 </div>
 
-
 <div class="subject-arrow">
-
 →
-
 </div>
 
 `;
 
-
 card.addEventListener(
 "click",
-()=>openSubject(
-subject.id
-)
+()=>openSubject(subject.id)
 );
-
 
 grid.appendChild(
 card
 );
 
-}
-);
+});
 
 }
-
 
 
 /* =========================
 OPEN SUBJECT
 ========================= */
 
-function openSubject(
-subjectId
-){
+function openSubject(subjectId){
 
-currentSubject =
+currentSubject=
 subjectId;
-
 
 pushView(
 "examlist"
 );
-
 
 renderExamListPage();
 
 }
 
 
-
 function renderExamListPage(){
 
 hideAllPages();
 
-
-currentView =
+currentView=
 "examlist";
 
-
 document
-.getElementById(
-"examListPage"
-)
-.classList
-.remove("hidden");
+.getElementById("examListPage")
+.classList.remove("hidden");
 
-
-const subject =
+const subject=
 subjects[currentLevel]
 .find(
-item =>
-item.id === currentSubject
+item=>item.id===currentSubject
 );
 
-
 document
-.getElementById(
-"examListTitle"
-)
-.innerText =
+.getElementById("examListTitle")
+.innerText=
 subject
 ?
 `${currentLevel} • ${subject.name}`
 :
 currentLevel;
 
-
 renderExamList();
 
-
-window.scrollTo(
-0,
-0
-);
+window.scrollTo(0,0);
 
 }
-
 
 
 /* =========================
@@ -2488,41 +1959,32 @@ EXAM LIST
 
 function renderExamList(){
 
-const list =
+const list=
 document.getElementById(
 "examList"
 );
 
-
-const exams =
+const exams=
 examsData.filter(
 exam=>
 
-exam.level === currentLevel
+exam.level===currentLevel
 &&
-exam.subject === currentSubject
+exam.subject===currentSubject
 &&
-exam.published !== false
+exam.published!==false
 
 );
 
+list.innerHTML="";
 
-list.innerHTML = "";
+if(exams.length===0){
 
-
-if(
-exams.length === 0
-){
-
-list.innerHTML = `
+list.innerHTML=`
 
 <div class="empty-box">
 
-<div
-style="
-font-size:34px;
-"
->
+<div style="font-size:34px;">
 📚
 </div>
 
@@ -2530,11 +1992,7 @@ font-size:34px;
 এখনো কোনো পরীক্ষা প্রকাশিত হয়নি
 </h3>
 
-<p
-style="
-margin-top:6px;
-"
->
+<p style="margin-top:6px;">
 নতুন পরীক্ষা প্রকাশ হলে এখানে দেখা যাবে।
 </p>
 
@@ -2546,29 +2004,22 @@ return;
 
 }
 
+exams.forEach(exam=>{
 
-exams.forEach(
-exam=>{
-
-
-const card =
+const card=
 document.createElement(
 "div"
 );
 
-
-card.className =
+card.className=
 "exam-card";
 
-
-card.innerHTML = `
+card.innerHTML=`
 
 <div>
 
 <h3>
-
 ${exam.title}
-
 </h3>
 
 <div class="exam-meta">
@@ -2585,43 +2036,33 @@ ${exam.timeMinutes} মিনিট
 
 `;
 
-
-const button =
+const button=
 document.createElement(
 "button"
 );
 
-
-button.className =
+button.className=
 "exam-start-btn";
 
-
-button.innerText =
+button.innerText=
 "পরীক্ষা দিন →";
-
 
 button.addEventListener(
 "click",
-()=>selectExam(
-exam.id
-)
+()=>selectExam(exam.id)
 );
-
 
 card.appendChild(
 button
 );
 
-
 list.appendChild(
 card
 );
 
-}
-);
+});
 
 }
-
 
 
 /* =========================
@@ -2630,76 +2071,53 @@ SELECT EXAM
 
 function selectExam(id){
 
-currentExam =
+currentExam=
 examsData.find(
-exam =>
-exam.id === id
+exam=>exam.id===id
 );
 
-
-if(
-!currentExam
-){
+if(!currentExam){
 
 return;
 
 }
 
-
 pushView(
 "name"
 );
-
 
 renderNamePage();
 
 }
 
 
-
 function renderNamePage(){
 
 hideAllPages();
 
-
-currentView =
+currentView=
 "name";
 
+document
+.getElementById("namePage")
+.classList.remove("hidden");
 
 document
-.getElementById(
-"namePage"
-)
-.classList
-.remove("hidden");
-
-
-document
-.getElementById(
-"selectedExamTitle"
-)
-.innerText =
+.getElementById("selectedExamTitle")
+.innerText=
 currentExam
 ?
 currentExam.title
 :
 "";
 
-
 document
-.getElementById(
-"studentName"
-)
-.value = "";
+.getElementById("studentName")
+.value="";
 
-
-window.scrollTo(
-0,
-0
-);
+window.scrollTo(0,0);
 
 }
-
 
 
 /* =========================
@@ -2708,18 +2126,13 @@ START EXAM
 
 function startExam(){
 
-const name =
+const name=
 document
-.getElementById(
-"studentName"
-)
+.getElementById("studentName")
 .value
 .trim();
 
-
-if(
-!name
-){
+if(!name){
 
 alert(
 "অনুগ্রহ করে পরীক্ষার্থীর নাম লিখুন।"
@@ -2729,13 +2142,10 @@ return;
 
 }
 
-
 if(
 !currentExam
 ||
-!Array.isArray(
-currentExam.questions
-)
+!Array.isArray(currentExam.questions)
 ){
 
 alert(
@@ -2746,36 +2156,27 @@ return;
 
 }
 
-
-studentName =
+studentName=
 name;
 
-
-submitted =
+submitted=
 false;
 
-
-examStartTime =
+examStartTime=
 Date.now();
 
-
-timeLeft =
-Number(
-currentExam.timeMinutes || 10
-)
+timeLeft=
+Number(currentExam.timeMinutes || 10)
 *
 60;
-
 
 pushView(
 "exam"
 );
 
-
 renderExamPage();
 
 }
-
 
 
 /* =========================
@@ -2786,71 +2187,48 @@ function renderExamPage(){
 
 hideAllPages();
 
-
-currentView =
+currentView=
 "exam";
 
+document
+.getElementById("examPage")
+.classList.remove("hidden");
 
 document
-.getElementById(
-"examPage"
-)
-.classList
-.remove("hidden");
-
-
-document
-.getElementById(
-"toolbarExamTitle"
-)
-.innerText =
+.getElementById("toolbarExamTitle")
+.innerText=
 currentExam.title;
 
-
 document
-.getElementById(
-"examStudentName"
-)
-.innerText =
+.getElementById("examStudentName")
+.innerText=
 studentName;
 
-
-const negativeMark =
-currentLevel === "SSC"
+const negativeMark=
+currentLevel==="SSC"
 ?
 0
 :
 0.25;
 
-
 document
-.getElementById(
-"markingRuleText"
-)
-.innerText =
-negativeMark === 0
+.getElementById("markingRuleText")
+.innerText=
+negativeMark===0
 ?
 "সঠিক উত্তরে +1"
 :
 "সঠিক +1 • ভুল −0.25";
 
-
 renderQuestions();
-
 
 updateProgress();
 
-
 startTimer();
 
-
-window.scrollTo(
-0,
-0
-);
+window.scrollTo(0,0);
 
 }
-
 
 
 /* =========================
@@ -2859,180 +2237,141 @@ QUESTIONS
 
 function renderQuestions(){
 
-const container =
+const container=
 document
 .getElementById(
 "questionsContainer"
 );
 
-
-container.innerHTML = "";
-
+container.innerHTML="";
 
 currentExam.questions
 .forEach(
 (question,index)=>{
 
-
-const card =
+const card=
 document.createElement(
 "div"
 );
 
-
-card.className =
+card.className=
 "question-card";
 
-
-const badge =
+const badge=
 document.createElement(
 "div"
 );
 
-
-badge.className =
+badge.className=
 "question-badge";
 
-
-badge.innerText =
+badge.innerText=
 `প্রশ্ন ${index+1}`;
 
-
-const title =
+const title=
 document.createElement(
 "div"
 );
 
-
-title.className =
+title.className=
 "question-text";
 
-
-title.innerText =
+title.innerText=
 question.q;
 
-
-const optionsBox =
+const optionsBox=
 document.createElement(
 "div"
 );
 
-
-optionsBox.className =
+optionsBox.className=
 "options";
-
 
 question.options
 .forEach(
 (option,optIndex)=>{
 
-
-const label =
+const label=
 document.createElement(
 "label"
 );
 
-
-label.className =
+label.className=
 "option";
 
-
-const input =
+const input=
 document.createElement(
 "input"
 );
 
-
-input.type =
+input.type=
 "radio";
 
-
-input.name =
+input.name=
 `question${index}`;
 
-
-input.value =
-String(
-optIndex
-);
-
+input.value=
+String(optIndex);
 
 input.addEventListener(
 "change",
 updateProgress
 );
 
-
-const span =
+const span=
 document.createElement(
 "span"
 );
 
-
-const strong =
+const strong=
 document.createElement(
 "b"
 );
 
-
-strong.innerText =
+strong.innerText=
 `(${optionLabels[optIndex]}) `;
-
 
 span.appendChild(
 strong
 );
 
-
 span.appendChild(
-document.createTextNode(
-option
-)
+document.createTextNode(option)
 );
-
 
 label.appendChild(
 input
 );
 
-
 label.appendChild(
 span
 );
-
 
 optionsBox.appendChild(
 label
 );
 
-}
-);
-
+});
 
 card.appendChild(
 badge
 );
 
-
 card.appendChild(
 title
 );
-
 
 card.appendChild(
 optionsBox
 );
 
-
 container.appendChild(
 card
 );
 
-}
-);
+});
 
 }
-
 
 
 /* =========================
@@ -3041,14 +2380,11 @@ PROGRESS
 
 function updateProgress(){
 
-let answered =
-0;
-
+let answered=0;
 
 currentExam.questions
 .forEach(
 (question,index)=>{
-
 
 if(
 document.querySelector(
@@ -3060,19 +2396,14 @@ answered++;
 
 }
 
-}
-);
-
+});
 
 document
-.getElementById(
-"progressText"
-)
-.innerText =
+.getElementById("progressText")
+.innerText=
 `উত্তর: ${answered}/${currentExam.questions.length}`;
 
 }
-
 
 
 /* =========================
@@ -3081,9 +2412,7 @@ TIMER
 
 function startTimer(){
 
-if(
-timerInterval
-){
+if(timerInterval){
 
 clearInterval(
 timerInterval
@@ -3091,107 +2420,76 @@ timerInterval
 
 }
 
-
 updateTimer();
 
-
-timerInterval =
-setInterval(
-()=>{
-
+timerInterval=
+setInterval(()=>{
 
 timeLeft--;
 
+if(timeLeft<=0){
 
-if(
-timeLeft <= 0
-){
-
-timeLeft =
-0;
-
+timeLeft=0;
 
 updateTimer();
-
 
 clearInterval(
 timerInterval
 );
 
-
-submitExam(
-true
-);
-
+submitExam(true);
 
 return;
 
 }
 
-
 updateTimer();
 
-},
-1000
-);
+},1000);
 
 }
 
 
-
 function updateTimer(){
 
-const minutes =
+const minutes=
 Math.floor(
 timeLeft/60
 );
 
+const seconds=
+timeLeft%60;
 
-const seconds =
-timeLeft % 60;
-
-
-const timer =
+const timer=
 document
 .getElementById(
 "timerText"
 );
 
-
-timer.innerText =
+timer.innerText=
 `⏱ ${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
 
-
-timer.classList
-.remove(
+timer.classList.remove(
 "warning",
 "danger"
 );
 
+if(timeLeft<=60){
 
-if(
-timeLeft <= 60
-){
-
-timer.classList
-.add(
+timer.classList.add(
 "danger"
 );
 
 }
-else if(
-timeLeft <= 180
-){
+else if(timeLeft<=180){
 
-timer.classList
-.add(
+timer.classList.add(
 "warning"
 );
 
 }
 
 }
-
 
 
 /* =========================
@@ -3201,27 +2499,21 @@ SUBMIT MODAL
 function showSubmitModal(){
 
 document
-.getElementById(
-"submitModal"
-)
-.style.display =
+.getElementById("submitModal")
+.style.display=
 "flex";
 
 }
 
 
-
 function hideSubmitModal(){
 
 document
-.getElementById(
-"submitModal"
-)
-.style.display =
+.getElementById("submitModal")
+.style.display=
 "none";
 
 }
-
 
 
 /* =========================
@@ -3231,113 +2523,84 @@ GET ANSWERS
 function getStudentAnswers(){
 
 return currentExam.questions
-
 .map(
 (question,index)=>{
 
-
-const selected =
+const selected=
 document.querySelector(
 `input[name="question${index}"]:checked`
 );
 
-
-if(
-!selected
-){
+if(!selected){
 
 return `${index+1}. —`;
 
 }
 
-
 return `${index+1}. ${optionLabels[Number(selected.value)]}`;
 
-}
-)
-
-.join(
-" | "
-);
+})
+.join(" | ");
 
 }
-
 
 
 /* =========================
-SUBMIT EXAM
+SUBMIT
 ========================= */
 
 function submitExam(
-autoSubmit = false
+autoSubmit=false
 ){
 
-if(
-submitted
-){
+if(submitted){
 
 return;
 
 }
 
-
-submitted =
+submitted=
 true;
 
-
 hideSubmitModal();
-
 
 clearInterval(
 timerInterval
 );
 
-
-const negativeMark =
-currentLevel === "SSC"
+const negativeMark=
+currentLevel==="SSC"
 ?
 0
 :
 0.25;
 
+let correct=0;
+let wrong=0;
+let unanswered=0;
+let answered=0;
 
-let correct = 0;
+let score=0;
 
-let wrong = 0;
-
-let unanswered = 0;
-
-let answered = 0;
-
-let score = 0;
-
-
-const review =
+const review=
 document.createDocumentFragment();
-
 
 currentExam.questions
 .forEach(
 (question,index)=>{
 
-
-const selected =
+const selected=
 document.querySelector(
 `input[name="question${index}"]:checked`
 );
 
-
-let selectedIndex =
+let selectedIndex=
 null;
 
-
-let state =
+let state=
 "unanswered";
 
-
-if(
-!selected
-){
+if(!selected){
 
 unanswered++;
 
@@ -3346,25 +2609,21 @@ else{
 
 answered++;
 
-
-selectedIndex =
+selectedIndex=
 Number(
 selected.value
 );
 
-
 if(
-selectedIndex ===
-Number(
-question.answer
-)
+selectedIndex===
+Number(question.answer)
 ){
 
 correct++;
 
-score += 1;
+score+=1;
 
-state =
+state=
 "correct";
 
 }
@@ -3372,119 +2631,95 @@ else{
 
 wrong++;
 
-score -=
+score-=
 negativeMark;
 
-state =
+state=
 "wrong";
 
 }
 
 }
 
-
-const card =
+const card=
 document.createElement(
 "div"
 );
 
-
-card.className =
+card.className=
 `review-card ${state}`;
 
-
-const q =
+const q=
 document.createElement(
 "div"
 );
 
-
-q.className =
+q.className=
 "review-q";
 
-
-q.innerText =
+q.innerText=
 `${index+1}. ${question.q}`;
 
-
-const status =
+const status=
 document.createElement(
 "div"
 );
 
-
-status.style.marginTop =
+status.style.marginTop=
 "5px";
 
-
-status.style.fontWeight =
+status.style.fontWeight=
 "800";
 
-
-status.style.fontSize =
+status.style.fontSize=
 "12px";
 
-
-status.innerText =
-state === "correct"
+status.innerText=
+state==="correct"
 ?
 "✓ সঠিক"
 :
-state === "wrong"
+state==="wrong"
 ?
 "✗ ভুল"
 :
 "উত্তর দেওয়া হয়নি";
 
-
-const optionsBox =
+const optionsBox=
 document.createElement(
 "div"
 );
 
-
-optionsBox.className =
+optionsBox.className=
 "review-options";
-
 
 question.options
 .forEach(
 (option,optIndex)=>{
 
-
-const row =
+const row=
 document.createElement(
 "div"
 );
 
+const isCorrect=
+optIndex===
+Number(question.answer);
 
-const isCorrect =
-optIndex ===
-Number(
-question.answer
-);
-
-
-const isSelected =
-optIndex ===
+const isSelected=
+optIndex===
 selectedIndex;
 
-
-row.className =
+row.className=
 "review-option";
 
+if(isCorrect){
 
-if(
-isCorrect
-){
-
-row.classList
-.add(
+row.classList.add(
 "correct"
 );
 
 }
-
 
 if(
 isSelected
@@ -3492,33 +2727,27 @@ isSelected
 !isCorrect
 ){
 
-row.classList
-.add(
+row.classList.add(
 "wrong-selected"
 );
 
 }
 
-
-const left =
+const left=
 document.createElement(
 "span"
 );
 
-
-left.innerText =
+left.innerText=
 `(${optionLabels[optIndex]}) ${option}`;
 
-
-const note =
+const note=
 document.createElement(
 "span"
 );
 
-
-note.className =
+note.className=
 "option-note";
-
 
 if(
 isCorrect
@@ -3526,76 +2755,60 @@ isCorrect
 isSelected
 ){
 
-note.innerText =
+note.innerText=
 "✓ আপনার উত্তর ও সঠিক উত্তর";
 
 }
-else if(
-isCorrect
-){
+else if(isCorrect){
 
-note.innerText =
+note.innerText=
 "✓ সঠিক উত্তর";
 
 }
-else if(
-isSelected
-){
+else if(isSelected){
 
-note.innerText =
+note.innerText=
 "✗ আপনার উত্তর";
 
 }
-
 
 row.appendChild(
 left
 );
 
-
 row.appendChild(
 note
 );
-
 
 optionsBox.appendChild(
 row
 );
 
-}
-);
-
+});
 
 card.appendChild(
 q
 );
 
-
 card.appendChild(
 status
 );
-
 
 card.appendChild(
 optionsBox
 );
 
-
 review.appendChild(
 card
 );
 
-}
-);
+});
 
-
-score =
+score=
 Math.round(
-score * 100
+score*100
 )
-/
-100;
-
+/100;
 
 saveResult(
 score,
@@ -3604,32 +2817,22 @@ wrong,
 unanswered
 );
 
-
 pushView(
 "result"
 );
 
-
 hideAllPages();
 
-
-currentView =
+currentView=
 "result";
 
+document
+.getElementById("resultPage")
+.classList.remove("hidden");
 
 document
-.getElementById(
-"resultPage"
-)
-.classList
-.remove("hidden");
-
-
-document
-.getElementById(
-"resultExamName"
-)
-.innerText =
+.getElementById("resultExamName")
+.innerText=
 currentExam.title
 +
 (
@@ -3640,86 +2843,56 @@ autoSubmit
 ""
 );
 
-
 document
-.getElementById(
-"resultStudent"
-)
-.innerText =
+.getElementById("resultStudent")
+.innerText=
 `পরীক্ষার্থী: ${studentName}`;
 
-
 document
-.getElementById(
-"finalScore"
-)
-.innerText =
+.getElementById("finalScore")
+.innerText=
 score;
 
-
 document
-.getElementById(
-"scoreOutOf"
-)
-.innerText =
+.getElementById("scoreOutOf")
+.innerText=
 `${currentExam.questions.length} এর মধ্যে`;
 
-
 document
-.getElementById(
-"correctCount"
-)
-.innerText =
+.getElementById("correctCount")
+.innerText=
 correct;
 
-
 document
-.getElementById(
-"wrongCount"
-)
-.innerText =
+.getElementById("wrongCount")
+.innerText=
 wrong;
 
-
 document
-.getElementById(
-"unansweredCount"
-)
-.innerText =
+.getElementById("unansweredCount")
+.innerText=
 unanswered;
 
-
 document
-.getElementById(
-"answeredCount"
-)
-.innerText =
+.getElementById("answeredCount")
+.innerText=
 answered;
 
-
-const answerReview =
+const answerReview=
 document
 .getElementById(
 "answerReview"
 );
 
-
-answerReview.innerHTML =
-"";
-
+answerReview.innerHTML="";
 
 answerReview.appendChild(
 review
 );
 
-
-window.scrollTo(
-0,
-0
-);
+window.scrollTo(0,0);
 
 }
-
 
 
 /* =========================
@@ -3735,7 +2908,7 @@ unanswered
 
 try{
 
-const seconds =
+const seconds=
 Math.floor(
 (
 Date.now()
@@ -3745,20 +2918,16 @@ examStartTime
 /1000
 );
 
-
-const duration =
+const duration=
 `${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,"0")}`;
 
-
-const subject =
+const subject=
 subjects[currentLevel]
 .find(
-item =>
-item.id === currentSubject
+item=>item.id===currentSubject
 );
 
-
-const data = {
+const data={
 
 level:
 currentLevel,
@@ -3796,36 +2965,27 @@ getStudentAnswers()
 
 };
 
-
 fetch(
 GOOGLE_SCRIPT_URL,
 {
 
-method:
-"POST",
+method:"POST",
 
-mode:
-"no-cors",
+mode:"no-cors",
 
-headers:
-{
-"Content-Type":
-"text/plain;charset=utf-8"
+headers:{
+"Content-Type":"text/plain;charset=utf-8"
 },
 
 body:
-JSON.stringify(
-data
-),
+JSON.stringify(data),
 
-keepalive:
-true
+keepalive:true
 
 }
 )
-
 .catch(
-error =>
+error=>
 console.error(
 "Google Sheet:",
 error
@@ -3845,26 +3005,23 @@ error
 }
 
 
-
 /* =========================
-BEAUTIFUL PDF
+BEAUTIFUL PDF - FIXED
 ========================= */
 
 async function downloadBeautifulPDF(){
 
-const button =
+const button=
 document.getElementById(
 "pdfDownloadButton"
 );
 
-
-const oldText =
+const oldText=
 button
 ?
 button.innerHTML
 :
 "";
-
 
 if(
 !currentExam
@@ -3880,10 +3037,8 @@ return;
 
 }
 
-
 if(
-typeof html2pdf ===
-"undefined"
+typeof html2pdf==="undefined"
 ){
 
 alert(
@@ -3894,26 +3049,18 @@ return;
 
 }
 
-
-let pdf =
-null;
-
+let host=null;
 
 try{
 
-if(
-button
-){
+if(button){
 
-button.disabled =
-true;
+button.disabled=true;
 
-
-button.innerHTML =
+button.innerHTML=
 "⏳ PDF তৈরি হচ্ছে...";
 
 }
-
 
 if(
 document.fonts
@@ -3925,118 +3072,104 @@ await document.fonts.ready;
 
 }
 
-
-const subject =
+const subject=
 subjects[currentLevel]
 .find(
-item =>
-item.id === currentSubject
+item=>item.id===currentSubject
 );
 
-
-const subjectName =
+const subjectName=
 subject
 ?
 subject.name
 :
 "";
 
-
-const score =
+const score=
 document
-.getElementById(
-"finalScore"
-)
+.getElementById("finalScore")
 .innerText;
 
-
-const correct =
+const correct=
 document
-.getElementById(
-"correctCount"
-)
+.getElementById("correctCount")
 .innerText;
 
-
-const wrong =
+const wrong=
 document
-.getElementById(
-"wrongCount"
-)
+.getElementById("wrongCount")
 .innerText;
 
-
-const unanswered =
+const unanswered=
 document
-.getElementById(
-"unansweredCount"
-)
+.getElementById("unansweredCount")
 .innerText;
 
-
-const answered =
+const answered=
 document
-.getElementById(
-"answeredCount"
-)
+.getElementById("answeredCount")
 .innerText;
 
-
-const total =
+const total=
 currentExam.questions.length;
 
-
-const negativeMark =
-currentLevel === "SSC"
+const negativeMark=
+currentLevel==="SSC"
 ?
 0
 :
 0.25;
 
 
-pdf =
+/* RENDERABLE HOST - NO OFFSCREEN */
+
+host=
 document.createElement(
 "div"
 );
 
+host.className=
+"pdf-render-host";
 
-pdf.className =
+host.innerHTML=`
+
+<div class="pdf-render-message">
+PDF তৈরি হচ্ছে... একটু অপেক্ষা করুন
+</div>
+
+`;
+
+const pdf=
+document.createElement(
+"div"
+);
+
+pdf.className=
 "pdf-sheet";
 
-
-pdf.style.position =
-"fixed";
-
-
-pdf.style.left =
-"-10000px";
-
-
-pdf.style.top =
-"0";
-
-
-pdf.style.zIndex =
-"-1";
-
-
-let html = `
+let html=`
 
 <div class="pdf-cover">
 
-<div class="pdf-brand">
+<div class="pdf-brand-row">
 
-Concept Academy
-
+<div class="pdf-logo">
+<img src="logo.jpg" alt="Concept Academy">
 </div>
 
+<div>
+
+<div class="pdf-brand">
+Concept Academy
+</div>
 
 <div class="pdf-brand-small">
-
 by Shuvo • Online Exam Platform
+</div>
 
 </div>
 
+</div>
 
 <div class="pdf-exam-name">
 
@@ -4045,7 +3178,6 @@ currentExam.title
 )}
 
 </div>
-
 
 <div class="pdf-meta">
 
@@ -4061,7 +3193,6 @@ subjectName
 
 </div>
 
-
 <div class="pdf-student">
 
 পরীক্ষার্থী:
@@ -4076,29 +3207,21 @@ studentName
 
 </div>
 
-
 <div class="pdf-score">
 
 ${escapeHTML(
 score
 )}
-
 /
-
 ${total}
 
 </div>
 
-
 <div class="pdf-score-label">
-
 প্রাপ্ত নম্বর
-
 </div>
 
-
 <div class="pdf-stat-grid">
-
 
 <div class="pdf-stat">
 
@@ -4112,7 +3235,6 @@ ${correct}
 
 </div>
 
-
 <div class="pdf-stat">
 
 <strong>
@@ -4124,7 +3246,6 @@ ${wrong}
 </span>
 
 </div>
-
 
 <div class="pdf-stat">
 
@@ -4138,7 +3259,6 @@ ${unanswered}
 
 </div>
 
-
 <div class="pdf-stat">
 
 <strong>
@@ -4151,11 +3271,9 @@ ${answered}
 
 </div>
 
-
 </div>
 
 </div>
-
 
 
 <div class="pdf-rule-box">
@@ -4178,7 +3296,7 @@ ${answered}
 <strong>
 
 ${
-negativeMark === 0
+negativeMark===0
 ?
 "কোনো নম্বর কাটা হবে না"
 :
@@ -4198,7 +3316,6 @@ ${total}
 </div>
 
 
-
 <div class="pdf-section-title">
 
 📝 উত্তরপত্র ও সংশোধনী
@@ -4212,14 +3329,12 @@ currentExam.questions
 .forEach(
 (question,index)=>{
 
-
-const selected =
+const selected=
 document.querySelector(
 `input[name="question${index}"]:checked`
 );
 
-
-const selectedIndex =
+const selectedIndex=
 selected
 ?
 Number(
@@ -4228,66 +3343,53 @@ selected.value
 :
 null;
 
-
-const correctIndex =
+const correctIndex=
 Number(
 question.answer
 );
 
-
-let state =
+let state=
 "unanswered";
 
-
-let statusText =
+let statusText=
 "উত্তর দেওয়া হয়নি";
 
-
 if(
-selectedIndex !== null
+selectedIndex!==null
 ){
 
 if(
-selectedIndex === correctIndex
+selectedIndex===correctIndex
 ){
 
-state =
+state=
 "correct";
 
-
-statusText =
+statusText=
 "✓ সঠিক উত্তর";
 
 }
 else{
 
-state =
+state=
 "wrong";
 
-
-statusText =
+statusText=
 "✗ ভুল উত্তর";
 
 }
 
 }
 
+html+=`
 
-html += `
-
-<div
-class="
-pdf-question
-${state}
-"
->
+<div class="pdf-question ${state}">
 
 <div class="pdf-question-number">
 
 প্রশ্ন ${index+1}
 
 </div>
-
 
 <div class="pdf-question-text">
 
@@ -4297,13 +3399,7 @@ question.q
 
 </div>
 
-
-<div
-class="
-pdf-status
-${state}
-"
->
+<div class="pdf-status ${state}">
 
 ${statusText}
 
@@ -4311,75 +3407,54 @@ ${statusText}
 
 `;
 
-
 question.options
 .forEach(
 (option,optIndex)=>{
 
+let optionClass="";
 
-let optionClass =
-"";
-
-
-let note =
-"";
-
+let note="";
 
 if(
-optIndex ===
-correctIndex
+optIndex===correctIndex
 ){
 
-optionClass =
+optionClass=
 "correct-answer";
 
-
-note =
+note=
 "✓ সঠিক উত্তর";
 
 }
 
-
 if(
-optIndex ===
-selectedIndex
+optIndex===selectedIndex
 &&
-optIndex !==
-correctIndex
+optIndex!==correctIndex
 ){
 
-optionClass =
+optionClass=
 "wrong-answer";
 
-
-note =
+note=
 "✗ আপনার উত্তর";
 
 }
 
-
 if(
-optIndex ===
-selectedIndex
+optIndex===selectedIndex
 &&
-optIndex ===
-correctIndex
+optIndex===correctIndex
 ){
 
-note =
+note=
 "✓ আপনার উত্তর ও সঠিক উত্তর";
 
 }
 
+html+=`
 
-html += `
-
-<div
-class="
-pdf-option
-${optionClass}
-"
->
+<div class="pdf-option ${optionClass}">
 
 <span>
 
@@ -4395,7 +3470,6 @@ option
 
 </span>
 
-
 <span class="pdf-option-note">
 
 ${note}
@@ -4406,21 +3480,18 @@ ${note}
 
 `;
 
-}
-);
+});
 
-
-html += `
+html+=`
 
 </div>
 
 `;
 
-}
-);
+});
 
 
-html += `
+html+=`
 
 <div class="pdf-footer">
 
@@ -4435,17 +3506,61 @@ Generated from Concept Academy Online Exam Platform
 `;
 
 
-pdf.innerHTML =
+pdf.innerHTML=
 html;
 
-
-document.body
-.appendChild(
+host.appendChild(
 pdf
 );
 
+document.body.appendChild(
+host
+);
 
-const safeName =
+
+/* WAIT FOR LOGO + LAYOUT */
+
+await new Promise(
+resolve=>
+setTimeout(
+resolve,
+700
+)
+);
+
+
+const logo=
+pdf.querySelector(
+".pdf-logo img"
+);
+
+if(
+logo
+&&
+!logo.complete
+){
+
+await new Promise(
+resolve=>{
+
+logo.onload=resolve;
+
+logo.onerror=resolve;
+
+setTimeout(
+resolve,
+1500
+);
+
+}
+);
+
+}
+
+
+/* SAFE FILE NAME */
+
+const safeName=
 studentName
 .replace(
 /[\\/:*?"<>|]/g,
@@ -4453,8 +3568,7 @@ studentName
 )
 .trim();
 
-
-const safeExam =
+const safeExam=
 currentExam.title
 .replace(
 /[\\/:*?"<>|]/g,
@@ -4462,16 +3576,15 @@ currentExam.title
 )
 .trim();
 
-
-const fileName =
-
+const fileName=
 `Concept_Academy_${safeName}_${safeExam}.pdf`;
 
 
-const pdfOptions = {
+/* PDF OPTIONS */
 
-margin:
-[
+const pdfOptions={
+
+margin:[
 7,
 7,
 8,
@@ -4481,115 +3594,97 @@ margin:
 filename:
 fileName,
 
-image:
-{
-type:
-"jpeg",
-
-quality:
-0.98
+image:{
+type:"jpeg",
+quality:0.98
 },
 
-html2canvas:
-{
-scale:
-2,
+html2canvas:{
 
-useCORS:
-true,
+scale:2,
 
-backgroundColor:
-"#ffffff",
+useCORS:true,
 
-logging:
-false,
+allowTaint:true,
 
-scrollX:
-0,
+backgroundColor:"#ffffff",
 
-scrollY:
-0
+logging:false,
+
+scrollX:0,
+
+scrollY:0,
+
+windowWidth:760
+
 },
 
-jsPDF:
-{
-unit:
-"mm",
+jsPDF:{
 
-format:
-"a4",
+unit:"mm",
 
-orientation:
-"portrait"
+format:"a4",
+
+orientation:"portrait"
+
 },
 
-pagebreak:
-{
-mode:
-[
+pagebreak:{
+
+mode:[
 "css",
 "legacy"
 ],
 
-avoid:
-[
+avoid:[
 ".pdf-question",
 ".pdf-option",
 ".pdf-rule-box"
 ]
+
 }
 
 };
 
 
-await html2pdf()
+/* GENERATE */
 
+await html2pdf()
 .set(
 pdfOptions
 )
-
 .from(
 pdf
 )
-
 .save();
 
 
-pdf.remove();
+host.remove();
+
+host=null;
 
 
-pdf =
-null;
+if(button){
 
-
-if(
-button
-){
-
-button.innerHTML =
+button.innerHTML=
 "✅ PDF তৈরি হয়েছে";
 
 }
 
-
 setTimeout(
 ()=>{
 
-if(
-button
-){
+if(button){
 
-button.disabled =
-false;
+button.disabled=false;
 
-
-button.innerHTML =
+button.innerHTML=
 oldText;
 
 }
 
 },
-2500
+2000
 );
 
 
@@ -4601,32 +3696,25 @@ console.error(
 error
 );
 
-
 if(
-pdf
+host
 &&
-pdf.parentNode
+host.parentNode
 ){
 
-pdf.remove();
+host.remove();
 
 }
-
 
 alert(
 "PDF তৈরি করা যায়নি। আবার চেষ্টা করুন।"
 );
 
+if(button){
 
-if(
-button
-){
+button.disabled=false;
 
-button.disabled =
-false;
-
-
-button.innerHTML =
+button.innerHTML=
 oldText;
 
 }
@@ -4636,14 +3724,11 @@ oldText;
 }
 
 
-
 /* =========================
 SAFE HTML
 ========================= */
 
-function escapeHTML(
-value
-){
+function escapeHTML(value){
 
 return String(
 value ?? ""
@@ -4677,7 +3762,6 @@ value ?? ""
 }
 
 
-
 /* =========================
 BACK HISTORY
 ========================= */
@@ -4686,8 +3770,7 @@ window.addEventListener(
 "popstate",
 function(event){
 
-
-const target =
+const target=
 event.state
 &&
 event.state.view
@@ -4696,36 +3779,28 @@ event.state.view
 :
 "home";
 
-
 if(
-currentView === "exam"
+currentView==="exam"
 &&
 !submitted
 ){
 
-const leave =
+const leave=
 confirm(
 "পরীক্ষা এখনো শেষ হয়নি। আপনি কি পরীক্ষা থেকে বের হতে চান?"
 );
 
-
-if(
-!leave
-){
+if(!leave){
 
 history.pushState(
-{
-view:"exam"
-},
+{view:"exam"},
 "",
 "#exam"
 );
 
-
 return;
 
 }
-
 
 clearInterval(
 timerInterval
@@ -4733,10 +3808,7 @@ timerInterval
 
 }
 
-
-if(
-target === "home"
-){
+if(target==="home"){
 
 showHome();
 
@@ -4744,10 +3816,7 @@ return;
 
 }
 
-
-if(
-target === "subjects"
-){
+if(target==="subjects"){
 
 renderSubjectPage();
 
@@ -4755,10 +3824,7 @@ return;
 
 }
 
-
-if(
-target === "examlist"
-){
+if(target==="examlist"){
 
 renderExamListPage();
 
@@ -4766,10 +3832,7 @@ return;
 
 }
 
-
-if(
-target === "name"
-){
+if(target==="name"){
 
 renderNamePage();
 
@@ -4777,29 +3840,23 @@ return;
 
 }
 
-
 showHome();
 
 }
 );
 
 
-
 /* =========================
-ENTER KEY
+ENTER
 ========================= */
 
 document
-.getElementById(
-"studentName"
-)
+.getElementById("studentName")
 .addEventListener(
 "keydown",
 function(event){
 
-if(
-event.key === "Enter"
-){
+if(event.key==="Enter"){
 
 startExam();
 
@@ -4807,7 +3864,6 @@ startExam();
 
 }
 );
-
 
 
 /* =========================
@@ -4819,5 +3875,4 @@ showHome();
 </script>
 
 </body>
-
 </html>
