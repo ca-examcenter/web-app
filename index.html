@@ -124,6 +124,13 @@ button{
     color:#dbeafe;
 }
 
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.admin-btn,
 .home-btn{
     border:1px solid rgba(255,255,255,.3);
     background:rgba(255,255,255,.1);
@@ -131,6 +138,16 @@ button{
     padding:9px 12px;
     border-radius:10px;
     font-weight:700;
+}
+
+.admin-btn{
+    background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.10));
+    box-shadow:0 4px 12px rgba(0,0,0,.10);
+}
+
+.admin-btn:active,
+.home-btn:active{
+    transform:translateY(1px);
 }
 
 /* COMMON */
@@ -996,9 +1013,15 @@ button{
         font-size:9px;
     }
 
+    .header-actions{
+        gap:5px;
+    }
+
+    .admin-btn,
     .home-btn{
-        padding:7px 9px;
-        font-size:11px;
+        padding:7px 8px;
+        font-size:10px;
+        white-space:nowrap;
     }
 
     .level-grid,
@@ -1101,9 +1124,15 @@ Online Exam Platform
 
 </div>
 
+<div class="header-actions">
+<button class="admin-btn" onclick="openAdminPanel()">
+⚙ Admin Panel
+</button>
+
 <button class="home-btn" onclick="goHome()">
 ⌂ Home
 </button>
+</div>
 
 </div>
 </header>
@@ -1738,6 +1767,16 @@ examsData=[];
 }
 
 loadExams();
+
+
+/* ADMIN */
+
+function openAdminPanel(){
+
+    window.location.href =
+    GOOGLE_SCRIPT_URL + "?page=admin";
+
+}
 
 
 /* PAGE */
