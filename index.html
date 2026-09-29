@@ -1498,6 +1498,9 @@ const optionLabels=[
 ];
 
 let examsData=[];
+let examsLoading=true;
+let examsLoadError=false;
+const EXAMS_CACHE_KEY="conceptAcademyPublishedExamsV1";
 
 let currentLevel=null;
 let currentSubject=null;
@@ -1530,30 +1533,7 @@ history.replaceState(
 
 /* LOAD EXAMS */
 
-async function loadExams(){
-
-try{
-
-const response=
-await fetch(
-GOOGLE_SCRIPT_URL+
-"?action=publishedExams&_="+
-Date.now(),
-{
-cache:"no-store"
-}
-);
-
-if(!response.ok){
-
-throw new Error(
-"Published exams load failed"
-);
-
-}
-
-const data=
-await response.json();
+function normalizeExamPayload(data){
 
 const rawExams=
 data
@@ -1576,216 +1556,187 @@ typeof questions==="string"
 ){
 
 try{
-
-questions=
-JSON.parse(
-questions
-);
-
+questions=JSON.parse(questions);
 }
 catch(error){
-
 questions=[];
-
 }
 
 }
 
-if(
-!Array.isArray(questions)
-){
-
+if(!Array.isArray(questions)){
 questions=[];
-
 }
 
 return {
 
-id:
-String(
-exam.id
-||
-exam.examId
-||
-""
-),
-
-level:
-String(
-exam.level
-||
-""
-).toUpperCase(),
-
-subject:
-String(
-exam.subject
-||
-""
-),
-
-title:
-String(
-exam.title
-||
-exam.examTitle
-||
-"পরীক্ষা"
-),
-
-timeMinutes:
-Number(
-exam.timeMinutes
-||
-exam.time
-||
-10
-),
-
-published:
-exam.published!==false,
-
-startAt:
-String(
-exam.startAt
-||
-exam.StartAt
-||
-""
-),
-
-endAt:
-String(
-exam.endAt
-||
-exam.EndAt
-||
-""
-),
-
-examType:
-String(
-exam.examType
-||
-"MCQ"
-).toUpperCase(),
-
-questions:
-questions.map(question=>({
-
-q:
-String(
-question.q
-||
-question.question
-||
-question.text
-||
-""
-),
-
-options:
-Array.isArray(
-question.options
-)
-?
-question.options
-:
-[],
-
-answer:
-Number(
-question.answer
-),
-
-image:
-String(
-question.image
-||
-""
-)
-
+id:String(exam.id || exam.examId || ""),
+level:String(exam.level || "").toUpperCase(),
+subject:String(exam.subject || ""),
+title:String(exam.title || exam.examTitle || "পরীক্ষা"),
+timeMinutes:Number(exam.timeMinutes || exam.time || 10),
+published:exam.published!==false,
+startAt:String(exam.startAt || exam.StartAt || ""),
+endAt:String(exam.endAt || exam.EndAt || ""),
+examType:String(exam.examType || "MCQ").toUpperCase(),
+questions:questions.map(question=>({
+q:String(question.q || question.question || question.text || ""),
+options:Array.isArray(question.options) ? question.options : [],
+answer:Number(question.answer),
+image:String(question.image || "")
 }))
 
 };
 
 })
 .filter(exam=>
-
 exam.id
-&&
-exam.published!==false
-&&
-exam.examType==="MCQ"
-&&
-exam.questions.length>0
-
+&& exam.published!==false
+&& exam.examType==="MCQ"
+&& exam.questions.length>0
 );
 
-const seenIds=
-new Set();
+const seenIds=new Set();
 
-examsData=
-normalized.filter(exam=>{
-
-if(
-seenIds.has(
-exam.id
-)
-){
-
+return normalized.filter(exam=>{
+if(seenIds.has(exam.id)){
 return false;
-
 }
-
-seenIds.add(
-exam.id
-);
-
+seenIds.add(exam.id);
 return true;
-
 });
 
-if(
-openPrintLinkIfNeeded()
-){
-
-return;
-
 }
 
-if(
-currentView==="subjects"
-){
+function refreshVisibleExamViews(){
 
+if(currentView==="subjects"){
 renderSubjects();
-
 }
 
-if(
-currentView==="examlist"
-){
-
+if(currentView==="examlist"){
 renderExamList();
+}
 
 }
 
+function loadCachedExams(){
+
+try{
+const cached=localStorage.getItem(EXAMS_CACHE_KEY);
+if(!cached){
+return false;
+}
+
+const data=JSON.parse(cached);
+const cachedExams=normalizeExamPayload(data);
+
+if(cachedExams.length===0){
+return false;
+}
+
+examsData=cachedExams;
+examsLoading=false;
+refreshVisibleExamViews();
+return true;
 }
 catch(error){
+console.warn("Exam cache read failed:",error);
+return false;
+}
 
-console.error(
-"Exam load error:",
-error
+}
+
+function saveExamsCache(data){
+
+try{
+const json=JSON.stringify(data);
+
+/* Avoid filling WebView storage when question images are large. */
+if(json.length<2500000){
+localStorage.setItem(EXAMS_CACHE_KEY,json);
+}
+}
+catch(error){
+console.warn("Exam cache save skipped:",error);
+}
+
+}
+
+async function fetchPublishedExamsOnce(){
+
+const controller=new AbortController();
+const timeout=setTimeout(()=>controller.abort(),8000);
+
+try{
+const response=await fetch(
+GOOGLE_SCRIPT_URL+"?action=publishedExams&_="+Date.now(),
+{
+cache:"no-store",
+signal:controller.signal
+}
 );
 
-examsData=[];
+if(!response.ok){
+throw new Error("Published exams load failed");
+}
 
+return await response.json();
+}
+finally{
+clearTimeout(timeout);
 }
 
 }
 
+async function loadExams(){
+
+examsLoading=examsData.length===0;
+examsLoadError=false;
+refreshVisibleExamViews();
+
+let lastError=null;
+
+for(let attempt=1; attempt<=3; attempt++){
+
+try{
+const data=await fetchPublishedExamsOnce();
+
+examsData=normalizeExamPayload(data);
+examsLoading=false;
+examsLoadError=false;
+
+saveExamsCache(data);
+
+if(openPrintLinkIfNeeded()){
+return;
+}
+
+refreshVisibleExamViews();
+return;
+}
+catch(error){
+lastError=error;
+console.warn("Exam load attempt "+attempt+" failed:",error);
+
+if(attempt<3){
+await new Promise(resolve=>setTimeout(resolve,700*attempt));
+}
+}
+
+}
+
+examsLoading=false;
+examsLoadError=true;
+refreshVisibleExamViews();
+
+console.error("Exam load error:",lastError);
+
+}
+
+/* Show the last successful exam list immediately, then refresh from server. */
+loadCachedExams();
 loadExams();
-
 
 /* ADMIN */
 
@@ -1994,6 +1945,10 @@ count>0
 ?
 count+"টি পরীক্ষা প্রকাশিত"
 :
+examsLoading
+?
+"পরীক্ষা লোড হচ্ছে..."
+:
 "এখনো কোনো পরীক্ষা প্রকাশিত হয়নি"
 }
 </p>
@@ -2140,6 +2095,31 @@ exam.published!==false
 );
 
 list.innerHTML="";
+
+if(examsLoading && examsData.length===0){
+
+list.innerHTML=`
+<div class="empty-box">
+<div style="font-size:30px;">⏳</div>
+<h3>পরীক্ষা লোড হচ্ছে...</h3>
+<p style="margin-top:6px;">একটু অপেক্ষা করুন।</p>
+</div>`;
+
+return;
+}
+
+if(examsLoadError && examsData.length===0){
+
+list.innerHTML=`
+<div class="empty-box">
+<div style="font-size:30px;">⚠️</div>
+<h3>পরীক্ষা লোড করা যায়নি</h3>
+<p style="margin-top:6px;">ইন্টারনেট চেক করে আবার চেষ্টা করুন।</p>
+<button class="exam-start-btn" style="margin-top:12px;" onclick="loadExams()">আবার চেষ্টা করুন</button>
+</div>`;
+
+return;
+}
 
 if(
 exams.length===0
