@@ -100,8 +100,9 @@ button{
 .brand-line{
     display:flex;
     align-items:flex-end;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
     gap:6px;
+    white-space:nowrap;
 }
 
 .brand-name{
@@ -112,7 +113,7 @@ button{
 
 .by-shuvo{
     font-family:'Inter',sans-serif;
-    font-size:10px;
+    font-size:12px;
     color:#dbeafe;
     padding-bottom:3px;
 }
@@ -1006,7 +1007,7 @@ button{
     }
 
     .by-shuvo{
-        font-size:8px;
+        font-size:10px;
     }
 
     .brand-sub{
@@ -1129,9 +1130,6 @@ Online Exam Platform
 ⚙ Admin Panel
 </button>
 
-<button class="home-btn" onclick="goHome()">
-⌂ Home
-</button>
 </div>
 
 </div>
@@ -1514,6 +1512,8 @@ let timerInterval=null;
 
 let submitted=false;
 let examStartTime=null;
+let officialResultEligible=false;
+let officialAttemptStartedAt=null;
 
 let externalPrintAnswers=null;
 let externalPrintResult=null;
@@ -1644,6 +1644,24 @@ exam.time
 
 published:
 exam.published!==false,
+
+startAt:
+String(
+exam.startAt
+||
+exam.StartAt
+||
+""
+),
+
+endAt:
+String(
+exam.endAt
+||
+exam.EndAt
+||
+""
+),
 
 examType:
 String(
@@ -2048,6 +2066,60 @@ window.scrollTo(0,0);
 }
 
 
+/* EXAM TIMING */
+
+function parseExamTime(value){
+
+if(!value){
+return null;
+}
+
+const d=new Date(value);
+
+return isNaN(d.getTime())
+?
+null
+:
+d.getTime();
+
+}
+
+function getExamTimingState(exam){
+
+const now=Date.now();
+const start=parseExamTime(exam.startAt);
+const end=parseExamTime(exam.endAt);
+
+if(start && now<start){
+return "before";
+}
+
+if(end && now>end){
+return "late";
+}
+
+return "official";
+
+}
+
+function formatExamTime(value){
+
+const ms=parseExamTime(value);
+
+if(!ms){
+return "";
+}
+
+return new Date(ms).toLocaleString("bn-BD",{
+    year:"numeric",
+    month:"short",
+    day:"numeric",
+    hour:"numeric",
+    minute:"2-digit"
+});
+
+}
+
 /* EXAM LIST */
 
 function renderExamList(){
@@ -2107,6 +2179,30 @@ document.createElement(
 card.className=
 "exam-card";
 
+const timingState=getExamTimingState(exam);
+const startText=formatExamTime(exam.startAt);
+const endText=formatExamTime(exam.endAt);
+
+let timingText="";
+
+if(startText || endText){
+    timingText=`<div class="exam-meta" style="margin-top:6px;">`;
+
+    if(startText){
+        timingText+=`শুরু: ${startText}`;
+    }
+
+    if(startText && endText){
+        timingText+=` &nbsp; • &nbsp; `;
+    }
+
+    if(endText){
+        timingText+=`শেষ: ${endText}`;
+    }
+
+    timingText+=`</div>`;
+}
+
 card.innerHTML=`
 
 <div>
@@ -2125,6 +2221,8 @@ ${exam.timeMinutes} মিনিট
 
 </div>
 
+${timingText}
+
 </div>
 
 `;
@@ -2137,8 +2235,18 @@ document.createElement(
 button.className=
 "exam-start-btn";
 
-button.innerText=
-"পরীক্ষা দিন →";
+if(timingState==="before"){
+    button.innerText="এখনও শুরু হয়নি";
+    button.disabled=true;
+    button.style.opacity=".55";
+    button.style.cursor="not-allowed";
+}
+else if(timingState==="late"){
+    button.innerText="পরীক্ষা দিন (Late) →";
+}
+else{
+    button.innerText="পরীক্ষা দিন →";
+}
 
 button.addEventListener(
 "click",
@@ -2248,12 +2356,37 @@ return;
 
 }
 
+const timingState=getExamTimingState(currentExam);
+
+if(timingState==="before"){
+
+alert(
+"এই পরীক্ষা এখনও শুরু হয়নি। নির্ধারিত সময় শুরু হলে আবার চেষ্টা করুন।"
+);
+
+return;
+
+}
+
 studentName=name;
 
 submitted=false;
 
 examStartTime=
 Date.now();
+
+officialAttemptStartedAt=examStartTime;
+
+officialResultEligible=
+timingState==="official";
+
+if(!officialResultEligible){
+
+alert(
+"নির্ধারিত Result Window শেষ হয়েছে। আপনি পরীক্ষা দিতে পারবেন, তবে এই attempt-এর নম্বর Results Sheet-এ যোগ হবে না।"
+);
+
+}
 
 timeLeft=
 Number(
@@ -3033,6 +3166,18 @@ item=>item.id===currentSubject
 );
 
 const data={
+
+action:
+"saveResult",
+
+examId:
+currentExam.id,
+
+startedAt:
+officialAttemptStartedAt,
+
+eligibleForResultSheet:
+officialResultEligible,
 
 level:
 currentLevel,
