@@ -1742,8 +1742,37 @@ loadExams();
 
 function openAdminPanel(){
 
-    window.location.href =
-    GOOGLE_SCRIPT_URL + "?page=admin";
+const adminUrl=
+GOOGLE_SCRIPT_URL + "?page=admin";
+
+try{
+
+if(
+window.AppInventor
+&&
+typeof window.AppInventor.setWebViewString==="function"
+){
+
+window.AppInventor.setWebViewString(
+adminUrl
+);
+
+return;
+
+}
+
+}
+catch(error){
+
+console.error(
+"Admin browser trigger failed:",
+error
+);
+
+}
+
+/* Browser fallback */
+window.location.href=adminUrl;
 
 }
 
