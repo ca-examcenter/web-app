@@ -1742,38 +1742,97 @@ loadExams();
 
 function openAdminPanel(){
 
-const adminUrl=
-GOOGLE_SCRIPT_URL + "?page=admin";
+    const adminUrl = GOOGLE_SCRIPT_URL + "?page=admin";
 
-try{
+    // Prevent duplicate chooser if the button is tapped repeatedly.
+    if(document.getElementById("adminOpenChoiceOverlay")) return;
 
-if(
-window.AppInventor
-&&
-typeof window.AppInventor.setWebViewString==="function"
-){
+    const overlay = document.createElement("div");
+    overlay.id = "adminOpenChoiceOverlay";
+    overlay.style.cssText = [
+      "position:fixed",
+      "inset:0",
+      "z-index:99999",
+      "background:rgba(2,6,23,.62)",
+      "display:flex",
+      "align-items:center",
+      "justify-content:center",
+      "padding:20px"
+    ].join(";");
 
-window.AppInventor.setWebViewString(
-adminUrl
-);
+    const box = document.createElement("div");
+    box.style.cssText = [
+      "width:min(420px,100%)",
+      "background:#fff",
+      "border-radius:18px",
+      "padding:22px",
+      "box-shadow:0 20px 60px rgba(0,0,0,.28)",
+      "font-family:Inter,Arial,sans-serif"
+    ].join(";");
 
-return;
+    const title = document.createElement("div");
+    title.textContent = "Admin Panel কোথায় খুলবেন?";
+    title.style.cssText = "font-size:20px;font-weight:800;color:#0f172a;margin-bottom:8px";
 
-}
+    const text = document.createElement("div");
+    text.textContent = "অ্যাপে চালিয়ে যেতে পারেন, অথবা Gallery থেকে ছবি নেওয়ার সুবিধার জন্য ওয়েবে খুলতে পারেন।";
+    text.style.cssText = "font-size:14px;line-height:1.6;color:#475569;margin-bottom:18px";
 
-}
-catch(error){
+    const appBtn = document.createElement("button");
+    appBtn.type = "button";
+    appBtn.textContent = "📱 অ্যাপেই চালাবো";
+    appBtn.style.cssText = "width:100%;border:0;border-radius:12px;padding:13px 14px;background:#2563eb;color:#fff;font-size:15px;font-weight:800;margin-bottom:10px";
 
-console.error(
-"Admin browser trigger failed:",
-error
-);
+    const webBtn = document.createElement("button");
+    webBtn.type = "button";
+    webBtn.textContent = "🌐 ওয়েবে খুলবো";
+    webBtn.style.cssText = "width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:13px 14px;background:#fff;color:#0f172a;font-size:15px;font-weight:800;margin-bottom:10px";
 
-}
+    const cancelBtn = document.createElement("button");
+    cancelBtn.type = "button";
+    cancelBtn.textContent = "বাতিল";
+    cancelBtn.style.cssText = "width:100%;border:0;background:transparent;color:#64748b;padding:8px;font-size:14px;font-weight:700";
 
-/* Browser fallback */
-window.location.href=adminUrl;
+    function closeChoice(){
+      if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    }
 
+    appBtn.onclick = function(){
+      closeChoice();
+      // Stay inside MIT App Inventor WebViewer.
+      window.location.href = adminUrl;
+    };
+
+    webBtn.onclick = function(){
+      closeChoice();
+
+      // In the Android app, the existing WebViewStringChanged / ActivityStarter
+      // blocks can receive this URL and open it in Chrome.
+      try{
+        if(window.AppInventor && typeof window.AppInventor.setWebViewString === "function"){
+          window.AppInventor.setWebViewString(adminUrl);
+          return;
+        }
+      }catch(error){
+        console.error("Admin external-browser trigger failed:", error);
+      }
+
+      // Normal browser fallback.
+      window.location.href = adminUrl;
+    };
+
+    cancelBtn.onclick = closeChoice;
+    overlay.onclick = function(event){
+      if(event.target === overlay) closeChoice();
+    };
+
+    box.appendChild(title);
+    box.appendChild(text);
+    box.appendChild(appBtn);
+    box.appendChild(webBtn);
+    box.appendChild(cancelBtn);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
 }
 
 
