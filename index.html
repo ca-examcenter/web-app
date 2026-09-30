@@ -15,6 +15,21 @@ content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
 
+<!-- Global MathJax support for MCQ/CQ/exam/review/print -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']],
+    processEscapes: true
+  },
+  options: {
+    skipHtmlTags: ['script','noscript','style','textarea','pre','code']
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <style>
 :root{
     --navy:#10245f;
@@ -2523,6 +2538,105 @@ window.scrollTo(0,0);
 
 /* QUESTIONS */
 
+
+/* GLOBAL MATH / LATEX RENDERING */
+function nonBanglaChunkLooksLikeMath(chunk){
+
+const value=String(chunk || "");
+
+if(!value.trim()) return false;
+
+return /\\(?:frac|sqrt|log|ln|left|right|times|div|cdot|sin|cos|tan|cot|sec|csc|theta|alpha|beta|gamma|delta|pi|sum|int|lim|text|mathrm|mathbf|overline|underline|vec|pm|mp|le|ge|neq|approx|infty|because|therefore)\b/.test(value)
+|| /\^[{A-Za-z0-9(]/.test(value)
+|| /_[{A-Za-z0-9(]/.test(value)
+|| /[A-Za-z0-9)}]\s*=\s*[A-Za-z0-9\\({]/.test(value)
+|| /[A-Za-z0-9)}]\s*[+\-*/]\s*[A-Za-z0-9\\({]/.test(value);
+
+}
+
+function latexAwareHtml(rawText){
+
+const text=String(rawText ?? "").replace(/\r/g,"");
+const lines=text.split("\n");
+const output=[];
+
+for(let lineIndex=0; lineIndex<lines.length; lineIndex++){
+
+const line=lines[lineIndex];
+const parts=line.split(/([\u0980-\u09FF]+)/g);
+let lineHtml="";
+
+for(let i=0;i<parts.length;i++){
+
+const part=parts[i];
+if(!part) continue;
+
+if(/[\u0980-\u09FF]/.test(part)){
+lineHtml+=escapeHTML(part);
+}
+else if(nonBanglaChunkLooksLikeMath(part)){
+
+const leading=(part.match(/^\s*/) || [""])[0];
+const trailing=(part.match(/\s*$/) || [""])[0];
+const core=part.slice(leading.length,part.length-trailing.length);
+
+if(core){
+lineHtml+=escapeHTML(leading)+"\\("+escapeHTML(core)+"\\)"+escapeHTML(trailing);
+}
+else{
+lineHtml+=escapeHTML(part);
+}
+
+}
+else{
+lineHtml+=escapeHTML(part);
+}
+
+}
+
+output.push(lineHtml);
+}
+
+return output.join("<br>");
+}
+
+function typesetMathPromise(element,retryCount=0){
+
+if(!element) return Promise.resolve();
+
+if(window.MathJax && MathJax.typesetPromise){
+try{
+if(MathJax.typesetClear) MathJax.typesetClear([element]);
+return MathJax.typesetPromise([element]).catch(err=>{
+console.log("MathJax render error",err);
+});
+}catch(err){
+console.log("MathJax render error",err);
+return Promise.resolve();
+}
+}
+
+if(retryCount<24){
+return new Promise(resolve=>{
+setTimeout(()=>{
+typesetMathPromise(element,retryCount+1).then(resolve);
+},250);
+});
+}
+
+return Promise.resolve();
+}
+
+function typesetMath(element){
+typesetMathPromise(element);
+}
+
+function renderMathInto(element,rawText){
+if(!element) return;
+element.innerHTML=latexAwareHtml(rawText);
+typesetMath(element);
+}
+
 function renderQuestions(){
 
 const container=
@@ -2564,8 +2678,8 @@ document.createElement(
 title.className=
 "question-text";
 
-title.innerText=
-question.q;
+title.innerHTML=
+latexAwareHtml(question.q);
 
 const optionsBox=
 document.createElement(
@@ -2623,8 +2737,16 @@ span.appendChild(
 strong
 );
 
+const optionMath=
+document.createElement(
+"span"
+);
+
+optionMath.innerHTML=
+latexAwareHtml(option);
+
 span.appendChild(
-document.createTextNode(option)
+optionMath
 );
 
 label.appendChild(
@@ -2658,6 +2780,8 @@ card
 );
 
 });
+
+typesetMath(container);
 
 }
 
@@ -2960,8 +3084,8 @@ document.createElement(
 q.className=
 "review-q";
 
-q.innerText=
-`${index+1}. ${question.q}`;
+q.innerHTML=
+`<strong>${index+1}.</strong> ${latexAwareHtml(question.q)}`;
 
 const status=
 document.createElement(
@@ -3043,8 +3167,8 @@ document.createElement(
 "span"
 );
 
-left.innerText=
-`(${optionLabels[optIndex]}) ${option}`;
+left.innerHTML=
+`<strong>(${optionLabels[optIndex]})</strong> ${latexAwareHtml(option)}`;
 
 const note=
 document.createElement(
@@ -3197,6 +3321,8 @@ answerReview.innerHTML="";
 answerReview.appendChild(
 review
 );
+
+typesetMath(answerReview);
 
 window.scrollTo(0,0);
 
@@ -3938,7 +4064,7 @@ html+=`
 
 <div class="print-q-text">
 
-${escapeHTML(
+${latexAwareHtml(
 question.q
 )}
 
@@ -4008,7 +4134,7 @@ html+=`
 
 </strong>
 
-${escapeHTML(
+${latexAwareHtml(
 option
 )}
 
@@ -4073,6 +4199,8 @@ window.print();
 
 };
 
+const continuePrintAfterFonts=()=>{
+
 if(
 document.fonts
 &&
@@ -4114,6 +4242,11 @@ else{
 doPrint();
 
 }
+
+};
+
+/* Wait for equations to render before printing/PDF */
+typesetMathPromise(printSheet).then(continuePrintAfterFonts);
 
 }
 
