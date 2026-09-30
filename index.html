@@ -521,6 +521,15 @@ button{
     margin-bottom:9px;
 }
 
+.question-stimulus-image{
+    display:block;
+    max-width:100%;
+    max-height:320px;
+    object-fit:contain;
+    margin:4px auto 12px;
+    border-radius:10px;
+}
+
 .question-text{
     font-weight:700;
     line-height:1.7;
@@ -680,6 +689,15 @@ button{
 .review-card.unanswered{
     background:#fffbeb;
     border-left:5px solid #f59e0b;
+}
+
+.review-stimulus-image{
+    display:block;
+    max-width:100%;
+    max-height:320px;
+    object-fit:contain;
+    margin:0 auto 10px;
+    border-radius:10px;
 }
 
 .review-q{
@@ -937,6 +955,15 @@ button{
     font-size:9px;
     font-weight:800;
     margin-bottom:7px;
+}
+
+.print-stimulus-image{
+    display:block;
+    max-width:100%;
+    max-height:220px;
+    object-fit:contain;
+    margin:0 auto 8px;
+    border-radius:8px;
 }
 
 .print-q-text{
@@ -2767,6 +2794,14 @@ card.appendChild(
 badge
 );
 
+if(question.image){
+const stimulusImage=document.createElement("img");
+stimulusImage.className="question-stimulus-image";
+stimulusImage.src=question.image;
+stimulusImage.alt="প্রশ্নের উদ্দীপক চিত্র";
+card.appendChild(stimulusImage);
+}
+
 card.appendChild(
 title
 );
@@ -3218,6 +3253,14 @@ row
 );
 
 });
+
+if(question.image){
+const stimulusImage=document.createElement("img");
+stimulusImage.className="review-stimulus-image";
+stimulusImage.src=question.image;
+stimulusImage.alt="প্রশ্নের উদ্দীপক চিত্র";
+card.appendChild(stimulusImage);
+}
 
 card.appendChild(
 q
@@ -4061,6 +4104,8 @@ html+=`
 প্রশ্ন ${index+1}
 
 </div>
+
+${question.image ? `<img class="print-stimulus-image" src="${safeHtml(question.image)}" alt="প্রশ্নের উদ্দীপক চিত্র">` : ""}
 
 <div class="print-q-text">
 
