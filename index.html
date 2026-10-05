@@ -3781,7 +3781,34 @@ if(browserPrintStatus){
 /* Build the printable sheet in advance. Do not call window.print() here.
    Mobile Chrome may block print dialogs that are opened later from a timer/promise. */
 setTimeout(()=>{
-  prepareAndPrintPDF();
+  try{
+    prepareAndPrintPDF();
+  }
+  catch(error){
+    console.error("PDF preparation failed:",error);
+    printSheetReady=false;
+
+    const browserPrintBtn=document.getElementById("browserPrintBtn");
+    const browserPrintStatus=document.getElementById("browserPrintStatus");
+
+    if(browserPrintBtn){
+      browserPrintBtn.disabled=false;
+      browserPrintBtn.innerText="↻ আবার PDF প্রস্তুত করুন";
+      browserPrintBtn.onclick=function(){
+        try{
+          prepareAndPrintPDF();
+        }
+        catch(retryError){
+          console.error("PDF retry failed:",retryError);
+          alert("PDF প্রস্তুত করা যায়নি। পেজটি Refresh করে আবার চেষ্টা করুন।");
+        }
+      };
+    }
+
+    if(browserPrintStatus){
+      browserPrintStatus.innerText="PDF প্রস্তুত করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।";
+    }
+  }
 },100);
 
 return true;
@@ -4160,7 +4187,7 @@ html+=`
 
 </div>
 
-${question.image ? `<img class="print-stimulus-image" src="${safeHtml(question.image)}" alt="প্রশ্নের উদ্দীপক চিত্র">` : ""}
+${question.image ? `<img class="print-stimulus-image" src="${escapeHTML(question.image)}" alt="প্রশ্নের উদ্দীপক চিত্র">` : ""}
 
 <div class="print-q-text">
 
@@ -4289,12 +4316,9 @@ printSheet.querySelector(
 ".print-logo"
 );
 
-let printReadyMarked=false;
-
-const markPrintReady=()=>{
-
-if(printReadyMarked) return;
-printReadyMarked=true;
+/* Printable HTML already exists at this point.
+   Enable the button immediately so Android Chrome can never get stuck on
+   “PDF প্রস্তুত হচ্ছে...”. MathJax/fonts/logo can finish in the background. */
 printSheetReady=true;
 
 const browserPrintBtn=document.getElementById("browserPrintBtn");
@@ -4309,36 +4333,19 @@ if(browserPrintStatus){
   browserPrintStatus.innerText="PDF প্রস্তুত। এখন উপরের বাটনে চাপুন।";
 }
 
-};
-
-/* IMPORTANT:
-   Android Chrome/WebView-এ MathJax, web-font বা logo load promise কখনও
-   resolve না করলে আগের version-এ button চিরকাল 'PDF প্রস্তুত হচ্ছে' অবস্থায়
-   আটকে থাকত। তাই printable HTML তৈরি হওয়ার পর একটি hard timeout দিয়ে
-   button অবশ্যই enable করা হচ্ছে। MathJax/fonts background-এ render হতে থাকবে. */
-setTimeout(markPrintReady,900);
-
 try{
   const mathWork=typesetMathPromise(printSheet);
-  if(mathWork && typeof mathWork.then==="function"){
-    mathWork.then(function(){
-      /* Math ready হলে আরও একটু সময় logo/font-এর জন্য; কিন্তু এগুলোর জন্য
-         print button আর block করা হবে না। */
-      setTimeout(markPrintReady,100);
-    }).catch(function(){
-      markPrintReady();
+  if(mathWork && typeof mathWork.catch==="function"){
+    mathWork.catch(function(error){
+      console.error("Math render failed:",error);
     });
-  }
-  else{
-    markPrintReady();
   }
 }
 catch(error){
-  console.error("Printable answer sheet render failed:",error);
-  markPrintReady();
+  console.error("Math render failed:",error);
 }
 
-/* Let logo load in the background; failure must never block printing. */
+/* Logo loading must never block printing. */
 if(logo && !logo.complete){
   logo.onload=function(){};
   logo.onerror=function(){};
