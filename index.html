@@ -792,6 +792,11 @@ button{
     font-weight:800;
 }
 
+.browser-print-btn:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+}
+
 /* PRINT */
 
 #printSheet{
@@ -1470,11 +1475,17 @@ class="page hidden"
 </p>
 
 <button
+id="browserPrintBtn"
 class="browser-print-btn"
-onclick="prepareAndPrintPDF()"
+onclick="printPreparedPDF()"
+disabled
 >
-📄 Save as PDF / Print
+⏳ PDF প্রস্তুত হচ্ছে...
 </button>
+
+<p id="browserPrintStatus" style="margin-top:10px;font-size:12px;">
+উত্তরপত্র প্রস্তুত হচ্ছে...
+</p>
 
 </div>
 
@@ -1563,6 +1574,7 @@ let officialAttemptStartedAt=null;
 
 let externalPrintAnswers=null;
 let externalPrintResult=null;
+let printSheetReady=false;
 
 
 /* HISTORY */
@@ -3752,11 +3764,25 @@ document
 "hidden"
 );
 
+printSheetReady=false;
+
+const browserPrintBtn=document.getElementById("browserPrintBtn");
+const browserPrintStatus=document.getElementById("browserPrintStatus");
+
+if(browserPrintBtn){
+  browserPrintBtn.disabled=true;
+  browserPrintBtn.innerText="⏳ PDF প্রস্তুত হচ্ছে...";
+}
+
+if(browserPrintStatus){
+  browserPrintStatus.innerText="উত্তরপত্র প্রস্তুত হচ্ছে...";
+}
+
+/* Build the printable sheet in advance. Do not call window.print() here.
+   Mobile Chrome may block print dialogs that are opened later from a timer/promise. */
 setTimeout(()=>{
-
-prepareAndPrintPDF();
-
-},1000);
+  prepareAndPrintPDF();
+},100);
 
 return true;
 
@@ -3764,6 +3790,20 @@ return true;
 
 
 /* PRINT PDF */
+
+function printPreparedPDF(){
+
+if(!printSheetReady){
+  alert("PDF এখনো প্রস্তুত হচ্ছে। একটু অপেক্ষা করে আবার চাপুন।");
+  return;
+}
+
+/* IMPORTANT: keep window.print() directly inside the user's click event.
+   This makes Android Chrome reliably open the system print / Save as PDF dialog. */
+window.print();
+
+}
+
 
 function prepareAndPrintPDF(){
 
@@ -4249,64 +4289,69 @@ printSheet.querySelector(
 ".print-logo"
 );
 
-const doPrint=()=>{
+const markPrintReady=()=>{
 
-setTimeout(()=>{
+printSheetReady=true;
 
-window.print();
+const browserPrintBtn=document.getElementById("browserPrintBtn");
+const browserPrintStatus=document.getElementById("browserPrintStatus");
 
-},300);
-
-};
-
-const continuePrintAfterFonts=()=>{
-
-if(
-document.fonts
-&&
-document.fonts.ready
-){
-
-document.fonts.ready
-.then(()=>{
-
-if(
-logo
-&&
-!logo.complete
-){
-
-logo.onload=
-doPrint;
-
-logo.onerror=
-doPrint;
-
-setTimeout(
-doPrint,
-1200
-);
-
-}
-else{
-
-doPrint();
-
+if(browserPrintBtn){
+  browserPrintBtn.disabled=false;
+  browserPrintBtn.innerText="📄 Save as PDF / Print";
 }
 
-});
-
-}
-else{
-
-doPrint();
-
+if(browserPrintStatus){
+  browserPrintStatus.innerText="PDF প্রস্তুত। এখন উপরের বাটনে চাপুন।";
 }
 
 };
 
-/* Wait for equations to render before printing/PDF */
-typesetMathPromise(printSheet).then(continuePrintAfterFonts);
+const waitForLogoThenReady=()=>{
+
+const finish=()=>{
+  markPrintReady();
+};
+
+if(logo && !logo.complete){
+
+  let finished=false;
+
+  const doneOnce=()=>{
+    if(finished) return;
+    finished=true;
+    finish();
+  };
+
+  logo.onload=doneOnce;
+  logo.onerror=doneOnce;
+  setTimeout(doneOnce,1500);
+
+}
+else{
+  finish();
+}
+
+};
+
+const waitForFontsThenLogo=()=>{
+
+if(document.fonts && document.fonts.ready){
+  document.fonts.ready
+    .then(waitForLogoThenReady)
+    .catch(waitForLogoThenReady);
+}
+else{
+  waitForLogoThenReady();
+}
+
+};
+
+/* Build MathJax and assets first. The actual print dialog is opened only
+   by printPreparedPDF() from the user's button tap. */
+typesetMathPromise(printSheet)
+  .then(waitForFontsThenLogo)
+  .catch(waitForFontsThenLogo);
 
 }
 
