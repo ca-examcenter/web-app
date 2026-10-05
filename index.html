@@ -4289,8 +4289,12 @@ printSheet.querySelector(
 ".print-logo"
 );
 
+let printReadyMarked=false;
+
 const markPrintReady=()=>{
 
+if(printReadyMarked) return;
+printReadyMarked=true;
 printSheetReady=true;
 
 const browserPrintBtn=document.getElementById("browserPrintBtn");
@@ -4307,51 +4311,38 @@ if(browserPrintStatus){
 
 };
 
-const waitForLogoThenReady=()=>{
+/* IMPORTANT:
+   Android Chrome/WebView-এ MathJax, web-font বা logo load promise কখনও
+   resolve না করলে আগের version-এ button চিরকাল 'PDF প্রস্তুত হচ্ছে' অবস্থায়
+   আটকে থাকত। তাই printable HTML তৈরি হওয়ার পর একটি hard timeout দিয়ে
+   button অবশ্যই enable করা হচ্ছে। MathJax/fonts background-এ render হতে থাকবে. */
+setTimeout(markPrintReady,900);
 
-const finish=()=>{
+try{
+  const mathWork=typesetMathPromise(printSheet);
+  if(mathWork && typeof mathWork.then==="function"){
+    mathWork.then(function(){
+      /* Math ready হলে আরও একটু সময় logo/font-এর জন্য; কিন্তু এগুলোর জন্য
+         print button আর block করা হবে না। */
+      setTimeout(markPrintReady,100);
+    }).catch(function(){
+      markPrintReady();
+    });
+  }
+  else{
+    markPrintReady();
+  }
+}
+catch(error){
+  console.error("Printable answer sheet render failed:",error);
   markPrintReady();
-};
+}
 
+/* Let logo load in the background; failure must never block printing. */
 if(logo && !logo.complete){
-
-  let finished=false;
-
-  const doneOnce=()=>{
-    if(finished) return;
-    finished=true;
-    finish();
-  };
-
-  logo.onload=doneOnce;
-  logo.onerror=doneOnce;
-  setTimeout(doneOnce,1500);
-
+  logo.onload=function(){};
+  logo.onerror=function(){};
 }
-else{
-  finish();
-}
-
-};
-
-const waitForFontsThenLogo=()=>{
-
-if(document.fonts && document.fonts.ready){
-  document.fonts.ready
-    .then(waitForLogoThenReady)
-    .catch(waitForLogoThenReady);
-}
-else{
-  waitForLogoThenReady();
-}
-
-};
-
-/* Build MathJax and assets first. The actual print dialog is opened only
-   by printPreparedPDF() from the user's button tap. */
-typesetMathPromise(printSheet)
-  .then(waitForFontsThenLogo)
-  .catch(waitForFontsThenLogo);
 
 }
 
