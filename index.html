@@ -207,142 +207,6 @@ button{
     margin-bottom:20px;
 }
 
-
-/* STARTUP SESSION CHECK */
-
-.startup-auth-page{
-    min-height:calc(100vh - 88px);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:28px 14px 55px;
-}
-
-.startup-auth-card{
-    width:min(430px,100%);
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:28px;
-    text-align:center;
-    box-shadow:0 12px 36px rgba(15,23,42,.08);
-}
-
-.startup-auth-card h2{
-    color:var(--navy);
-    font-size:22px;
-}
-
-.startup-auth-card p{
-    color:var(--muted);
-    margin-top:8px;
-}
-
-/* STUDENT LOGIN */
-
-.login-page{
-    min-height:calc(100vh - 88px);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:28px 14px 55px;
-}
-
-.login-card{
-    width:min(430px,100%);
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:28px;
-    box-shadow:0 12px 36px rgba(15,23,42,.08);
-}
-
-.login-card h2{
-    color:var(--navy);
-    font-size:26px;
-}
-
-.login-card p{
-    color:var(--muted);
-    margin-top:6px;
-    margin-bottom:20px;
-}
-
-.login-field{
-    margin-bottom:13px;
-}
-
-.login-field label{
-    display:block;
-    font-size:12px;
-    font-weight:800;
-    margin-bottom:6px;
-}
-
-.login-field input{
-    width:100%;
-    padding:13px;
-    border:2px solid #dbe4ef;
-    border-radius:11px;
-    outline:none;
-    font-size:16px;
-}
-
-.login-field input:focus{
-    border-color:#2563eb;
-}
-
-.remember-login{
-    display:flex;
-    align-items:flex-start;
-    gap:10px;
-    margin:2px 0 16px;
-    cursor:pointer;
-    user-select:none;
-    color:var(--muted);
-    font-size:13px;
-    font-weight:700;
-    line-height:1.35;
-}
-
-.remember-login input{
-    width:18px;
-    height:18px;
-    margin:0;
-    flex:0 0 auto;
-    accent-color:#2563eb;
-}
-
-.login-message{
-    min-height:20px;
-    margin-top:10px;
-    color:#b91c1c;
-    font-size:12px;
-    font-weight:700;
-}
-
-.student-header-chip{
-    display:none;
-    font-family:'Inter',sans-serif;
-    font-size:11px;
-    font-weight:800;
-    color:#fff;
-    padding:8px 10px;
-    border-radius:10px;
-    border:1px solid rgba(255,255,255,.25);
-    background:rgba(255,255,255,.12);
-}
-
-.logout-btn{
-    display:none;
-    border:1px solid rgba(255,255,255,.3);
-    background:rgba(255,255,255,.10);
-    color:#fff;
-    padding:9px 11px;
-    border-radius:10px;
-    font-weight:800;
-}
-
 /* HOME */
 
 .home-hero{
@@ -1270,8 +1134,6 @@ button{
     }
 
     .site-header,
-    #startupPage,
-    #loginPage,
     #homePage,
     #subjectPage,
     #examListPage,
@@ -1311,8 +1173,6 @@ Online Exam Platform
 </div>
 
 <div class="header-actions">
-<span id="studentHeaderChip" class="student-header-chip"></span>
-<button id="studentLogoutBtn" class="logout-btn" onclick="logoutStudent()">Logout</button>
 <button class="admin-btn" onclick="openAdminPanel()">
 ⚙ Admin Panel
 </button>
@@ -1322,55 +1182,9 @@ Online Exam Platform
 </div>
 </header>
 
-<!-- STARTUP SESSION CHECK -->
-
-<section id="startupPage" class="startup-auth-page">
-<div class="startup-auth-card">
-<div class="eyebrow">CONCEPT ACADEMY</div>
-<h2>Login status যাচাই হচ্ছে...</h2>
-<p id="startupStatusText">একটু অপেক্ষা করুন।</p>
-</div>
-</section>
-
-<!-- STUDENT LOGIN -->
-
-<section id="loginPage" class="login-page hidden">
-
-<div class="login-card">
-
-<div class="eyebrow">STUDENT LOGIN</div>
-
-<h2>Concept Academy</h2>
-<p>আপনার Student ID এবং PIN দিয়ে Login করুন।</p>
-
-<div class="login-field">
-<label>Student ID (English Name)</label>
-<input id="studentLoginId" type="text" placeholder="যেমন: Rahim Hasan" autocomplete="username">
-</div>
-
-<div class="login-field">
-<label>PIN</label>
-<input id="studentLoginPin" type="password" inputmode="numeric" placeholder="আপনার PIN" autocomplete="current-password">
-</div>
-
-<label class="remember-login">
-<input id="rememberLogin" type="checkbox">
-<span>এই ডিভাইসে লগইন সেভ করে রাখুন</span>
-</label>
-
-<button id="studentLoginBtn" class="big-btn" style="margin-top:3px;" onclick="loginStudent()">
-Login →
-</button>
-
-<div id="studentLoginMessage" class="login-message"></div>
-
-</div>
-
-</section>
-
 <!-- HOME -->
 
-<section id="homePage" class="page hidden">
+<section id="homePage" class="page">
 
 <div class="home-hero">
 
@@ -1378,19 +1192,19 @@ Login →
 ONLINE EXAM
 </div>
 
-<h2 id="homeWelcomeTitle">
+<h2>
 আপনার পরীক্ষার সেকশন নির্বাচন করুন
 </h2>
 
-<p id="homeWelcomeText">
-আপনার জন্য Assigned পরীক্ষাগুলো এখান থেকে দেখুন।
+<p>
+SSC অথবা HSC সেকশনে প্রবেশ করে আপনার বিষয় ও পরীক্ষা নির্বাচন করুন।
 </p>
 
 </div>
 
 <div class="level-grid">
 
-<div id="sscLevelCard" class="level-card" onclick="openLevel('SSC')">
+<div class="level-card" onclick="openLevel('SSC')">
 
 <div class="level-top">
 <div class="level-icon">📘</div>
@@ -1409,7 +1223,7 @@ SSC পরীক্ষাসমূহ দেখুন →
 
 </div>
 
-<div id="hscLevelCard" class="level-card" onclick="openLevel('HSC')">
+<div class="level-card" onclick="openLevel('HSC')">
 
 <div class="level-top">
 <div class="level-icon">🎓</div>
@@ -1497,16 +1311,15 @@ START EXAM
 <p class="selected-exam" id="selectedExamTitle"></p>
 
 <label style="font-weight:700;display:block;margin-bottom:7px;">
-Student ID
+পরীক্ষার্থীর নাম
 </label>
 
 <input
 id="studentName"
 class="student-name-input"
 type="text"
-placeholder="Student ID"
+placeholder="আপনার সম্পূর্ণ নাম লিখুন"
 autocomplete="name"
-readonly
 >
 
 <button class="big-btn" onclick="startExam()">
@@ -1738,23 +1551,10 @@ const optionLabels=[
 ];
 
 let examsData=[];
-let examsLoading=false;
+let examsLoading=true;
 let examsLoadError=false;
-
-const STUDENT_SESSION_KEY="conceptAcademyStudentSessionV1";
-const STUDENT_SESSION_COOKIE="conceptAcademyStudentSessionV1";
-const STUDENT_SESSION_COOKIE_MAX_AGE=60*60*24*365;
-const APP_SESSION_SAVE_PREFIX="CA_SESSION_SAVE|";
-const APP_SESSION_LOAD_PREFIX="CA_SESSION_LOAD|";
-const APP_SESSION_CLEAR_COMMAND="CA_SESSION_CLEAR";
-let studentToken="";
-let currentStudent=null;
-let rememberStudentLogin=false;
-
-try{
-  localStorage.removeItem("conceptAcademyPublishedExamsV1");
-  localStorage.removeItem("conceptAcademyPublishedExamsV2");
-}catch(e){}
+const EXAMS_CACHE_KEY="conceptAcademyPublishedExamsV2";
+try{ localStorage.removeItem("conceptAcademyPublishedExamsV1"); }catch(e){}
 
 let currentLevel=null;
 let currentSubject=null;
@@ -1779,365 +1579,14 @@ let printSheetReady=false;
 
 /* HISTORY */
 
-/* Preserve startup query parameters such as ?ca_session=... and ?print=1.
-   bootStudentApp() must read them before history is rewritten. */
-if(!window.location.search){
-  history.replaceState(
-    {view:"login"},
-    "",
-    "#login"
-  );
-}
+history.replaceState(
+{view:"home"},
+"",
+"#home"
+);
 
 
-/* STUDENT SESSION + PERSONAL EXAMS */
-
-function hasAppInventorBridge_(){
-  try{
-    return !!(
-      window.AppInventor &&
-      typeof window.AppInventor.setWebViewString === "function" &&
-      typeof window.AppInventor.getWebViewString === "function"
-    );
-  }catch(error){
-    return false;
-  }
-}
-
-
-function saveStudentSessionToApp_(raw){
-  if(!raw || !hasAppInventorBridge_()) return;
-
-  try{
-    window.AppInventor.setWebViewString(
-      APP_SESSION_SAVE_PREFIX + encodeURIComponent(String(raw))
-    );
-  }catch(error){
-    console.warn("Native session save request failed:",error);
-  }
-}
-
-
-function clearStudentSessionFromApp_(){
-  if(!hasAppInventorBridge_()) return;
-
-  try{
-    window.AppInventor.setWebViewString(APP_SESSION_CLEAR_COMMAND);
-  }catch(error){
-    console.warn("Native session clear request failed:",error);
-  }
-}
-
-
-function readStudentSessionFromApp_(){
-  if(!hasAppInventorBridge_()) return "";
-
-  try{
-    var value=String(window.AppInventor.getWebViewString() || "");
-
-    if(value.indexOf(APP_SESSION_LOAD_PREFIX)===0){
-      var encoded=value.slice(APP_SESSION_LOAD_PREFIX.length);
-      return encoded ? decodeURIComponent(encoded) : "";
-    }
-  }catch(error){
-    console.warn("Native session read failed:",error);
-  }
-
-  return "";
-}
-
-
-async function waitForStudentSessionFromApp_(maxWaitMs){
-  if(!hasAppInventorBridge_()) return "";
-
-  var end=Date.now()+Number(maxWaitMs || 1400);
-
-  while(Date.now()<end){
-    var raw=readStudentSessionFromApp_();
-    if(raw) return raw;
-    await new Promise(function(resolve){ setTimeout(resolve,60); });
-  }
-
-  return "";
-}
-
-
-function setStudentSessionCookie_(raw){
-  try{
-    var cookie=
-      STUDENT_SESSION_COOKIE + "=" + encodeURIComponent(String(raw || "")) +
-      "; Max-Age=" + STUDENT_SESSION_COOKIE_MAX_AGE +
-      "; Path=/; SameSite=Lax";
-
-    if(window.location.protocol === "https:"){
-      cookie += "; Secure";
-    }
-
-    document.cookie=cookie;
-  }catch(error){
-    console.warn("Student session cookie save failed:",error);
-  }
-}
-
-
-function getStudentSessionCookie_(){
-  try{
-    var prefix=STUDENT_SESSION_COOKIE + "=";
-    var parts=String(document.cookie || "").split(";");
-
-    for(var i=0;i<parts.length;i++){
-      var item=parts[i].trim();
-      if(item.indexOf(prefix)===0){
-        return decodeURIComponent(item.slice(prefix.length));
-      }
-    }
-  }catch(error){
-    console.warn("Student session cookie read failed:",error);
-  }
-
-  return "";
-}
-
-
-function removeStudentSessionCookie_(){
-  try{
-    var cookie=
-      STUDENT_SESSION_COOKIE +
-      "=; Max-Age=0; Path=/; SameSite=Lax";
-
-    if(window.location.protocol === "https:"){
-      cookie += "; Secure";
-    }
-
-    document.cookie=cookie;
-  }catch(error){}
-}
-
-
-function writeStudentSessionRaw_(raw){
-  try{
-    localStorage.setItem(STUDENT_SESSION_KEY,raw);
-  }catch(error){
-    console.warn("Student local session save failed:",error);
-  }
-
-  setStudentSessionCookie_(raw);
-
-  /* MIT App Inventor WebViewer may lose web storage when the task is killed.
-     Ask the native app to persist the same session in TinyDB. */
-  saveStudentSessionToApp_(raw);
-}
-
-
-function readStudentSessionRaw_(){
-  var raw="";
-
-  try{
-    raw=localStorage.getItem(STUDENT_SESSION_KEY) || "";
-  }catch(error){}
-
-  if(raw){
-    return raw;
-  }
-
-  raw=getStudentSessionCookie_();
-
-  /* Restore localStorage from cookie if Android WebView dropped only local storage state. */
-  if(raw){
-    try{ localStorage.setItem(STUDENT_SESSION_KEY,raw); }catch(error){}
-  }
-
-  return raw;
-}
-
-
-function saveStudentSession(){
-  try{
-    if(!rememberStudentLogin) return;
-
-    if(studentToken && currentStudent){
-      writeStudentSessionRaw_(
-        JSON.stringify({
-          token:studentToken,
-          student:currentStudent,
-          remember:true
-        })
-      );
-    }
-  }catch(error){
-    console.warn("Student session save failed:",error);
-  }
-}
-
-
-function clearStudentSession(options){
-  options=options || {};
-  try{ localStorage.removeItem(STUDENT_SESSION_KEY); }catch(e){}
-  removeStudentSessionCookie_();
-
-  if(options.keepNative !== true){
-    clearStudentSessionFromApp_();
-  }
-
-  studentToken="";
-  currentStudent=null;
-  rememberStudentLogin=false;
-  examsData=[];
-  examsLoading=false;
-  examsLoadError=false;
-}
-
-
-function applyStudentHeader(){
-  const chip=document.getElementById("studentHeaderChip");
-  const logout=document.getElementById("studentLogoutBtn");
-
-  if(currentStudent){
-    chip.textContent=currentStudent.studentId;
-    chip.style.display="inline-block";
-    logout.style.display="inline-block";
-  }else{
-    chip.textContent="";
-    chip.style.display="none";
-    logout.style.display="none";
-  }
-}
-
-
-function showStartupPage(message="Login status যাচাই হচ্ছে..."){
-  hideAllPages();
-  currentView="startup";
-  var page=document.getElementById("startupPage");
-  var text=document.getElementById("startupStatusText");
-  if(page) page.classList.remove("hidden");
-  if(text) text.textContent=message || "একটু অপেক্ষা করুন।";
-  window.scrollTo(0,0);
-}
-
-
-function showLoginPage(message=""){
-  hideAllPages();
-  currentView="login";
-  document.getElementById("loginPage").classList.remove("hidden");
-  document.getElementById("loginPage").style.display="flex";
-  document.getElementById("studentLoginMessage").textContent=message;
-  applyStudentHeader();
-  window.scrollTo(0,0);
-}
-
-
-async function postApi(payload, timeoutMs=12000){
-  const controller=new AbortController();
-  const timeout=setTimeout(()=>controller.abort(),timeoutMs);
-
-  try{
-    const response=await fetch(GOOGLE_SCRIPT_URL,{
-      method:"POST",
-      cache:"no-store",
-      headers:{"Content-Type":"text/plain;charset=utf-8"},
-      body:JSON.stringify(payload),
-      signal:controller.signal
-    });
-
-    if(!response.ok){
-      throw new Error("Server request failed");
-    }
-
-    return await response.json();
-  }
-  finally{
-    clearTimeout(timeout);
-  }
-}
-
-
-async function loginStudent(){
-  const id=document.getElementById("studentLoginId").value.trim();
-  const pin=document.getElementById("studentLoginPin").value.trim();
-  const button=document.getElementById("studentLoginBtn");
-  const rememberBox=document.getElementById("rememberLogin");
-  const shouldRemember=!!(rememberBox && rememberBox.checked);
-
-  if(!id || !pin){
-    document.getElementById("studentLoginMessage").textContent="Student ID এবং PIN লিখুন।";
-    return;
-  }
-
-  button.disabled=true;
-  button.textContent="Checking...";
-
-  /* Do not leave the login form visible while the server validates the PIN. */
-  showStartupPage("Login যাচাই হচ্ছে...");
-
-  try{
-    const data=await postApi({
-      action:"studentLogin",
-      studentId:id,
-      pin:pin
-    });
-
-    if(!data || data.success!==true || !data.token || !data.student){
-      throw new Error((data && (data.message || data.error)) || "Login হয়নি।");
-    }
-
-    studentToken=data.token;
-    currentStudent=data.student;
-    rememberStudentLogin=shouldRemember;
-
-    if(rememberStudentLogin){
-      saveStudentSession();
-    }else{
-      /* Explicitly remove any older remembered login from web storage + TinyDB. */
-      try{ localStorage.removeItem(STUDENT_SESSION_KEY); }catch(error){}
-      removeStudentSessionCookie_();
-      clearStudentSessionFromApp_();
-    }
-
-    document.getElementById("studentLoginPin").value="";
-    applyStudentHeader();
-
-    currentLevel=currentStudent.level;
-    history.replaceState({view:"home"},"","#home");
-    showHome();
-
-    /* Refresh assigned exams after Home is already visible. */
-    loadExams().catch(function(error){
-      console.error("Exam refresh after login failed:",error);
-    });
-  }
-  catch(error){
-    clearStudentSession();
-    showLoginPage(error.message || String(error));
-  }
-  finally{
-    button.disabled=false;
-    button.textContent="Login →";
-  }
-}
-
-
-async function fetchStudentExamsOnce(){
-  if(!studentToken){
-    throw new Error("Student login required.");
-  }
-
-  const data=await postApi({
-    action:"studentExams",
-    studentToken:studentToken
-  });
-
-  if(!data || data.success!==true){
-    throw new Error((data && (data.message || data.error)) || "Exam load failed");
-  }
-
-  if(data.student){
-    currentStudent=data.student;
-    saveStudentSession();
-  }
-
-  return data;
-}
-
+/* LOAD EXAMS */
 
 function normalizeExamPayload(data){
 
@@ -2154,245 +1603,209 @@ const normalized=
 rawExams
 .map(exam=>{
 
-let questions=exam.questions;
+let questions=
+exam.questions;
 
-if(typeof questions==="string"){
-  try{questions=JSON.parse(questions);}catch(error){questions=[];}
+if(
+typeof questions==="string"
+){
+
+try{
+questions=JSON.parse(questions);
+}
+catch(error){
+questions=[];
 }
 
-if(!Array.isArray(questions)) questions=[];
+}
+
+if(!Array.isArray(questions)){
+questions=[];
+}
 
 return {
-  id:String(exam.id || exam.examId || ""),
-  level:String(exam.level || "").toUpperCase(),
-  classYear:String(exam.classYear || ""),
-  subject:String(exam.subject || ""),
-  title:String(exam.title || exam.examTitle || "পরীক্ষা"),
-  timeMinutes:Number(exam.timeMinutes || exam.time || 10),
-  published:(exam.published===true || String(exam.published || "").trim().toLowerCase()==="true"),
-  startAt:String(exam.startAt || exam.StartAt || ""),
-  endAt:String(exam.endAt || exam.EndAt || ""),
-  examType:String(exam.examType || "MCQ").toUpperCase(),
-  questions:questions.map(question=>({
-    q:String(question.q || question.question || question.text || ""),
-    options:Array.isArray(question.options) ? question.options : [],
-    answer:Number(question.answer),
-    image:String(question.image || "")
-  }))
+
+id:String(exam.id || exam.examId || ""),
+level:String(exam.level || "").toUpperCase(),
+subject:String(exam.subject || ""),
+title:String(exam.title || exam.examTitle || "পরীক্ষা"),
+timeMinutes:Number(exam.timeMinutes || exam.time || 10),
+published:(
+  exam.published === true ||
+  String(exam.published || "")
+    .trim()
+    .toLowerCase() === "true"
+),
+startAt:String(exam.startAt || exam.StartAt || ""),
+endAt:String(exam.endAt || exam.EndAt || ""),
+examType:String(exam.examType || "MCQ").toUpperCase(),
+questions:questions.map(question=>({
+q:String(question.q || question.question || question.text || ""),
+options:Array.isArray(question.options) ? question.options : [],
+answer:Number(question.answer),
+image:String(question.image || "")
+}))
+
 };
+
 })
 .filter(exam=>
-  exam.id &&
-  exam.published!==false &&
-  exam.examType==="MCQ" &&
-  exam.questions.length>0
+exam.id
+&& exam.published!==false
+&& exam.examType==="MCQ"
+&& exam.questions.length>0
 );
 
 const seenIds=new Set();
-return normalized.filter(exam=>{
-  if(seenIds.has(exam.id)) return false;
-  seenIds.add(exam.id);
-  return true;
-});
-}
 
+return normalized.filter(exam=>{
+if(seenIds.has(exam.id)){
+return false;
+}
+seenIds.add(exam.id);
+return true;
+});
+
+}
 
 function refreshVisibleExamViews(){
-  if(currentView==="subjects") renderSubjects();
-  if(currentView==="examlist") renderExamList();
+
+if(currentView==="subjects"){
+renderSubjects();
 }
 
+if(currentView==="examlist"){
+renderExamList();
+}
+
+}
+
+function loadCachedExams(){
+
+try{
+const cached=localStorage.getItem(EXAMS_CACHE_KEY);
+if(!cached){
+return false;
+}
+
+const data=JSON.parse(cached);
+const cachedExams=normalizeExamPayload(data);
+
+if(cachedExams.length===0){
+return false;
+}
+
+examsData=cachedExams;
+examsLoading=false;
+refreshVisibleExamViews();
+return true;
+}
+catch(error){
+console.warn("Exam cache read failed:",error);
+return false;
+}
+
+}
+
+function saveExamsCache(data){
+
+try{
+const json=JSON.stringify(data);
+
+/* Avoid filling WebView storage when question images are large. */
+if(json.length<2500000){
+localStorage.setItem(EXAMS_CACHE_KEY,json);
+}
+}
+catch(error){
+console.warn("Exam cache save skipped:",error);
+}
+
+}
+
+async function fetchPublishedExamsOnce(){
+
+const controller=new AbortController();
+const timeout=setTimeout(()=>controller.abort(),8000);
+
+try{
+const response=await fetch(
+GOOGLE_SCRIPT_URL+"?action=publishedExams&_="+Date.now(),
+{
+cache:"no-store",
+signal:controller.signal
+}
+);
+
+if(!response.ok){
+throw new Error("Published exams load failed");
+}
+
+const data = await response.json();
+
+if(!data || data.success === false){
+  throw new Error(
+    (data && (data.error || data.message)) ||
+    "Published exams load failed"
+  );
+}
+
+return data;
+}
+finally{
+clearTimeout(timeout);
+}
+
+}
 
 async function loadExams(){
-  examsLoading=true;
-  examsLoadError=false;
-  refreshVisibleExamViews();
 
-  let lastError=null;
+examsLoading=examsData.length===0;
+examsLoadError=false;
+refreshVisibleExamViews();
 
-  for(let attempt=1;attempt<=3;attempt++){
-    try{
-      const data=await fetchStudentExamsOnce();
-      examsData=normalizeExamPayload(data);
-      examsLoading=false;
-      examsLoadError=false;
-      applyStudentHeader();
+let lastError=null;
 
-      if(openPrintLinkIfNeeded()) return;
+for(let attempt=1; attempt<=3; attempt++){
 
-      currentLevel=currentStudent ? currentStudent.level : null;
-      history.replaceState({view:"home"},"","#home");
-      showHome();
-      return;
-    }
-    catch(error){
-      lastError=error;
-      if(attempt<3){
-        await new Promise(resolve=>setTimeout(resolve,600*attempt));
-      }
-    }
-  }
+try{
+const data=await fetchPublishedExamsOnce();
 
-  examsLoading=false;
-  examsLoadError=true;
-  console.error("Student exam load error:",lastError);
+examsData=normalizeExamPayload(data);
+examsLoading=false;
+examsLoadError=false;
 
-  const errorText=String(
-    lastError && lastError.message
-      ? lastError.message
-      : lastError || ""
-  ).toLowerCase();
+saveExamsCache(data);
 
-  const authFailed=
-    errorText.indexOf("student session invalid")>=0 ||
-    errorText.indexOf("student login required")>=0 ||
-    errorText.indexOf("account পাওয়া যায়নি")>=0 ||
-    errorText.indexOf("disabled")>=0;
-
-  if(authFailed){
-    clearStudentSession();
-    showLoginPage("Login আর valid নেই। আবার Login করুন।");
-    return;
-  }
-
-  /* Temporary internet/server errors must NOT log the student out. */
-  if(currentStudent && studentToken){
-    currentLevel=currentStudent.level;
-    history.replaceState({view:"home"},"","#home");
-    showHome();
-  }else{
-    showLoginPage("ইন্টারনেট/Server সমস্যা হয়েছে। আবার চেষ্টা করুন।");
-  }
+if(openPrintLinkIfNeeded()){
+return;
 }
 
+refreshVisibleExamViews();
+return;
+}
+catch(error){
+lastError=error;
+console.warn("Exam load attempt "+attempt+" failed:",error);
 
-async function restoreStudentSession(){
-  try{
-    /* Native app resume now uses ?ca_session= from TinyDB.
-       This web-storage path is only a browser fallback, so there is no startup wait. */
-    var raw=readStudentSessionRaw_();
-
-    if(!raw) return false;
-
-    const saved=JSON.parse(raw);
-
-    /* Old sessions created before the Remember Login option are not auto-restored. */
-    if(!saved || !saved.token || !saved.student || saved.remember!==true){
-      try{ localStorage.removeItem(STUDENT_SESSION_KEY); }catch(error){}
-      removeStudentSessionCookie_();
-      clearStudentSessionFromApp_();
-      return false;
-    }
-
-    rememberStudentLogin=true;
-    studentToken=String(saved.token || "");
-    currentStudent=saved.student || null;
-    applyStudentHeader();
-
-    /* Show Home immediately from the saved identity; validate/refresh in background. */
-    currentLevel=currentStudent.level;
-    history.replaceState({view:"home"},"","#home");
-    showHome();
-
-    loadExams().catch(function(error){
-      console.error("Saved-session exam refresh failed:",error);
-    });
-
-    return true;
-  }
-  catch(error){
-    console.error("Saved session restore failed:",error);
-    /* Keep native TinyDB data unless it is explicitly invalidated by the server. */
-    clearStudentSession({keepNative:true});
-    return false;
-  }
+if(attempt<3){
+await new Promise(resolve=>setTimeout(resolve,700*attempt));
+}
 }
 
-
-async function logoutStudent(){
-  const oldToken=studentToken;
-  clearInterval(timerInterval);
-  clearStudentSession();
-  applyStudentHeader();
-
-  if(oldToken){
-    postApi({action:"studentLogout",studentToken:oldToken}).catch(()=>{});
-  }
-
-  history.replaceState({view:"login"},"","#login");
-  showLoginPage("");
 }
 
+examsLoading=false;
+examsLoadError=true;
+refreshVisibleExamViews();
 
-async function bootStudentApp(){
-  showStartupPage("Saved login খোঁজা হচ্ছে...");
+console.error("Exam load error:",lastError);
 
-  const params=new URLSearchParams(window.location.search);
-
-  /* Native TinyDB resume path.
-     The Android app opens the page with ?ca_session=<saved-session>.
-     URLSearchParams decodes the value, so it is the original JSON string. */
-  const nativeResumeRaw=params.get("ca_session") || "";
-
-  if(nativeResumeRaw){
-    try{
-      const saved=JSON.parse(nativeResumeRaw);
-
-      if(saved && saved.token && saved.student && saved.remember===true){
-        rememberStudentLogin=true;
-        studentToken=String(saved.token || "");
-        currentStudent=saved.student || null;
-
-        /* Rehydrate web storage, but do not depend on it for the native resume. */
-        try{ localStorage.setItem(STUDENT_SESSION_KEY,nativeResumeRaw); }catch(error){}
-        setStudentSessionCookie_(nativeResumeRaw);
-
-        applyStudentHeader();
-        currentLevel=currentStudent ? currentStudent.level : null;
-        history.replaceState({view:"home"},"",window.location.pathname);
-        showHome();
-
-        /* Validate/refresh in background. If Admin disabled the account,
-           loadExams() will clear the saved native session via CA_SESSION_CLEAR. */
-        loadExams().catch(function(error){
-          console.error("Native session refresh failed:",error);
-        });
-        return;
-      }
-    }
-    catch(error){
-      console.warn("Native session URL restore failed:",error);
-    }
-
-    /* Legacy/non-remembered TinyDB session: remove it so the choice starts clean. */
-    try{ localStorage.removeItem(STUDENT_SESSION_KEY); }catch(error){}
-    removeStudentSessionCookie_();
-    clearStudentSessionFromApp_();
-    history.replaceState({view:"login"},"",window.location.pathname);
-  }
-
-  if(params.get("print")==="1" && params.get("st")){
-    studentToken=params.get("st") || "";
-    try{
-      const data=await fetchStudentExamsOnce();
-      examsData=normalizeExamPayload(data);
-      examsLoading=false;
-      applyStudentHeader();
-      if(openPrintLinkIfNeeded()) return;
-    }
-    catch(error){
-      alert("PDF session শেষ হয়েছে। App থেকে আবার PDF খুলুন।");
-      clearStudentSession();
-      showLoginPage("");
-      return;
-    }
-  }
-
-  const restored=await restoreStudentSession();
-  if(!restored && !studentToken){
-    showLoginPage("");
-  }
 }
+
+/* Show the last successful exam list immediately, then refresh from server. */
+loadCachedExams();
+loadExams();
 
 /* ADMIN */
 
@@ -2497,8 +1910,6 @@ function openAdminPanel(){
 function hideAllPages(){
 
 [
-"startupPage",
-"loginPage",
 "homePage",
 "subjectPage",
 "examListPage",
@@ -2535,30 +1946,16 @@ history.pushState(
 
 function showHome(){
 
-if(!currentStudent || !studentToken){
-  showLoginPage("");
-  return;
-}
-
 hideAllPages();
+
 currentView="home";
-currentLevel=currentStudent.level;
 
-document.getElementById("homePage").classList.remove("hidden");
-
-document.getElementById("homeWelcomeTitle").innerText=
-  currentStudent.studentId + " — আপনার পরীক্ষাসমূহ";
-
-document.getElementById("homeWelcomeText").innerText=
-  currentStudent.level + " • " + currentStudent.classYear + " • Assigned exam only";
-
-const sscCard=document.getElementById("sscLevelCard");
-const hscCard=document.getElementById("hscLevelCard");
-
-sscCard.style.display=currentStudent.level==="SSC" ? "block" : "none";
-hscCard.style.display=currentStudent.level==="HSC" ? "block" : "none";
+document
+.getElementById("homePage")
+.classList.remove("hidden");
 
 window.scrollTo(0,0);
+
 }
 
 
@@ -2587,7 +1984,7 @@ timerInterval
 
 }
 
-currentLevel=currentStudent ? currentStudent.level : null;
+currentLevel=null;
 currentSubject=null;
 currentExam=null;
 
@@ -2606,11 +2003,6 @@ showHome();
 /* LEVEL */
 
 function openLevel(level){
-
-if(!currentStudent || level !== currentStudent.level){
-  alert("এই Section আপনার Student account-এর জন্য নয়।");
-  return;
-}
 
 currentLevel=level;
 
@@ -3056,15 +2448,9 @@ currentExam.title
 :
 "";
 
-studentName=currentStudent ? currentStudent.studentId : "";
-
 document
 .getElementById("studentName")
-.value=studentName;
-
-document
-.getElementById("studentName")
-.readOnly=true;
+.value="";
 
 window.scrollTo(0,0);
 
@@ -3075,14 +2461,18 @@ window.scrollTo(0,0);
 
 function startExam(){
 
-const name=currentStudent ? String(currentStudent.studentId || "").trim() : "";
+const name=
+document
+.getElementById("studentName")
+.value
+.trim();
 
 if(
-!name || !studentToken
+!name
 ){
 
 alert(
-"Student session পাওয়া যায়নি। আবার Login করুন।"
+"অনুগ্রহ করে পরীক্ষার্থীর নাম লিখুন।"
 );
 
 return;
@@ -4044,9 +3434,6 @@ const data={
 action:
 "saveResult",
 
-studentToken:
-studentToken,
-
 examId:
 currentExam.id,
 
@@ -4157,11 +3544,6 @@ new URLSearchParams();
 params.set(
 "print",
 "1"
-);
-
-params.set(
-"st",
-studentToken
 );
 
 params.set(
@@ -4306,8 +3688,6 @@ currentSubject=
 exam.subject;
 
 studentName=
-(currentStudent && currentStudent.studentId)
-||
 params.get("name")
 ||
 "Student";
@@ -5023,12 +4403,7 @@ event.state.view
 ?
 event.state.view
 :
-(currentStudent ? "home" : "login");
-
-if(!currentStudent && target!=="login"){
-  showLoginPage("");
-  return;
-}
+"home";
 
 if(
 currentView==="exam"
@@ -5059,11 +4434,6 @@ clearInterval(
 timerInterval
 );
 
-}
-
-if(target==="login"){
-  showLoginPage("");
-  return;
 }
 
 if(
@@ -5114,14 +4484,6 @@ showHome();
 
 /* ENTER */
 
-document.getElementById("studentLoginId").addEventListener("keydown",function(event){
-  if(event.key==="Enter") document.getElementById("studentLoginPin").focus();
-});
-
-document.getElementById("studentLoginPin").addEventListener("keydown",function(event){
-  if(event.key==="Enter") loginStudent();
-});
-
 document
 .getElementById(
 "studentName"
@@ -5144,7 +4506,7 @@ startExam();
 
 /* START */
 
-bootStudentApp();
+showHome();
 
 </script>
 
