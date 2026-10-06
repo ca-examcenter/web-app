@@ -1718,6 +1718,9 @@ let examsLoadError=false;
 const STUDENT_SESSION_KEY="conceptAcademyStudentSessionV1";
 const STUDENT_SESSION_COOKIE="conceptAcademyStudentSessionV1";
 const STUDENT_SESSION_COOKIE_MAX_AGE=60*60*24*365;
+const APP_SESSION_SAVE_PREFIX="CA_SESSION_SAVE|";
+const APP_SESSION_LOAD_PREFIX="CA_SESSION_LOAD|";
+const APP_SESSION_CLEAR_COMMAND="CA_SESSION_CLEAR";
 let studentToken="";
 let currentStudent=null;
 
@@ -1757,6 +1760,76 @@ history.replaceState(
 
 
 /* STUDENT SESSION + PERSONAL EXAMS */
+
+function hasAppInventorBridge_(){
+  try{
+    return !!(
+      window.AppInventor &&
+      typeof window.AppInventor.setWebViewString === "function" &&
+      typeof window.AppInventor.getWebViewString === "function"
+    );
+  }catch(error){
+    return false;
+  }
+}
+
+
+function saveStudentSessionToApp_(raw){
+  if(!raw || !hasAppInventorBridge_()) return;
+
+  try{
+    window.AppInventor.setWebViewString(
+      APP_SESSION_SAVE_PREFIX + encodeURIComponent(String(raw))
+    );
+  }catch(error){
+    console.warn("Native session save request failed:",error);
+  }
+}
+
+
+function clearStudentSessionFromApp_(){
+  if(!hasAppInventorBridge_()) return;
+
+  try{
+    window.AppInventor.setWebViewString(APP_SESSION_CLEAR_COMMAND);
+  }catch(error){
+    console.warn("Native session clear request failed:",error);
+  }
+}
+
+
+function readStudentSessionFromApp_(){
+  if(!hasAppInventorBridge_()) return "";
+
+  try{
+    var value=String(window.AppInventor.getWebViewString() || "");
+
+    if(value.indexOf(APP_SESSION_LOAD_PREFIX)===0){
+      var encoded=value.slice(APP_SESSION_LOAD_PREFIX.length);
+      return encoded ? decodeURIComponent(encoded) : "";
+    }
+  }catch(error){
+    console.warn("Native session read failed:",error);
+  }
+
+  return "";
+}
+
+
+async function waitForStudentSessionFromApp_(maxWaitMs){
+  if(!hasAppInventorBridge_()) return "";
+
+  var end=Date.now()+Number(maxWaitMs || 1400);
+
+  while(Date.now()<end){
+    var raw=readStudentSessionFromApp_();
+    if(raw) return raw;
+    await new Promise(function(resolve){ setTimeout(resolve,60); });
+  }
+
+  return "";
+}
+
 
 function setStudentSessionCookie_(raw){
   try{
@@ -1817,8 +1890,11 @@ function writeStudentSessionRaw_(raw){
     console.warn("Student local session save failed:",error);
   }
 
-  /* Android WebView fallback: persistent cookie survives app process restart on many devices. */
   setStudentSessionCookie_(raw);
+
+  /* MIT App Inventor WebViewer may lose web storage when the task is killed.
+     Ask the native app to persist the same session in TinyDB. */
+  saveStudentSessionToApp_(raw);
 }
 
 
@@ -1857,9 +1933,15 @@ function saveStudentSession(){
 }
 
 
-function clearStudentSession(){
+function clearStudentSession(options){
+  options=options || {};
   try{ localStorage.removeItem(STUDENT_SESSION_KEY); }catch(e){}
   removeStudentSessionCookie_();
+
+  if(options.keepNative !== true){
+    clearStudentSessionFromApp_();
+  }
+
   studentToken="";
   currentStudent=null;
   examsData=[];
@@ -1935,16 +2017,17 @@ async function loginStudent(){
   const id=document.getElementById("studentLoginId").value.trim();
   const pin=document.getElementById("studentLoginPin").value.trim();
   const button=document.getElementById("studentLoginBtn");
-  const message=document.getElementById("studentLoginMessage");
 
   if(!id || !pin){
-    message.textContent="Student ID এবং PIN লিখুন।";
+    document.getElementById("studentLoginMessage").textContent="Student ID এবং PIN লিখুন।";
     return;
   }
 
   button.disabled=true;
   button.textContent="Checking...";
-  message.textContent="";
+
+  /* Do not leave the login form visible while the server validates the PIN. */
+  showStartupPage("Login যাচাই হচ্ছে...");
 
   try{
     const data=await postApi({
@@ -1963,16 +2046,18 @@ async function loginStudent(){
     document.getElementById("studentLoginPin").value="";
     applyStudentHeader();
 
-    /* Hide the login form immediately. Exam loading continues after Home is visible. */
     currentLevel=currentStudent.level;
     history.replaceState({view:"home"},"","#home");
     showHome();
 
-    await loadExams();
+    /* Refresh assigned exams after Home is already visible. */
+    loadExams().catch(function(error){
+      console.error("Exam refresh after login failed:",error);
+    });
   }
   catch(error){
     clearStudentSession();
-    message.textContent=error.message || String(error);
+    showLoginPage(error.message || String(error));
   }
   finally{
     button.disabled=false;
@@ -2133,30 +2218,43 @@ async function loadExams(){
 
 async function restoreStudentSession(){
   try{
-    const raw=readStudentSessionRaw_();
+    var raw=readStudentSessionRaw_();
+
+    /* App Inventor native fallback. TinyDB survives removing the app from Recents. */
+    if(!raw && hasAppInventorBridge_()){
+      raw=await waitForStudentSessionFromApp_(1600);
+
+      if(raw){
+        /* Rehydrate this new WebViewer process. */
+        try{ localStorage.setItem(STUDENT_SESSION_KEY,raw); }catch(error){}
+        setStudentSessionCookie_(raw);
+      }
+    }
+
     if(!raw) return false;
 
     const saved=JSON.parse(raw);
-    if(!saved || !saved.token) return false;
+    if(!saved || !saved.token || !saved.student) return false;
 
     studentToken=String(saved.token || "");
     currentStudent=saved.student || null;
     applyStudentHeader();
 
-    /* Never show the Login box while an existing saved session is being checked. */
-    if(currentStudent && studentToken){
-      currentLevel=currentStudent.level;
-      history.replaceState({view:"home"},"","#home");
-      showHome();
-    }else{
-      showStartupPage("Saved login যাচাই হচ্ছে...");
-    }
+    /* Show Home immediately from the saved identity; validate/refresh in background. */
+    currentLevel=currentStudent.level;
+    history.replaceState({view:"home"},"","#home");
+    showHome();
 
-    await loadExams();
+    loadExams().catch(function(error){
+      console.error("Saved-session exam refresh failed:",error);
+    });
+
     return true;
   }
   catch(error){
-    clearStudentSession();
+    console.error("Saved session restore failed:",error);
+    /* Keep native TinyDB data unless it is explicitly invalidated by the server. */
+    clearStudentSession({keepNative:true});
     return false;
   }
 }
