@@ -2280,6 +2280,41 @@ async function bootStudentApp(){
 
   const params=new URLSearchParams(window.location.search);
 
+  /* Native TinyDB resume path.
+     The Android app opens the page with ?ca_session=<saved-session>.
+     URLSearchParams decodes the value, so it is the original JSON string. */
+  const nativeResumeRaw=params.get("ca_session") || "";
+
+  if(nativeResumeRaw){
+    try{
+      const saved=JSON.parse(nativeResumeRaw);
+
+      if(saved && saved.token && saved.student){
+        studentToken=String(saved.token || "");
+        currentStudent=saved.student || null;
+
+        /* Rehydrate web storage, but do not depend on it for the native resume. */
+        try{ localStorage.setItem(STUDENT_SESSION_KEY,nativeResumeRaw); }catch(error){}
+        setStudentSessionCookie_(nativeResumeRaw);
+
+        applyStudentHeader();
+        currentLevel=currentStudent ? currentStudent.level : null;
+        history.replaceState({view:"home"},"",window.location.pathname);
+        showHome();
+
+        /* Validate/refresh in background. If Admin disabled the account,
+           loadExams() will clear the saved native session via CA_SESSION_CLEAR. */
+        loadExams().catch(function(error){
+          console.error("Native session refresh failed:",error);
+        });
+        return;
+      }
+    }
+    catch(error){
+      console.warn("Native session URL restore failed:",error);
+    }
+  }
+
   if(params.get("print")==="1" && params.get("st")){
     studentToken=params.get("st") || "";
     try{
