@@ -292,6 +292,27 @@ button{
     border-color:#2563eb;
 }
 
+.remember-login{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin:2px 0 16px;
+    cursor:pointer;
+    user-select:none;
+    color:var(--muted);
+    font-size:13px;
+    font-weight:700;
+    line-height:1.35;
+}
+
+.remember-login input{
+    width:18px;
+    height:18px;
+    margin:0;
+    flex:0 0 auto;
+    accent-color:#2563eb;
+}
+
 .login-message{
     min-height:20px;
     margin-top:10px;
@@ -1332,6 +1353,11 @@ Online Exam Platform
 <input id="studentLoginPin" type="password" inputmode="numeric" placeholder="আপনার PIN" autocomplete="current-password">
 </div>
 
+<label class="remember-login">
+<input id="rememberLogin" type="checkbox">
+<span>এই ডিভাইসে লগইন সেভ করে রাখুন</span>
+</label>
+
 <button id="studentLoginBtn" class="big-btn" style="margin-top:3px;" onclick="loginStudent()">
 Login →
 </button>
@@ -1723,6 +1749,7 @@ const APP_SESSION_LOAD_PREFIX="CA_SESSION_LOAD|";
 const APP_SESSION_CLEAR_COMMAND="CA_SESSION_CLEAR";
 let studentToken="";
 let currentStudent=null;
+let rememberStudentLogin=false;
 
 try{
   localStorage.removeItem("conceptAcademyPublishedExamsV1");
@@ -1922,9 +1949,15 @@ function readStudentSessionRaw_(){
 
 function saveStudentSession(){
   try{
+    if(!rememberStudentLogin) return;
+
     if(studentToken && currentStudent){
       writeStudentSessionRaw_(
-        JSON.stringify({token:studentToken,student:currentStudent})
+        JSON.stringify({
+          token:studentToken,
+          student:currentStudent,
+          remember:true
+        })
       );
     }
   }catch(error){
@@ -1944,6 +1977,7 @@ function clearStudentSession(options){
 
   studentToken="";
   currentStudent=null;
+  rememberStudentLogin=false;
   examsData=[];
   examsLoading=false;
   examsLoadError=false;
@@ -2017,6 +2051,8 @@ async function loginStudent(){
   const id=document.getElementById("studentLoginId").value.trim();
   const pin=document.getElementById("studentLoginPin").value.trim();
   const button=document.getElementById("studentLoginBtn");
+  const rememberBox=document.getElementById("rememberLogin");
+  const shouldRemember=!!(rememberBox && rememberBox.checked);
 
   if(!id || !pin){
     document.getElementById("studentLoginMessage").textContent="Student ID এবং PIN লিখুন।";
@@ -2042,7 +2078,17 @@ async function loginStudent(){
 
     studentToken=data.token;
     currentStudent=data.student;
-    saveStudentSession();
+    rememberStudentLogin=shouldRemember;
+
+    if(rememberStudentLogin){
+      saveStudentSession();
+    }else{
+      /* Explicitly remove any older remembered login from web storage + TinyDB. */
+      try{ localStorage.removeItem(STUDENT_SESSION_KEY); }catch(error){}
+      removeStudentSessionCookie_();
+      clearStudentSessionFromApp_();
+    }
+
     document.getElementById("studentLoginPin").value="";
     applyStudentHeader();
 
@@ -2218,24 +2264,23 @@ async function loadExams(){
 
 async function restoreStudentSession(){
   try{
+    /* Native app resume now uses ?ca_session= from TinyDB.
+       This web-storage path is only a browser fallback, so there is no startup wait. */
     var raw=readStudentSessionRaw_();
-
-    /* App Inventor native fallback. TinyDB survives removing the app from Recents. */
-    if(!raw && hasAppInventorBridge_()){
-      raw=await waitForStudentSessionFromApp_(1600);
-
-      if(raw){
-        /* Rehydrate this new WebViewer process. */
-        try{ localStorage.setItem(STUDENT_SESSION_KEY,raw); }catch(error){}
-        setStudentSessionCookie_(raw);
-      }
-    }
 
     if(!raw) return false;
 
     const saved=JSON.parse(raw);
-    if(!saved || !saved.token || !saved.student) return false;
 
+    /* Old sessions created before the Remember Login option are not auto-restored. */
+    if(!saved || !saved.token || !saved.student || saved.remember!==true){
+      try{ localStorage.removeItem(STUDENT_SESSION_KEY); }catch(error){}
+      removeStudentSessionCookie_();
+      clearStudentSessionFromApp_();
+      return false;
+    }
+
+    rememberStudentLogin=true;
     studentToken=String(saved.token || "");
     currentStudent=saved.student || null;
     applyStudentHeader();
@@ -2289,7 +2334,8 @@ async function bootStudentApp(){
     try{
       const saved=JSON.parse(nativeResumeRaw);
 
-      if(saved && saved.token && saved.student){
+      if(saved && saved.token && saved.student && saved.remember===true){
+        rememberStudentLogin=true;
         studentToken=String(saved.token || "");
         currentStudent=saved.student || null;
 
@@ -2313,6 +2359,12 @@ async function bootStudentApp(){
     catch(error){
       console.warn("Native session URL restore failed:",error);
     }
+
+    /* Legacy/non-remembered TinyDB session: remove it so the choice starts clean. */
+    try{ localStorage.removeItem(STUDENT_SESSION_KEY); }catch(error){}
+    removeStudentSessionCookie_();
+    clearStudentSessionFromApp_();
+    history.replaceState({view:"login"},"",window.location.pathname);
   }
 
   if(params.get("print")==="1" && params.get("st")){
