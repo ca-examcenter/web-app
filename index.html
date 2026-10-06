@@ -1779,11 +1779,15 @@ let printSheetReady=false;
 
 /* HISTORY */
 
-history.replaceState(
-{view:"login"},
-"",
-"#login"
-);
+/* Preserve startup query parameters such as ?ca_session=... and ?print=1.
+   bootStudentApp() must read them before history is rewritten. */
+if(!window.location.search){
+  history.replaceState(
+    {view:"login"},
+    "",
+    "#login"
+  );
+}
 
 
 /* STUDENT SESSION + PERSONAL EXAMS */
