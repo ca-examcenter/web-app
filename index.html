@@ -2600,7 +2600,7 @@ const value=String(chunk || "");
 
 if(!value.trim()) return false;
 
-return /\\(?:frac|sqrt|log|ln|left|right|times|div|cdot|sin|cos|tan|cot|sec|csc|theta|alpha|beta|gamma|delta|pi|sum|int|lim|text|mathrm|mathbf|overline|underline|vec|pm|mp|le|ge|neq|approx|infty|because|therefore)\b/.test(value)
+return /\\(?:frac|sqrt|propto|log|ln|left|right|times|div|cdot|sin|cos|tan|cot|sec|csc|theta|alpha|beta|gamma|delta|pi|sum|int|lim|text|mathrm|mathbf|overline|underline|vec|pm|mp|le|ge|neq|approx|infty|because|therefore)\b/.test(value)
 || /\^[{A-Za-z0-9(]/.test(value)
 || /_[{A-Za-z0-9(]/.test(value)
 || /[A-Za-z0-9)}]\s*=\s*[A-Za-z0-9\\({]/.test(value)
