@@ -1955,8 +1955,33 @@ async function loadExams(){
   examsLoading=false;
   examsLoadError=true;
   console.error("Student exam load error:",lastError);
-  clearStudentSession();
-  showLoginPage("Session শেষ হয়েছে অথবা Exam load করা যায়নি। আবার Login করুন।");
+
+  const errorText=String(
+    lastError && lastError.message
+      ? lastError.message
+      : lastError || ""
+  ).toLowerCase();
+
+  const authFailed=
+    errorText.indexOf("student session invalid")>=0 ||
+    errorText.indexOf("student login required")>=0 ||
+    errorText.indexOf("account পাওয়া যায়নি")>=0 ||
+    errorText.indexOf("disabled")>=0;
+
+  if(authFailed){
+    clearStudentSession();
+    showLoginPage("Login আর valid নেই। আবার Login করুন।");
+    return;
+  }
+
+  /* Temporary internet/server errors must NOT log the student out. */
+  if(currentStudent && studentToken){
+    currentLevel=currentStudent.level;
+    history.replaceState({view:"home"},"","#home");
+    showHome();
+  }else{
+    showLoginPage("ইন্টারনেট/Server সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+  }
 }
 
 
