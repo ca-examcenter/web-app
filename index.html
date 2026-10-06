@@ -208,6 +208,36 @@ button{
 }
 
 
+/* STARTUP SESSION CHECK */
+
+.startup-auth-page{
+    min-height:calc(100vh - 88px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px 14px 55px;
+}
+
+.startup-auth-card{
+    width:min(430px,100%);
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:28px;
+    text-align:center;
+    box-shadow:0 12px 36px rgba(15,23,42,.08);
+}
+
+.startup-auth-card h2{
+    color:var(--navy);
+    font-size:22px;
+}
+
+.startup-auth-card p{
+    color:var(--muted);
+    margin-top:8px;
+}
+
 /* STUDENT LOGIN */
 
 .login-page{
@@ -1219,6 +1249,7 @@ button{
     }
 
     .site-header,
+    #startupPage,
     #loginPage,
     #homePage,
     #subjectPage,
@@ -1270,9 +1301,19 @@ Online Exam Platform
 </div>
 </header>
 
+<!-- STARTUP SESSION CHECK -->
+
+<section id="startupPage" class="startup-auth-page">
+<div class="startup-auth-card">
+<div class="eyebrow">CONCEPT ACADEMY</div>
+<h2>Login status যাচাই হচ্ছে...</h2>
+<p id="startupStatusText">একটু অপেক্ষা করুন।</p>
+</div>
+</section>
+
 <!-- STUDENT LOGIN -->
 
-<section id="loginPage" class="login-page">
+<section id="loginPage" class="login-page hidden">
 
 <div class="login-card">
 
@@ -1675,6 +1716,8 @@ let examsLoading=false;
 let examsLoadError=false;
 
 const STUDENT_SESSION_KEY="conceptAcademyStudentSessionV1";
+const STUDENT_SESSION_COOKIE="conceptAcademyStudentSessionV1";
+const STUDENT_SESSION_COOKIE_MAX_AGE=60*60*24*365;
 let studentToken="";
 let currentStudent=null;
 
@@ -1715,11 +1758,96 @@ history.replaceState(
 
 /* STUDENT SESSION + PERSONAL EXAMS */
 
+function setStudentSessionCookie_(raw){
+  try{
+    var cookie=
+      STUDENT_SESSION_COOKIE + "=" + encodeURIComponent(String(raw || "")) +
+      "; Max-Age=" + STUDENT_SESSION_COOKIE_MAX_AGE +
+      "; Path=/; SameSite=Lax";
+
+    if(window.location.protocol === "https:"){
+      cookie += "; Secure";
+    }
+
+    document.cookie=cookie;
+  }catch(error){
+    console.warn("Student session cookie save failed:",error);
+  }
+}
+
+
+function getStudentSessionCookie_(){
+  try{
+    var prefix=STUDENT_SESSION_COOKIE + "=";
+    var parts=String(document.cookie || "").split(";");
+
+    for(var i=0;i<parts.length;i++){
+      var item=parts[i].trim();
+      if(item.indexOf(prefix)===0){
+        return decodeURIComponent(item.slice(prefix.length));
+      }
+    }
+  }catch(error){
+    console.warn("Student session cookie read failed:",error);
+  }
+
+  return "";
+}
+
+
+function removeStudentSessionCookie_(){
+  try{
+    var cookie=
+      STUDENT_SESSION_COOKIE +
+      "=; Max-Age=0; Path=/; SameSite=Lax";
+
+    if(window.location.protocol === "https:"){
+      cookie += "; Secure";
+    }
+
+    document.cookie=cookie;
+  }catch(error){}
+}
+
+
+function writeStudentSessionRaw_(raw){
+  try{
+    localStorage.setItem(STUDENT_SESSION_KEY,raw);
+  }catch(error){
+    console.warn("Student local session save failed:",error);
+  }
+
+  /* Android WebView fallback: persistent cookie survives app process restart on many devices. */
+  setStudentSessionCookie_(raw);
+}
+
+
+function readStudentSessionRaw_(){
+  var raw="";
+
+  try{
+    raw=localStorage.getItem(STUDENT_SESSION_KEY) || "";
+  }catch(error){}
+
+  if(raw){
+    return raw;
+  }
+
+  raw=getStudentSessionCookie_();
+
+  /* Restore localStorage from cookie if Android WebView dropped only local storage state. */
+  if(raw){
+    try{ localStorage.setItem(STUDENT_SESSION_KEY,raw); }catch(error){}
+  }
+
+  return raw;
+}
+
+
 function saveStudentSession(){
   try{
     if(studentToken && currentStudent){
-      localStorage.setItem(
-        STUDENT_SESSION_KEY,
+      writeStudentSessionRaw_(
         JSON.stringify({token:studentToken,student:currentStudent})
       );
     }
@@ -1731,6 +1859,7 @@ function saveStudentSession(){
 
 function clearStudentSession(){
   try{ localStorage.removeItem(STUDENT_SESSION_KEY); }catch(e){}
+  removeStudentSessionCookie_();
   studentToken="";
   currentStudent=null;
   examsData=[];
@@ -1752,6 +1881,17 @@ function applyStudentHeader(){
     chip.style.display="none";
     logout.style.display="none";
   }
+}
+
+
+function showStartupPage(message="Login status যাচাই হচ্ছে..."){
+  hideAllPages();
+  currentView="startup";
+  var page=document.getElementById("startupPage");
+  var text=document.getElementById("startupStatusText");
+  if(page) page.classList.remove("hidden");
+  if(text) text.textContent=message || "একটু অপেক্ষা করুন।";
+  window.scrollTo(0,0);
 }
 
 
@@ -1822,6 +1962,12 @@ async function loginStudent(){
     saveStudentSession();
     document.getElementById("studentLoginPin").value="";
     applyStudentHeader();
+
+    /* Hide the login form immediately. Exam loading continues after Home is visible. */
+    currentLevel=currentStudent.level;
+    history.replaceState({view:"home"},"","#home");
+    showHome();
+
     await loadExams();
   }
   catch(error){
@@ -1987,7 +2133,7 @@ async function loadExams(){
 
 async function restoreStudentSession(){
   try{
-    const raw=localStorage.getItem(STUDENT_SESSION_KEY);
+    const raw=readStudentSessionRaw_();
     if(!raw) return false;
 
     const saved=JSON.parse(raw);
@@ -1996,6 +2142,16 @@ async function restoreStudentSession(){
     studentToken=String(saved.token || "");
     currentStudent=saved.student || null;
     applyStudentHeader();
+
+    /* Never show the Login box while an existing saved session is being checked. */
+    if(currentStudent && studentToken){
+      currentLevel=currentStudent.level;
+      history.replaceState({view:"home"},"","#home");
+      showHome();
+    }else{
+      showStartupPage("Saved login যাচাই হচ্ছে...");
+    }
+
     await loadExams();
     return true;
   }
@@ -2022,6 +2178,8 @@ async function logoutStudent(){
 
 
 async function bootStudentApp(){
+  showStartupPage("Saved login খোঁজা হচ্ছে...");
+
   const params=new URLSearchParams(window.location.search);
 
   if(params.get("print")==="1" && params.get("st")){
@@ -2150,6 +2308,7 @@ function openAdminPanel(){
 function hideAllPages(){
 
 [
+"startupPage",
 "loginPage",
 "homePage",
 "subjectPage",
