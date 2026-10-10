@@ -2,4592 +2,3598 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Concept Academy Admin</title>
 
-<meta name="theme-color" content="#10245f">
-
-<title>Concept Academy by Shuvo</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
-
-<!-- Global MathJax support for MCQ/CQ/exam/review/print -->
+<!-- MathJax: renders LaTeX such as \frac, powers, roots and logs in previews -->
 <script>
 window.MathJax = {
   tex: {
-    inlineMath: [['\\(','\\)']],
-    displayMath: [['\\[','\\]']],
+    inlineMath: [["\\(","\\)"],["$","$"]],
+    displayMath: [["\\[","\\]"]],
     processEscapes: true
   },
   options: {
-    skipHtmlTags: ['script','noscript','style','textarea','pre','code']
+    skipHtmlTags: ["script","noscript","style","textarea","pre","code"]
   }
 };
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <style>
-:root{
-    --navy:#10245f;
-    --blue:#2563eb;
-    --cyan:#0891b2;
-    --text:#172033;
-    --muted:#64748b;
-    --border:#e2e8f0;
-}
-
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
+  box-sizing:border-box;
 }
 
 body{
-    font-family:'Noto Sans Bengali',sans-serif;
-    background:#f5f8fc;
-    color:var(--text);
-    min-height:100vh;
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f4f7fb;
+  color:#172033;
 }
 
-button,input{
-    font-family:inherit;
+header{
+  background:linear-gradient(120deg,#10245f,#2563eb,#0891b2);
+  color:white;
+  padding:18px 14px;
 }
 
-button{
-    cursor:pointer;
+.header-wrap{
+  max-width:1050px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+header h1{
+  margin:0;
+  font-size:23px;
+}
+
+header p{
+  margin:4px 0 0;
+  font-size:11px;
+}
+
+#jsStatus{
+  background:rgba(255,255,255,.16);
+  padding:7px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1050px;
+  margin:auto;
+  padding:20px 14px 60px;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  margin-bottom:18px;
+}
+
+.tab{
+  border:1px solid #dbe2ea;
+  background:#fff;
+  padding:10px 13px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.tab.active{
+  background:#10245f;
+  color:#fff;
+}
+
+.panel{
+  display:none;
+}
+
+.panel.active{
+  display:block;
+}
+
+.card{
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:19px;
+  margin-bottom:16px;
+}
+
+.card h2{
+  margin:0 0 6px;
+  color:#10245f;
+  font-size:20px;
+}
+
+.help{
+  margin:0 0 14px;
+  color:#64748b;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.field{
+  margin-bottom:13px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:5px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  padding:11px;
+  font:inherit;
+  background:white;
+}
+
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.bulk{
+  min-height:280px;
+  line-height:1.7;
+}
+
+.math-preview-box{
+  margin-top:10px;
+  padding:12px 14px;
+  border:1px dashed #b8c4d8;
+  border-radius:12px;
+  background:#f8fafc;
+  line-height:1.9;
+  overflow-x:auto;
+}
+
+.math-preview-title{
+  font-size:12px;
+  font-weight:bold;
+  color:#475569;
+  margin-bottom:6px;
+}
+
+.math-rendered-text{
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.btn{
+  border:0;
+  padding:11px 15px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.blue{
+  background:#2563eb;
+  color:white;
+}
+
+.green{
+  background:#059669;
+  color:white;
+}
+
+.navy{
+  background:#10245f;
+  color:white;
+}
+
+.red{
+  background:#dc2626;
+  color:white;
+}
+
+.light{
+  background:#eef2f7;
+  color:#334155;
 }
 
 .hidden{
-    display:none!important;
-}
-
-/* HEADER */
-
-.site-header{
-    position:sticky;
-    top:0;
-    z-index:3000;
-    color:#fff;
-    background:linear-gradient(120deg,#101d4e,#173eae 58%,#087ea4);
-    box-shadow:0 4px 18px rgba(15,23,42,.12);
-}
-
-.header-inner{
-    width:min(1050px,calc(100% - 28px));
-    min-height:88px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:11px;
-}
-
-.brand-logo{
-    width:54px;
-    height:54px;
-    border-radius:15px;
-    overflow:hidden;
-    flex:none;
-    background:#07111f;
-}
-
-.brand-logo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-}
-
-.brand-line{
-    display:flex;
-    align-items:flex-end;
-    flex-wrap:nowrap;
-    gap:6px;
-    white-space:nowrap;
-}
-
-.brand-name{
-    font-family:'Inter',sans-serif;
-    font-size:25px;
-    font-weight:800;
-}
-
-.by-shuvo{
-    font-family:'Inter',sans-serif;
-    font-size:12px;
-    color:#dbeafe;
-    padding-bottom:3px;
-}
-
-.brand-sub{
-    margin-top:4px;
-    font-family:'Inter',sans-serif;
-    font-size:11px;
-    color:#dbeafe;
-}
-
-.header-actions{
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.admin-btn,
-.home-btn{
-    border:1px solid rgba(255,255,255,.3);
-    background:rgba(255,255,255,.1);
-    color:#fff;
-    padding:9px 12px;
-    border-radius:10px;
-    font-weight:700;
-}
-
-.admin-btn{
-    background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.10));
-    box-shadow:0 4px 12px rgba(0,0,0,.10);
-}
-
-.admin-btn:active,
-.home-btn:active{
-    transform:translateY(1px);
-}
-
-/* COMMON */
-
-.page{
-    width:min(950px,calc(100% - 26px));
-    margin:auto;
-    padding:30px 0 60px;
-}
-
-.eyebrow{
-    display:inline-block;
-    background:#eaf2ff;
-    color:#2563eb;
-    border-radius:999px;
-    padding:5px 10px;
-    font-size:11px;
-    font-weight:800;
-    margin-bottom:10px;
-}
-
-.page-title{
-    color:var(--navy);
-    font-size:27px;
-    line-height:1.4;
-}
-
-.page-subtitle{
-    color:var(--muted);
-    margin-top:6px;
-    margin-bottom:22px;
-}
-
-.back-btn{
-    border:1px solid #dbe4ef;
-    background:#fff;
-    color:#334155;
-    padding:9px 13px;
-    border-radius:10px;
-    font-weight:700;
-    margin-bottom:20px;
-}
-
-/* HOME */
-
-.home-hero{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:25px;
-    margin-bottom:20px;
-    box-shadow:0 9px 30px rgba(15,23,42,.055);
-}
-
-.home-hero h2{
-    color:var(--navy);
-    font-size:27px;
-}
-
-.home-hero p{
-    color:var(--muted);
-    margin-top:7px;
-}
-
-.level-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-}
-
-.level-card{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:23px;
-    box-shadow:0 7px 24px rgba(15,23,42,.05);
-}
-
-.level-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.level-icon{
-    width:56px;
-    height:56px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:16px;
-    background:#eff6ff;
-    font-size:26px;
-}
-
-.level-arrow{
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    background:#f1f5f9;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#2563eb;
-    font-weight:800;
-}
-
-.level-card h2{
-    color:var(--navy);
-    margin-top:17px;
-    font-size:25px;
-}
-
-.level-card p{
-    color:var(--muted);
-    margin-top:5px;
-}
-
-.level-footer{
-    color:#2563eb;
-    font-size:13px;
-    font-weight:800;
-    border-top:1px solid #edf1f6;
-    margin-top:17px;
-    padding-top:14px;
-}
-
-/* SUBJECT */
-
-.subject-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:13px;
-}
-
-.subject-card{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:17px;
-    display:flex;
-    align-items:center;
-    gap:13px;
-}
-
-.subject-icon{
-    width:48px;
-    height:48px;
-    flex:none;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#eff6ff;
-    font-size:22px;
-}
-
-.subject-info{
-    flex:1;
-}
-
-.subject-info h3{
-    color:var(--navy);
-}
-
-.subject-info p{
-    color:var(--muted);
-    font-size:12px;
-    margin-top:3px;
-}
-
-.subject-arrow{
-    color:#94a3b8;
-}
-
-/* EXAM LIST */
-
-.exam-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.exam-card{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-}
-
-.exam-card h3{
-    color:var(--navy);
-}
-
-.exam-meta{
-    color:var(--muted);
-    font-size:13px;
-    margin-top:5px;
-}
-
-.exam-start-btn{
-    border:0;
-    color:#fff;
-    background:linear-gradient(135deg,#2563eb,#0284c7);
-    border-radius:10px;
-    padding:11px 16px;
-    font-weight:800;
-}
-
-.empty-box{
-    padding:35px 18px;
-    background:#fff;
-    border:1px dashed #94a3b8;
-    border-radius:17px;
-    text-align:center;
-    color:var(--muted);
-}
-
-/* NAME */
-
-.name-card{
-    max-width:500px;
-    margin:auto;
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:27px;
-}
-
-.name-card h2{
-    color:var(--navy);
-}
-
-.selected-exam{
-    color:var(--muted);
-    margin:5px 0 20px;
-}
-
-.student-name-input{
-    width:100%;
-    padding:14px;
-    border:2px solid #dbe4ef;
-    border-radius:11px;
-    outline:none;
-    font-size:16px;
-}
-
-.student-name-input:focus{
-    border-color:#2563eb;
-}
-
-.big-btn{
-    width:100%;
-    margin-top:14px;
-    border:0;
-    border-radius:11px;
-    padding:14px;
-    color:#fff;
-    background:linear-gradient(135deg,#1d4ed8,#0284c7);
-    font-size:16px;
-    font-weight:800;
-}
-
-/* EXAM TOOLBAR */
-
-.exam-toolbar{
-    position:sticky;
-    top:88px;
-    z-index:2000;
-    background:rgba(255,255,255,.97);
-    border-bottom:1px solid var(--border);
-}
-
-.exam-toolbar-inner{
-    width:min(950px,calc(100% - 26px));
-    margin:auto;
-    padding:10px 0;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-}
-
-.exam-toolbar-title{
-    color:var(--navy);
-    font-weight:800;
-}
-
-.toolbar-status{
-    display:flex;
-    gap:6px;
-}
-
-.pill{
-    padding:7px 9px;
-    border-radius:9px;
-    font-size:12px;
-    font-weight:800;
-}
-
-.progress-pill{
-    background:#dbeafe;
-    color:#1d4ed8;
-}
-
-.timer-pill{
-    background:#d1fae5;
-    color:#047857;
-}
-
-.timer-pill.warning{
-    background:#fef3c7;
-    color:#b45309;
-}
-
-.timer-pill.danger{
-    background:#fee2e2;
-    color:#b91c1c;
-}
-
-/* EXAM */
-
-.exam-info{
-    color:#fff;
-    background:linear-gradient(135deg,#10245f,#1d4ed8,#0891b2);
-    border-radius:17px;
-    padding:16px;
-    margin-bottom:18px;
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:10px;
+  display:none !important;
 }
 
 .question-card{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:17px;
-    padding:19px;
-    margin-bottom:14px;
+  border:1px solid #e2e8f0;
+  border-radius:14px;
+  padding:14px;
+  margin-top:12px;
+  background:#fafcff;
 }
 
-.question-badge{
-    display:inline-block;
-    background:#e0e7ff;
-    color:#3730a3;
-    padding:5px 9px;
-    border-radius:8px;
-    font-size:12px;
-    font-weight:800;
-    margin-bottom:9px;
+.question-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
 }
 
-.question-stimulus-image{
-    display:block;
-    max-width:100%;
-    max-height:320px;
-    object-fit:contain;
-    margin:4px auto 12px;
-    border-radius:10px;
+.badge{
+  background:#e0e7ff;
+  color:#3730a3;
+  padding:6px 9px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:bold;
 }
 
-.question-text{
-    font-weight:700;
-    line-height:1.7;
-    font-size:17px;
-    margin-bottom:12px;
+.delete-btn{
+  border:0;
+  background:#fee2e2;
+  color:#b91c1c;
+  padding:7px 9px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.options{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:9px;
+.option-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
 }
 
-.option{
-    display:flex;
-    gap:9px;
-    align-items:flex-start;
-    border:2px solid #e5e7eb;
-    border-radius:11px;
-    padding:11px;
-    line-height:1.55;
+.answer-row{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-top:8px;
 }
 
-.option input{
-    margin-top:5px;
-    accent-color:#2563eb;
+.answer-btn{
+  border:1px solid #cbd5e1;
+  background:white;
+  padding:8px 12px;
+  border-radius:20px;
+  cursor:pointer;
 }
 
-.option:has(input:checked){
-    border-color:#2563eb;
-    background:#eff6ff;
+.answer-btn.selected{
+  background:#dcfce7;
+  border-color:#22c55e;
+  color:#166534;
+  font-weight:bold;
 }
 
-.submit-box{
-    margin-top:22px;
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:17px;
-    padding:22px;
-    text-align:center;
-}
-
-.submit-btn{
-    margin-top:11px;
-    border:0;
-    border-radius:10px;
-    padding:13px 26px;
-    background:#059669;
-    color:#fff;
-    font-weight:800;
-}
-
-/* MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    background:rgba(15,23,42,.58);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal-box{
-    width:100%;
-    max-width:370px;
-    border-radius:18px;
-    background:#fff;
-    padding:25px;
-    text-align:center;
-}
-
-.modal-actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-    margin-top:18px;
-}
-
-.modal-actions button{
-    border:0;
-    border-radius:9px;
-    padding:11px;
-    font-weight:800;
-}
-
-.no-btn{
-    background:#f1f5f9;
-}
-
-.yes-btn{
-    background:#2563eb;
-    color:#fff;
-}
-
-/* RESULT */
-
-.result-head{
-    color:#fff;
-    background:linear-gradient(135deg,#10245f,#1d4ed8,#0891b2);
-    border-radius:21px;
-    padding:27px 18px;
-    text-align:center;
-}
-
-.score{
-    font-size:41px;
-    font-weight:800;
-    margin-top:10px;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin-top:17px;
-}
-
-.stat{
-    background:rgba(255,255,255,.13);
-    border-radius:10px;
-    padding:9px;
-}
-
-.stat strong{
-    display:block;
-    font-size:19px;
-}
-
-.stat span{
-    font-size:11px;
-}
-
-.review-title{
-    color:var(--navy);
-    margin:24px 0 13px;
-}
-
-.review-card{
-    padding:17px;
-    margin-bottom:11px;
-    border-radius:14px;
-}
-
-.review-card.correct{
-    background:#f0fdf4;
-    border-left:5px solid #22c55e;
-}
-
-.review-card.wrong{
-    background:#fff7f7;
-    border-left:5px solid #ef4444;
-}
-
-.review-card.unanswered{
-    background:#fffbeb;
-    border-left:5px solid #f59e0b;
-}
-
-.review-stimulus-image{
-    display:block;
-    max-width:100%;
-    max-height:320px;
-    object-fit:contain;
-    margin:0 auto 10px;
-    border-radius:10px;
-}
-
-.review-q{
-    font-weight:700;
-    line-height:1.6;
-}
-
-.review-options{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
-    margin-top:11px;
-}
-
-.review-option{
-    background:#fff;
-    border:1px solid #dbe3ec;
-    border-radius:8px;
-    padding:9px 10px;
-    display:flex;
-    justify-content:space-between;
-    gap:9px;
-}
-
-.review-option.correct{
-    background:#dcfce7;
-    border-color:#22c55e;
-}
-
-.review-option.wrong-selected{
-    background:#fee2e2;
-    border-color:#ef4444;
-}
-
-.option-note{
-    font-size:11px;
-    font-weight:800;
-}
-
-.result-actions{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:9px;
-    margin-top:24px;
-}
-
-.result-actions button{
-    border:0;
-    border-radius:10px;
-    padding:12px 17px;
-    color:#fff;
-    font-weight:800;
-}
-
-.print-btn{
-    background:#2563eb;
-}
-
-.home-result-btn{
-    background:#10245f;
-}
-
-/* BROWSER PRINT PAGE */
-
-.browser-print-page{
-    max-width:600px;
-    margin:30px auto;
-    padding:25px;
-    text-align:center;
-    background:#fff;
-    border-radius:18px;
-    border:1px solid #e2e8f0;
-}
-
-.browser-print-page h2{
-    color:#10245f;
-}
-
-.browser-print-page p{
-    color:#64748b;
-    margin-top:8px;
-}
-
-.browser-print-btn{
-    margin-top:18px;
-    border:0;
-    border-radius:10px;
-    padding:13px 20px;
-    background:#2563eb;
-    color:#fff;
-    font-weight:800;
-}
-
-.browser-print-btn:disabled{
-    opacity:.55;
-    cursor:not-allowed;
-}
-
-/* PRINT */
-
-#printSheet{
-    display:none;
-}
-
-.print-sheet{
-    background:#fff;
-    color:#172033;
-}
-
-.print-cover{
-    background:linear-gradient(135deg,#10245f 0%,#1d4ed8 56%,#0891b2 100%);
-    color:#fff;
-    border-radius:18px;
-    padding:24px;
-    margin-bottom:18px;
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
-}
-
-.print-brand-row{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-}
-
-.print-logo{
-    width:54px;
-    height:54px;
-    border-radius:13px;
-    object-fit:cover;
-    background:#08111f;
-}
-
-.print-brand-name{
-    font-size:26px;
-    font-weight:800;
-}
-
-.print-brand-sub{
-    font-size:10px;
-    color:#dbeafe;
-}
-
-.print-exam-title{
-    margin-top:16px;
-    font-size:19px;
-    line-height:1.45;
-    font-weight:800;
-    text-align:center;
-}
-
-.print-meta{
-    text-align:center;
-    margin-top:5px;
-    font-size:11px;
-    color:#dbeafe;
-}
-
-.print-student{
-    margin:14px auto 0;
-    width:max-content;
-    max-width:100%;
-    background:rgba(255,255,255,.14);
-    padding:8px 14px;
-    border-radius:10px;
-    text-align:center;
-}
-
-.print-score{
-    text-align:center;
-    font-size:38px;
-    font-weight:800;
-    margin-top:14px;
-}
-
-.print-score-label{
-    text-align:center;
-    color:#dbeafe;
-    font-size:10px;
-}
-
-.print-stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin-top:16px;
-}
-
-.print-stat{
-    background:rgba(255,255,255,.14);
-    border-radius:10px;
-    padding:9px 6px;
-    text-align:center;
-}
-
-.print-stat strong{
-    display:block;
-    font-size:18px;
-}
-
-.print-stat span{
-    font-size:9px;
-}
-
-.print-rule{
-    border:1px solid #dbe4ef;
-    background:linear-gradient(135deg,#f8fafc,#eff6ff);
-    border-radius:12px;
-    padding:12px 14px;
-    margin-bottom:16px;
-    font-size:11px;
-    line-height:1.7;
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
-}
-
-.print-section-title{
-    color:#10245f;
-    font-size:18px;
-    font-weight:800;
-    margin:16px 0 10px;
-}
-
-.print-question{
-    border:1px solid #e2e8f0;
-    border-left:5px solid #94a3b8;
-    border-radius:12px;
-    padding:13px;
-    margin-bottom:10px;
-    background:#fff;
-    break-inside:avoid;
-    page-break-inside:avoid;
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
-}
-
-.print-question.correct{
-    border-left-color:#22c55e;
-    background:#f7fff9;
-}
-
-.print-question.wrong{
-    border-left-color:#ef4444;
-    background:#fff8f8;
-}
-
-.print-question.unanswered{
-    border-left-color:#f59e0b;
-    background:#fffcf4;
-}
-
-.print-q-badge{
-    display:inline-block;
-    background:#e0e7ff;
-    color:#3730a3;
-    padding:4px 7px;
-    border-radius:7px;
-    font-size:9px;
-    font-weight:800;
-    margin-bottom:7px;
-}
-
-.print-stimulus-image{
-    display:block;
-    max-width:100%;
-    max-height:220px;
-    object-fit:contain;
-    margin:0 auto 8px;
-    border-radius:8px;
-}
-
-.print-q-text{
-    font-size:12px;
-    font-weight:700;
-    line-height:1.55;
-    margin-bottom:8px;
-}
-
-.print-status{
-    display:inline-block;
-    border-radius:999px;
-    padding:3px 7px;
-    font-size:9px;
-    font-weight:800;
-    margin-bottom:6px;
-}
-
-.print-status.correct{
-    background:#dcfce7;
-    color:#166534;
-}
-
-.print-status.wrong{
-    background:#fee2e2;
-    color:#991b1b;
-}
-
-.print-status.unanswered{
-    background:#fef3c7;
-    color:#92400e;
-}
-
-.print-option{
-    border:1px solid #e2e8f0;
-    border-radius:8px;
-    padding:6px 8px;
-    margin-top:5px;
-    display:flex;
-    justify-content:space-between;
-    gap:8px;
-    font-size:10px;
-    line-height:1.45;
-    break-inside:avoid;
-    page-break-inside:avoid;
-}
-
-.print-option.correct-answer{
-    background:#dcfce7;
-    border-color:#22c55e;
-    color:#166534;
-}
-
-.print-option.wrong-answer{
-    background:#fee2e2;
-    border-color:#ef4444;
-    color:#991b1b;
-}
-
-.print-note{
-    font-size:8px;
-    font-weight:800;
-    white-space:nowrap;
-}
-
-.print-footer{
-    margin-top:18px;
-    padding-top:10px;
-    border-top:1px solid #e2e8f0;
-    text-align:center;
-    color:#64748b;
-    font-size:8px;
+.validation{
+  margin-top:12px;
+  padding:10px;
+  border-radius:10px;
+  font-size:12px;
+}
+
+.validation.good{
+  background:#ecfdf5;
+  border:1px solid #86efac;
+  color:#166534;
+}
+
+.validation.warn{
+  background:#fff7ed;
+  border:1px solid #fdba74;
+  color:#9a3412;
+}
+
+.preview-card{
+  border:1px solid #e2e8f0;
+  border-radius:13px;
+  padding:13px;
+  margin-top:10px;
+}
+
+.preview-option{
+  border:1px solid #e2e8f0;
+  padding:8px;
+  border-radius:8px;
+  margin-top:5px;
+}
+
+.preview-option.correct{
+  background:#dcfce7;
+  border-color:#22c55e;
+}
+
+.exam-row,
+.submission-row{
+  border:1px solid #e2e8f0;
+  border-radius:13px;
+  padding:13px;
+  margin-top:10px;
+}
+
+.exam-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.exam-row h3,
+.submission-row h3{
+  margin:0;
+  color:#10245f;
+  font-size:15px;
+}
+
+.exam-row p,
+.submission-row p{
+  margin:5px 0 0;
+  color:#64748b;
+  font-size:11px;
+}
+
+.small{
+  border:0;
+  padding:7px 9px;
+  border-radius:7px;
+  font-size:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.image-upload-wrap{margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.image-upload-btn{display:inline-block;border:0;padding:10px 12px;border-radius:9px;background:#2563eb;color:#fff;font-weight:bold;cursor:pointer;font-size:12px}
+.image-file-input{display:none}
+.image-preview{display:none;max-width:220px;max-height:160px;margin-top:8px;border:1px solid #dbe2ea;border-radius:10px;object-fit:contain;background:#fff}
+.image-remove-btn{display:none;border:0;padding:8px 10px;border-radius:8px;background:#fee2e2;color:#b91c1c;font-weight:bold;cursor:pointer}
+
+.file-link{
+  display:inline-block;
+  margin:7px 5px 0 0;
+  padding:7px 9px;
+  background:#eff6ff;
+  color:#1d4ed8;
+  border-radius:7px;
+  text-decoration:none;
+  font-size:11px;
+}
+
+#toast{
+  display:none;
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:9999;
+  max-width:90%;
+  background:#10245f;
+  color:white;
+  padding:11px 15px;
+  border-radius:10px;
+  font-size:12px;
+  text-align:center;
 }
 
 @media(max-width:700px){
-    .brand-logo{
-        width:46px;
-        height:46px;
-    }
+  .grid,
+  .option-grid{
+    grid-template-columns:1fr;
+  }
 
-    .brand-name{
-        font-size:19px;
-    }
-
-    .by-shuvo{
-        font-size:10px;
-    }
-
-    .brand-sub{
-        font-size:9px;
-    }
-
-    .header-actions{
-        gap:5px;
-    }
-
-    .admin-btn,
-    .home-btn{
-        padding:7px 8px;
-        font-size:10px;
-        white-space:nowrap;
-    }
-
-    .level-grid,
-    .subject-grid,
-    .options{
-        grid-template-columns:1fr;
-    }
-
-    .exam-card{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .exam-start-btn{
-        width:100%;
-    }
-
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .toolbar-status{
-        flex-direction:column;
-    }
-
-    .review-option{
-        flex-direction:column;
-    }
-
-    .result-actions button{
-        width:100%;
-    }
+  .exam-row{
+    flex-direction:column;
+    align-items:flex-start;
+  }
 }
 
-@page{
-    size:A4;
-    margin:10mm;
+/* ADMIN LOGIN */
+.admin-login-gate{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:linear-gradient(135deg,#10245f,#1d4ed8,#0891b2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
-@media print{
-    html,
-    body{
-        background:#fff!important;
-    }
-
-    body *{
-        visibility:hidden!important;
-    }
-
-    #printSheet,
-    #printSheet *{
-        visibility:visible!important;
-    }
-
-    #printSheet{
-        display:block!important;
-        position:absolute;
-        left:0;
-        top:0;
-        width:100%;
-        background:#fff;
-    }
-
-    .site-header,
-    #homePage,
-    #subjectPage,
-    #examListPage,
-    #namePage,
-    #examPage,
-    #resultPage,
-    #browserPrintPage,
-    #submitModal{
-        display:none!important;
-    }
+.admin-login-box{
+  width:100%;
+  max-width:390px;
+  background:#fff;
+  border-radius:22px;
+  padding:30px 24px;
+  box-shadow:0 20px 60px rgba(0,0,0,.22);
+  text-align:center;
 }
+
+.admin-login-icon{
+  width:64px;
+  height:64px;
+  margin:0 auto 14px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eff6ff;
+  font-size:30px;
+}
+
+.admin-login-box h2{
+  margin:0;
+  color:#10245f;
+  font-size:24px;
+}
+
+.admin-login-box p{
+  margin:6px 0 20px;
+  color:#64748b;
+  font-size:12px;
+}
+
+.admin-login-box input{
+  width:100%;
+  padding:13px;
+  border:2px solid #dbe4ef;
+  border-radius:11px;
+  font-size:16px;
+  outline:none;
+}
+
+.admin-login-box input:focus{
+  border-color:#2563eb;
+}
+
+.admin-login-box button{
+  width:100%;
+  margin-top:12px;
+  border:0;
+  border-radius:11px;
+  padding:13px;
+  background:linear-gradient(135deg,#2563eb,#0891b2);
+  color:#fff;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.admin-login-box button:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+}
+
+#adminLoginMessage{
+  min-height:18px;
+  margin-top:10px;
+  color:#dc2626;
+  font-size:12px;
+  font-weight:bold;
+}
+
 </style>
 </head>
 
 <body>
-<!-- V2 profile gate: shown until server confirms approved session -->
-<div id="v2ProfileGate" style="position:fixed;inset:0;z-index:99998;background:#eef4ff;overflow:auto;padding:24px 12px;font-family:Arial,sans-serif">
-  <div style="max-width:440px;margin:35px auto;background:white;padding:24px;border-radius:18px;box-shadow:0 8px 35px #0002">
-    <h2 style="color:#12306c;margin:0 0 8px">🎓 Concept Academy</h2>
-    <button type="button" onclick="openAdminPanel()" style="float:right;background:#0f766e;color:#fff;border:0;border-radius:9px;padding:9px 12px;font-weight:bold;cursor:pointer;margin:0 0 12px 8px">⚙ Admin Panel</button>
-    <p id="v2Message" style="font-size:13px;color:#475569">প্রোফাইল যাচাই হচ্ছে...</p>
-    <div id="v2ProfileForms" style="display:none">
-      <div style="display:flex;gap:8px;margin:15px 0"><button type="button" onclick="v2Tab('login')">পুরোনো প্রোফাইল</button><button type="button" onclick="v2Tab('register')">নতুন রেজিস্ট্রেশন</button></div>
-      <div id="v2LoginForm">
-        <label>Student ID</label><input id="v2LoginId" placeholder="CA0001" autocomplete="username">
-        <label>PIN</label><input id="v2LoginPin" type="password" inputmode="numeric" autocomplete="current-password">
-        <button type="button" onclick="v2Login()">প্রোফাইল খুলুন</button>
-      </div>
-      <div id="v2RegisterForm" style="display:none">
-        <label>পূর্ণ নাম</label><input id="v2RegName" autocomplete="name">
-        <label>মোবাইল নম্বর</label><input id="v2RegPhone" inputmode="tel" placeholder="01XXXXXXXXX">
-        <label>Level</label><select id="v2RegLevel" onchange="v2UpdateYears()"><option>SSC</option><option>HSC</option></select>
-        <label>Class / Year</label><select id="v2RegYear"></select>
-        <label>PIN (৪–৬ সংখ্যা)</label><input id="v2RegPin" type="password" inputmode="numeric">
-        <button type="button" onclick="v2Register()">রেজিস্ট্রেশন করুন</button>
-      </div>
-    </div>
+
+<div id="adminLoginGate" class="admin-login-gate">
+  <div class="admin-login-box">
+    <div class="admin-login-icon">🔐</div>
+    <h2>Admin Login</h2>
+    <p>Concept Academy Admin Panel</p>
+
+    <input
+      id="adminPassword"
+      type="password"
+      placeholder="Admin password"
+      autocomplete="current-password"
+    >
+
+    <button id="adminLoginBtn" type="button">
+      Login →
+    </button>
+
+    <div id="adminLoginMessage"></div>
   </div>
 </div>
-<style>
-#v2ProfileGate input,#v2ProfileGate select{display:block;width:100%;padding:11px;border:1px solid #b8c7df;border-radius:9px;margin:5px 0 13px;box-sizing:border-box}
-#v2ProfileGate label{font-size:13px;font-weight:700;color:#243b63}
-#v2ProfileGate button{padding:11px 13px;border:0;border-radius:9px;background:#1d4ed8;color:white;cursor:pointer;font-weight:700;margin-bottom:8px}
-</style>
 
 
-<header class="site-header">
-<div class="header-inner">
-
-<div class="brand">
-
-<div class="brand-logo">
-<img src="logo.jpg" alt="Concept Academy">
-</div>
+<header>
+<div class="header-wrap">
 
 <div>
-<div class="brand-line">
-<span class="brand-name">Concept Academy</span>
-<span class="by-shuvo">by Shuvo</span>
+<h1>Concept Academy</h1>
+<p>Admin Panel • by Shuvo</p>
 </div>
 
-<div class="brand-sub">
-Online Exam Platform
-</div>
-</div>
-
-</div>
-
-<div class="header-actions">
-<button class="admin-btn" onclick="openAdminPanel()">
-⚙ Admin Panel
-</button>
-
+<div id="jsStatus">
+JavaScript loading...
 </div>
 
 </div>
 </header>
 
-<!-- HOME -->
+<div class="container">
 
-<section id="homePage" class="page">
+<div class="tabs">
 
-<div class="home-hero">
-
-<div class="eyebrow">
-ONLINE EXAM
-</div>
-
-<h2>
-আপনার পরীক্ষার সেকশন নির্বাচন করুন
-</h2>
-
-<p>
-SSC অথবা HSC সেকশনে প্রবেশ করে আপনার বিষয় ও পরীক্ষা নির্বাচন করুন।
-</p>
-
-</div>
-
-<div class="level-grid">
-
-<div class="level-card" onclick="openLevel('SSC')">
-
-<div class="level-top">
-<div class="level-icon">📘</div>
-<div class="level-arrow">→</div>
-</div>
-
-<h2>SSC</h2>
-
-<p>
-মাধ্যমিক পর্যায়ের পরীক্ষা
-</p>
-
-<div class="level-footer">
-SSC পরীক্ষাসমূহ দেখুন →
-</div>
-
-</div>
-
-<div class="level-card" onclick="openLevel('HSC')">
-
-<div class="level-top">
-<div class="level-icon">🎓</div>
-<div class="level-arrow">→</div>
-</div>
-
-<h2>HSC</h2>
-
-<p>
-উচ্চমাধ্যমিক ও ভর্তি পরীক্ষা
-</p>
-
-<div class="level-footer">
-HSC পরীক্ষাসমূহ দেখুন →
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- SUBJECT -->
-
-<section id="subjectPage" class="page hidden">
-
-<button class="back-btn" onclick="history.back()">
-← ফিরে যান
+<button id="tabCreate" class="tab active" type="button">
+➕ Create Exam
 </button>
 
-<div class="eyebrow" id="subjectEyebrow">
-SECTION
-</div>
-
-<h2 class="page-title" id="subjectTitle"></h2>
-
-<p class="page-subtitle">
-পরীক্ষা দেওয়ার জন্য বিষয় নির্বাচন করুন
-</p>
-
-<div class="subject-grid" id="subjectGrid"></div>
-
-</section>
-
-<!-- EXAM LIST -->
-
-<section id="examListPage" class="page hidden">
-
-<button class="back-btn" onclick="history.back()">
-← বিষয়সমূহ
+<button id="tabManage" class="tab" type="button">
+📝 Manage Exams
 </button>
 
-<div class="eyebrow">
-AVAILABLE EXAMS
+<button id="tabCQ" class="tab" type="button">
+📚 CQ Submissions
+</button>
+<button id="tabStudentsV2" class="tab" type="button">👥 Students</button>
+
 </div>
 
-<h2 class="page-title" id="examListTitle"></h2>
 
-<p class="page-subtitle">
-প্রকাশিত পরীক্ষা থেকে একটি নির্বাচন করুন
+<!-- CREATE -->
+
+<section id="createPanel" class="panel active">
+
+<div class="card">
+
+<h2>নতুন পরীক্ষা তৈরি</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Exam Type</label>
+
+<select id="examType">
+<option value="MCQ">MCQ</option>
+<option value="CQ">সৃজনশীল / CQ</option>
+</select>
+</div>
+
+<div class="field">
+<label>Level</label>
+
+<select id="level">
+<option value="SSC">SSC</option>
+<option value="HSC">HSC</option>
+</select>
+</div>
+
+<div class="field">
+<label>Class / Year</label>
+<select id="classYearV2"></select>
+</div>
+
+<div class="field">
+<label>Subject</label>
+<select id="subject"></select>
+</div>
+
+<div class="field">
+<label>সময় (মিনিট)</label>
+<input id="timeMinutes" type="number" value="20" min="1">
+</div>
+
+<div class="field">
+<label>Exam Start Time</label>
+<input id="startAt" type="datetime-local">
+</div>
+
+<div class="field">
+<label>Exam End Time</label>
+<input id="endAt" type="datetime-local">
+</div>
+
+</div>
+
+<div class="field">
+<label>Exam Title</label>
+<input id="examTitle" type="text" placeholder="যেমন: রসায়ন Model Test 01">
+</div>
+
+</div>
+
+
+<!-- MCQ -->
+
+<div id="mcqBuilder">
+
+<div class="card">
+
+<h2>Bulk Question Paste</h2>
+
+<p class="help">
+একসাথে সব প্রশ্ন Paste করুন।
 </p>
 
-<div class="exam-list" id="examList"></div>
+<textarea
+id="bulkQuestions"
+class="bulk"
+placeholder="১. প্রশ্ন...
+(a) Option
+(b) Option
+(c) Option
+(d) Option
 
-</section>
+২. প্রশ্ন...
+(a) Option
+(b) Option
+(c) Option
+(d) Option"></textarea>
 
-<!-- NAME -->
+<div class="buttons" style="margin-top:12px;">
 
-<section id="namePage" class="page hidden">
-
-<button class="back-btn" onclick="history.back()">
-← পরীক্ষার তালিকা
+<button id="parseBtn" type="button" class="btn blue">
+⚙️ Parse Questions
 </button>
 
-<div class="name-card">
-
-<div class="eyebrow">
-START EXAM
-</div>
-
-<h2>
-পরীক্ষার্থীর তথ্য
-</h2>
-
-<p class="selected-exam" id="selectedExamTitle"></p>
-
-<label style="font-weight:700;display:block;margin-bottom:7px;">
-পরীক্ষার্থীর নাম
-</label>
-
-<input
-id="studentName"
-class="student-name-input"
-type="text"
-placeholder="আপনার সম্পূর্ণ নাম লিখুন"
-autocomplete="name"
->
-
-<button class="big-btn" onclick="startExam()">
-পরীক্ষা শুরু করুন →
-</button>
-
-</div>
-
-</section>
-
-<!-- EXAM -->
-
-<section id="examPage" class="hidden">
-
-<div class="exam-toolbar">
-
-<div class="exam-toolbar-inner">
-
-<div class="exam-toolbar-title" id="toolbarExamTitle"></div>
-
-<div class="toolbar-status">
-
-<div class="pill progress-pill" id="progressText"></div>
-
-<div class="pill timer-pill" id="timerText"></div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="page">
-
-<div class="exam-info">
-
-<div>
-পরীক্ষার্থী:
-<strong id="examStudentName"></strong>
-</div>
-
-<div id="markingRuleText"></div>
-
-</div>
-
-<div id="questionsContainer"></div>
-
-<div class="submit-box">
-
-<h3>
-পরীক্ষা শেষ?
-</h3>
-
-<p style="color:#64748b;margin-top:4px;">
-সব প্রশ্নের উত্তর দেওয়া বাধ্যতামূলক নয়।
-</p>
-
-<button class="submit-btn" onclick="showSubmitModal()">
-পরীক্ষা জমা দিন
+<button id="clearBtn" type="button" class="btn light">
+Clear
 </button>
 
 </div>
 
 </div>
 
-</section>
 
-<!-- RESULT -->
+<div class="card">
 
-<section id="resultPage" class="page hidden">
+<h2>Answer Key</h2>
 
-<div class="result-head">
+<textarea
+id="answerKey"
+placeholder="১. গ) উত্তর...
+২. খ) উত্তর...
+৩. (c) উত্তর...
 
-<h2>
-পরীক্ষার ফলাফল
-</h2>
-
-<p id="resultExamName"></p>
-
-<p id="resultStudent"></p>
-
-<div class="score" id="finalScore"></div>
-
-<div id="scoreOutOf"></div>
-
-<div class="stats">
-
-<div class="stat">
-<strong id="correctCount"></strong>
-<span>সঠিক</span>
-</div>
-
-<div class="stat">
-<strong id="wrongCount"></strong>
-<span>ভুল</span>
-</div>
-
-<div class="stat">
-<strong id="unansweredCount"></strong>
-<span>উত্তরহীন</span>
-</div>
-
-<div class="stat">
-<strong id="answeredCount"></strong>
-<span>উত্তর দিয়েছেন</span>
-</div>
-
-</div>
-
-</div>
-
-<h2 class="review-title">
-উত্তরপত্র ও সংশোধনী
-</h2>
-
-<div id="answerReview"></div>
-
-<div class="result-actions">
+গ), (গ), c), (c) — সব format গ্রহণ করবে"></textarea>
 
 <button
-class="print-btn"
-onclick="handlePdfRequest()"
->
-📄 রঙিন উত্তরপত্র PDF / Print
+id="applyAnswerBtn"
+type="button"
+class="btn green"
+style="margin-top:12px;">
+✅ Apply Answer Key
+</button>
+
+<div id="answerValidation"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Parsed Questions</h2>
+
+<div id="parsedQuestions">
+<p class="help">এখনো কোনো প্রশ্ন Parse করা হয়নি।</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CQ -->
+
+<div id="cqBuilder" class="hidden">
+
+<div class="card">
+
+<h2>সৃজনশীল প্রশ্ন Paste</h2>
+
+<textarea
+id="bulkCQ"
+class="bulk"
+placeholder="১. উদ্দীপক...
+ক. ...
+খ. ...
+গ. ...
+ঘ. ...
+
+২. উদ্দীপক...
+ক. ...
+খ. ...
+গ. ...
+ঘ. ..."></textarea>
+
+<button
+id="parseCQBtn"
+type="button"
+class="btn blue"
+style="margin-top:12px;">
+⚙️ Parse CQ Questions
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>Parsed CQ Questions</h2>
+
+<div id="parsedCQ"></div>
+
+</div>
+
+</div>
+
+
+<!-- PREVIEW -->
+
+<div class="card">
+
+<h2>Preview</h2>
+
+<button
+id="previewBtn"
+type="button"
+class="btn navy">
+👁️ Preview
+</button>
+
+<div id="previewArea"></div>
+
+</div>
+
+
+<!-- SAVE -->
+
+<div class="card">
+
+<h2>Save / Publish</h2>
+
+<div class="buttons">
+
+<button
+id="saveDraftBtn"
+type="button"
+class="btn light">
+💾 Save Draft
 </button>
 
 <button
-class="home-result-btn"
-onclick="goHome()"
->
-⌂ Home
+id="publishBtn"
+type="button"
+class="btn green">
+🚀 Publish Exam
 </button>
+
+</div>
 
 </div>
 
 </section>
 
-<!-- BROWSER PRINT -->
 
-<section
-id="browserPrintPage"
-class="page hidden"
->
+<!-- MANAGE -->
 
-<div class="browser-print-page">
+<section id="managePanel" class="panel">
 
-<h2>
-উত্তরপত্র প্রস্তুত
-</h2>
+<div class="card">
 
-<p>
-নিচের বাটনে চাপ দিয়ে Save as PDF নির্বাচন করুন।
-</p>
+<h2>Manage Exams</h2>
 
 <button
-id="browserPrintBtn"
-class="browser-print-btn"
-onclick="printPreparedPDF()"
-disabled
->
-⏳ PDF প্রস্তুত হচ্ছে...
+id="refreshExamsBtn"
+type="button"
+class="btn blue">
+↻ Refresh
 </button>
 
-<p id="browserPrintStatus" style="margin-top:10px;font-size:12px;">
-উত্তরপত্র প্রস্তুত হচ্ছে...
-</p>
+<div id="examList"></div>
 
 </div>
 
 </section>
 
-<div id="printSheet"></div>
 
-<!-- MODAL -->
+<!-- CQ SUBMISSIONS -->
 
-<div id="submitModal" class="modal">
+<section id="cqPanel" class="panel">
 
-<div class="modal-box">
+<div class="card">
 
-<h3>
-আপনি কি পরীক্ষা জমা দিতে চান?
-</h3>
+<h2>CQ Answer Scripts</h2>
 
-<div class="modal-actions">
-
-<button class="no-btn" onclick="hideSubmitModal()">
-না
+<button
+id="refreshCQBtn"
+type="button"
+class="btn blue">
+↻ Refresh
 </button>
 
-<button class="yes-btn" onclick="submitExam(false)">
-হ্যাঁ, জমা দিন
-</button>
+<div id="submissionList"></div>
 
 </div>
 
-</div>
+</section>
 
 </div>
+
+<section id="studentsPanelV2" class="panel container" style="padding-top:0">
+  <div class="card"><h2>Student Registration Approval</h2>
+    <p class="help">শিক্ষার্থীদের অনুমোদন, ব্লক বা প্রত্যাখ্যান করুন।</p>
+    <button id="refreshStudentsV2" class="btn blue" type="button">↻ Refresh Students</button>
+    <div id="studentListV2"></div>
+  </div>
+</section>
+<div id="toast"></div>
+
 
 <script>
 
-/* CONFIG */
+var mcqQuestions = [];
+var cqQuestions = [];
+var loadedExams = [];
+var editingExamId = null;
+var isSavingExam = false;
+var adminToken = "";
 
-const GOOGLE_SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycby-qppGkePByBtNVDuM1S1YHMD_uzH5igl_5KRxMmpE_DhHhai4DAJg846PPgeHxT3T/exec";
+var labels = ["ক","খ","গ","ঘ"];
 
-const subjects={
+var subjects = {
 
-SSC:[
-{id:"biology",name:"জীববিজ্ঞান",icon:"🧬"},
-{id:"physics",name:"পদার্থবিজ্ঞান",icon:"⚛️"},
-{id:"chemistry",name:"রসায়ন",icon:"🧪"},
-{id:"higher_math",name:"উচ্চতর গণিত",icon:"📐"},
-{id:"math",name:"গণিত",icon:"➗"}
-],
+  SSC:[
+    ["biology","জীববিজ্ঞান"],
+    ["physics","পদার্থবিজ্ঞান"],
+    ["chemistry","রসায়ন"],
+    ["higher_math","উচ্চতর গণিত"],
+    ["math","গণিত"]
+  ],
 
-HSC:[
-{id:"zoology",name:"প্রাণীবিজ্ঞান",icon:"🐾"},
-{id:"botany",name:"উদ্ভিদবিজ্ঞান",icon:"🌿"},
-{id:"chemistry_1",name:"রসায়ন ১ম পত্র",icon:"🧪"},
-{id:"chemistry_2",name:"রসায়ন ২য় পত্র",icon:"⚗️"},
-{id:"medical",name:"মেডিকেল ভর্তি পরীক্ষা",icon:"🩺"}
-]
-
-};
-
-const optionLabels=[
-"ক","খ","গ","ঘ"
-];
-
-
-/* V2 student identity: keep session across reloads; never clear token on network errors. */
-const V2_TOKEN_KEY="conceptAcademyStudentSessionV2";
-/* TinyDB bridge for MIT App Inventor WebViewer. */
-function v2ReadNativeToken(){
- try{
-  if(window.AppInventor && typeof window.AppInventor.getWebViewString==="function"){
-   const t=String(window.AppInventor.getWebViewString()||"");
-   if(t && !t.startsWith("CA_SAVE_TOKEN:") && !/^https?:\/\//i.test(t))return t;
-  }
- }catch(e){console.warn("TinyDB read unavailable",e);}
- return "";
-}
-function v2RememberToken(token){
- if(!token)return;
- try{localStorage.setItem(V2_TOKEN_KEY,token);}catch(e){}
- try{
-  if(window.AppInventor && typeof window.AppInventor.setWebViewString==="function"){
-   window.AppInventor.setWebViewString("CA_SAVE_TOKEN:"+token);
-  }
- }catch(e){console.warn("TinyDB save unavailable",e);}
-}
-
-let v2Student=null;
-let v2Token="";
-function v2Message(s){document.getElementById("v2Message").textContent=s;}
-function v2Tab(tab){document.getElementById("v2LoginForm").style.display=tab==="login"?"block":"none";document.getElementById("v2RegisterForm").style.display=tab==="register"?"block":"none";}
-function v2UpdateYears(){const level=document.getElementById("v2RegLevel").value;document.getElementById("v2RegYear").innerHTML=(level==="SSC"?["9","10"]:["1st Year","2nd Year"]).map(x=>'<option value="'+x+'">'+x+'</option>').join("");}
-function v2ShowForms(message){document.getElementById("v2ProfileForms").style.display="block";v2Message(message||"প্রোফাইল দিয়ে প্রবেশ করুন।");}
-async function v2Api(action,payload){
- const res=await fetch(GOOGLE_SCRIPT_URL,{method:"POST",redirect:"follow",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({action:action},payload||{}))});
- if(!res.ok)throw Error("সার্ভারের সঙ্গে সংযোগ হয়নি।");
- const data=await res.json();
- if(!data||data.success===false)throw Error((data&&(data.message||data.error))||"অনুরোধ সফল হয়নি।");
- return data;
-}
-function v2ApplyStudent(student,token){
- v2Student=student;v2Token=token;
- document.getElementById("v2ProfileGate").style.display="none";
- document.getElementById("studentName").value=student.name||"";
- document.getElementById("studentName").readOnly=true;
- studentName=student.name||"";
- currentLevel=student.level;
-}
-async function v2Boot(){
- v2UpdateYears();
- try{v2Token=localStorage.getItem(V2_TOKEN_KEY)||"";}catch(e){}
- if(!v2Token)v2Token=v2ReadNativeToken();
- if(!v2Token && window.AppInventor){
-  await new Promise(resolve=>setTimeout(resolve,450));
-  v2Token=v2ReadNativeToken();
- }
- if(v2Token)v2RememberToken(v2Token);
- if(!v2Token){v2ShowForms("প্রথমবার রেজিস্ট্রেশন করুন অথবা Student ID দিয়ে প্রবেশ করুন।");return;}
- try{const data=await v2Api("studentSessionV2",{token:v2Token});v2ApplyStudent(data.student,v2Token);await loadExams();}
- catch(err){v2ShowForms("সেশন যাচাই হয়নি: "+err.message+"। ইন্টারনেট সমস্যা হলে পরে আবার চেষ্টা করুন।");}
-}
-async function v2Login(){
- const id=document.getElementById("v2LoginId").value.trim();
- const pin=document.getElementById("v2LoginPin").value.trim();
- v2Message("যাচাই হচ্ছে...");
- try{const data=await v2Api("studentLoginV2",{studentId:id,pin:pin});
- if(data.approved===false){v2Message("আপনার প্রোফাইল এখন "+(data.status||"pending")+"। Admin Approval-এর অপেক্ষা করুন। Student ID: "+id);return;}
- const token=data.token||data.sessionToken;
- if(!token||!data.student)throw Error("সার্ভার সেশন ফেরত দেয়নি।");
- v2RememberToken(token);
- v2ApplyStudent(data.student,token);await loadExams();
- }catch(err){v2Message(err.message);}
-}
-async function v2Register(){
- const payload={name:document.getElementById("v2RegName").value.trim(),phone:document.getElementById("v2RegPhone").value.trim(),level:document.getElementById("v2RegLevel").value,classYear:document.getElementById("v2RegYear").value,pin:document.getElementById("v2RegPin").value};
- v2Message("রেজিস্ট্রেশন হচ্ছে...");
- try{const data=await v2Api("registerStudentV2",payload);v2Tab("login");document.getElementById("v2LoginId").value=data.studentId;v2Message("রেজিস্ট্রেশন সফল। আপনার Student ID: "+data.studentId+"। এটি লিখে রাখুন। Admin অনুমোদনের পর PIN দিয়ে একবার প্রবেশ করবেন।");}
- catch(err){v2Message(err.message);}
-}
-
-let examsData=[];
-let examsLoading=true;
-let examsLoadError=false;
-const EXAMS_CACHE_KEY="conceptAcademyPublishedExamsV2";
-try{ localStorage.removeItem("conceptAcademyPublishedExamsV1"); }catch(e){}
-
-let currentLevel=null;
-let currentSubject=null;
-let currentExam=null;
-
-let currentView="home";
-
-let studentName="";
-
-let timeLeft=0;
-let timerInterval=null;
-
-let submitted=false;
-let examStartTime=null;
-let officialResultEligible=false;
-let officialAttemptStartedAt=null;
-
-let externalPrintAnswers=null;
-let externalPrintResult=null;
-let printSheetReady=false;
-
-
-/* HISTORY */
-
-history.replaceState(
-{view:"home"},
-"",
-"#home"
-);
-
-
-/* LOAD EXAMS */
-
-function normalizeExamPayload(data){
-
-const rawExams=
-data
-&&
-Array.isArray(data.exams)
-?
-data.exams
-:
-[];
-
-const normalized=
-rawExams
-.map(exam=>{
-
-let questions=
-exam.questions;
-
-if(
-typeof questions==="string"
-){
-
-try{
-questions=JSON.parse(questions);
-}
-catch(error){
-questions=[];
-}
-
-}
-
-if(!Array.isArray(questions)){
-questions=[];
-}
-
-return {
-
-id:String(exam.id || exam.examId || ""),
-level:String(exam.level || "").toUpperCase(),
-subject:String(exam.subject || ""),
-title:String(exam.title || exam.examTitle || "পরীক্ষা"),
-timeMinutes:Number(exam.timeMinutes || exam.time || 10),
-published:(
-  exam.published === true ||
-  String(exam.published || "")
-    .trim()
-    .toLowerCase() === "true"
-),
-startAt:String(exam.startAt || exam.StartAt || ""),
-endAt:String(exam.endAt || exam.EndAt || ""),
-examType:String(exam.examType || "MCQ").toUpperCase(),
-questions:questions.map(question=>({
-q:String(question.q || question.question || question.text || ""),
-options:Array.isArray(question.options) ? question.options : [],
-answer:Number(question.answer),
-image:String(question.image || "")
-}))
+  HSC:[
+    ["zoology","প্রাণীবিজ্ঞান"],
+    ["botany","উদ্ভিদবিজ্ঞান"],
+    ["chemistry_1","রসায়ন ১ম পত্র"],
+    ["chemistry_2","রসায়ন ২য় পত্র"],
+    ["medical","মেডিকেল ভর্তি পরীক্ষা"]
+  ]
 
 };
 
-})
-.filter(exam=>
-exam.id
-&& exam.published!==false
-&& exam.examType==="MCQ"
-&& exam.questions.length>0
-);
 
-const seenIds=new Set();
-
-return normalized.filter(exam=>{
-if(seenIds.has(exam.id)){
-return false;
-}
-seenIds.add(exam.id);
-return true;
-});
-
+function getEl(id){
+  return document.getElementById(id);
 }
 
-function refreshVisibleExamViews(){
 
-if(currentView==="subjects"){
-renderSubjects();
+/* ADMIN LOGIN */
+
+function showAdminLogin(message){
+  adminToken = "";
+
+  var gate = getEl("adminLoginGate");
+  var msg = getEl("adminLoginMessage");
+  var password = getEl("adminPassword");
+
+  if(gate){
+    gate.style.display = "flex";
+  }
+
+  if(msg){
+    msg.innerHTML = message || "";
+  }
+
+  if(password){
+    password.value = "";
+    setTimeout(function(){
+      try{ password.focus(); }catch(e){}
+    },50);
+  }
 }
 
-if(currentView==="examlist"){
-renderExamList();
-}
+function loginAdmin(){
 
-}
+  var passwordBox = getEl("adminPassword");
+  var loginButton = getEl("adminLoginBtn");
+  var messageBox = getEl("adminLoginMessage");
 
-function loadCachedExams(){
-return; /* V2: no cached exam questions before server approval */
+  var password = passwordBox
+    ? passwordBox.value.trim()
+    : "";
 
-try{
-const cached=localStorage.getItem(EXAMS_CACHE_KEY);
-if(!cached){
-return false;
-}
+  if(!password){
+    messageBox.innerHTML = "Password লিখুন।";
+    return;
+  }
 
-const data=JSON.parse(cached);
-const cachedExams=normalizeExamPayload(data);
+  loginButton.disabled = true;
+  messageBox.innerHTML = "Checking...";
 
-if(cachedExams.length===0){
-return false;
-}
+  google.script.run
+    .withSuccessHandler(function(result){
 
-examsData=cachedExams;
-examsLoading=false;
-refreshVisibleExamViews();
-return true;
-}
-catch(error){
-console.warn("Exam cache read failed:",error);
-return false;
-}
+      loginButton.disabled = false;
 
-}
-
-function saveExamsCache(data){
-return; /* V2: prevent old profile's exam cache from leaking */
-
-try{
-const json=JSON.stringify(data);
-
-/* Avoid filling WebView storage when question images are large. */
-if(json.length<2500000){
-localStorage.setItem(EXAMS_CACHE_KEY,json);
-}
-}
-catch(error){
-console.warn("Exam cache save skipped:",error);
-}
-
-}
-
-async function fetchPublishedExamsOnce(){
- if(!v2Token||!v2Student)throw Error("Student login প্রয়োজন।");
- return await v2Api("studentExamsV2",{token:v2Token});
-}
-
-async function loadExams(){
-
-examsLoading=examsData.length===0;
-examsLoadError=false;
-refreshVisibleExamViews();
-
-let lastError=null;
-
-for(let attempt=1; attempt<=3; attempt++){
-
-try{
-const data=await fetchPublishedExamsOnce();
-
-examsData=normalizeExamPayload(data);
-examsLoading=false;
-examsLoadError=false;
-
-saveExamsCache(data);
-
-if(openPrintLinkIfNeeded()){
-return;
-}
-
-refreshVisibleExamViews();
-return;
-}
-catch(error){
-lastError=error;
-console.warn("Exam load attempt "+attempt+" failed:",error);
-
-if(attempt<3){
-await new Promise(resolve=>setTimeout(resolve,700*attempt));
-}
-}
-
-}
-
-examsLoading=false;
-examsLoadError=true;
-refreshVisibleExamViews();
-
-console.error("Exam load error:",lastError);
-
-}
-
-/* V2: exams are fetched only after an approved session is validated. */
-
-/* ADMIN */
-
-function openAdminPanel(){
-
-    const adminUrl = GOOGLE_SCRIPT_URL + "?page=admin";
-
-    // Prevent duplicate chooser if the button is tapped repeatedly.
-    if(document.getElementById("adminOpenChoiceOverlay")) return;
-
-    const overlay = document.createElement("div");
-    overlay.id = "adminOpenChoiceOverlay";
-    overlay.style.cssText = [
-      "position:fixed",
-      "inset:0",
-      "z-index:99999",
-      "background:rgba(2,6,23,.62)",
-      "display:flex",
-      "align-items:center",
-      "justify-content:center",
-      "padding:20px"
-    ].join(";");
-
-    const box = document.createElement("div");
-    box.style.cssText = [
-      "width:min(420px,100%)",
-      "background:#fff",
-      "border-radius:18px",
-      "padding:22px",
-      "box-shadow:0 20px 60px rgba(0,0,0,.28)",
-      "font-family:Inter,Arial,sans-serif"
-    ].join(";");
-
-    const title = document.createElement("div");
-    title.textContent = "Admin Panel কোথায় খুলবেন?";
-    title.style.cssText = "font-size:20px;font-weight:800;color:#0f172a;margin-bottom:8px";
-
-    const text = document.createElement("div");
-    text.textContent = "অ্যাপে চালিয়ে যেতে পারেন, অথবা Gallery থেকে ছবি নেওয়ার সুবিধার জন্য ওয়েবে খুলতে পারেন।";
-    text.style.cssText = "font-size:14px;line-height:1.6;color:#475569;margin-bottom:18px";
-
-    const appBtn = document.createElement("button");
-    appBtn.type = "button";
-    appBtn.textContent = "📱 অ্যাপেই চালাবো";
-    appBtn.style.cssText = "width:100%;border:0;border-radius:12px;padding:13px 14px;background:#2563eb;color:#fff;font-size:15px;font-weight:800;margin-bottom:10px";
-
-    const webBtn = document.createElement("button");
-    webBtn.type = "button";
-    webBtn.textContent = "🌐 ওয়েবে খুলবো";
-    webBtn.style.cssText = "width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:13px 14px;background:#fff;color:#0f172a;font-size:15px;font-weight:800;margin-bottom:10px";
-
-    const cancelBtn = document.createElement("button");
-    cancelBtn.type = "button";
-    cancelBtn.textContent = "বাতিল";
-    cancelBtn.style.cssText = "width:100%;border:0;background:transparent;color:#64748b;padding:8px;font-size:14px;font-weight:700";
-
-    function closeChoice(){
-      if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
-    }
-
-    appBtn.onclick = function(){
-      closeChoice();
-      // Stay inside MIT App Inventor WebViewer.
-      window.location.href = adminUrl;
-    };
-
-    webBtn.onclick = function(){
-      closeChoice();
-
-      // In the Android app, the existing WebViewStringChanged / ActivityStarter
-      // blocks can receive this URL and open it in Chrome.
-      try{
-        if(window.AppInventor && typeof window.AppInventor.setWebViewString === "function"){
-          window.AppInventor.setWebViewString(adminUrl);
-          return;
-        }
-      }catch(error){
-        console.error("Admin external-browser trigger failed:", error);
+      if(!result || !result.success || !result.token){
+        messageBox.innerHTML =
+          result && result.message
+          ? result.message
+          : "Login হয়নি।";
+        return;
       }
 
-      // Normal browser fallback.
-      window.location.href = adminUrl;
-    };
+      adminToken = result.token;
+      passwordBox.value = "";
+      getEl("adminLoginGate").style.display = "none";
 
-    cancelBtn.onclick = closeChoice;
-    overlay.onclick = function(event){
-      if(event.target === overlay) closeChoice();
-    };
-
-    box.appendChild(title);
-    box.appendChild(text);
-    box.appendChild(appBtn);
-    box.appendChild(webBtn);
-    box.appendChild(cancelBtn);
-    overlay.appendChild(box);
-    document.body.appendChild(overlay);
+      startAdmin();
+    })
+    .withFailureHandler(function(error){
+      loginButton.disabled = false;
+      messageBox.innerHTML = error.message || String(error);
+    })
+    .verifyAdminPassword(password);
 }
 
 
-/* PAGE */
+function showToast(message){
 
-function hideAllPages(){
+  var box = getEl("toast");
 
-[
-"homePage",
-"subjectPage",
-"examListPage",
-"namePage",
-"examPage",
-"resultPage",
-"browserPrintPage"
-]
-.forEach(id=>{
+  box.innerHTML = message;
 
-document
-.getElementById(id)
-.classList.add("hidden");
+  box.style.display = "block";
 
-});
+  clearTimeout(window.toastTimer);
 
+  window.toastTimer = setTimeout(function(){
+    box.style.display = "none";
+  },3500);
 }
 
 
-function pushView(view){
+function cleanText(text){
 
-currentView=view;
-
-history.pushState(
-{view:view},
-"",
-"#"+view
-);
-
+  return String(text || "")
+    .replace(/\r/g,"\n")
+    .replace(/\u00A0/g," ")
+    .replace(/\u200B/g,"")
+    .replace(/\u200C/g,"")
+    .replace(/\u200D/g,"")
+    .replace(/\uFEFF/g,"")
+    .trim();
 }
 
 
-/* HOME */
+function safeHtml(value){
 
-function showHome(){
-
-hideAllPages();
-
-currentView="home";
-
-document
-.getElementById("homePage")
-.classList.remove("hidden");
-
-window.scrollTo(0,0);
-
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/\"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
 
-function goHome(){
+/* MATH / LATEX PREVIEW */
 
-if(
-currentView==="exam"
-&&
-!submitted
-){
+function nonBanglaChunkLooksLikeMath(chunk){
 
-const leave=
-confirm(
-"পরীক্ষা এখনো শেষ হয়নি। আপনি কি পরীক্ষা থেকে বের হতে চান?"
-);
+  var value = String(chunk || "");
 
-if(!leave){
+  if(!value.trim()) return false;
 
-return;
-
-}
-
-clearInterval(
-timerInterval
-);
-
-}
-
-currentLevel=null;
-currentSubject=null;
-currentExam=null;
-
-externalPrintAnswers=null;
-externalPrintResult=null;
-
-pushView(
-"home"
-);
-
-showHome();
-
+  return /\\(?:frac|sqrt|log|ln|left|right|times|div|cdot|sin|cos|tan|cot|sec|csc|theta|alpha|beta|gamma|delta|pi|sum|int|lim|text|mathrm|mathbf|overline|underline|vec|pm|mp|le|ge|neq|approx|infty|because|therefore)\b/.test(value) ||
+         /\^[{A-Za-z0-9(]/.test(value) ||
+         /_[{A-Za-z0-9(]/.test(value) ||
+         /[A-Za-z0-9)}]\s*=\s*[A-Za-z0-9\\({]/.test(value) ||
+         /[A-Za-z0-9)}]\s*[+\-*/]\s*[A-Za-z0-9\\({]/.test(value);
 }
 
 
-/* LEVEL */
+function latexAwareHtml(rawText){
 
-function openLevel(level){
+  var text = String(rawText || "").replace(/\r/g, "");
+  var lines = text.split("\n");
+  var output = [];
 
-currentLevel=level;
+  for(var lineIndex = 0; lineIndex < lines.length; lineIndex++){
 
-pushView(
-"subjects"
-);
+    var line = lines[lineIndex];
+    var parts = line.split(/([\u0980-\u09FF]+)/g);
+    var lineHtml = "";
 
-renderSubjectPage();
+    for(var i = 0; i < parts.length; i++){
 
+      var part = parts[i];
+      if(!part) continue;
+
+      if(/[\u0980-\u09FF]/.test(part)){
+        lineHtml += safeHtml(part);
+      }else if(nonBanglaChunkLooksLikeMath(part)){
+
+        var leading = part.match(/^\s*/)[0];
+        var trailing = part.match(/\s*$/)[0];
+        var core = part.slice(leading.length, part.length - trailing.length);
+
+        if(core){
+          lineHtml += safeHtml(leading) + "\\(" + safeHtml(core) + "\\)" + safeHtml(trailing);
+        }else{
+          lineHtml += safeHtml(part);
+        }
+      }else{
+        lineHtml += safeHtml(part);
+      }
+    }
+
+    output.push(lineHtml);
+  }
+
+  return output.join("<br>");
 }
 
 
-function renderSubjectPage(){
+function typesetMath(element, retryCount){
 
-hideAllPages();
+  if(!element) return;
 
-currentView="subjects";
+  retryCount = retryCount || 0;
 
-document
-.getElementById("subjectPage")
-.classList.remove("hidden");
+  if(window.MathJax && MathJax.typesetPromise){
+    MathJax.typesetClear && MathJax.typesetClear([element]);
+    MathJax.typesetPromise([element]).catch(function(err){
+      console.log("MathJax render error", err);
+    });
+  }else if(retryCount < 20){
+    setTimeout(function(){
+      typesetMath(element, retryCount + 1);
+    },250);
+  }
+}
 
-document
-.getElementById("subjectEyebrow")
-.innerText=
-`${currentLevel} SECTION`;
 
-document
-.getElementById("subjectTitle")
-.innerText=
-`${currentLevel} পরীক্ষার বিষয়সমূহ`;
+function renderMathInto(element, rawText){
 
-renderSubjects();
+  if(!element) return;
 
-window.scrollTo(0,0);
-
+  element.innerHTML = latexAwareHtml(rawText);
+  typesetMath(element);
 }
 
 
 /* SUBJECT */
 
-function renderSubjects(){
-
-const grid=
-document.getElementById(
-"subjectGrid"
-);
-
-grid.innerHTML="";
-
-if(
-!currentLevel
-||
-!subjects[currentLevel]
-){
-
-return;
-
+function updateClassYearV2(){
+  var level = getEl("level").value;
+  var select = getEl("classYearV2");
+  var old = select.value;
+  select.innerHTML = (level === "SSC" ? ["9","10"] : ["1st Year","2nd Year"]).map(function(v){return '<option value="'+v+'">'+v+'</option>';}).join("");
+  if(Array.from(select.options).some(function(o){return o.value===old;})) select.value=old;
 }
+function updateSubjects(){
+  updateClassYearV2();
 
-subjects[currentLevel]
-.forEach(subject=>{
+  var level = getEl("level").value;
 
-const count=
-examsData.filter(
-exam=>
-exam.level===currentLevel
-&&
-exam.subject===subject.id
-&&
-exam.published!==false
-).length;
+  var subject = getEl("subject");
 
-const card=
-document.createElement(
-"div"
-);
+  subject.innerHTML = "";
 
-card.className=
-"subject-card";
+  var list = subjects[level] || [];
 
-card.innerHTML=`
+  for(var i=0;i<list.length;i++){
 
-<div class="subject-icon">
-${subject.icon}
-</div>
+    var option = document.createElement("option");
 
-<div class="subject-info">
+    option.value = list[i][0];
 
-<h3>
-${subject.name}
-</h3>
+    option.innerHTML = list[i][1];
 
-<p>
-${
-count>0
-?
-count+"টি পরীক্ষা প্রকাশিত"
-:
-examsLoading
-?
-"পরীক্ষা লোড হচ্ছে..."
-:
-"এখনো কোনো পরীক্ষা প্রকাশিত হয়নি"
-}
-</p>
-
-</div>
-
-<div class="subject-arrow">
-→
-</div>
-
-`;
-
-card.addEventListener(
-"click",
-()=>openSubject(subject.id)
-);
-
-grid.appendChild(
-card
-);
-
-});
-
+    subject.appendChild(option);
+  }
 }
 
 
-function openSubject(subjectId){
+/* PANEL */
 
-currentSubject=
-subjectId;
+function showPanel(name){
+  getEl("studentsPanelV2").className = "panel container";
+  getEl("tabStudentsV2").className = "tab";
 
-pushView(
-"examlist"
-);
+  getEl("createPanel").className = "panel";
+  getEl("managePanel").className = "panel";
+  getEl("cqPanel").className = "panel";
 
-renderExamListPage();
+  getEl("tabCreate").className = "tab";
+  getEl("tabManage").className = "tab";
+  getEl("tabCQ").className = "tab";
 
+
+  if(name === "studentsV2") {
+    getEl("studentsPanelV2").className = "panel container active";
+    getEl("tabStudentsV2").className = "tab active";
+    loadStudentProfilesV2();
+  }
+
+  if(name === "create"){
+
+    getEl("createPanel").className = "panel active";
+    getEl("tabCreate").className = "tab active";
+
+  }
+
+
+  if(name === "manage"){
+
+    getEl("managePanel").className = "panel active";
+    getEl("tabManage").className = "tab active";
+
+    loadExams();
+  }
+
+
+  if(name === "cq"){
+
+    getEl("cqPanel").className = "panel active";
+    getEl("tabCQ").className = "tab active";
+
+    loadSubmissions();
+  }
 }
 
 
-function renderExamListPage(){
+/* EXAM TYPE */
 
-hideAllPages();
+function changeExamType(){
 
-currentView="examlist";
+  var type = getEl("examType").value;
 
-document
-.getElementById("examListPage")
-.classList.remove("hidden");
+  if(type === "MCQ"){
 
-const subject=
-subjects[currentLevel]
-.find(
-item=>item.id===currentSubject
-);
+    getEl("mcqBuilder").className = "";
 
-document
-.getElementById("examListTitle")
-.innerText=
-subject
-?
-`${currentLevel} • ${subject.name}`
-:
-currentLevel;
+    getEl("cqBuilder").className = "hidden";
 
-renderExamList();
+  }
+  else{
 
-window.scrollTo(0,0);
+    getEl("mcqBuilder").className = "hidden";
 
+    getEl("cqBuilder").className = "";
+  }
 }
 
 
-/* EXAM TIMING */
+/* OPTION */
 
-function parseExamTime(value){
+function optionIndex(letter){
 
-if(!value){
-return null;
+  letter = String(letter || "").toLowerCase();
+
+  if(letter === "a") return 0;
+  if(letter === "b") return 1;
+  if(letter === "c") return 2;
+  if(letter === "d") return 3;
+
+  for(var i=0;i<labels.length;i++){
+
+    if(letter === labels[i]){
+      return i;
+    }
+  }
+
+  return -1;
 }
 
-const d=new Date(value);
 
-return isNaN(d.getTime())
-?
-null
-:
-d.getTime();
+function parseOption(line){
 
+  var text = String(line || "").trim();
+
+  var match = text.match(
+    /^(?:\(|\[)?\s*([a-dA-Dকখগঘ])\s*(?:\)|\]|\.|:|\-)\s*(.*)$/
+  );
+
+  if(!match){
+    return null;
+  }
+
+  var index = optionIndex(match[1]);
+
+  if(index < 0){
+    return null;
+  }
+
+  return {
+    index:index,
+    text:String(match[2] || "").trim()
+  };
 }
 
-function getExamTimingState(exam){
 
-const now=Date.now();
-const start=parseExamTime(exam.startAt);
-const end=parseExamTime(exam.endAt);
+/* QUESTION NUMBER */
 
-if(start && now<start){
-return "before";
+function isQuestionLine(line){
+
+  return /^[০-৯0-9]+\s*[\.\)\-:।]\s*.+/.test(
+    String(line || "").trim()
+  );
 }
 
-if(end && now>end){
-return "late";
+
+function removeQuestionNumber(line){
+
+  return String(line || "")
+    .replace(
+      /^[০-৯0-9]+\s*[\.\)\-:।]?\s*/,
+      ""
+    )
+    .trim();
 }
 
-return "official";
 
+function countFilledOptions(question){
+
+  if(!question || !Array.isArray(question.options)){
+    return 0;
+  }
+
+  var count = 0;
+
+  for(var i=0;i<4;i++){
+    if(String(question.options[i] || "").trim()){
+      count++;
+    }
+  }
+
+  return count;
 }
 
-function formatExamTime(value){
 
-const ms=parseExamTime(value);
+function makeEmptyMCQ(questionText){
 
-if(!ms){
-return "";
+  return {
+    q:String(questionText || "").trim(),
+    options:["","","",""],
+    answer:null,
+    image:""
+  };
 }
 
-return new Date(ms).toLocaleString("bn-BD",{
-    year:"numeric",
-    month:"short",
-    day:"numeric",
-    hour:"numeric",
-    minute:"2-digit"
-});
 
-}
+/* MCQ PARSER
+   Question serial is NEVER created or changed automatically.
+   A question starts only when the pasted line contains a serial number.
+   Both English and Bangla digits are supported by isQuestionLine().
+*/
 
-/* EXAM LIST */
+function parseQuestions(){
 
-function renderExamList(){
+  showToast("Parse শুরু হয়েছে...");
 
-const list=
-document.getElementById(
-"examList"
-);
+  var source = cleanText(
+    getEl("bulkQuestions").value
+  );
 
-const exams=
-examsData.filter(
-exam=>
-exam.level===currentLevel
-&&
-exam.subject===currentSubject
-&&
-exam.published!==false
-);
+  if(!source){
 
-list.innerHTML="";
+    showToast("আগে প্রশ্ন Paste করুন।");
+    return;
+  }
 
-if(examsLoading && examsData.length===0){
+  /* Put inline option markers on separate lines; do not touch question serials. */
+  source = source.replace(
+    /\s+(?=\([a-dA-Dকখগঘ]\))/g,
+    "\n"
+  );
 
-list.innerHTML=`
-<div class="empty-box">
-<div style="font-size:30px;">⏳</div>
-<h3>পরীক্ষা লোড হচ্ছে...</h3>
-<p style="margin-top:6px;">একটু অপেক্ষা করুন।</p>
-</div>`;
+  var lines = source.split("\n");
+  var cleanLines = [];
 
-return;
-}
+  for(var i=0;i<lines.length;i++){
+    var line = String(lines[i] || "").trim();
+    if(line){
+      cleanLines.push(line);
+    }
+  }
 
-if(examsLoadError && examsData.length===0){
+  var result = [];
+  var current = null;
+  var currentOption = -1;
 
-list.innerHTML=`
-<div class="empty-box">
-<div style="font-size:30px;">⚠️</div>
-<h3>পরীক্ষা লোড করা যায়নি</h3>
-<p style="margin-top:6px;">ইন্টারনেট চেক করে আবার চেষ্টা করুন।</p>
-<button class="exam-start-btn" style="margin-top:12px;" onclick="loadExams()">আবার চেষ্টা করুন</button>
-</div>`;
+  function saveCurrent(){
 
-return;
-}
-
-if(
-exams.length===0
-){
-
-list.innerHTML=`
-
-<div class="empty-box">
-
-<div style="font-size:34px;">
-📚
-</div>
-
-<h3>
-এখনো কোনো পরীক্ষা প্রকাশিত হয়নি
-</h3>
-
-<p style="margin-top:6px;">
-নতুন পরীক্ষা প্রকাশ হলে এখানে দেখা যাবে।
-</p>
-
-</div>
-
-`;
-
-return;
-
-}
-
-exams.forEach(exam=>{
-
-const card=
-document.createElement(
-"div"
-);
-
-card.className=
-"exam-card";
-
-const timingState=getExamTimingState(exam);
-const startText=formatExamTime(exam.startAt);
-const endText=formatExamTime(exam.endAt);
-
-let timingText="";
-
-if(startText || endText){
-    timingText=`<div class="exam-meta" style="margin-top:6px;">`;
-
-    if(startText){
-        timingText+=`শুরু: ${startText}`;
+    if(!current){
+      return;
     }
 
-    if(startText && endText){
-        timingText+=` &nbsp; • &nbsp; `;
+    var optionCount = countFilledOptions(current);
+
+    if(
+      String(current.q || "").trim() &&
+      optionCount >= 2
+    ){
+      result.push(current);
     }
 
-    if(endText){
-        timingText+=`শেষ: ${endText}`;
+    current = null;
+    currentOption = -1;
+  }
+
+  for(var j=0;j<cleanLines.length;j++){
+
+    var line = cleanLines[j];
+
+    /*
+      Examples accepted:
+      1. Question
+      1) Question
+      ১. Question
+      ১) Question
+      2- Question
+      ২: Question
+      The pasted serial is used only to detect the question boundary;
+      it is not rewritten in the paste box.
+    */
+    if(isQuestionLine(line)){
+
+      saveCurrent();
+
+      current = makeEmptyMCQ(
+        removeQuestionNumber(line)
+      );
+
+      currentOption = -1;
+      continue;
     }
 
-    timingText+=`</div>`;
-}
+    var option = parseOption(line);
 
-card.innerHTML=`
+    if(option){
 
-<div>
+      if(!current){
+        continue;
+      }
 
-<h3>
-${exam.title}
-</h3>
+      currentOption = option.index;
+      current.options[currentOption] = option.text;
+      continue;
+    }
 
-<div class="exam-meta">
+    if(!current){
+      /* No serial = do not invent a question number automatically. */
+      continue;
+    }
 
-${exam.questions.length}টি প্রশ্ন
+    if(currentOption >= 0){
 
-&nbsp; • &nbsp;
+      current.options[currentOption] +=
+        (current.options[currentOption] ? " " : "") + line;
 
-${exam.timeMinutes} মিনিট
+    }
+    else{
 
-</div>
+      current.q +=
+        (current.q ? " " : "") + line;
+    }
+  }
 
-${timingText}
+  saveCurrent();
 
-</div>
+  mcqQuestions = result;
+  renderQuestions();
 
-`;
+  if(result.length === 0){
 
-const button=
-document.createElement(
-"button"
-);
+    showToast(
+      "০টি প্রশ্ন পাওয়া গেছে। প্রশ্নের শুরুতে 1. / ১. এর মতো serial দিন।"
+    );
 
-button.className=
-"exam-start-btn";
+  }
+  else{
 
-if(timingState==="before"){
-    button.innerText="এখনও শুরু হয়নি";
-    button.disabled=true;
-    button.style.opacity=".55";
-    button.style.cursor="not-allowed";
-}
-else if(timingState==="late"){
-    button.innerText="পরীক্ষা দিন (Late) →";
-}
-else{
-    button.innerText="পরীক্ষা দিন →";
-}
-
-button.addEventListener(
-"click",
-()=>selectExam(exam.id)
-);
-
-card.appendChild(
-button
-);
-
-list.appendChild(
-card
-);
-
-});
-
+    showToast(
+      result.length +
+      "টি প্রশ্ন Parse হয়েছে ✅"
+    );
+  }
 }
 
 
-/* SELECT EXAM */
-
-function selectExam(id){
-
-currentExam=
-examsData.find(
-exam=>exam.id===id
-);
-
-if(
-!currentExam
-){
-
-return;
-
-}
-
-pushView(
-"name"
-);
-
-renderNamePage();
-
-}
-
-
-function renderNamePage(){
-
-hideAllPages();
-
-currentView="name";
-
-document
-.getElementById("namePage")
-.classList.remove("hidden");
-
-document
-.getElementById("selectedExamTitle")
-.innerText=
-currentExam
-?
-currentExam.title
-:
-"";
-
-document
-.getElementById("studentName")
-.value=v2Student ? v2Student.name : "";
-
-window.scrollTo(0,0);
-
-}
-
-
-/* START EXAM */
-
-function startExam(){
-if(!v2Student||!v2Token){alert("প্রথমে Student Profile খুলুন।");return;}
-
-const name=
-document
-.getElementById("studentName")
-.value
-.trim();
-
-if(
-!name
-){
-
-alert(
-"অনুগ্রহ করে পরীক্ষার্থীর নাম লিখুন।"
-);
-
-return;
-
-}
-
-if(
-!currentExam
-||
-!Array.isArray(currentExam.questions)
-){
-
-alert(
-"পরীক্ষার প্রশ্ন পাওয়া যায়নি।"
-);
-
-return;
-
-}
-
-const timingState=getExamTimingState(currentExam);
-
-if(timingState==="before"){
-
-alert(
-"এই পরীক্ষা এখনও শুরু হয়নি। নির্ধারিত সময় শুরু হলে আবার চেষ্টা করুন।"
-);
-
-return;
-
-}
-
-studentName=name;
-
-submitted=false;
-
-examStartTime=
-Date.now();
-
-officialAttemptStartedAt=examStartTime;
-
-officialResultEligible=
-timingState==="official";
-
-if(!officialResultEligible){
-
-alert(
-"নির্ধারিত Result Window শেষ হয়েছে। আপনি পরীক্ষা দিতে পারবেন, তবে এই attempt-এর নম্বর Results Sheet-এ যোগ হবে না।"
-);
-
-}
-
-timeLeft=
-Number(
-currentExam.timeMinutes || 10
-)
-*
-60;
-
-pushView(
-"exam"
-);
-
-renderExamPage();
-
-}
-
-
-/* EXAM PAGE */
-
-function renderExamPage(){
-
-hideAllPages();
-
-currentView="exam";
-
-document
-.getElementById("examPage")
-.classList.remove("hidden");
-
-document
-.getElementById("toolbarExamTitle")
-.innerText=
-currentExam.title;
-
-document
-.getElementById("examStudentName")
-.innerText=
-studentName;
-
-const negativeMark=
-currentLevel==="SSC"
-?
-0
-:
-0.25;
-
-document
-.getElementById("markingRuleText")
-.innerText=
-negativeMark===0
-?
-"সঠিক উত্তরে +1"
-:
-"সঠিক +1 • ভুল −0.25";
-
-renderQuestions();
-
-updateProgress();
-
-startTimer();
-
-window.scrollTo(0,0);
-
-}
-
-
-/* QUESTIONS */
-
-
-/* GLOBAL MATH / LATEX RENDERING */
-function nonBanglaChunkLooksLikeMath(chunk){
-
-const value=String(chunk || "");
-
-if(!value.trim()) return false;
-
-return /\\(?:frac|sqrt|propto|log|ln|left|right|times|div|cdot|sin|cos|tan|cot|sec|csc|theta|alpha|beta|gamma|delta|pi|sum|int|lim|text|mathrm|mathbf|overline|underline|vec|pm|mp|le|ge|neq|approx|infty|because|therefore)\b/.test(value)
-|| /\^[{A-Za-z0-9(]/.test(value)
-|| /_[{A-Za-z0-9(]/.test(value)
-|| /[A-Za-z0-9)}]\s*=\s*[A-Za-z0-9\\({]/.test(value)
-|| /[A-Za-z0-9)}]\s*[+\-*/]\s*[A-Za-z0-9\\({]/.test(value);
-
-}
-
-function latexAwareHtml(rawText){
-
-const text=String(rawText ?? "").replace(/\r/g,"");
-const lines=text.split("\n");
-const output=[];
-
-for(let lineIndex=0; lineIndex<lines.length; lineIndex++){
-
-const line=lines[lineIndex];
-const parts=line.split(/([\u0980-\u09FF]+)/g);
-let lineHtml="";
-
-for(let i=0;i<parts.length;i++){
-
-const part=parts[i];
-if(!part) continue;
-
-if(/[\u0980-\u09FF]/.test(part)){
-lineHtml+=escapeHTML(part);
-}
-else if(nonBanglaChunkLooksLikeMath(part)){
-
-const leading=(part.match(/^\s*/) || [""])[0];
-const trailing=(part.match(/\s*$/) || [""])[0];
-const core=part.slice(leading.length,part.length-trailing.length);
-
-if(core){
-lineHtml+=escapeHTML(leading)+"\\("+escapeHTML(core)+"\\)"+escapeHTML(trailing);
-}
-else{
-lineHtml+=escapeHTML(part);
-}
-
-}
-else{
-lineHtml+=escapeHTML(part);
-}
-
-}
-
-output.push(lineHtml);
-}
-
-return output.join("<br>");
-}
-
-function typesetMathPromise(element,retryCount=0){
-
-if(!element) return Promise.resolve();
-
-if(window.MathJax && MathJax.typesetPromise){
-try{
-if(MathJax.typesetClear) MathJax.typesetClear([element]);
-return MathJax.typesetPromise([element]).catch(err=>{
-console.log("MathJax render error",err);
-});
-}catch(err){
-console.log("MathJax render error",err);
-return Promise.resolve();
-}
-}
-
-if(retryCount<24){
-return new Promise(resolve=>{
-setTimeout(()=>{
-typesetMathPromise(element,retryCount+1).then(resolve);
-},250);
-});
-}
-
-return Promise.resolve();
-}
-
-function typesetMath(element){
-typesetMathPromise(element);
-}
-
-function renderMathInto(element,rawText){
-if(!element) return;
-element.innerHTML=latexAwareHtml(rawText);
-typesetMath(element);
-}
+/* RENDER MCQ */
 
 function renderQuestions(){
 
-const container=
-document
-.getElementById(
-"questionsContainer"
-);
+  var container =
+    getEl("parsedQuestions");
 
-container.innerHTML="";
+  container.innerHTML = "";
 
-currentExam.questions
-.forEach(
-(question,index)=>{
 
-const card=
-document.createElement(
-"div"
-);
+  if(mcqQuestions.length === 0){
 
-card.className=
-"question-card";
+    container.innerHTML =
+      "<p class='help'>এখনো কোনো প্রশ্ন Parse করা হয়নি।</p>";
 
-const badge=
-document.createElement(
-"div"
-);
+    updateValidation();
 
-badge.className=
-"question-badge";
-
-badge.innerText=
-`প্রশ্ন ${index+1}`;
-
-const title=
-document.createElement(
-"div"
-);
-
-title.className=
-"question-text";
-
-title.innerHTML=
-latexAwareHtml(question.q);
-
-const optionsBox=
-document.createElement(
-"div"
-);
-
-optionsBox.className=
-"options";
-
-question.options
-.forEach(
-(option,optIndex)=>{
-
-const label=
-document.createElement(
-"label"
-);
-
-label.className=
-"option";
-
-const input=
-document.createElement(
-"input"
-);
-
-input.type=
-"radio";
-
-input.name=
-`question${index}`;
-
-input.value=
-String(optIndex);
-
-input.addEventListener(
-"change",
-updateProgress
-);
-
-const span=
-document.createElement(
-"span"
-);
-
-const strong=
-document.createElement(
-"b"
-);
-
-strong.innerText=
-`(${optionLabels[optIndex]}) `;
-
-span.appendChild(
-strong
-);
-
-const optionMath=
-document.createElement(
-"span"
-);
-
-optionMath.innerHTML=
-latexAwareHtml(option);
-
-span.appendChild(
-optionMath
-);
-
-label.appendChild(
-input
-);
-
-label.appendChild(
-span
-);
-
-optionsBox.appendChild(
-label
-);
-
-});
-
-card.appendChild(
-badge
-);
-
-if(question.image){
-const stimulusImage=document.createElement("img");
-stimulusImage.className="question-stimulus-image";
-stimulusImage.src=question.image;
-stimulusImage.alt="প্রশ্নের উদ্দীপক চিত্র";
-card.appendChild(stimulusImage);
-}
-
-card.appendChild(
-title
-);
-
-card.appendChild(
-optionsBox
-);
-
-container.appendChild(
-card
-);
-
-});
-
-typesetMath(container);
-
-}
-
-
-/* PROGRESS */
-
-function updateProgress(){
-
-let answered=0;
-
-currentExam.questions
-.forEach(
-(question,index)=>{
-
-if(
-document.querySelector(
-`input[name="question${index}"]:checked`
-)
-){
-
-answered++;
-
-}
-
-});
-
-document
-.getElementById("progressText")
-.innerText=
-`উত্তর: ${answered}/${currentExam.questions.length}`;
-
-}
-
-
-/* TIMER */
-
-function startTimer(){
-
-if(
-timerInterval
-){
-
-clearInterval(
-timerInterval
-);
-
-}
-
-updateTimer();
-
-timerInterval=
-setInterval(()=>{
-
-timeLeft--;
-
-if(
-timeLeft<=0
-){
-
-timeLeft=0;
-
-updateTimer();
-
-clearInterval(
-timerInterval
-);
-
-submitExam(true);
-
-return;
-
-}
-
-updateTimer();
-
-},1000);
-
-}
-
-
-function updateTimer(){
-
-const minutes=
-Math.floor(
-timeLeft/60
-);
-
-const seconds=
-timeLeft%60;
-
-const timer=
-document
-.getElementById(
-"timerText"
-);
-
-timer.innerText=
-`⏱ ${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
-
-timer.classList.remove(
-"warning",
-"danger"
-);
-
-if(
-timeLeft<=60
-){
-
-timer.classList.add(
-"danger"
-);
-
-}
-else if(
-timeLeft<=180
-){
-
-timer.classList.add(
-"warning"
-);
-
-}
-
-}
-
-
-/* MODAL */
-
-function showSubmitModal(){
-
-document
-.getElementById("submitModal")
-.style.display=
-"flex";
-
-}
-
-
-function hideSubmitModal(){
-
-document
-.getElementById("submitModal")
-.style.display=
-"none";
-
-}
-
-
-/* ANSWERS */
-
-function getStudentAnswers(){
-
-return currentExam.questions
-.map(
-(question,index)=>{
-
-const selected=
-document.querySelector(
-`input[name="question${index}"]:checked`
-);
-
-if(
-!selected
-){
-
-return `${index+1}. —`;
-
-}
-
-return `${index+1}. ${optionLabels[Number(selected.value)]}`;
-
-})
-.join(" | ");
-
-}
-
-
-function getAnswerIndexString(){
-
-return currentExam.questions
-.map(
-(question,index)=>{
-
-const selected=
-document.querySelector(
-`input[name="question${index}"]:checked`
-);
-
-return selected
-?
-String(selected.value)
-:
-"x";
-
-})
-.join(",");
-
-}
-
-
-/* SUBMIT */
-
-function submitExam(
-autoSubmit=false
-){
-
-if(
-submitted
-){
-
-return;
-
-}
-
-submitted=true;
-
-hideSubmitModal();
-
-clearInterval(
-timerInterval
-);
-
-const negativeMark=
-currentLevel==="SSC"
-?
-0
-:
-0.25;
-
-let correct=0;
-let wrong=0;
-let unanswered=0;
-let answered=0;
-let score=0;
-
-const review=
-document.createDocumentFragment();
-
-currentExam.questions
-.forEach(
-(question,index)=>{
-
-const selected=
-document.querySelector(
-`input[name="question${index}"]:checked`
-);
-
-let selectedIndex=null;
-let state="unanswered";
-
-if(
-!selected
-){
-
-unanswered++;
-
-}
-else{
-
-answered++;
-
-selectedIndex=
-Number(
-selected.value
-);
-
-if(
-selectedIndex===
-Number(question.answer)
-){
-
-correct++;
-score+=1;
-state="correct";
-
-}
-else{
-
-wrong++;
-score-=negativeMark;
-state="wrong";
-
-}
-
-}
-
-const card=
-document.createElement(
-"div"
-);
-
-card.className=
-`review-card ${state}`;
-
-const q=
-document.createElement(
-"div"
-);
-
-q.className=
-"review-q";
-
-q.innerHTML=
-`<strong>${index+1}.</strong> ${latexAwareHtml(question.q)}`;
-
-const status=
-document.createElement(
-"div"
-);
-
-status.style.marginTop=
-"5px";
-
-status.style.fontWeight=
-"800";
-
-status.style.fontSize=
-"12px";
-
-status.innerText=
-state==="correct"
-?
-"✓ সঠিক"
-:
-state==="wrong"
-?
-"✗ ভুল"
-:
-"উত্তর দেওয়া হয়নি";
-
-const optionsBox=
-document.createElement(
-"div"
-);
-
-optionsBox.className=
-"review-options";
-
-question.options
-.forEach(
-(option,optIndex)=>{
-
-const row=
-document.createElement(
-"div"
-);
-
-const isCorrect=
-optIndex===
-Number(question.answer);
-
-const isSelected=
-optIndex===
-selectedIndex;
-
-row.className=
-"review-option";
-
-if(
-isCorrect
-){
-
-row.classList.add(
-"correct"
-);
-
-}
-
-if(
-isSelected
-&&
-!isCorrect
-){
-
-row.classList.add(
-"wrong-selected"
-);
-
-}
-
-const left=
-document.createElement(
-"span"
-);
-
-left.innerHTML=
-`<strong>(${optionLabels[optIndex]})</strong> ${latexAwareHtml(option)}`;
-
-const note=
-document.createElement(
-"span"
-);
-
-note.className=
-"option-note";
-
-if(
-isCorrect
-&&
-isSelected
-){
-
-note.innerText=
-"✓ আপনার উত্তর ও সঠিক উত্তর";
-
-}
-else if(
-isCorrect
-){
-
-note.innerText=
-"✓ সঠিক উত্তর";
-
-}
-else if(
-isSelected
-){
-
-note.innerText=
-"✗ আপনার উত্তর";
-
-}
-
-row.appendChild(
-left
-);
-
-row.appendChild(
-note
-);
-
-optionsBox.appendChild(
-row
-);
-
-});
-
-if(question.image){
-const stimulusImage=document.createElement("img");
-stimulusImage.className="review-stimulus-image";
-stimulusImage.src=question.image;
-stimulusImage.alt="প্রশ্নের উদ্দীপক চিত্র";
-card.appendChild(stimulusImage);
-}
-
-card.appendChild(
-q
-);
-
-card.appendChild(
-status
-);
-
-card.appendChild(
-optionsBox
-);
-
-review.appendChild(
-card
-);
-
-});
-
-score=
-Math.round(
-score*100
-)
-/100;
-
-saveResult(
-score,
-correct,
-wrong,
-unanswered
-);
-
-pushView(
-"result"
-);
-
-hideAllPages();
-
-currentView="result";
-
-document
-.getElementById("resultPage")
-.classList.remove("hidden");
-
-document
-.getElementById("resultExamName")
-.innerText=
-currentExam.title
-+
-(
-autoSubmit
-?
-" • সময় শেষ হওয়ায় Auto Submit"
-:
-""
-);
-
-document
-.getElementById("resultStudent")
-.innerText=
-`পরীক্ষার্থী: ${studentName}`;
-
-document
-.getElementById("finalScore")
-.innerText=
-score;
-
-document
-.getElementById("scoreOutOf")
-.innerText=
-`${currentExam.questions.length} এর মধ্যে`;
-
-document
-.getElementById("correctCount")
-.innerText=
-correct;
-
-document
-.getElementById("wrongCount")
-.innerText=
-wrong;
-
-document
-.getElementById("unansweredCount")
-.innerText=
-unanswered;
-
-document
-.getElementById("answeredCount")
-.innerText=
-answered;
-
-const answerReview=
-document
-.getElementById(
-"answerReview"
-);
-
-answerReview.innerHTML="";
-
-answerReview.appendChild(
-review
-);
-
-typesetMath(answerReview);
-
-window.scrollTo(0,0);
-
-}
-
-
-/* GOOGLE SHEET */
-
-function saveResult(
-score,
-correct,
-wrong,
-unanswered
-){
-
-try{
-
-const seconds=
-Math.floor(
-(
-Date.now()
--
-examStartTime
-)
-/1000
-);
-
-const duration=
-`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,"0")}`;
-
-const subject=
-subjects[currentLevel]
-.find(
-item=>item.id===currentSubject
-);
-
-const data={
-
-action:
-"saveResult",
-
-token:v2Token,
-studentId:v2Student ? v2Student.studentId : "",
-
-examId:
-currentExam.id,
-
-startedAt:
-officialAttemptStartedAt,
-
-eligibleForResultSheet:
-officialResultEligible,
-
-level:
-currentLevel,
-
-subject:
-subject
-?
-subject.name
-:
-"",
-
-examTitle:
-currentExam.title,
-
-name:
-studentName,
-
-score:
-score,
-
-correct:
-correct,
-
-wrong:
-wrong,
-
-unanswered:
-unanswered,
-
-duration:
-duration,
-
-answers:
-getStudentAnswers()
-
-};
-
-fetch(
-GOOGLE_SCRIPT_URL,
-{
-
-method:"POST",
-
-mode:"no-cors",
-
-headers:{
-"Content-Type":
-"text/plain;charset=utf-8"
-},
-
-body:
-JSON.stringify(data),
-
-keepalive:true
-
-}
-)
-.catch(
-error=>
-console.error(
-"Google Sheet:",
-error
-)
-);
-
-}
-catch(error){
-
-console.error(
-"Save error:",
-error
-);
-
-}
-
-}
-
-
-/* APP -> CHROME */
-
-function handlePdfRequest(){
-
-if(
-!currentExam
-||
-!studentName
-){
-
-alert(
-"উত্তরপত্র পাওয়া যায়নি।"
-);
-
-return;
-
-}
-
-const params=
-new URLSearchParams();
-
-params.set(
-"print",
-"1"
-);
-
-params.set(
-"exam",
-currentExam.id
-);
-
-params.set(
-"name",
-studentName
-);
-
-params.set(
-"answers",
-getAnswerIndexString()
-);
-
-params.set(
-"score",
-document.getElementById(
-"finalScore"
-).innerText
-);
-
-params.set(
-"correct",
-document.getElementById(
-"correctCount"
-).innerText
-);
-
-params.set(
-"wrong",
-document.getElementById(
-"wrongCount"
-).innerText
-);
-
-params.set(
-"unanswered",
-document.getElementById(
-"unansweredCount"
-).innerText
-);
-
-params.set(
-"answered",
-document.getElementById(
-"answeredCount"
-).innerText
-);
-
-params.set(
-"t",
-String(Date.now())
-);
-
-const browserUrl=
-window.location.origin
-+
-window.location.pathname
-+
-"?"
-+
-params.toString();
-
-try{
-
-if(
-window.AppInventor
-&&
-typeof window.AppInventor.setWebViewString==="function"
-){
-
-window.AppInventor.setWebViewString(
-browserUrl
-);
-
-return;
-
-}
-
-}
-catch(error){
-
-console.error(
-"AppInventor trigger failed:",
-error
-);
-
-}
-
-window.location.href=
-browserUrl;
-
-}
-
-
-/* CHROME PRINT LINK */
-
-function openPrintLinkIfNeeded(){
-
-const params=
-new URLSearchParams(
-window.location.search
-);
-
-if(
-params.get("print")!=="1"
-){
-
-return false;
-
-}
-
-const examId=
-params.get("exam") || "";
-
-const exam=
-examsData.find(
-item=>item.id===examId
-);
-
-if(
-!exam
-){
-
-alert(
-"PDF-এর পরীক্ষার তথ্য পাওয়া যায়নি।"
-);
-
-return false;
-
-}
-
-currentExam=exam;
-
-currentLevel=
-exam.level;
-
-currentSubject=
-exam.subject;
-
-studentName=
-params.get("name")
-||
-"Student";
-
-externalPrintAnswers=
-String(
-params.get("answers")
-||
-""
-)
-.split(",")
-.map(value=>{
-
-if(
-value==="x"
-||
-value===""
-){
-
-return null;
-
-}
-
-const n=
-Number(value);
-
-return Number.isFinite(n)
-?
-n
-:
-null;
-
-});
-
-externalPrintResult={
-
-score:
-params.get("score")
-||
-"0",
-
-correct:
-params.get("correct")
-||
-"0",
-
-wrong:
-params.get("wrong")
-||
-"0",
-
-unanswered:
-params.get("unanswered")
-||
-"0",
-
-answered:
-params.get("answered")
-||
-"0"
-
-};
-
-hideAllPages();
-
-currentView=
-"browserprint";
-
-document
-.getElementById(
-"browserPrintPage"
-)
-.classList.remove(
-"hidden"
-);
-
-printSheetReady=false;
-
-const browserPrintBtn=document.getElementById("browserPrintBtn");
-const browserPrintStatus=document.getElementById("browserPrintStatus");
-
-if(browserPrintBtn){
-  browserPrintBtn.disabled=true;
-  browserPrintBtn.innerText="⏳ PDF প্রস্তুত হচ্ছে...";
-}
-
-if(browserPrintStatus){
-  browserPrintStatus.innerText="উত্তরপত্র প্রস্তুত হচ্ছে...";
-}
-
-/* Build the printable sheet in advance. Do not call window.print() here.
-   Mobile Chrome may block print dialogs that are opened later from a timer/promise. */
-setTimeout(()=>{
-  try{
-    prepareAndPrintPDF();
+    return;
   }
-  catch(error){
-    console.error("PDF preparation failed:",error);
-    printSheetReady=false;
 
-    const browserPrintBtn=document.getElementById("browserPrintBtn");
-    const browserPrintStatus=document.getElementById("browserPrintStatus");
 
-    if(browserPrintBtn){
-      browserPrintBtn.disabled=false;
-      browserPrintBtn.innerText="↻ আবার PDF প্রস্তুত করুন";
-      browserPrintBtn.onclick=function(){
-        try{
-          prepareAndPrintPDF();
-        }
-        catch(retryError){
-          console.error("PDF retry failed:",retryError);
-          alert("PDF প্রস্তুত করা যায়নি। পেজটি Refresh করে আবার চেষ্টা করুন।");
-        }
-      };
-    }
+  for(
+    var i=0;
+    i<mcqQuestions.length;
+    i++
+  ){
 
-    if(browserPrintStatus){
-      browserPrintStatus.innerText="PDF প্রস্তুত করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।";
+    createQuestionCard(i);
+  }
+
+
+  updateValidation();
+}
+
+
+function createQuestionCard(index){
+
+  var question =
+    mcqQuestions[index];
+
+  var card =
+    document.createElement("div");
+
+  card.className =
+    "question-card";
+
+
+  var head =
+    document.createElement("div");
+
+  head.className =
+    "question-head";
+
+
+  var badge =
+    document.createElement("span");
+
+  badge.className =
+    "badge";
+
+  badge.innerHTML =
+    "প্রশ্ন " +
+    (index + 1);
+
+
+  var del =
+    document.createElement("button");
+
+  del.type = "button";
+
+  del.className =
+    "delete-btn";
+
+  del.innerHTML =
+    "Delete";
+
+
+  del.onclick =
+    function(){
+
+      mcqQuestions.splice(
+        index,
+        1
+      );
+
+      renderQuestions();
+    };
+
+
+  head.appendChild(badge);
+
+  head.appendChild(del);
+
+  card.appendChild(head);
+
+
+  var questionField =
+    document.createElement("div");
+
+  questionField.className =
+    "field";
+
+
+  var questionLabel =
+    document.createElement("label");
+
+  questionLabel.innerHTML =
+    "Question";
+
+
+  var questionBox =
+    document.createElement("textarea");
+
+  questionBox.value =
+    question.q;
+
+
+  questionBox.oninput =
+    function(){
+
+      mcqQuestions[index].q =
+        questionBox.value;
+    };
+
+
+  questionField.appendChild(
+    questionLabel
+  );
+
+  questionField.appendChild(
+    questionBox
+  );
+
+  card.appendChild(
+    questionField
+  );
+
+
+  var optionGrid =
+    document.createElement("div");
+
+  optionGrid.className =
+    "option-grid";
+
+
+  for(var j=0;j<4;j++){
+
+    createOptionInput(
+      optionGrid,
+      index,
+      j
+    );
+  }
+
+
+  card.appendChild(
+    optionGrid
+  );
+
+
+  var answerRow =
+    document.createElement("div");
+
+  answerRow.className =
+    "answer-row";
+
+
+  for(var k=0;k<4;k++){
+
+    createAnswerButton(
+      answerRow,
+      index,
+      k
+    );
+  }
+
+
+  card.appendChild(
+    answerRow
+  );
+
+
+  var imageField = document.createElement("div");
+  imageField.className = "field";
+
+  var imageLabel = document.createElement("label");
+  imageLabel.innerHTML = "Question Image (optional)";
+  imageField.appendChild(imageLabel);
+
+  var uploadWrap = document.createElement("div");
+  uploadWrap.className = "image-upload-wrap";
+
+  var fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.accept = "image/*";
+  fileInput.className = "image-file-input";
+
+  var chooseBtn = document.createElement("button");
+  chooseBtn.type = "button";
+  chooseBtn.className = "image-upload-btn";
+  chooseBtn.innerHTML = "🖼️ Gallery থেকে ছবি দিন";
+
+  var removeBtn = document.createElement("button");
+  removeBtn.type = "button";
+  removeBtn.className = "image-remove-btn";
+  removeBtn.innerHTML = "ছবি বাদ দিন";
+
+  var preview = document.createElement("img");
+  preview.className = "image-preview";
+
+  function refreshImagePreview(){
+    var src = mcqQuestions[index].image || "";
+    if(src){
+      preview.src = src;
+      preview.style.display = "block";
+      removeBtn.style.display = "inline-block";
+    }else{
+      preview.removeAttribute("src");
+      preview.style.display = "none";
+      removeBtn.style.display = "none";
     }
   }
-},100);
 
-return true;
+  chooseBtn.onclick = function(){ fileInput.click(); };
+  fileInput.onchange = function(){
+    var file = fileInput.files && fileInput.files[0];
+    if(!file) return;
+    if(!file.type || file.type.indexOf("image/") !== 0){
+      showToast("শুধু ছবি নির্বাচন করুন।");
+      fileInput.value = "";
+      return;
+    }
+    if(file.size > 2 * 1024 * 1024){
+      showToast("ছবিটি 2 MB-এর মধ্যে রাখুন।");
+      fileInput.value = "";
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e){
+      mcqQuestions[index].image = e.target.result;
+      refreshImagePreview();
+      showToast("ছবি যোগ হয়েছে ✅");
+    };
+    reader.onerror = function(){ showToast("ছবি পড়া যায়নি।"); };
+    reader.readAsDataURL(file);
+  };
+  removeBtn.onclick = function(){
+    mcqQuestions[index].image = "";
+    fileInput.value = "";
+    refreshImagePreview();
+  };
 
+  uploadWrap.appendChild(chooseBtn);
+  uploadWrap.appendChild(removeBtn);
+  uploadWrap.appendChild(fileInput);
+  imageField.appendChild(uploadWrap);
+  imageField.appendChild(preview);
+  card.appendChild(imageField);
+  refreshImagePreview();
+
+
+  getEl("parsedQuestions")
+    .appendChild(card);
 }
 
 
-/* PRINT PDF */
-
-function printPreparedPDF(){
-
-if(!printSheetReady){
-  alert("PDF এখনো প্রস্তুত হচ্ছে। একটু অপেক্ষা করে আবার চাপুন।");
-  return;
-}
-
-/* IMPORTANT: keep window.print() directly inside the user's click event.
-   This makes Android Chrome reliably open the system print / Save as PDF dialog. */
-window.print();
-
-}
-
-
-function prepareAndPrintPDF(){
-
-if(
-!currentExam
-||
-!studentName
+function createOptionInput(
+  parent,
+  questionIndex,
+  optionNumber
 ){
 
-alert(
-"উত্তরপত্র পাওয়া যায়নি।"
-);
+  var field =
+    document.createElement("div");
 
-return;
+  field.className =
+    "field";
 
+
+  var label =
+    document.createElement("label");
+
+  label.innerHTML =
+    "(" +
+    labels[optionNumber] +
+    ")";
+
+
+  var input =
+    document.createElement("input");
+
+  input.value =
+    mcqQuestions[
+      questionIndex
+    ].options[
+      optionNumber
+    ];
+
+
+  input.oninput =
+    function(){
+
+      mcqQuestions[
+        questionIndex
+      ].options[
+        optionNumber
+      ] =
+        input.value;
+    };
+
+
+  field.appendChild(label);
+
+  field.appendChild(input);
+
+  parent.appendChild(field);
 }
 
-const subject=
-subjects[currentLevel]
-.find(
-item=>item.id===currentSubject
-);
 
-const subjectName=
-subject
-?
-subject.name
-:
-"";
-
-const score=
-externalPrintResult
-?
-externalPrintResult.score
-:
-document
-.getElementById(
-"finalScore"
-)
-.innerText;
-
-const correct=
-externalPrintResult
-?
-externalPrintResult.correct
-:
-document
-.getElementById(
-"correctCount"
-)
-.innerText;
-
-const wrong=
-externalPrintResult
-?
-externalPrintResult.wrong
-:
-document
-.getElementById(
-"wrongCount"
-)
-.innerText;
-
-const unanswered=
-externalPrintResult
-?
-externalPrintResult.unanswered
-:
-document
-.getElementById(
-"unansweredCount"
-)
-.innerText;
-
-const answered=
-externalPrintResult
-?
-externalPrintResult.answered
-:
-document
-.getElementById(
-"answeredCount"
-)
-.innerText;
-
-const total=
-currentExam.questions.length;
-
-const negativeMark=
-currentLevel==="SSC"
-?
-0
-:
-0.25;
-
-let html=`
-
-<div class="print-sheet">
-
-<div class="print-cover">
-
-<div class="print-brand-row">
-
-<img
-class="print-logo"
-src="logo.jpg"
-alt="Concept Academy"
->
-
-<div>
-
-<div class="print-brand-name">
-Concept Academy
-</div>
-
-<div class="print-brand-sub">
-by Shuvo • Online Exam Platform
-</div>
-
-</div>
-
-</div>
-
-<div class="print-exam-title">
-
-${escapeHTML(
-currentExam.title
-)}
-
-</div>
-
-<div class="print-meta">
-
-${escapeHTML(
-currentLevel
-)}
-
-•
-
-${escapeHTML(
-subjectName
-)}
-
-</div>
-
-<div class="print-student">
-
-পরীক্ষার্থী:
-
-<strong>
-
-${escapeHTML(
-studentName
-)}
-
-</strong>
-
-</div>
-
-<div class="print-score">
-
-${escapeHTML(
-score
-)}
-/
-${total}
-
-</div>
-
-<div class="print-score-label">
-প্রাপ্ত নম্বর
-</div>
-
-<div class="print-stats">
-
-<div class="print-stat">
-
-<strong>
-${correct}
-</strong>
-
-<span>
-সঠিক
-</span>
-
-</div>
-
-<div class="print-stat">
-
-<strong>
-${wrong}
-</strong>
-
-<span>
-ভুল
-</span>
-
-</div>
-
-<div class="print-stat">
-
-<strong>
-${unanswered}
-</strong>
-
-<span>
-উত্তরহীন
-</span>
-
-</div>
-
-<div class="print-stat">
-
-<strong>
-${answered}
-</strong>
-
-<span>
-উত্তর দিয়েছেন
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="print-rule">
-
-<strong>
-পরীক্ষার নিয়ম
-</strong>
-
-<br>
-
-সঠিক উত্তর:
-<strong>
-+1
-</strong>
-
-<br>
-
-ভুল উত্তর:
-
-<strong>
-
-${
-negativeMark===0
-?
-"কোনো নম্বর কাটা হবে না"
-:
-"−0.25"
-}
-
-</strong>
-
-<br>
-
-মোট প্রশ্ন:
-
-<strong>
-${total}
-</strong>
-
-</div>
-
-<div class="print-section-title">
-উত্তরপত্র ও সংশোধনী
-</div>
-
-`;
-
-currentExam.questions
-.forEach(
-(question,index)=>{
-
-let selectedIndex=null;
-
-if(
-externalPrintAnswers
+function createAnswerButton(
+  parent,
+  questionIndex,
+  optionNumber
 ){
 
-selectedIndex=
-externalPrintAnswers[index]===undefined
-?
-null
-:
-externalPrintAnswers[index];
+  var button =
+    document.createElement("button");
 
-}
-else{
+  button.type = "button";
 
-const selected=
-document.querySelector(
-`input[name="question${index}"]:checked`
-);
+  button.className =
+    "answer-btn";
 
-selectedIndex=
-selected
-?
-Number(
-selected.value
-)
-:
-null;
 
-}
+  if(
+    mcqQuestions[
+      questionIndex
+    ].answer ===
+    optionNumber
+  ){
 
-const correctIndex=
-Number(
-question.answer
-);
+    button.className +=
+      " selected";
+  }
 
-let state=
-"unanswered";
 
-let statusText=
-"উত্তর দেওয়া হয়নি";
+  button.innerHTML =
+    labels[optionNumber];
 
-if(
-selectedIndex!==null
-){
 
-if(
-selectedIndex===correctIndex
-){
+  button.onclick =
+    function(){
 
-state=
-"correct";
+      mcqQuestions[
+        questionIndex
+      ].answer =
+        optionNumber;
 
-statusText=
-"✓ সঠিক";
+      renderQuestions();
+    };
 
-}
-else{
 
-state=
-"wrong";
-
-statusText=
-"✗ ভুল";
-
+  parent.appendChild(button);
 }
 
+
+/* ANSWER KEY */
+
+function banglaDigitsToEnglish(value){
+
+  var map = {
+    "০":"0",
+    "১":"1",
+    "২":"2",
+    "৩":"3",
+    "৪":"4",
+    "৫":"5",
+    "৬":"6",
+    "৭":"7",
+    "৮":"8",
+    "৯":"9"
+  };
+
+  return String(value || "")
+    .replace(/[০-৯]/g,function(digit){
+      return map[digit] || digit;
+    });
 }
 
-html+=`
 
-<div class="print-question ${state}">
+function parseAnswerKey(text){
 
-<div class="print-q-badge">
+  var source = cleanText(text);
 
-প্রশ্ন ${index+1}
+  if(!source){
+    return [];
+  }
 
-</div>
+  var lines = source.split("\n");
+  var answers = [];
 
-${question.image ? `<img class="print-stimulus-image" src="${escapeHTML(question.image)}" alt="প্রশ্নের উদ্দীপক চিত্র">` : ""}
+  for(var i=0;i<lines.length;i++){
 
-<div class="print-q-text">
+    var line = String(lines[i] || "").trim();
 
-${latexAwareHtml(
-question.q
-)}
+    if(!line){
+      continue;
+    }
 
-</div>
+    var questionNumber = null;
+    var answerPart = line;
 
-<div class="print-status ${state}">
+    /*
+      Supported numbered examples:
+      ১. গ) answer text
+      ২) খ) answer text
+      3. (c) answer text
+      4 - d answer text
+    */
+    var numberMatch = line.match(
+      /^([০-৯0-9]+)\s*[\.\)\-:।]?\s*/
+    );
 
-${statusText}
+    if(numberMatch){
+      var parsedNumber = Number(
+        banglaDigitsToEnglish(numberMatch[1])
+      );
 
-</div>
+      if(
+        isFinite(parsedNumber) &&
+        parsedNumber > 0
+      ){
+        questionNumber = parsedNumber;
+      }
 
-`;
+      answerPart = line
+        .slice(numberMatch[0].length)
+        .trim();
+    }
 
-question.options
-.forEach(
-(option,optIndex)=>{
+    /*
+      Supported option styles:
+      গ) text
+      (গ) text
+      [গ] text
+      গ. text
+      গ: text
+      গ - text
+      গ text
+      c) text / (c) text / c text
 
-let optionClass="";
-let note="";
+      If there is no closing punctuation after the option letter,
+      whitespace/end-of-line is required so a normal word such as
+      "গণিত" is not mistaken for option "গ".
+    */
+    var optionMatch = answerPart.match(
+      /^(?:\(\s*|\[\s*)?([a-dA-Dকখগঘ])\s*(?:(?:\)|\]|\.|:|\-|।)|(?=\s|$))/
+    );
 
-if(
-optIndex===correctIndex
-){
+    if(!optionMatch){
+      continue;
+    }
 
-optionClass=
-"correct-answer";
+    var answerIndex = optionIndex(optionMatch[1]);
 
-note=
-"✓ সঠিক উত্তর";
+    if(answerIndex < 0){
+      continue;
+    }
 
-}
-
-if(
-optIndex===selectedIndex
-&&
-optIndex!==correctIndex
-){
-
-optionClass=
-"wrong-answer";
-
-note=
-"✗ আপনার উত্তর";
-
-}
-
-if(
-optIndex===selectedIndex
-&&
-optIndex===correctIndex
-){
-
-note=
-"✓ আপনার উত্তর ও সঠিক উত্তর";
-
-}
-
-html+=`
-
-<div class="print-option ${optionClass}">
-
-<span>
-
-<strong>
-
-(${optionLabels[optIndex]})
-
-</strong>
-
-${latexAwareHtml(
-option
-)}
-
-</span>
-
-<span class="print-note">
-
-${note}
-
-</span>
-
-</div>
-
-`;
-
-});
-
-html+=`
-
-</div>
-
-`;
-
-});
-
-html+=`
-
-<div class="print-footer">
-
-Concept Academy by Shuvo
-
-<br>
-
-Generated from Concept Academy Online Exam Platform
-
-</div>
-
-</div>
-
-`;
-
-const printSheet=
-document.getElementById(
-"printSheet"
-);
-
-printSheet.innerHTML=
-html;
-
-const logo=
-printSheet.querySelector(
-".print-logo"
-);
-
-/* Printable HTML already exists at this point.
-   Enable the button immediately so Android Chrome can never get stuck on
-   “PDF প্রস্তুত হচ্ছে...”. MathJax/fonts/logo can finish in the background. */
-printSheetReady=true;
-
-const browserPrintBtn=document.getElementById("browserPrintBtn");
-const browserPrintStatus=document.getElementById("browserPrintStatus");
-
-if(browserPrintBtn){
-  browserPrintBtn.disabled=false;
-  browserPrintBtn.innerText="📄 Save as PDF / Print";
-}
-
-if(browserPrintStatus){
-  browserPrintStatus.innerText="PDF প্রস্তুত। এখন উপরের বাটনে চাপুন।";
-}
-
-try{
-  const mathWork=typesetMathPromise(printSheet);
-  if(mathWork && typeof mathWork.catch==="function"){
-    mathWork.catch(function(error){
-      console.error("Math render failed:",error);
+    answers.push({
+      questionNumber:questionNumber,
+      answer:answerIndex
     });
   }
-}
-catch(error){
-  console.error("Math render failed:",error);
-}
 
-/* Logo loading must never block printing. */
-if(logo && !logo.complete){
-  logo.onload=function(){};
-  logo.onerror=function(){};
-}
-
+  return answers;
 }
 
 
-/* SAFE HTML */
+function applyAnswers(){
 
-function escapeHTML(value){
+  if(mcqQuestions.length === 0){
 
-return String(
-value ?? ""
-)
+    showToast(
+      "আগে Parse Questions চাপুন।"
+    );
 
-.replace(
-/&/g,
-"&amp;"
-)
+    return;
+  }
 
-.replace(
-/</g,
-"&lt;"
-)
+  var parsedAnswers = parseAnswerKey(
+    getEl("answerKey").value
+  );
 
-.replace(
-/>/g,
-"&gt;"
-)
+  if(parsedAnswers.length === 0){
 
-.replace(
-/"/g,
-"&quot;"
-)
+    showToast(
+      "Answer Key বুঝতে পারিনি। উদাহরণ: ১. গ) উত্তর"
+    );
 
-.replace(
-/'/g,
-"&#039;"
+    return;
+  }
+
+  var applied = 0;
+  var nextSequentialIndex = 0;
+
+  for(var i=0;i<parsedAnswers.length;i++){
+
+    var item = parsedAnswers[i];
+    var targetIndex = -1;
+
+    if(
+      item.questionNumber !== null &&
+      item.questionNumber !== undefined
+    ){
+      targetIndex = Number(item.questionNumber) - 1;
+    }
+    else{
+      targetIndex = nextSequentialIndex;
+      nextSequentialIndex++;
+    }
+
+    if(
+      targetIndex >= 0 &&
+      targetIndex < mcqQuestions.length
+    ){
+      mcqQuestions[targetIndex].answer = item.answer;
+      applied++;
+    }
+  }
+
+  if(applied === 0){
+    showToast(
+      "Answer পাওয়া গেছে, কিন্তু Question Number মিলেনি।"
+    );
+    return;
+  }
+
+  renderQuestions();
+
+  showToast(
+    applied +
+    "টি Answer Apply হয়েছে ✅"
+  );
+}
+
+
+/* VALIDATION */
+
+function updateValidation(){
+
+  var box =
+    getEl("answerValidation");
+
+
+  if(mcqQuestions.length === 0){
+
+    box.className = "";
+
+    box.innerHTML = "";
+
+    return;
+  }
+
+
+  var answered = 0;
+
+
+  for(
+    var i=0;
+    i<mcqQuestions.length;
+    i++
+  ){
+
+    if(
+      mcqQuestions[i].answer !==
+      null
+      &&
+      mcqQuestions[i].answer !==
+      undefined
+    ){
+
+      answered++;
+    }
+  }
+
+
+  var missing =
+    mcqQuestions.length -
+    answered;
+
+
+  if(missing === 0){
+
+    box.className =
+      "validation good";
+
+    box.innerHTML =
+      "✅ সব " +
+      mcqQuestions.length +
+      "টি প্রশ্নের উত্তর দেওয়া হয়েছে।";
+
+  }
+  else{
+
+    box.className =
+      "validation warn";
+
+    box.innerHTML =
+      "⚠️ প্রশ্ন " +
+      mcqQuestions.length +
+      "টি। Answer দেওয়া হয়েছে " +
+      answered +
+      "টি। বাকি " +
+      missing +
+      "টি।";
+  }
+}
+
+
+/* CLEAR */
+
+function clearMCQ(){
+
+  mcqQuestions = [];
+
+  getEl("bulkQuestions").value =
+    "";
+
+  getEl("answerKey").value =
+    "";
+
+  getEl("previewArea").innerHTML =
+    "";
+
+  renderQuestions();
+
+  showToast("Clear হয়েছে।");
+}
+
+
+/* CQ */
+
+function parseCQ(){
+
+  var source =
+    cleanText(
+      getEl("bulkCQ").value
+    );
+
+
+  if(!source){
+
+    showToast(
+      "CQ প্রশ্ন Paste করুন।"
+    );
+
+    return;
+  }
+
+
+  var lines =
+    source.split("\n");
+
+  var result = [];
+
+  var current = [];
+
+
+  for(var i=0;i<lines.length;i++){
+
+    var line =
+      lines[i].trim();
+
+    if(!line){
+      continue;
+    }
+
+
+    if(
+      isQuestionLine(line)
+      &&
+      current.length > 0
+    ){
+
+      result.push(
+        current.join("\n")
+      );
+
+      current = [];
+    }
+
+
+    if(isQuestionLine(line)){
+
+      current.push(
+        removeQuestionNumber(line)
+      );
+
+    }
+    else{
+
+      current.push(line);
+    }
+  }
+
+
+  if(current.length > 0){
+
+    result.push(
+      current.join("\n")
+    );
+  }
+
+
+  cqQuestions = [];
+
+
+  for(
+    var j=0;
+    j<result.length;
+    j++
+  ){
+
+    cqQuestions.push({
+
+      text:result[j],
+
+      image:""
+
+    });
+  }
+
+
+  renderCQ();
+
+
+  showToast(
+    cqQuestions.length +
+    "টি CQ Parse হয়েছে ✅"
+  );
+}
+
+
+function renderCQ(){
+
+  var box =
+    getEl("parsedCQ");
+
+  box.innerHTML = "";
+
+
+  for(
+    var i=0;
+    i<cqQuestions.length;
+    i++
+  ){
+
+    createCQCard(i);
+  }
+}
+
+
+function createCQCard(index){
+
+  var card =
+    document.createElement("div");
+
+  card.className =
+    "question-card";
+
+
+  var badge =
+    document.createElement("div");
+
+  badge.className =
+    "badge";
+
+  badge.innerHTML =
+    "সৃজনশীল " +
+    (index + 1);
+
+
+  card.appendChild(badge);
+
+
+  var textarea =
+    document.createElement("textarea");
+
+  textarea.style.marginTop =
+    "10px";
+
+  textarea.style.minHeight =
+    "180px";
+
+  textarea.value =
+    cqQuestions[index].text;
+
+
+  var mathPreviewBox =
+    document.createElement("div");
+
+  mathPreviewBox.className =
+    "math-preview-box";
+
+  var mathPreviewTitle =
+    document.createElement("div");
+
+  mathPreviewTitle.className =
+    "math-preview-title";
+
+  mathPreviewTitle.innerHTML =
+    "Math Preview";
+
+  var mathPreview =
+    document.createElement("div");
+
+  mathPreview.className =
+    "math-rendered-text";
+
+  mathPreviewBox.appendChild(mathPreviewTitle);
+  mathPreviewBox.appendChild(mathPreview);
+
+
+  textarea.oninput =
+    function(){
+
+      cqQuestions[index].text =
+        textarea.value;
+
+      renderMathInto(
+        mathPreview,
+        textarea.value
+      );
+    };
+
+
+  card.appendChild(textarea);
+  card.appendChild(mathPreviewBox);
+
+  renderMathInto(
+    mathPreview,
+    cqQuestions[index].text
+  );
+
+
+  var imageField = document.createElement("div");
+  imageField.className = "field";
+  imageField.style.marginTop = "10px";
+
+  var imageLabel = document.createElement("label");
+  imageLabel.innerHTML = "Question Image (optional)";
+  imageField.appendChild(imageLabel);
+
+  var uploadWrap = document.createElement("div");
+  uploadWrap.className = "image-upload-wrap";
+
+  var fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.accept = "image/*";
+  fileInput.className = "image-file-input";
+
+  var chooseBtn = document.createElement("button");
+  chooseBtn.type = "button";
+  chooseBtn.className = "image-upload-btn";
+  chooseBtn.innerHTML = "🖼️ Gallery থেকে ছবি দিন";
+
+  var removeBtn = document.createElement("button");
+  removeBtn.type = "button";
+  removeBtn.className = "image-remove-btn";
+  removeBtn.innerHTML = "ছবি বাদ দিন";
+
+  var preview = document.createElement("img");
+  preview.className = "image-preview";
+
+  function refreshCQImagePreview(){
+    var src = cqQuestions[index].image || "";
+    if(src){
+      preview.src = src;
+      preview.style.display = "block";
+      removeBtn.style.display = "inline-block";
+    }else{
+      preview.removeAttribute("src");
+      preview.style.display = "none";
+      removeBtn.style.display = "none";
+    }
+  }
+
+  chooseBtn.onclick = function(){ fileInput.click(); };
+  fileInput.onchange = function(){
+    var file = fileInput.files && fileInput.files[0];
+    if(!file) return;
+    if(!file.type || file.type.indexOf("image/") !== 0){
+      showToast("শুধু ছবি নির্বাচন করুন।");
+      fileInput.value = "";
+      return;
+    }
+    if(file.size > 2 * 1024 * 1024){
+      showToast("ছবিটি 2 MB-এর মধ্যে রাখুন।");
+      fileInput.value = "";
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e){
+      cqQuestions[index].image = e.target.result;
+      refreshCQImagePreview();
+      showToast("ছবি যোগ হয়েছে ✅");
+    };
+    reader.onerror = function(){ showToast("ছবি পড়া যায়নি।"); };
+    reader.readAsDataURL(file);
+  };
+  removeBtn.onclick = function(){
+    cqQuestions[index].image = "";
+    fileInput.value = "";
+    refreshCQImagePreview();
+  };
+
+  uploadWrap.appendChild(chooseBtn);
+  uploadWrap.appendChild(removeBtn);
+  uploadWrap.appendChild(fileInput);
+  imageField.appendChild(uploadWrap);
+  imageField.appendChild(preview);
+  card.appendChild(imageField);
+  refreshCQImagePreview();
+
+
+  getEl("parsedCQ")
+    .appendChild(card);
+}
+
+
+/* PREVIEW */
+
+function previewExam(){
+
+  var area =
+    getEl("previewArea");
+
+  area.innerHTML = "";
+
+
+  var type =
+    getEl("examType").value;
+
+
+  if(type === "MCQ"){
+
+    if(mcqQuestions.length === 0){
+
+      showToast(
+        "আগে Parse Questions চাপুন।"
+      );
+
+      return;
+    }
+
+
+    for(
+      var i=0;
+      i<mcqQuestions.length;
+      i++
+    ){
+
+      var q =
+        mcqQuestions[i];
+
+      var card =
+        document.createElement("div");
+
+      card.className =
+        "preview-card";
+
+
+      var html = "";
+
+      if(q.image){
+        html += "<img src='" + safeHtml(q.image) + "' style='display:block;max-width:100%;max-height:280px;margin:0 auto 10px;border-radius:10px;object-fit:contain;'>";
+      }
+
+      html +=
+        "<strong>" +
+        (i + 1) +
+        ". " +
+        latexAwareHtml(q.q) +
+        "</strong>";
+
+
+      for(
+        var j=0;
+        j<q.options.length;
+        j++
+      ){
+
+        html +=
+          "<div class='preview-option " +
+          (
+            q.answer === j
+            ?
+            "correct"
+            :
+            ""
+          ) +
+          "'>(" +
+          labels[j] +
+          ") " +
+          latexAwareHtml(
+            q.options[j]
+          ) +
+          "</div>";
+      }
+
+
+      card.innerHTML = html;
+
+      area.appendChild(card);
+      typesetMath(card);
+    }
+
+  }
+  else{
+
+    if(cqQuestions.length === 0){
+
+      showToast(
+        "আগে CQ Parse করুন।"
+      );
+
+      return;
+    }
+
+
+    for(
+      var x=0;
+      x<cqQuestions.length;
+      x++
+    ){
+
+      var cqCard =
+        document.createElement("div");
+
+      cqCard.className =
+        "preview-card";
+
+      cqCard.innerHTML = "";
+
+      if(cqQuestions[x].image){
+        var cqImg = document.createElement("img");
+        cqImg.src = cqQuestions[x].image;
+        cqImg.style.cssText = "display:block;max-width:100%;max-height:280px;margin:0 auto 10px;border-radius:10px;object-fit:contain;";
+        cqCard.appendChild(cqImg);
+      }
+
+      var cqText = document.createElement("div");
+      cqText.innerHTML =
+        "<strong>" +
+        (x + 1) +
+        ".</strong><div class='math-rendered-text' style='margin-top:8px;'>" +
+        latexAwareHtml(
+          cqQuestions[x].text
+        ) +
+        "</div>";
+      cqCard.appendChild(cqText);
+
+      area.appendChild(cqCard);
+      typesetMath(cqCard);
+    }
+  }
+}
+
+
+/* SAVE */
+
+function setSaveBusy(busy){
+
+  isSavingExam = busy === true;
+
+  var draftBtn = getEl("saveDraftBtn");
+  var publishBtn = getEl("publishBtn");
+
+  if(draftBtn){
+    draftBtn.disabled = isSavingExam;
+    draftBtn.style.opacity = isSavingExam ? ".6" : "1";
+  }
+
+  if(publishBtn){
+    publishBtn.disabled = isSavingExam;
+    publishBtn.style.opacity = isSavingExam ? ".6" : "1";
+  }
+}
+
+
+function resetExamForm(){
+
+  editingExamId = null;
+
+  getEl("examTitle").value = "";
+  getEl("timeMinutes").value = "20";
+  getEl("startAt").value = "";
+  getEl("endAt").value = "";
+  getEl("bulkQuestions").value = "";
+  getEl("answerKey").value = "";
+  getEl("bulkCQ").value = "";
+  getEl("previewArea").innerHTML = "";
+
+  mcqQuestions = [];
+  cqQuestions = [];
+
+  getEl("examType").value = "MCQ";
+  changeExamType();
+
+  renderQuestions();
+  renderCQ();
+  updateValidation();
+}
+
+
+function saveExam(published){
+
+  if(isSavingExam){
+    showToast("Save হচ্ছে... একটু অপেক্ষা করুন।");
+    return;
+  }
+
+  var title =
+    getEl("examTitle")
+    .value
+    .trim();
+
+
+  if(!title){
+
+    showToast(
+      "Exam Title লিখুন।"
+    );
+
+    return;
+  }
+
+
+  var type =
+    getEl("examType").value;
+
+
+  var questions =
+    type === "MCQ"
+    ?
+    mcqQuestions
+    :
+    cqQuestions;
+
+
+  if(questions.length === 0){
+
+    showToast(
+      "কোনো প্রশ্ন নেই।"
+    );
+
+    return;
+  }
+
+
+  if(type === "MCQ"){
+
+    for(
+      var i=0;
+      i<mcqQuestions.length;
+      i++
+    ){
+
+      if(
+        mcqQuestions[i].answer === null
+        ||
+        mcqQuestions[i].answer === undefined
+      ){
+
+        showToast(
+          "সব MCQ-এর Answer দিন।"
+        );
+
+        return;
+      }
+    }
+  }
+
+
+  var startValue = getEl("startAt").value || "";
+  var endValue = getEl("endAt").value || "";
+
+  if(startValue && endValue){
+    var startMs = new Date(startValue).getTime();
+    var endMs = new Date(endValue).getTime();
+
+    if(!isNaN(startMs) && !isNaN(endMs) && endMs <= startMs){
+      showToast("Exam End Time অবশ্যই Start Time-এর পরে হতে হবে।");
+      return;
+    }
+  }
+
+
+  var data = {
+
+    examId:
+      editingExamId,
+
+    level:
+      getEl("level").value,
+
+    classYear: getEl("classYearV2").value,
+    accessMode: "ALL",
+
+    subject:
+      getEl("subject").value,
+
+    examTitle:
+      title,
+
+    examType:
+      type,
+
+    timeMinutes:
+      Number(
+        getEl("timeMinutes").value
+        ||
+        10
+      ),
+
+    questions:
+      questions,
+
+    startAt:
+      startValue,
+
+    endAt:
+      endValue,
+
+    published:
+      published
+
+  };
+
+
+  setSaveBusy(true);
+  showToast("Saving...");
+
+
+  if(editingExamId){
+
+    google.script.run
+
+    .withSuccessHandler(
+      function(result){
+
+        setSaveBusy(false);
+
+        if(result && result.success === false){
+          showToast(result.message || result.error || "Exam Update হয়নি।");
+          return;
+        }
+
+        resetExamForm();
+
+        /* Refresh the admin-side copy immediately so a second Edit
+           uses the newly saved StartAt / EndAt values, not stale data. */
+        loadExams();
+
+        showToast(
+          "Exam Update হয়েছে ✅"
+        );
+      }
+    )
+
+    .withFailureHandler(
+      function(error){
+
+        setSaveBusy(false);
+
+        showToast(
+          error.message ||
+          String(error)
+        );
+      }
+    )
+
+    .updateExamInSheet(
+      adminToken,
+      data
+    );
+
+  }
+  else{
+
+    google.script.run
+
+    .withSuccessHandler(
+      function(result){
+
+        setSaveBusy(false);
+
+        if(result && result.success === false){
+          showToast(result.message || result.error || "Exam Save হয়নি।");
+          return;
+        }
+
+        resetExamForm();
+
+        if(published){
+
+          showToast(
+            "Exam Publish হয়েছে ✅"
+          );
+
+        }
+        else{
+
+          showToast(
+            "Draft Save হয়েছে ✅"
+          );
+        }
+      }
+    )
+
+    .withFailureHandler(
+      function(error){
+
+        setSaveBusy(false);
+
+        showToast(
+          error.message ||
+          String(error)
+        );
+      }
+    )
+
+    .saveExamToSheet(
+      adminToken,
+      data
+    );
+  }
+}
+
+
+/* MANAGE EXAMS */
+
+function normalizeAdminExam(exam){
+
+  exam = exam || {};
+
+  var questions = exam.questions;
+
+  if(typeof questions === "string"){
+    try{
+      questions = JSON.parse(questions);
+    }
+    catch(error){
+      questions = [];
+    }
+  }
+
+  if(!Array.isArray(questions)){
+    questions = [];
+  }
+
+  var publishedValue = exam.published;
+
+  var published =
+    publishedValue === true
+    ||
+    String(publishedValue || "")
+      .trim()
+      .toLowerCase() === "true";
+
+  return {
+    id:String(exam.id || exam.examId || exam.ExamID || "").trim(),
+    level:String(exam.level || exam.Level || "").trim(),
+    classYear:String(exam.classYear || ""),
+    subject:String(exam.subject || exam.Subject || "").trim(),
+    title:String(exam.title || exam.examTitle || exam.ExamTitle || "").trim(),
+    examType:String(exam.examType || exam.ExamType || "MCQ").trim().toUpperCase(),
+    timeMinutes:Number(exam.timeMinutes || exam.TimeMinutes || 10),
+    questions:questions,
+    published:published,
+    startAt:String(exam.startAt || exam.StartAt || ""),
+    endAt:String(exam.endAt || exam.EndAt || "")
+  };
+}
+
+
+function loadExams(){
+
+  var container =
+    getEl("examList");
+
+  container.innerHTML =
+    "Loading...";
+
+
+  google.script.run
+
+  .withSuccessHandler(
+    function(exams){
+
+      var rawExams = [];
+
+      if(Array.isArray(exams)){
+        rawExams = exams;
+      }
+      else if(
+        exams &&
+        Array.isArray(exams.exams)
+      ){
+        rawExams = exams.exams;
+      }
+
+      loadedExams = [];
+
+      for(var n=0; n<rawExams.length; n++){
+        var normalizedExam = normalizeAdminExam(rawExams[n]);
+        if(normalizedExam.id){
+          loadedExams.push(normalizedExam);
+        }
+      }
+
+      container.innerHTML = "";
+
+
+      if(loadedExams.length === 0){
+
+        container.innerHTML =
+          "<p class='help'>কোনো Exam পাওয়া যায়নি।</p>";
+
+        return;
+      }
+
+
+      for(
+        var i=loadedExams.length-1;
+        i>=0;
+        i--
+      ){
+
+        createExamRow(
+          loadedExams[i]
+        );
+      }
+    }
+  )
+
+  .withFailureHandler(
+    function(error){
+
+      container.innerHTML =
+        safeHtml(
+          error.message ||
+          String(error)
+        );
+    }
+  )
+
+  .getAllExamsFromSheet(
+    adminToken
+  );
+}
+
+
+function createExamRow(exam){
+
+  var row =
+    document.createElement("div");
+
+  row.className =
+    "exam-row";
+
+
+  var info =
+    document.createElement("div");
+
+
+  var title =
+    document.createElement("h3");
+
+  title.innerHTML =
+    safeHtml(exam.title || "Untitled Exam");
+
+
+  var description =
+    document.createElement("p");
+
+  description.innerHTML =
+    safeHtml(
+      exam.level +
+      " • " +
+      exam.subject +
+      " • " +
+      exam.examType +
+      " • " +
+      exam.timeMinutes +
+      " মিনিট • " +
+      (
+        exam.published
+        ?
+        "Published"
+        :
+        "Draft"
+      )
+    );
+
+
+  info.appendChild(title);
+  info.appendChild(description);
+
+
+  var actions =
+    document.createElement("div");
+
+  actions.style.display = "flex";
+  actions.style.gap = "6px";
+  actions.style.flexWrap = "wrap";
+
+
+  var edit =
+    document.createElement("button");
+
+  edit.type = "button";
+  edit.className =
+    "small light";
+
+  edit.innerHTML =
+    "Edit";
+
+  edit.onclick =
+    function(){
+
+      editExam(
+        exam.id
+      );
+    };
+
+
+  var publish =
+    document.createElement("button");
+
+  publish.type = "button";
+  publish.className =
+    exam.published
+    ?
+    "small light"
+    :
+    "small green";
+
+  publish.innerHTML =
+    exam.published
+    ?
+    "Unpublish"
+    :
+    "Publish";
+
+
+  publish.onclick =
+    function(){
+
+      publish.disabled = true;
+
+      setPublished(
+        exam.id,
+        !exam.published,
+        publish
+      );
+    };
+
+
+  var del =
+    document.createElement("button");
+
+  del.type = "button";
+  del.className =
+    "small red";
+
+  del.innerHTML =
+    "Delete";
+
+  del.onclick =
+    function(){
+
+      deleteExam(
+        exam.id,
+        del
+      );
+    };
+
+
+  actions.appendChild(edit);
+  actions.appendChild(publish);
+  actions.appendChild(del);
+
+
+  row.appendChild(info);
+  row.appendChild(actions);
+
+
+  getEl("examList")
+    .appendChild(row);
+}
+
+
+function toDateTimeLocalValue(value){
+  if(!value) return "";
+  var d = new Date(value);
+  if(isNaN(d.getTime())){
+    return String(value).slice(0,16);
+  }
+  var pad = function(n){ return String(n).padStart(2,"0"); };
+  return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())+"T"+pad(d.getHours())+":"+pad(d.getMinutes());
+}
+
+
+function editExam(examId){
+
+  var exam = null;
+
+
+  for(
+    var i=0;
+    i<loadedExams.length;
+    i++
+  ){
+
+    if(
+      String(
+        loadedExams[i].id
+      )
+      ===
+      String(examId)
+    ){
+
+      exam =
+        loadedExams[i];
+
+      break;
+    }
+  }
+
+
+  if(!exam){
+
+    showToast(
+      "Exam পাওয়া যায়নি।"
+    );
+
+    return;
+  }
+
+
+  editingExamId =
+    exam.id;
+
+
+  getEl("examType").value =
+    exam.examType ||
+    "MCQ";
+
+
+  getEl("level").value =
+    exam.level;
+
+
+  updateSubjects();
+  if(exam.classYear) getEl("classYearV2").value=exam.classYear;
+
+  getEl("subject").value =
+    exam.subject;
+
+
+  getEl("examTitle").value =
+    exam.title;
+
+
+  getEl("timeMinutes").value =
+    exam.timeMinutes;
+
+  getEl("startAt").value =
+    toDateTimeLocalValue(exam.startAt);
+
+  getEl("endAt").value =
+    toDateTimeLocalValue(exam.endAt);
+
+
+  if(
+    String(
+      exam.examType
+    ).toUpperCase()
+    ===
+    "CQ"
+  ){
+
+    cqQuestions =
+      exam.questions ||
+      [];
+
+    mcqQuestions = [];
+
+    renderCQ();
+    renderQuestions();
+
+  }
+  else{
+
+    mcqQuestions =
+      exam.questions ||
+      [];
+
+    cqQuestions = [];
+
+    renderQuestions();
+    renderCQ();
+  }
+
+
+  getEl("bulkQuestions").value = "";
+  getEl("answerKey").value = "";
+  getEl("bulkCQ").value = "";
+  getEl("previewArea").innerHTML = "";
+
+  changeExamType();
+  showPanel("create");
+
+
+  window.scrollTo(0,0);
+
+
+  showToast(
+    "Edit Mode চালু হয়েছে। Save/Publish করলে একই Exam update হবে।"
+  );
+}
+
+
+function setPublished(
+  examId,
+  value,
+  button
+){
+
+  if(!examId){
+    if(button){ button.disabled = false; }
+    showToast("Exam ID পাওয়া যায়নি।");
+    return;
+  }
+
+  google.script.run
+
+  .withSuccessHandler(
+    function(result){
+
+      if(button){
+        button.disabled = false;
+      }
+
+      if(result && result.success === false){
+        showToast(result.message || result.error || "Status change হয়নি।");
+        return;
+      }
+
+      showToast(
+        value
+        ?
+        "Exam Publish হয়েছে ✅"
+        :
+        "Exam Unpublish হয়েছে।"
+      );
+
+      loadExams();
+    }
+  )
+
+  .withFailureHandler(
+    function(error){
+
+      if(button){
+        button.disabled = false;
+      }
+
+      showToast(
+        error.message ||
+        String(error)
+      );
+    }
+  )
+
+  .setExamPublished(
+    adminToken,
+    examId,
+    value
+  );
+}
+
+
+function deleteExam(examId, button){
+
+  if(!examId){
+    showToast("Exam ID পাওয়া যায়নি।");
+    return;
+  }
+
+  if(
+    !confirm(
+      "Examটি স্থায়ীভাবে Delete করবেন?"
+    )
+  ){
+
+    return;
+  }
+
+  if(button){
+    button.disabled = true;
+  }
+
+
+  google.script.run
+
+  .withSuccessHandler(
+    function(result){
+
+      if(button){
+        button.disabled = false;
+      }
+
+      if(result && result.success === false){
+        showToast(result.message || result.error || "Exam Delete হয়নি।");
+        return;
+      }
+
+      if(
+        editingExamId
+        &&
+        String(editingExamId) === String(examId)
+      ){
+        resetExamForm();
+      }
+
+      showToast(
+        "Exam Delete হয়েছে।"
+      );
+
+      loadExams();
+    }
+  )
+
+  .withFailureHandler(
+    function(error){
+
+      if(button){
+        button.disabled = false;
+      }
+
+      showToast(
+        error.message ||
+        String(error)
+      );
+    }
+  )
+
+  .deleteExamFromSheet(
+    adminToken,
+    examId
+  );
+}
+
+
+/* CQ SUBMISSIONS */
+
+function loadSubmissions(){
+
+  var container =
+    getEl("submissionList");
+
+  container.innerHTML =
+    "Loading...";
+
+
+  google.script.run
+
+  .withSuccessHandler(
+    function(items){
+
+      container.innerHTML = "";
+
+
+      if(
+        !Array.isArray(items)
+        ||
+        items.length === 0
+      ){
+
+        container.innerHTML =
+          "<p class='help'>এখনো কোনো CQ Submission নেই।</p>";
+
+        return;
+      }
+
+
+      for(
+        var i=items.length-1;
+        i>=0;
+        i--
+      ){
+
+        var row =
+          document.createElement("div");
+
+        row.className =
+          "submission-row";
+
+
+        var title =
+          document.createElement("h3");
+
+        title.innerHTML =
+          safeHtml(
+            items[i].studentName
+          );
+
+
+        var info =
+          document.createElement("p");
+
+        info.innerHTML =
+          safeHtml(
+            "Exam ID: " +
+            items[i].examId +
+            " • Status: " +
+            (
+              items[i].status ||
+              "Submitted"
+            )
+          );
+
+
+        row.appendChild(title);
+
+        row.appendChild(info);
+
+
+        var files =
+          Array.isArray(
+            items[i].files
+          )
+          ?
+          items[i].files
+          :
+          [];
+
+
+        for(
+          var j=0;
+          j<files.length;
+          j++
+        ){
+
+          var link =
+            document.createElement("a");
+
+          link.className =
+            "file-link";
+
+          link.target =
+            "_blank";
+
+          link.href =
+            files[j].fileUrl ||
+            "#";
+
+          link.innerHTML =
+            "📄 " +
+            safeHtml(
+              files[j].fileName ||
+              "File"
+            );
+
+
+          row.appendChild(link);
+        }
+
+
+        container.appendChild(row);
+      }
+    }
+  )
+
+  .withFailureHandler(
+    function(error){
+
+      container.innerHTML =
+        safeHtml(
+          error.message ||
+          String(error)
+        );
+    }
+  )
+
+  .getAllCQSubmissions(
+    adminToken
+  );
+}
+
+
+/* STARTUP */
+
+function startAdmin(){
+
+  try{
+
+    updateSubjects();
+
+    changeExamType();
+
+    renderQuestions();
+
+    renderCQ();
+
+
+    getEl("tabCreate").onclick =
+      function(){
+        showPanel("create");
+      };
+
+
+    getEl("tabManage").onclick =
+      function(){
+        showPanel("manage");
+      };
+
+
+    getEl("tabCQ").onclick =
+      function(){
+        showPanel("cq");
+      };
+
+
+    getEl("level").onchange =
+      updateSubjects;
+
+
+    getEl("examType").onchange =
+      changeExamType;
+
+
+    getEl("parseBtn").onclick =
+      parseQuestions;
+
+
+    /* Keep pasted serial numbers exactly as the user pasted them. */
+    getEl("bulkQuestions").onpaste = null;
+
+
+    getEl("clearBtn").onclick =
+      clearMCQ;
+
+
+    getEl("applyAnswerBtn").onclick =
+      applyAnswers;
+
+
+    getEl("parseCQBtn").onclick =
+      parseCQ;
+
+
+    getEl("previewBtn").onclick =
+      previewExam;
+
+
+    getEl("saveDraftBtn").onclick =
+      function(){
+        saveExam(false);
+      };
+
+
+    getEl("publishBtn").onclick =
+      function(){
+        saveExam(true);
+      };
+
+
+    getEl("refreshExamsBtn").onclick =
+      loadExams;
+
+
+    getEl("refreshCQBtn").onclick =
+      loadSubmissions;
+
+
+    getEl("jsStatus").innerHTML =
+      "JavaScript Ready ✅";
+
+
+    showToast(
+      "Admin Panel Ready ✅"
+    );
+
+  }
+  catch(error){
+
+    getEl("jsStatus").innerHTML =
+      "JS Error ❌";
+
+    alert(
+      "JavaScript Error: " +
+      error.message
+    );
+  }
+}
+
+
+
+/* V2 STUDENT APPROVAL UI — existing exam/CQ handlers unchanged */
+function loadStudentProfilesV2(){
+  var target = getEl("studentListV2");
+  target.textContent = "Loading...";
+  google.script.run.withSuccessHandler(function(rows){
+    target.innerHTML = "";
+    if (!rows || !rows.length) { target.textContent = "কোনো Student পাওয়া যায়নি।"; return; }
+    rows.forEach(function(s){
+      var card = document.createElement("div"); card.className = "submission-row";
+      var heading = document.createElement("h3");
+      heading.textContent = (s.name || "নাম নেই") + " — " + s.studentId;
+      card.appendChild(heading);
+      var info = document.createElement("p");
+      info.textContent = s.level + " / " + s.classYear + " | " + s.phone + " | " + s.status;
+      card.appendChild(info);
+      ["approved", "blocked", "rejected"].forEach(function(status){
+        var btn = document.createElement("button");
+        btn.type = "button"; btn.className = "small " + (status === "approved" ? "green" : "red");
+        btn.style.margin = "8px 6px 0 0";
+        btn.textContent = status === "approved" ? "Approve" : status === "blocked" ? "Block" : "Reject";
+        btn.onclick = function(){
+          if (!confirm(s.studentId + " → " + status + " ?")) return;
+          btn.disabled = true;
+          google.script.run.withSuccessHandler(function(result){ if(!result || result.success !== true){ btn.disabled=false; alert((result && result.message) || "পরিবর্তন হয়নি।"); return; } loadStudentProfilesV2(); })
+            .withFailureHandler(function(err){ btn.disabled = false; alert(err.message || String(err)); })
+            .setStudentApprovalV2(adminToken, s.studentKey, status);
+        };
+        card.appendChild(btn);
+      });
+      var delBtn = document.createElement("button");
+      delBtn.type = "button";
+      delBtn.className = "small red";
+      delBtn.style.margin = "8px 6px 0 0";
+      delBtn.textContent = "Delete Permanently";
+      delBtn.onclick = function(){
+        if(!confirm(s.studentId + " - এই Student স্থায়ীভাবে Delete করবেন?")) return;
+        delBtn.disabled = true;
+        google.script.run.withSuccessHandler(function(result){
+          if(!result || result.success !== true){ delBtn.disabled=false; alert("Delete হয়নি।"); return; }
+          loadStudentProfilesV2();
+        }).withFailureHandler(function(err){delBtn.disabled=false;alert(err.message || String(err));})
+          .deleteStudentProfileV2(adminToken,s.studentKey);
+      };
+      card.appendChild(delBtn);
+      target.appendChild(card);
+    });
+  }).withFailureHandler(function(err){target.textContent = err.message || String(err);})
+    .getAllStudentProfilesV2(adminToken);
+}
+
+getEl("tabStudentsV2").onclick = function(){ showPanel("studentsV2"); };
+getEl("refreshStudentsV2").onclick = loadStudentProfilesV2;
+getEl("adminLoginBtn").onclick = loginAdmin;
+
+getEl("adminPassword").addEventListener(
+  "keydown",
+  function(event){
+    if(event.key === "Enter"){
+      loginAdmin();
+    }
+  }
 );
 
-}
-
-
-/* BACK */
-
-window.addEventListener(
-"popstate",
-function(event){
-
-const target=
-event.state
-&&
-event.state.view
-?
-event.state.view
-:
-"home";
-
-if(
-currentView==="exam"
-&&
-!submitted
-){
-
-const leave=
-confirm(
-"পরীক্ষা এখনো শেষ হয়নি। আপনি কি পরীক্ষা থেকে বের হতে চান?"
-);
-
-if(
-!leave
-){
-
-history.pushState(
-{view:"exam"},
-"",
-"#exam"
-);
-
-return;
-
-}
-
-clearInterval(
-timerInterval
-);
-
-}
-
-if(
-target==="home"
-){
-
-showHome();
-
-return;
-
-}
-
-if(
-target==="subjects"
-){
-
-renderSubjectPage();
-
-return;
-
-}
-
-if(
-target==="examlist"
-){
-
-renderExamListPage();
-
-return;
-
-}
-
-if(
-target==="name"
-){
-
-renderNamePage();
-
-return;
-
-}
-
-showHome();
-
-}
-);
-
-
-/* ENTER */
-
-document
-.getElementById(
-"studentName"
-)
-.addEventListener(
-"keydown",
-function(event){
-
-if(
-event.key==="Enter"
-){
-
-startExam();
-
-}
-
-}
-);
-
-
-/* START */
-
-showHome();
-v2Boot();
+showAdminLogin();
 
 </script>
 
