@@ -2022,9 +2022,8 @@ function hideAllPages(){
 ]
 .forEach(id=>{
 
-document
-.getElementById(id)
-.classList.add("hidden");
+const page=document.getElementById(id);
+if(page)page.classList.add("hidden");
 
 });
 
