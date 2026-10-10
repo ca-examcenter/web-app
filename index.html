@@ -2295,9 +2295,9 @@ function historyShowQuestionsV2(examId){
     const target=page.querySelector("#historyQuestionsV2");
     exam.questions.forEach((q,i)=>{
       const card=document.createElement("div");card.className="question-card";
-      const heading=document.createElement("div");heading.className="question-text";heading.textContent=(i+1)+". "+q.q;card.appendChild(heading);
+      const heading=document.createElement("div");heading.className="question-text";heading.innerHTML=latexAwareHtml((i+1)+". "+q.q);card.appendChild(heading);
       if(q.image){const img=document.createElement("img");img.className="question-stimulus-image";img.src=q.image;card.appendChild(img);}
-      (q.options||[]).forEach((option,j)=>{const row=document.createElement("div");row.className="option";row.textContent=optionLabels[j]+". "+option;card.appendChild(row);});
+      (q.options||[]).forEach((option,j)=>{const row=document.createElement("div");row.className="option";row.innerHTML="<span><b>("+optionLabels[j]+")</b> "+latexAwareHtml(option)+"</span>";card.appendChild(row);});
       target.appendChild(card);
     });
     typesetMath(target);window.scrollTo(0,0);
@@ -2321,9 +2321,9 @@ async function historyShowFirstV2(examId){
     a.questions.forEach((q,i)=>{
       const selected=a.answers[i],correct=Number(q.answer),state=selected===null?"unanswered":selected===correct?"correct":"wrong";
       const card=document.createElement("div");card.className="review-card "+state;
-      const title=document.createElement("div");title.className="review-q";title.textContent=(i+1)+". "+q.q;card.appendChild(title);
+      const title=document.createElement("div");title.className="review-q";title.innerHTML=latexAwareHtml((i+1)+". "+q.q);card.appendChild(title);
       if(q.image){const img=document.createElement("img");img.src=q.image;img.className="review-stimulus-image";card.appendChild(img);}
-      (q.options||[]).forEach((o,j)=>{const row=document.createElement("div");row.className="review-option"+(j===correct?" correct":j===selected?" wrong-selected":"");row.textContent=optionLabels[j]+". "+o+(j===correct?" ✓ সঠিক":j===selected?" ✗ আপনার উত্তর":"");card.appendChild(row);});
+      (q.options||[]).forEach((o,j)=>{const row=document.createElement("div");row.className="review-option"+(j===correct?" correct":j===selected?" wrong-selected":"");row.innerHTML="<span><b>("+optionLabels[j]+")</b> "+latexAwareHtml(o)+"</span><span>"+(j===correct?" ✓ সঠিক":j===selected?" ✗ আপনার উত্তর":"")+"</span>";card.appendChild(row);});
       target.appendChild(card);
     });typesetMath(target);window.scrollTo(0,0);
   }catch(e){alert(e.message||String(e));}
