@@ -1583,6 +1583,26 @@ const optionLabels=[
 
 /* V2 student identity: keep session across reloads; never clear token on network errors. */
 const V2_TOKEN_KEY="conceptAcademyStudentSessionV2";
+/* TinyDB bridge for MIT App Inventor WebViewer. */
+function v2ReadNativeToken(){
+ try{
+  if(window.AppInventor && typeof window.AppInventor.getWebViewString==="function"){
+   const t=String(window.AppInventor.getWebViewString()||"");
+   if(t && !t.startsWith("CA_SAVE_TOKEN:") && !/^https?:\/\//i.test(t))return t;
+  }
+ }catch(e){console.warn("TinyDB read unavailable",e);}
+ return "";
+}
+function v2RememberToken(token){
+ if(!token)return;
+ try{localStorage.setItem(V2_TOKEN_KEY,token);}catch(e){}
+ try{
+  if(window.AppInventor && typeof window.AppInventor.setWebViewString==="function"){
+   window.AppInventor.setWebViewString("CA_SAVE_TOKEN:"+token);
+  }
+ }catch(e){console.warn("TinyDB save unavailable",e);}
+}
+
 let v2Student=null;
 let v2Token="";
 function v2Message(s){document.getElementById("v2Message").textContent=s;}
@@ -1607,6 +1627,12 @@ function v2ApplyStudent(student,token){
 async function v2Boot(){
  v2UpdateYears();
  try{v2Token=localStorage.getItem(V2_TOKEN_KEY)||"";}catch(e){}
+ if(!v2Token)v2Token=v2ReadNativeToken();
+ if(!v2Token && window.AppInventor){
+  await new Promise(resolve=>setTimeout(resolve,450));
+  v2Token=v2ReadNativeToken();
+ }
+ if(v2Token)v2RememberToken(v2Token);
  if(!v2Token){v2ShowForms("প্রথমবার রেজিস্ট্রেশন করুন অথবা Student ID দিয়ে প্রবেশ করুন।");return;}
  try{const data=await v2Api("studentSessionV2",{token:v2Token});v2ApplyStudent(data.student,v2Token);await loadExams();}
  catch(err){v2ShowForms("সেশন যাচাই হয়নি: "+err.message+"। ইন্টারনেট সমস্যা হলে পরে আবার চেষ্টা করুন।");}
@@ -1619,7 +1645,7 @@ async function v2Login(){
  if(data.approved===false){v2Message("আপনার প্রোফাইল এখন "+(data.status||"pending")+"। Admin Approval-এর অপেক্ষা করুন। Student ID: "+id);return;}
  const token=data.token||data.sessionToken;
  if(!token||!data.student)throw Error("সার্ভার সেশন ফেরত দেয়নি।");
- try{localStorage.setItem(V2_TOKEN_KEY,token);}catch(e){}
+ v2RememberToken(token);
  v2ApplyStudent(data.student,token);await loadExams();
  }catch(err){v2Message(err.message);}
 }
