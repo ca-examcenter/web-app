@@ -2017,7 +2017,8 @@ function hideAllPages(){
 "namePage",
 "examPage",
 "resultPage",
-"browserPrintPage"
+"browserPrintPage",
+"historyPageV2"
 ]
 .forEach(id=>{
 
@@ -2279,6 +2280,59 @@ window.scrollTo(0,0);
 }
 
 
+/* Read-only history, unlocked only after scheduled exam end. */
+function historyGuardV2(exam){
+  if(!v2Student||!v2Token)throw Error("Login প্রয়োজন।");
+  if(!exam || !exam.endAt || getExamTimingState(exam)!=="late")throw Error("পরীক্ষা শেষ হওয়ার পর দেখা যাবে।");
+}
+function historyShowQuestionsV2(examId){
+  try{
+    const exam=examsData.find(e=>e.id===examId);historyGuardV2(exam);
+    let page=document.getElementById("historyPageV2");
+    if(!page){page=document.createElement("section");page.id="historyPageV2";page.className="page hidden";document.body.appendChild(page);}
+    hideAllPages();currentView="history";page.classList.remove("hidden");
+    page.innerHTML="<button class='back-btn' onclick='historyBackV2()'>← পরীক্ষার তালিকা</button><h2 class='page-title'></h2><p class='page-subtitle'>শুধু প্রশ্ন দেখার ব্যবস্থা • কোনো Timer বা Submit নেই</p><div id='historyQuestionsV2'></div>";
+    page.querySelector("h2").textContent=exam.title;
+    const target=page.querySelector("#historyQuestionsV2");
+    exam.questions.forEach((q,i)=>{
+      const card=document.createElement("div");card.className="question-card";
+      const heading=document.createElement("div");heading.className="question-text";heading.textContent=(i+1)+". "+q.q;card.appendChild(heading);
+      if(q.image){const img=document.createElement("img");img.className="question-stimulus-image";img.src=q.image;card.appendChild(img);}
+      (q.options||[]).forEach((option,j)=>{const row=document.createElement("div");row.className="option";row.textContent=optionLabels[j]+". "+option;card.appendChild(row);});
+      target.appendChild(card);
+    });
+    typesetMath(target);window.scrollTo(0,0);
+  }catch(e){alert(e.message);}
+}
+function historyBackV2(){const page=document.getElementById("historyPageV2");if(page)page.classList.add("hidden");hideAllPages();currentView="examlist";document.getElementById("examListPage").classList.remove("hidden");renderExamList();}
+async function historyShowFirstV2(examId){
+  try{
+    const exam=examsData.find(e=>e.id===examId);historyGuardV2(exam);
+    const response=await v2Api("historyFirstAttemptV2",{token:v2Token,examId:examId});
+    if(!response.found){alert("এই পরীক্ষার প্রথম উত্তরপত্র সংরক্ষিত পাওয়া যায়নি। নতুন সিস্টেম চালুর আগের পরীক্ষার খাতা স্বয়ংক্রিয়ভাবে পাওয়া যাবে না।");return;}
+    const a=response.attempt;
+    currentExam=Object.assign({},exam,{questions:a.questions});currentLevel=a.level;currentSubject=a.subject;studentName=a.studentName;
+    externalPrintAnswers=a.answers;externalPrintResult={score:a.score,correct:a.correct,wrong:a.wrong,unanswered:a.unanswered,answered:a.answered};
+    let page=document.getElementById("historyPageV2");
+    if(!page){page=document.createElement("section");page.id="historyPageV2";page.className="page hidden";document.body.appendChild(page);}
+    hideAllPages();currentView="history";page.classList.remove("hidden");
+    page.innerHTML="<button class='back-btn' onclick='historyBackV2()'>← পরীক্ষার তালিকা</button><h2 class='page-title'>প্রথম পরীক্ষার উত্তরপত্র</h2><p id='historyFirstMetaV2'></p><button class='exam-start-btn' style='margin:12px 0' onclick='historyPrintFirstV2()'>📄 PDF / Print</button><div id='historyFirstReviewV2'></div>";
+    page.querySelector("#historyFirstMetaV2").textContent=a.examTitle+" • "+a.studentName+" • নম্বর: "+a.score+" / "+a.questions.length;
+    const target=page.querySelector("#historyFirstReviewV2");
+    a.questions.forEach((q,i)=>{
+      const selected=a.answers[i],correct=Number(q.answer),state=selected===null?"unanswered":selected===correct?"correct":"wrong";
+      const card=document.createElement("div");card.className="review-card "+state;
+      const title=document.createElement("div");title.className="review-q";title.textContent=(i+1)+". "+q.q;card.appendChild(title);
+      if(q.image){const img=document.createElement("img");img.src=q.image;img.className="review-stimulus-image";card.appendChild(img);}
+      (q.options||[]).forEach((o,j)=>{const row=document.createElement("div");row.className="review-option"+(j===correct?" correct":j===selected?" wrong-selected":"");row.textContent=optionLabels[j]+". "+o+(j===correct?" ✓ সঠিক":j===selected?" ✗ আপনার উত্তর":"");card.appendChild(row);});
+      target.appendChild(card);
+    });typesetMath(target);window.scrollTo(0,0);
+  }catch(e){alert(e.message||String(e));}
+}
+function historyPrintFirstV2(){
+  try{prepareAndPrintPDF();window.print();}catch(e){alert("PDF তৈরি হয়নি: "+e.message);}
+}
+
 /* EXAM TIMING */
 
 function parseExamTime(value){
@@ -2494,6 +2548,15 @@ button.addEventListener(
 card.appendChild(
 button
 );
+if(timingState==="late" && exam.endAt){
+  const actions=document.createElement("div");
+  actions.style.cssText="display:flex;gap:8px;flex-wrap:wrap;margin-top:9px";
+  const view=document.createElement("button");view.className="exam-start-btn";view.textContent="📖 শুধু প্রশ্ন দেখো";
+  view.onclick=()=>historyShowQuestionsV2(exam.id);
+  const first=document.createElement("button");first.className="exam-start-btn";first.textContent="📄 আমার প্রথম পরীক্ষার খাতা";
+  first.onclick=()=>historyShowFirstV2(exam.id);
+  actions.append(view,first);card.appendChild(actions);
+}
 
 list.appendChild(
 card
@@ -2608,6 +2671,7 @@ return;
 }
 
 studentName=name;
+externalPrintAnswers=null;externalPrintResult=null;
 
 submitted=false;
 
@@ -3580,7 +3644,8 @@ duration:
 duration,
 
 answers:
-getStudentAnswers()
+getStudentAnswers(),
+answerIndices:getAnswerIndexString()
 
 };
 
