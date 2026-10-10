@@ -1203,6 +1203,7 @@ Online Exam Platform
 </div>
 
 <div class="header-actions">
+<button class="admin-btn" type="button" onclick="v2Logout()" style="background:#b91c1c;color:white;margin-right:8px">🚪 Logout</button>
 <button class="admin-btn" onclick="openAdminPanel()">
 ⚙ Admin Panel
 </button>
@@ -1602,6 +1603,17 @@ function v2RememberToken(token){
    window.AppInventor.setWebViewString("CA_SAVE_TOKEN:"+token);
   }
  }catch(e){console.warn("TinyDB save unavailable",e);}
+}
+
+function v2Logout(){
+ if(currentView==="exam" && !submitted && !confirm("চলমান পরীক্ষা ছেড়ে লগআউট করবেন?"))return;
+ if(currentView!=="exam" && !confirm("আপনি কি লগআউট করতে চান?"))return;
+ try{localStorage.removeItem(V2_TOKEN_KEY);}catch(e){}
+ try{if(window.AppInventor && typeof window.AppInventor.setWebViewString==="function"){
+   window.AppInventor.setWebViewString("CA_SAVE_TOKEN:");
+ }}catch(e){console.warn("TinyDB clear unavailable",e);}
+ v2Token="";v2Student=null;
+ window.location.reload();
 }
 
 let v2Student=null;
