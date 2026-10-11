@@ -1145,6 +1145,38 @@ button{
         display:none!important;
     }
 }
+
+/* V3.1: polished home and exam-detail navigation */
+#homePage .home-hero{position:relative;overflow:hidden;background:linear-gradient(130deg,#10275e 0%,#194ca7 60%,#087eae 100%);border:0;color:#fff;padding:30px 24px 34px;box-shadow:0 16px 35px rgba(16,50,115,.18)}
+#homePage .home-hero:after{content:"";position:absolute;width:190px;height:190px;border:35px solid rgba(255,255,255,.075);border-radius:50%;right:-85px;top:-95px;pointer-events:none}
+#homePage .home-hero h2{color:#fff;font-size:clamp(23px,5.5vw,32px);line-height:1.35;position:relative;z-index:1}
+#homePage .home-hero p{color:#dceaff;font-size:14px;line-height:1.65;position:relative;z-index:1}
+#homePage .home-hero .eyebrow{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.17);position:relative;z-index:1}
+#homePage .level-grid{gap:15px}
+#homePage .level-card{position:relative;overflow:hidden;border:1px solid #dce8fa;border-radius:23px;padding:23px;background:linear-gradient(165deg,#fff 62%,#f3f8ff);box-shadow:0 12px 30px rgba(22,60,123,.075);transition:transform .18s,box-shadow .18s;cursor:pointer}
+#homePage .level-card:active{transform:scale(.985)}
+#homePage .level-card:before{content:"";position:absolute;left:0;top:0;width:100%;height:5px;background:linear-gradient(90deg,#2563eb,#06b6d4)}
+#homePage .level-icon{background:linear-gradient(140deg,#e9f2ff,#dceaff);border:1px solid #dceafe;border-radius:18px;width:62px;height:62px}
+#homePage .level-arrow{background:#e7f0ff;color:#175bd3;width:40px;height:40px}
+#homePage .level-card h2{font-size:28px;margin-top:20px}
+#homePage .level-card p{font-size:14px;line-height:1.55}
+#homePage .level-footer{border-top:1px solid #e4edf9;color:#145cd3;font-size:14px;margin-top:22px}
+.exam-list .exam-card{display:block;padding:20px;border:1px solid #e0e9f5;border-radius:19px;box-shadow:0 7px 20px rgba(15,45,100,.04)}
+.exam-list .exam-card h3{font-size:19px;line-height:1.45}
+.exam-list .exam-card .exam-meta{line-height:1.7}
+.exam-detail-panel{background:#fff;border:1px solid #e1eaf7;border-radius:22px;padding:23px;box-shadow:0 12px 30px rgba(18,47,98,.07)}
+.exam-detail-tag{display:inline-block;color:#1c62d0;background:#eaf2ff;padding:7px 12px;border-radius:30px;font-weight:800;font-size:12px;margin-bottom:12px}
+.exam-detail-panel h2{font-size:clamp(23px,5vw,31px);color:#10275e;line-height:1.4;margin:0 0 13px;overflow-wrap:anywhere}
+.exam-detail-stats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.exam-detail-stats span{background:#f0f6ff;border:1px solid #e2ebfa;border-radius:10px;padding:9px 12px;color:#365277;font-size:13px;font-weight:700}
+.exam-detail-times{font-size:13px;line-height:1.9;color:#64748b;padding:10px 0 17px;border-bottom:1px solid #e8eef7}
+.exam-detail-actions{display:grid;gap:11px;margin-top:18px}
+.exam-detail-actions .exam-start-btn{width:100%;min-height:51px;font-size:15px;text-align:center;border-radius:13px}
+.exam-detail-actions .secondary-action{background:#eef5ff;color:#1957b9;border:1px solid #cfe0fa}
+.exam-detail-actions .neutral-action{background:#f6f8fc;color:#243e68;border:1px solid #dce5f2}
+.exam-detail-note{font-size:12px;color:#64748b;line-height:1.6;margin-top:12px}
+@media(max-width:600px){#homePage .level-grid{grid-template-columns:1fr}#homePage .level-card{padding:22px}#homePage .home-hero{padding:26px 21px}}
+
 </style>
 </head>
 
@@ -1319,6 +1351,12 @@ AVAILABLE EXAMS
 
 <div class="exam-list" id="examList"></div>
 
+</section>
+
+<!-- EXAM DETAILS -->
+<section id="examDetailPageV3" class="page hidden">
+<button type="button" class="back-btn" onclick="history.back()">← পরীক্ষার তালিকা</button>
+<div id="examDetailBodyV3"></div>
 </section>
 
 <!-- NAME -->
@@ -2014,6 +2052,7 @@ function hideAllPages(){
 "homePage",
 "subjectPage",
 "examListPage",
+"examDetailPageV3",
 "namePage",
 "examPage",
 "resultPage",
@@ -2303,7 +2342,7 @@ function historyShowQuestionsV2(examId){
     typesetMath(target);window.scrollTo(0,0);
   }catch(e){alert(e.message);}
 }
-function historyBackV2(){const page=document.getElementById("historyPageV2");if(page)page.classList.add("hidden");hideAllPages();currentView="examlist";document.getElementById("examListPage").classList.remove("hidden");renderExamList();}
+function historyBackV2(){const page=document.getElementById("historyPageV2");if(page)page.classList.add("hidden");if(detailExamIdV3){renderExamDetailV3();}else{renderExamListPage();}}
 async function historyShowFirstV2(examId){
   try{
     const exam=examsData.find(e=>e.id===examId);historyGuardV2(exam);
@@ -2518,44 +2557,12 @@ ${timingText}
 
 `;
 
-const button=
-document.createElement(
-"button"
-);
-
-button.className=
-"exam-start-btn";
-
-if(timingState==="before"){
-    button.innerText="এখনও শুরু হয়নি";
-    button.disabled=true;
-    button.style.opacity=".55";
-    button.style.cursor="not-allowed";
-}
-else if(timingState==="late"){
-    button.innerText="পরীক্ষা দিন (Late) →";
-}
-else{
-    button.innerText="পরীক্ষা দিন →";
-}
-
-button.addEventListener(
-"click",
-()=>selectExam(exam.id)
-);
-
-card.appendChild(
-button
-);
-if(timingState==="late" && exam.endAt){
-  const actions=document.createElement("div");
-  actions.style.cssText="display:flex;gap:8px;flex-wrap:wrap;margin-top:9px";
-  const view=document.createElement("button");view.className="exam-start-btn";view.textContent="📖 শুধু প্রশ্ন দেখো";
-  view.onclick=()=>historyShowQuestionsV2(exam.id);
-  const first=document.createElement("button");first.className="exam-start-btn";first.textContent="📄 আমার প্রথম পরীক্ষার খাতা";
-  first.onclick=()=>historyShowFirstV2(exam.id);
-  actions.append(view,first);card.appendChild(actions);
-}
+const button=document.createElement("button");
+button.type="button";
+button.className="exam-start-btn";
+button.textContent="পরীক্ষার বিস্তারিত দেখুন →";
+button.addEventListener("click",()=>openExamDetailV3(exam.id));
+card.appendChild(button);
 
 list.appendChild(
 card
@@ -2565,6 +2572,55 @@ card
 
 }
 
+
+/* Exam details: actions appear only after selecting a specific exam. */
+let detailExamIdV3=null;
+function openExamDetailV3(id){
+  const exam=examsData.find(e=>e.id===id);
+  if(!exam)return;
+  detailExamIdV3=id;
+  pushView("examdetail");
+  renderExamDetailV3();
+}
+function renderExamDetailV3(){
+  const exam=examsData.find(e=>e.id===detailExamIdV3);
+  if(!exam){renderExamListPage();return;}
+  hideAllPages();currentView="examdetail";
+  document.getElementById("examDetailPageV3").classList.remove("hidden");
+  const host=document.getElementById("examDetailBodyV3");
+  host.innerHTML="";
+  const panel=document.createElement("div");panel.className="exam-detail-panel";
+  const tag=document.createElement("div");tag.className="exam-detail-tag";tag.textContent="📘 পরীক্ষার বিস্তারিত";panel.appendChild(tag);
+  const title=document.createElement("h2");title.textContent=exam.title;panel.appendChild(title);
+  const stats=document.createElement("div");stats.className="exam-detail-stats";
+  const q=document.createElement("span");q.textContent="📝 "+exam.questions.length+"টি প্রশ্ন";
+  const t=document.createElement("span");t.textContent="⏱ "+exam.timeMinutes+" মিনিট";
+  stats.append(q,t);panel.appendChild(stats);
+  const times=document.createElement("div");times.className="exam-detail-times";
+  times.textContent=(exam.startAt?"শুরু: "+formatExamTime(exam.startAt):"")+(exam.startAt&&exam.endAt?"  •  ":"")+(exam.endAt?"শেষ: "+formatExamTime(exam.endAt):"");
+  if(times.textContent)panel.appendChild(times);
+  const actions=document.createElement("div");actions.className="exam-detail-actions";
+  const state=getExamTimingState(exam);
+  function addButton(label,action,cls,disabled){
+    const b=document.createElement("button");b.type="button";b.className="exam-start-btn "+(cls||"");b.textContent=label;
+    if(disabled){b.disabled=true;b.style.opacity=".6";}else{b.addEventListener("click",action);}
+    actions.appendChild(b);
+  }
+  if(state==="before"){
+    addButton("⏳ পরীক্ষা এখনও শুরু হয়নি",null,"",true);
+  }else if(state==="late"){
+    addButton("📝 আবার পরীক্ষা দাও",()=>selectExam(exam.id));
+    addButton("📖 শুধু প্রশ্ন দেখো",()=>historyShowQuestionsV2(exam.id),"secondary-action");
+    addButton("📄 আমার প্রথম পরীক্ষার খাতা",()=>historyShowFirstV2(exam.id),"neutral-action");
+  }else{
+    addButton("📝 পরীক্ষা দিন →",()=>selectExam(exam.id));
+  }
+  panel.appendChild(actions);
+  const note=document.createElement("p");note.className="exam-detail-note";
+  note.textContent=state==="late"?"পরীক্ষার সময় শেষ হয়েছে। প্রশ্ন দেখতে বা প্রথম উত্তরপত্র খুলতে নিচের অপশন ব্যবহার করুন।":"পরীক্ষার নির্ধারিত সময় অনুযায়ী অপশনগুলো দেখানো হচ্ছে।";
+  panel.appendChild(note);host.appendChild(panel);
+  window.scrollTo(0,0);
+}
 
 /* SELECT EXAM */
 
@@ -4634,6 +4690,8 @@ renderExamListPage();
 return;
 
 }
+
+if(target==="examdetail"){renderExamDetailV3();return;}
 
 if(
 target==="name"
