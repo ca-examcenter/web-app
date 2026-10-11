@@ -1177,6 +1177,12 @@ button{
 .exam-detail-note{font-size:12px;color:#64748b;line-height:1.6;margin-top:12px}
 @media(max-width:600px){#homePage .level-grid{grid-template-columns:1fr}#homePage .level-card{padding:22px}#homePage .home-hero{padding:26px 21px}}
 
+
+/* AI source finder (Phase 1) */
+.ai-source-btn{display:block;margin-top:13px;padding:10px 13px;border:1px solid #bfd3fa;background:#eaf2ff;color:#1848a0;border-radius:11px;font-weight:800;width:100%;text-align:center}
+.ai-source-box{margin-top:9px;padding:14px;border:1px solid #d5e2f5;background:#fff;border-radius:12px;font-size:13px;line-height:1.8;overflow-wrap:anywhere}
+.ai-source-hit{margin:9px 0;padding:10px;background:#f4f8ff;border-left:3px solid #2563eb;border-radius:8px}
+.ai-bulk-row{display:flex;gap:10px;align-items:center;padding:12px;border-bottom:1px solid #e2e8f0}
 </style>
 </head>
 
@@ -1504,6 +1510,7 @@ autocomplete="name"
 উত্তরপত্র ও সংশোধনী
 </h2>
 
+<button class="ai-source-btn" type="button" onclick="aiBulkOpen()">🔍 একাধিক প্রশ্নের উৎস খুঁজুন</button>
 <div id="answerReview"></div>
 
 <div class="result-actions">
@@ -2337,6 +2344,7 @@ function historyShowQuestionsV2(examId){
       const heading=document.createElement("div");heading.className="question-text";heading.innerHTML=latexAwareHtml((i+1)+". "+q.q);card.appendChild(heading);
       if(q.image){const img=document.createElement("img");img.className="question-stimulus-image";img.src=q.image;card.appendChild(img);}
       (q.options||[]).forEach((option,j)=>{const row=document.createElement("div");row.className="option";row.innerHTML="<span><b>("+optionLabels[j]+")</b> "+latexAwareHtml(option)+"</span>";card.appendChild(row);});
+      aiAttachButton(card,examId,i,q);
       target.appendChild(card);
     });
     typesetMath(target);window.scrollTo(0,0);
@@ -3522,6 +3530,7 @@ card.appendChild(
 optionsBox
 );
 
+aiAttachButton(card,currentExam.id,index,question);
 review.appendChild(
 card
 );
@@ -4738,5 +4747,49 @@ v2Boot();
 
 </script>
 
+<script>
+
+/* AI Source Finder: only asks server for a verified, post-exam source. */
+function aiEscape(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function aiAttachButton(card,examId,index,question){
+  if(!card||!examId)return;
+  const btn=document.createElement('button');btn.type='button';btn.className='ai-source-btn';btn.textContent='🤖 AI Help — প্রশ্নের উৎস খুঁজুন';
+  const box=document.createElement('div');box.className='ai-source-box hidden';
+  btn.onclick=async function(){
+    if(!box.classList.contains('hidden')){box.classList.add('hidden');return;}
+    box.classList.remove('hidden');box.textContent='উৎস অনুসন্ধান হচ্ছে...';
+    try{const r=await v2Api('aiSourceFindV1',{token:v2Token,examId:examId,questionIndex:index});aiRenderResult(box,r);}
+    catch(e){box.textContent=e.message||String(e);}
+  };
+  card.appendChild(btn);card.appendChild(box);
+}
+function aiRenderResult(box,r){
+  box.innerHTML='<strong>📚 প্রশ্নের উৎস</strong><p>ব্যবহার: '+aiEscape(r.used)+' / '+aiEscape(r.limit)+'টি প্রশ্ন</p>';
+  const hits=r.matches||[];
+  if(!hits.length){const p=document.createElement('p');p.textContent='এখনো যাচাইকৃত বইয়ের উৎস পাওয়া যায়নি। বইয়ের OCR ইনডেক্স যুক্ত হলে এখানে পৃষ্ঠা দেখাবে।';box.appendChild(p);return;}
+  hits.forEach(function(h){const d=document.createElement('div');d.className='ai-source-hit';
+    d.innerHTML='<b>'+aiEscape(h.book||h.source)+'</b>'+(h.page?' — PDF পৃষ্ঠা '+aiEscape(h.page):'')+'<br>'+aiEscape(h.excerpt||'')+'<br><small>'+aiEscape(h.note||'')+'</small>';box.appendChild(d);});
+}
+function aiBulkOpen(){
+  const exam=currentExam;if(!exam||!exam.id){alert('পরীক্ষার তথ্য পাওয়া যায়নি।');return;}
+  let page=document.getElementById('aiBulkPage');
+  if(!page){page=document.createElement('section');page.id='aiBulkPage';page.className='page hidden';document.body.appendChild(page);}
+  hideAllPages();currentView='aiBulk';page.classList.remove('hidden');
+  page.innerHTML='<button class="back-btn" type="button" id="aiBulkBack">← উত্তরপত্রে ফিরুন</button><h2 class="page-title">🔍 একাধিক প্রশ্নের উৎস খুঁজুন</h2><p class="page-subtitle">যেসব প্রশ্ন বিশ্লেষণ করতে চাও, সেগুলো নির্বাচন করো।</p><label><input type="checkbox" id="aiSelectAll"> সব নির্বাচন</label><div id="aiBulkChoices"></div><button type="button" class="ai-source-btn" id="aiBulkGo">নির্বাচিত প্রশ্নের উৎস খুঁজুন</button><div id="aiBulkResults"></div>';
+  page.querySelector('#aiBulkBack').onclick=function(){page.classList.add('hidden');document.getElementById('resultPage').classList.remove('hidden');currentView='result';};
+  const choices=page.querySelector('#aiBulkChoices');
+  exam.questions.forEach(function(q,i){const row=document.createElement('label');row.className='ai-bulk-row';row.innerHTML='<input type="checkbox" class="ai-bulk-check" value="'+i+'"><span>'+(i+1)+'. '+aiEscape(q.q)+'</span>';choices.appendChild(row);});
+  page.querySelector('#aiSelectAll').onchange=function(){choices.querySelectorAll('input').forEach(c=>c.checked=this.checked);};
+  page.querySelector('#aiBulkGo').onclick=async function(){
+    const ids=Array.from(choices.querySelectorAll('input:checked')).map(x=>Number(x.value));if(!ids.length){alert('অন্তত একটি প্রশ্ন নির্বাচন করো।');return;}
+    const results=page.querySelector('#aiBulkResults');results.innerHTML='';
+    for(const i of ids){const box=document.createElement('div');box.className='ai-source-box';box.innerHTML='<b>প্রশ্ন '+(i+1)+'</b><p>অনুসন্ধান হচ্ছে...</p>';results.appendChild(box);
+      try{const r=await v2Api('aiSourceFindV1',{token:v2Token,examId:exam.id,questionIndex:i});aiRenderResult(box,r);}
+      catch(e){box.textContent='প্রশ্ন '+(i+1)+': '+(e.message||String(e));if(/সীমা|limit/i.test(e.message||''))break;}
+    }
+  };
+}
+
+</script>
 </body>
 </html>
