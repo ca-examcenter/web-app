@@ -4754,7 +4754,7 @@ v2Boot();
 function aiEscape(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function aiAttachButton(card,examId,index,question){
   if(!card||!examId)return;
-  const btn=document.createElement('button');btn.type='button';btn.className='ai-source-btn';btn.textContent='🤖 AI Help — প্রশ্নের উৎস খুঁজুন';
+  const btn=document.createElement('button');btn.type='button';btn.className='ai-source-btn';btn.textContent='🤖 AI Help — উত্তর ও বইয়ের লাইন';
   const box=document.createElement('div');box.className='ai-source-box hidden';
   btn.onclick=async function(){
     if(!box.classList.contains('hidden')){box.classList.add('hidden');return;}
@@ -4765,11 +4765,13 @@ function aiAttachButton(card,examId,index,question){
   card.appendChild(btn);card.appendChild(box);
 }
 function aiRenderResult(box,r){
-  box.innerHTML='<strong>📚 প্রশ্নের উৎস</strong><p>ব্যবহার: '+aiEscape(r.used)+' / '+aiEscape(r.limit)+'টি প্রশ্ন</p>';
+  box.innerHTML='<strong>🤖 Gemini AI — উত্তর ও বইয়ের প্রমাণ</strong><p>ব্যবহার: '+aiEscape(r.used)+' / '+aiEscape(r.limit)+'টি প্রশ্ন</p>';
+  if(r.aiAnswer){const d=document.createElement('div');d.className='ai-source-hit';d.innerHTML='<b>✅ সংক্ষিপ্ত উত্তর</b><br>'+aiEscape(r.aiAnswer);box.appendChild(d);}
+  if(r.aiNotice){const p=document.createElement('p');p.textContent=r.aiNotice;box.appendChild(p);}
   const hits=r.matches||[];
-  if(!hits.length){const p=document.createElement('p');p.textContent='এখনো যাচাইকৃত বইয়ের উৎস পাওয়া যায়নি। বইয়ের OCR ইনডেক্স যুক্ত হলে এখানে পৃষ্ঠা দেখাবে।';box.appendChild(p);return;}
+  if(!hits.length){if(!r.aiAnswer){const p=document.createElement('p');p.textContent='এখন উত্তর পাওয়া যায়নি। '+(r.status==='api_key_missing'?'Gemini API Key সেট করো।':'পরে আবার চেষ্টা করো।');box.appendChild(p);}return;}
   hits.forEach(function(h){const d=document.createElement('div');d.className='ai-source-hit';
-    d.innerHTML='<b>'+aiEscape(h.book||h.source)+'</b>'+(h.page?' — PDF পৃষ্ঠা '+aiEscape(h.page):'')+'<br>'+aiEscape(h.excerpt||'')+'<br><small>'+aiEscape(h.note||'')+'</small>';box.appendChild(d);});
+    d.innerHTML='<b>📚 '+aiEscape(h.book||h.source)+'</b>'+(h.printedPage?' — বইয়ের পৃষ্ঠা '+aiEscape(h.printedPage):' — বইয়ের ছাপানো পৃষ্ঠা যাচাই হয়নি')+'<br>'+aiEscape(h.excerpt||'')+'<br><small>'+aiEscape(h.note||'')+'</small>';box.appendChild(d);});
 }
 function aiBulkOpen(){
   const exam=currentExam;if(!exam||!exam.id){alert('পরীক্ষার তথ্য পাওয়া যায়নি।');return;}
